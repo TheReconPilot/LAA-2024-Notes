@@ -1,0 +1,1143 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File
+href="Ch9_%20Eigen%20Decomposition%20-%20Incomplete.htm">
+<link rel=File-List
+href="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/filelist.xml">
+</head>
+
+<body lang=en-IN style='font-family:Calibri;font-size:11.0pt;background-color:#201f1e'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:9.8875in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.1215in;width:5.318in'>
+
+<p style='margin:0in;font-family:"Calibri Light";font-size:20.0pt;color:white'>Ch9: Eigen
+Decomposition - Incomplete</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4756in;margin-left:.225in;width:8.8541in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image001.png"
+width=1063 height=1178
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.1013in;margin-left:0in;width:9.7895in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image002.png"
+width=1175 height=540
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.0666in;margin-left:.0215in;width:9.7319in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image003.png"
+width=1168 height=1181
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.3486in;margin-left:.0451in;width:9.7125in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image004.png"
+width=1166 height=1188
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.2937in;margin-left:.0555in;width:9.7729in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image005.png"
+width=1173 height=1194
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.2965in;margin-left:.3034in;width:8.9638in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image006.png"
+width=1076 height=1193
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.2819in;margin-left:.0395in;width:9.6979in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image007.png"
+width=1164 height=1190
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.2958in;margin-left:.3138in;width:8.202in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image008.png"
+width=984 height=683
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<table border=0 cellpadding=0 cellspacing=0 cols=13 valign=top
+ style='direction:ltr;border-collapse:collapse;border-width:0pt;margin-top:
+ .2319in;margin-left:.7812in;width:8.1083in'>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7083in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9201in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.0152in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7083in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9201in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0097in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=8 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:1.0159in;height:.3291in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image009.png"
+  width=122 height=40
+  alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=10 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.7083in;height:.3312in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image010.png"
+  width=85 height=40
+  alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9201in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0006in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=11 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.9208in;height:.6083in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image011.png"
+  width=111 height=73
+  alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0131in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=6 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.7597in;height:.3069in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image012.png"
+  width=91 height=37
+  alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0472in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=3 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.2375in;height:.1951in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image013.png"
+  width=29 height=23 alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0708in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td rowspan=5 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:1.668in;height:.1951in'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.0pt'><a
+  href="https://ecroot.math.gatech.edu/notes_linear.pdf"><span lang=en-IN>A
+  Reference [PDF]</span></a></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0555in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=6 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.1625in;height:.2027in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image014.png"
+  width=19 height=24></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.068in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0604in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.0152in;
+  height:.0027in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.0152in;
+  height:.0062in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.0152in;
+  height:.002in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7083in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.0152in;
+  height:.0611in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.668in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.9937in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7083in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0347in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2368in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.2784in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.1937in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7597in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.125in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1625in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0076in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1.0152in;
+  height:.2173in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+</table>
+
+<table border=0 cellpadding=0 cellspacing=0 cols=9 valign=top style='direction:
+ ltr;border-collapse:collapse;border-width:0pt;margin-top:.1833in;margin-left:
+ .6159in;width:5.2069in'>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5763in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7743in;
+  height:1px;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td rowspan=3 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:2.0902in;height:.1958in'>
+  <p style='margin:0in;font-family:Calibri;font-size:11.0pt'><a
+  href="https://www.sjsu.edu/faculty/guangliang.chen/Math253S20/lec4RayleighQuotient.pdf"><span
+  lang=en-IN>Another Reference [PDF]</span></a></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5763in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7743in;
+  height:.1861in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=6 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.577in;height:.2763in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image015.png"
+  width=69 height=33
+  alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.7743in;
+  height:0in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.0083in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=7 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.775in;height:.3076in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image016.png"
+  width=93 height=37
+  alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.0645in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=2 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.2506in;height:.1569in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image017.png"
+  width=30 height=19 alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.018in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.1381in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:.1381in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.1381in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td rowspan=3 valign=top style='vertical-align:top;margin:0in;padding:0pt;
+  width:.6333in;height:.1993in'><img
+  src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image018.png"
+  width=76 height=24 alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.1381in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.1381in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.1381in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.0437in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5763in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.0159in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'>&nbsp;</p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:2.0895in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5513in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.6333in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.0875in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.5763in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1354in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.25in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:.1048in;
+  height:.0152in;font-size:1pt'>
+  <p style='font-size:1pt'></p>
+  </td>
+ </tr>
+</table>
+
+<div style='direction:ltr;margin-top:.0694in;margin-left:.0777in;width:9.7097in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image019.png"
+width=1165 height=1191
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.0118in;margin-left:.1576in;width:9.5534in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image020.png"
+width=1146 height=1149
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.3111in;margin-left:.0513in;width:9.6826in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image021.png"
+width=1162 height=1112
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.2895in;margin-left:.2375in;width:8.4472in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image022.png"
+width=1014 height=1185
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.0277in;margin-left:.0958in;width:9.7916in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image023.png"
+width=1175 height=1152
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.2993in;margin-left:.2638in;width:8.3354in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image024.png"
+width=1000 height=1150
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.3298in;margin-left:.6965in;width:8.2076in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image025.png"
+width=985 height=1160
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:.1506in;margin-left:.5201in;width:8.3666in'><img
+src="Ch9_%20Eigen%20Decomposition%20-%20Incomplete_files/image026.png"
+width=1004 height=940
+alt="Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;Ink Drawings&#13;&#10;"></div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>Created with OneNote.</p>
+
+</div>
+
+</body>
+
+</html>
