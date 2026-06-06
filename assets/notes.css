@@ -1,0 +1,212 @@
+/* ==========================================================================
+   LAA-2024 Notes — shared stylesheet for the typeset chapter pages.
+   Dark theme echoing the original handwritten notes, with the ink palette
+   re-mapped onto a *consistent* set of semantic callout colours
+   (definition / theorem / proof / example / remark).
+   ========================================================================== */
+
+:root {
+  --bg:        #201f1e;   /* same charcoal as the OneNote pages            */
+  --bg-soft:   #2a2928;   /* slightly raised surfaces (callouts, code)     */
+  --text:      #e8e6e3;   /* off-white body text                           */
+  --muted:     #9aa0a6;   /* secondary / editorial notes                   */
+  --rule:      #3a4654;   /* separators, echoing the blue ink underlines   */
+  --link:      #7bb8e8;
+
+  /* Ink-inspired, role-based accents (consistent everywhere) */
+  --c-section: #e8836b;   /* red/orange  — section titles                  */
+  --c-def:     #74c490;   /* green       — definitions (statement ink)     */
+  --c-thm:     #45b8b0;   /* teal        — theorems / lemmas / corollaries */
+  --c-proof:   #8b9299;   /* grey        — proofs                          */
+  --c-ex:      #e07cc0;   /* pink        — examples / exercises (labels)   */
+  --c-rem:     #5fa8e6;   /* blue        — remarks / derivations           */
+  --c-warn:    #e0b341;   /* amber       — corrections / TODO flags        */
+
+  --font-body: "Cambria", "Charter", "Bitstream Charter", "Georgia", serif;
+  --font-ui:   system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --maxw: 50rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  /* keep the original notes' generous left breathing room on wide screens,
+     while staying centred and readable */
+  padding: 0 1.25rem 5rem;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; }
+
+/* ---- top bar / navigation ------------------------------------------------ */
+.topnav {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.25rem 0 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2rem;
+}
+.topnav a { color: var(--link); text-decoration: none; }
+.topnav a:hover { text-decoration: underline; }
+.topnav .crumb::before { content: "\2190\00a0"; } /* ← */
+
+/* ---- headings ------------------------------------------------------------ */
+.chap-title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin: 0.5rem 0 0.25rem;
+}
+.chap-sub { color: var(--muted); font-family: var(--font-ui); margin: 0 0 2.5rem; }
+
+h2.sec {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--c-section);
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid color-mix(in srgb, var(--c-section) 45%, transparent);
+}
+
+h3 { font-family: var(--font-ui); font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+
+p { margin: 0.8rem 0; }
+a { color: var(--link); }
+
+/* informal arrow / dotted bullet lists used throughout the notes */
+ul.arrows, ul.dots { list-style: none; padding-left: 1.5rem; margin: 0.8rem 0; }
+ul.arrows > li, ul.dots > li { position: relative; margin: 0.45rem 0; }
+ul.arrows > li::before {
+  content: "\2192"; /* → */
+  position: absolute; left: -1.5rem; color: var(--c-rem); font-weight: 700;
+}
+ul.dots > li::before {
+  content: "\2299"; /* ⊙ */
+  position: absolute; left: -1.5rem; color: var(--muted);
+}
+
+ol.claims { padding-left: 1.5rem; margin: 0.6rem 0; }
+ol.claims > li { margin: 0.5rem 0; }
+
+/* ---- semantic callout boxes --------------------------------------------- */
+.box {
+  background: var(--bg-soft);
+  border-left: 4px solid var(--muted);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  margin: 1.4rem 0;
+}
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+
+.box-head {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+.box-head .name { text-transform: none; letter-spacing: 0; color: var(--muted); font-weight: 600; }
+
+.box.def  { border-color: var(--c-def);  background: color-mix(in srgb, var(--c-def)  7%, var(--bg)); }
+.box.thm  { border-color: var(--c-thm);  background: color-mix(in srgb, var(--c-thm)  7%, var(--bg)); }
+.box.ex   { border-color: var(--c-ex);   background: color-mix(in srgb, var(--c-ex)   7%, var(--bg)); }
+.box.rem  { border-color: var(--c-rem);  background: color-mix(in srgb, var(--c-rem)  7%, var(--bg)); }
+.box.pf   { border-color: var(--c-proof); background: transparent; }
+
+.box.def .box-head  { color: var(--c-def); }
+.box.thm .box-head  { color: var(--c-thm); }
+.box.ex  .box-head  { color: var(--c-ex); }
+.box.rem .box-head  { color: var(--c-rem); }
+.box.pf  .box-head  { color: var(--c-proof); }
+
+/* a definition that wraps a "headline" boxed formula (e.g. Leibniz det) */
+.box .keyformula {
+  border: 1px solid color-mix(in srgb, var(--c-def) 55%, transparent);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin: 0.8rem 0 0.2rem;
+}
+
+/* proofs: terminating ∎ */
+.qed { text-align: right; color: var(--muted); margin: 0.4rem 0 0; }
+.qed::before { content: "\220E"; } /* ∎ */
+
+/* editorial asides written by the author, e.g. "[answer may be incomplete]" */
+.aside { color: var(--muted); font-style: italic; }
+
+/* reserved for the later correctness pass — fix-and-flag annotations */
+.corr { border-bottom: 2px dotted var(--c-warn); cursor: help; }
+.corr-note { color: var(--c-warn); font-size: 0.85rem; font-family: var(--font-ui); }
+
+/* ---- separators ---------------------------------------------------------- */
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule) 12%, var(--rule) 88%, transparent);
+  margin: 2.2rem 0;
+}
+
+/* ---- "view original scan" collapsibles ----------------------------------- */
+details.scan { margin: 1rem 0 0; }
+details.scan > summary {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0;
+}
+details.scan > summary::before { content: "\25B8"; }  /* ▸ */
+details.scan[open] > summary::before { content: "\25BE"; } /* ▾ */
+details.scan > summary:hover { color: var(--link); }
+.scan-imgs { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; }
+.scan-imgs img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg);
+}
+
+/* ---- KaTeX tweaks -------------------------------------------------------- */
+/* let wide display equations scroll horizontally on small screens           */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; }
+.katex { font-size: 1.05em; }
+
+/* ---- footer -------------------------------------------------------------- */
+footer {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+footer a { color: var(--link); text-decoration: none; }
+
+/* ---- responsive ---------------------------------------------------------- */
+@media (max-width: 640px) {
+  body { font-size: 1.05rem; padding: 0 0.9rem 4rem; }
+  .chap-title { font-size: 1.7rem; }
+  h2.sec { font-size: 1.3rem; }
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch7: Trace and Determinant · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch7 · Trace and Determinant</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 7 — Trace and Determinant</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- ================================================================== -->
+  <!-- TRACE                                                              -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Trace</h2>
+
+  <p>The trace is a linear functional on the space of (square) matrices — an element of \( \Lin(\F^{n\times n}, \F) \).</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 34 <span class="name">— Trace</span></p>
+    <p>The trace of \( A \in \F^{n\times n} \) is
+    \[ \tr(A) = A_{11} + \dots + A_{nn} = \text{(sum of the diagonal elements of } A\text{)}. \]</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 73</p>
+    <p>Show that</p>
+    <ol class="claims">
+      <li>\( \tr(AB) = \tr(BA) \quad \forall\, A, B \in \F^{n\times n} \)</li>
+      <li>\( \|A\|_F^2 = \tr(A\herm A) \quad \forall\, A \in \F^{m\times n} \)</li>
+      <li>\( \|u\|^2 = \tr(uu\T) \quad \forall\, u \in \R^n \)</li>
+      <li>\( \|u\|^2 = \tr(uu\herm) \quad \forall\, u \in \C^n \)</li>
+      <li>\( A \sim B \implies \tr(A) = \tr(B) \)</li>
+    </ol>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (1)</p>
+    <p>\( \tr(AB) = \sum_{i=1}^{n} (AB)_{ii} \), and \( (AB)_{ii} = \sum_{k=1}^{n} a_{ik} b_{ki} \) (the diagonal elements of \( AB \)). Hence
+    \[ \tr(AB) = \sum_{i=1}^{n}\sum_{k=1}^{n} a_{ik} b_{ki} = \sum_{k=1}^{n}\sum_{i=1}^{n} b_{ki} a_{ik} = \sum_{k=1}^{n} (BA)_{kk} = \tr(BA). \]
+    \( \therefore\ \tr(AB) = \tr(BA) \quad \forall\, A, B \in \F^{n\times n}. \)</p>
+    <p class="qed"></p>
+  </div>
+
+  <!-- TODO verify (correctness pass): claim (2) is stated for A in F^{m x n},
+       but the index sums below run to n throughout (as in the original scan).
+       For a true m x n matrix the k-sum runs to m and the column index i to n. -->
+  <div class="box pf">
+    <p class="box-head">Proof — (2)</p>
+    <p>\( (A\herm)_{ij} = \overline{a_{ji}} = \overline{(A)_{ji}} \). With \( (AB)_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj} \),
+    \[ (A\herm A)_{ij} = \sum_{k=1}^{n} \overline{a_{ki}}\, a_{kj}. \]
+    So
+    \[ \tr(A\herm A) = \sum_{i=1}^{n} (A\herm A)_{ii} = \sum_{i=1}^{n}\sum_{k=1}^{n} \overline{a_{ki}}\, a_{ki} = \sum_{i=1}^{n}\sum_{k=1}^{n} |a_{ki}|^2 \qquad \big( |z|^2 = \overline{z}\,z = z\,\overline{z} \big). \]
+    Therefore \( \tr(A\herm A) = \|A\|_F^2 \). Since \( \tr(AB) = \tr(BA) \), we also have \( \tr(AA\herm) = \tr(A\herm A) \), and so
+    \[ \|A\|_F^2 = \tr(A\herm A) = \tr(AA\herm). \]</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (3)</p>
+    <p>For \( u \in \R^n \), \( \|u\|^2 = u \cdot u = u_1^2 + \dots + u_n^2 \). Now
+    \[ uu\T = \begin{bmatrix} u_1 \\ \vdots \\ u_n \end{bmatrix}_{n\times 1} \begin{bmatrix} u_1 & \cdots & u_n \end{bmatrix}_{1\times n} = (\text{an } n\times n \text{ matrix}), \qquad (uu\T)_{ij} = u_i u_j. \]
+    Hence \( \tr(uu\T) = \sum_{i=1}^{n} u_i \cdot u_i = \sum_{i=1}^{n} u_i^2 = \|u\|^2. \)</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (4)</p>
+    <p>For \( u \in \C^n \), \( \|u\|^2 = |u_1|^2 + \dots + |u_n|^2 \) (for \( z \in \C \), \( |z|^2 = z\overline{z} = \overline{z}z \)). Since \( (uu\herm)_{ij} = u_i \overline{u_j} \),
+    \[ \tr(uu\herm) = \sum_{i=1}^{n} u_i \overline{u_i} = \sum_{i=1}^{n} |u_i|^2 = \|u\|^2. \]</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (5)</p>
+    <p>From Ch. 3, \( M \sim N \) iff there is an invertible matrix \( P \) such that \( M = PNP^{-1} \). So \( A \sim B \implies \exists\, P : A = PBP^{-1} \), and
+    \[ \tr(A) = \tr(PBP^{-1}) = \tr\big((PB)P^{-1}\big) = \tr\big(P^{-1}(PB)\big) = \tr(IB) = \tr(B) \qquad (\text{as } \tr(AB) = \tr(BA)). \]
+    \( \therefore\ \tr(A) = \tr(B). \)</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 74</p>
+    <p>If \( A \) and \( B \) are matrix representations of an operator \( T \), show that \( \tr A = \tr B \). Thus we can define the trace of \( T \) as \( \tr A \), where \( A = [T] \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>From Ch. 3 (Ex 37), if \( M \) and \( N \) are two matrix representations of a linear operator corresponding to two different bases, then \( M \sim N \).</p>
+    <p>Let \( T \in \Lin(V) \), and let \( \phi \) and \( \psi \) be the coordinate maps for the two bases of \( V \). Then
+    \[ T = \phi^{-1} A\, \phi = \psi^{-1} B\, \psi \implies A = \phi\psi^{-1} B\, \psi\phi^{-1}. \]
+    Put \( P = \phi\psi^{-1} \Rightarrow P^{-1} = \psi\phi^{-1} \). Then \( A = PBP^{-1} \implies A \sim B \). By Ex 73 (5), \( \tr A = \tr B \), so we are done.</p>
+    <p class="qed"></p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Trace (pages 1–5)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image001.png" alt="Original handwritten page 1">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image003.png" alt="Original handwritten page 3">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image004.png" alt="Original handwritten page 4">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image005.png" alt="Original handwritten page 5">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- PERMUTATIONS                                                       -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Permutations</h2>
+
+  <p>\( [n] = \{1, 2, \dots, n\} \). A permutation on \( [n] \) is a reordering of the elements of \( [n] \).</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 35 <span class="name">— Permutation</span></p>
+    <p>A permutation on \( [n] \) is a bijection \( \sigma : [n] \to [n] \). We use \( \Pi_n \) to denote the set of permutations on \( [n] \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Example 10</p>
+    <p>\( \Pi_1 = \{(1)\}, \qquad \Pi_2 = \{(1,2),\ (2,1)\}. \)</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 75</p>
+    <p>Compute \( |\Pi_n| \), i.e. the number of possible permutations on \( [n] \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>\( [n] = \{1, 2, \dots, n\} \). Filling the \( n \) positions:</p>
+    <ul class="arrows">
+      <li>1st position: \( n \) choices</li>
+      <li>2nd position: \( n-1 \) choices</li>
+      <li>\( \vdots \)</li>
+      <li>\( (n-1) \)th position: \( 2 \) choices</li>
+      <li>\( n \)th position: \( 1 \) choice</li>
+    </ul>
+    <p>\[ n \times (n-1) \times (n-2) \times \dots \times 1 = n!. \qquad \therefore\ |\Pi_n| = n!. \]</p>
+    <p class="qed"></p>
+  </div>
+
+  <p>→&nbsp; A permutation can be decomposed into elementary permutations.</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 36 <span class="name">— Transposition</span></p>
+    <p>A permutation \( \tau \in \Pi_n \) is called a transposition if there exist \( p, q \in [n] \), \( p \neq q \), such that
+    \[ \sigma(i) = \begin{cases} q & i = p \\ p & i = q \\ i & i \notin \{p, q\} \end{cases} \]
+    We use \( T_n \) to denote the set of transpositions on \( [n] \). In other words, if a permutation exchanges just two elements and keeps the rest the same, it is a transposition.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Example 11</p>
+    <p>\( (2,1) \), \( (3,2,1) \) — transpositions.<br>
+       \( (2,3,1) \), \( (3,1,2) \) — not transpositions.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 76</p>
+    <p>Compute \( |T_n| \) and compare with \( |\Pi_n| \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>For a transposition, choose any two positions to exchange. Choosing 2 out of \( n \): \( {}^{n}C_{2} = \dfrac{n(n-1)}{2} \). Hence
+    \[ |T_n| = {}^{n}C_{2} = \frac{n(n-1)}{2}, \qquad \text{while}\quad |\Pi_n| = n! = n(n-1)(n-2)\cdots 2 \cdot 1. \]</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 77</p>
+    <p>Show that any permutation is a composition of transpositions, i.e.
+    \[ \forall\, \sigma \in \Pi_n,\ \exists\, \tau_1, \dots, \tau_k \in T_n : \sigma = \tau_1 \circ \dots \circ \tau_k. \]</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Define a cycle \( (a_1\, a_2 \cdots a_k) \) by
+    \[ \sigma(a_i) = \begin{cases} a_{i+1} & 1 \le i < k \\ a_1 & i = k \\ a_i & \text{for all other } i \end{cases} \]</p>
+    <p>For \( \sigma \in \Pi_n \), define a relation \( \sim\ \subseteq [n] \times [n] \) by
+    \[ \forall\, a, b \in [n], \quad a \sim b \iff \exists\, n \in \Z : \sigma^{n}(a) = b. \]
+    This is an equivalence relation:</p>
+    <ul class="dots">
+      <li>\( x \sim x \), as \( \sigma^{0} = x \quad \forall\, x \in [n] \).&nbsp; (reflexive)</li>
+      <li>\( x \sim y \implies \sigma^{n}(x) = y \) for some \( n \in \Z \implies x = \sigma^{-n}(y) \implies y \sim x \), \( \forall\, x, y \in [n] \).&nbsp; (symmetric)</li>
+      <li>\( x \sim y \) and \( y \sim z \implies \sigma^{n}(x) = y,\ \sigma^{m}(y) = z \implies \sigma^{n+m}(x) = z \implies x \sim z \), \( \forall\, x, y, z \in [n] \).&nbsp; (transitive)</li>
+    </ul>
+    <p>Thus \( \sim \) partitions \( [n] \) into orbits, and each orbit corresponds to a cycle (since \( \sigma \) is a bijection, \( \sigma^{k}(a) = a \) after some \( k \) steps). So any permutation \( \sigma \in \Pi_n \) decomposes into disjoint cycles.</p>
+    <p>Each cycle decomposes into transpositions:
+    \[ (a_1\, a_2 \cdots a_k) = (a_1\, a_k)(a_1\, a_{k-1}) \cdots (a_1\, a_2) = \tau_1 \circ \dots \circ \tau_{k-1}. \]
+    Doing this for each disjoint cycle, any permutation breaks down into a composition of transpositions.</p>
+    <p class="qed"></p>
+  </div>
+
+  <!-- TODO verify (correctness pass): image009 (Example 12) is low-resolution;
+       confirm the exact transpositions against the original scan. -->
+  <div class="box ex">
+    <p class="box-head">Example 12</p>
+    <p>We can write \( (1\,2\,3) \) as a composition of transpositions: \( (1\,2\,3) = (1\,3)(1\,2) \).</p>
+  </div>
+
+  <p>→&nbsp; There are different ways to express a permutation using transpositions; for example, applying the same transposition an even number of times makes no difference. What is invariant is the <em>parity</em> of the number of transpositions in the decomposition.</p>
+
+  <div class="box ex">
+    <p class="box-head">Ex 78</p>
+    <p>Let \( \sigma \in \Pi_n \). Suppose there exist \( \tau_1, \dots, \tau_k \in T_n \) and \( s_1, \dots, s_l \in T_n \) such that
+    \[ \sigma = \tau_1 \circ \dots \circ \tau_k = s_1 \circ \dots \circ s_l. \]
+    Show that \( k \) and \( l \) are both even or both odd. Thus every \( \sigma \in \Pi_n \) has even parity (an even permutation) or odd parity (an odd permutation).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>First, the identity permutation \( \sigma_I(x) = x \) can be written as \( \sigma_I = (1\,2)(1\,2) \) — exchange the first two elements, then exchange again — so \( \sigma_I \) has even parity.</p>
+    <p>Now take \( \sigma = \tau_1 \circ \dots \circ \tau_k = s_1 \circ \dots \circ s_l \). Since a transposition exchanges just two elements, it is its own inverse: \( \tau_i^{-1} = \tau_i\ (1 \le i \le k) \), \( s_j^{-1} = s_j\ (1 \le j \le l) \). So
+    \[ \sigma^{-1} = \tau_k \circ \dots \circ \tau_1 = s_l \circ \dots \circ s_1, \]
+    and therefore
+    \[ \sigma_I = \sigma\sigma^{-1} = \underbrace{\tau_1 \circ \dots \circ \tau_k \circ s_l \circ \dots \circ s_1}_{k + l \text{ transpositions}}. \]
+    Since \( \sigma_I \) has even parity, \( k + l \) must be even \( \implies \) both \( k \) and \( l \) are odd, or both are even.</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 37 <span class="name">— Sign</span></p>
+    <p>The sign of a permutation \( \sigma \in \Pi_n \) is
+    \[ \sign(\sigma) = \begin{cases} +1 & \sigma \text{ is even} \\ -1 & \sigma \text{ is odd} \end{cases} \]</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 79</p>
+    <p>Prove the following results.</p>
+    <ol class="claims">
+      <li>\( \sign(\sigma s) = \sign(\sigma)\,\sign(s) \quad \forall\, \sigma, s \in \Pi_n \).</li>
+      <li>\( \Pi_n = \{ \sigma s : s \in \Pi_n \} = \{ s\sigma : s \in \Pi_n \} \quad \forall\, \sigma \in \Pi_n \).</li>
+      <li>\( \Pi_n = \{ \sigma^{-1} : \sigma \in \Pi_n \} \). <span class="aside">[This answer may not be complete]</span></li>
+    </ol>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (1)</p>
+    <p>Let \( \sigma = \tau_1 \circ \dots \circ \tau_k \) and \( s = s_1 \circ \dots \circ s_l \) (compositions of transpositions). Then \( \sigma s = \tau_1 \circ \dots \circ \tau_k \circ s_1 \circ \dots \circ s_l \), so
+    \[ \sign(\sigma s) = (-1)^{k+l} = (-1)^{k}(-1)^{l} = \sign(\sigma)\,\sign(s). \]</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (2)</p>
+    <p>Take any \( w \in \Pi_n \). From \( \sigma s = w \) we get \( s = \sigma^{-1} w \); and from \( s\sigma = \theta \) (with \( \theta \in \Pi_n \)) we get \( s = \theta\sigma^{-1} \). Since \( \sigma \) is bijective, \( \sigma^{-1} \in \Pi_n \). Hence any \( s \in \Pi_n \) can be written as \( s = \sigma^{-1} w \) or \( s = \theta\sigma^{-1} \).</p>
+    <p>So for any \( \tau \in \Pi_n \),
+    \[ \tau = \sigma s = \sigma(\sigma^{-1} w) = w, \qquad \text{or} \qquad \tau = s\sigma = (\theta\sigma^{-1})\sigma = \theta. \]
+    Thus \( \Pi_n = \{ \sigma s : s \in \Pi_n \} = \{ s\sigma : s \in \Pi_n \}\ \forall\, \sigma \in \Pi_n. \)</p>
+    <p class="qed"></p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof — (3)</p>
+    <p>\( \sigma \) is bijective, so \( \sigma^{-1} \) exists and \( \sigma^{-1} \in \Pi_n \); hence \( \{ \sigma^{-1} : \sigma \in \Pi_n \} \subseteq \Pi_n \). We can also write \( \sigma = (\sigma^{-1})^{-1} \) for any \( \sigma \in \Pi_n \) — every permutation is the inverse of some permutation. So \( \Pi_n = \{ \sigma^{-1} : \sigma \in \Pi_n \} \).</p>
+    <p class="qed"></p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Permutations (pages 6–13)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image006.png" alt="Original handwritten page 6">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image007.png" alt="Original handwritten page 7">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image008.png" alt="Original handwritten page 8">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image009.png" alt="Original handwritten page 9">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image010.png" alt="Original handwritten page 10">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image011.png" alt="Original handwritten page 11">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image012.png" alt="Original handwritten page 12">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image013.png" alt="Original handwritten page 13">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- LEIBNIZ FORMULA FOR DETERMINANTS                                   -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Leibniz Formula for Determinants</h2>
+
+  <p>A \( 3 \times 3 \) example. Let
+  \[ A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}. \]
+  Then
+  \[ \det(A) = a_{11}(a_{22}a_{33} - a_{32}a_{23}) - a_{12}(a_{21}a_{33} - a_{31}a_{23}) + a_{13}(a_{21}a_{32} - a_{31}a_{22}) \]
+  \[ = a_{11}a_{22}a_{33} - a_{11}a_{32}a_{23} - a_{12}a_{21}a_{33} + a_{12}a_{31}a_{23} + a_{13}a_{21}a_{32} - a_{13}a_{31}a_{22}. \]</p>
+
+  <p>Rearranging terms,
+  \[ \det(A) = a_{11}a_{22}a_{33} - a_{11}a_{32}a_{23} - a_{21}a_{12}a_{33} + a_{21}a_{32}a_{13} + a_{31}a_{12}a_{23} - a_{31}a_{22}a_{13}, \]
+  where each product is read as \( a_{\sigma(1),\,1}\, a_{\sigma(2),\,2}\, a_{\sigma(3),\,3} \): the column indices are \( 1, 2, 3 \) and the row indices are \( \sigma(1), \sigma(2), \sigma(3) \) for \( \sigma \in \Pi_n \).</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 38 <span class="name">— Determinant (Leibniz)</span></p>
+    <p>The determinant of \( A = (a_{ij}) \in \F^{n\times n} \) is defined as</p>
+    <div class="keyformula">
+      \[ \det(A) = \sum_{\sigma \in \Pi_n} \sign(\sigma) \prod_{j=1}^{n} a_{\sigma(j),\, j}. \]
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- PROPERTIES OF DETERMINANTS                                         -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Properties of Determinants</h2>
+
+  <div class="box ex">
+    <p class="box-head">Ex 80</p>
+    <p>Let \( A, B \in \F^{n\times n} \). Deduce the following properties from the Leibniz definition of determinants.</p>
+    <ol class="claims">
+      <li>\( \det(A) = \displaystyle\sum_{\sigma \in \Pi_n} \sign(\sigma) \prod_{i=1}^{n} a_{i,\,\sigma(i)} \).</li>
+      <li>\( \det(I_n) = 1 \).</li>
+      <li>\( \forall\, c \in \F : \det(cA) = c^{n}\det(A) \).</li>
+      <li>\( \det(A\T) = \det(A) \).</li>
+      <li>\( \det(AB) = \det(A)\det(B) \).</li>
+      <li>\( \det(A) = 0 \iff A \text{ is not invertible} \).</li>
+      <li>\( A \sim B \implies \det(A) = \det(B) \).</li>
+      <li>\( A \text{ has two identical columns (or rows)} \implies \det(A) = 0 \).</li>
+      <li>\( A \text{ is unitary} \implies |\det(A)| = 1 \).</li>
+    </ol>
+    <p class="aside">(Stated as exercises; proofs were not included in the original notes.)</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Determinant (pages 13–15)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image013.png" alt="Original handwritten page 13">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image014.png" alt="Original handwritten page 14">
+      <img loading="lazy" src="Ch7_%20Trace%20and%20Determinant_files/image015.png" alt="Original handwritten page 15">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 7. <a href="index.html">← All chapters</a></p>
+    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises (especially in earlier chapters) may have incomplete answers. This page is a faithful 1:1 typeset reproduction of the handwritten scans — a separate correctness pass is planned.</p>
+  </footer>
+
+</div>
+</body>
+</html>
