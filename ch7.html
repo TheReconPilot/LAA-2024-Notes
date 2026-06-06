@@ -46,64 +46,52 @@
     </ol>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (1)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (1)</p>
     <p>\( \tr(AB) = \sum_{i=1}^{n} (AB)_{ii} \), and \( (AB)_{ii} = \sum_{k=1}^{n} a_{ik} b_{ki} \) (the diagonal elements of \( AB \)). Hence
     \[ \tr(AB) = \sum_{i=1}^{n}\sum_{k=1}^{n} a_{ik} b_{ki} = \sum_{k=1}^{n}\sum_{i=1}^{n} b_{ki} a_{ik} = \sum_{k=1}^{n} (BA)_{kk} = \tr(BA). \]
-    \( \therefore\ \tr(AB) = \tr(BA) \quad \forall\, A, B \in \F^{n\times n}. \)</p>
-    <p class="qed"></p>
-  </div>
+    \( \therefore\ \tr(AB) = \tr(BA) \quad \forall\, A, B \in \F^{n\times n}. \)</p>  </div>
 
   <!-- TODO verify (correctness pass): claim (2) is stated for A in F^{m x n},
        but the index sums below run to n throughout (as in the original scan).
        For a true m x n matrix the k-sum runs to m and the column index i to n. -->
-  <div class="box pf">
-    <p class="box-head">Proof — (2)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (2)</p>
     <p>\( (A\herm)_{ij} = \overline{a_{ji}} = \overline{(A)_{ji}} \). With \( (AB)_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj} \),
     \[ (A\herm A)_{ij} = \sum_{k=1}^{n} \overline{a_{ki}}\, a_{kj}. \]
     So
     \[ \tr(A\herm A) = \sum_{i=1}^{n} (A\herm A)_{ii} = \sum_{i=1}^{n}\sum_{k=1}^{n} \overline{a_{ki}}\, a_{ki} = \sum_{i=1}^{n}\sum_{k=1}^{n} |a_{ki}|^2 \qquad \big( |z|^2 = \overline{z}\,z = z\,\overline{z} \big). \]
     Therefore \( \tr(A\herm A) = \|A\|_F^2 \). Since \( \tr(AB) = \tr(BA) \), we also have \( \tr(AA\herm) = \tr(A\herm A) \), and so
-    \[ \|A\|_F^2 = \tr(A\herm A) = \tr(AA\herm). \]</p>
-    <p class="qed"></p>
-  </div>
+    \[ \|A\|_F^2 = \tr(A\herm A) = \tr(AA\herm). \]</p>  </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (3)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (3)</p>
     <p>For \( u \in \R^n \), \( \|u\|^2 = u \cdot u = u_1^2 + \dots + u_n^2 \). Now
     \[ uu\T = \begin{bmatrix} u_1 \\ \vdots \\ u_n \end{bmatrix}_{n\times 1} \begin{bmatrix} u_1 & \cdots & u_n \end{bmatrix}_{1\times n} = (\text{an } n\times n \text{ matrix}), \qquad (uu\T)_{ij} = u_i u_j. \]
-    Hence \( \tr(uu\T) = \sum_{i=1}^{n} u_i \cdot u_i = \sum_{i=1}^{n} u_i^2 = \|u\|^2. \)</p>
-    <p class="qed"></p>
-  </div>
+    Hence \( \tr(uu\T) = \sum_{i=1}^{n} u_i \cdot u_i = \sum_{i=1}^{n} u_i^2 = \|u\|^2. \)</p>  </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (4)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (4)</p>
     <p>For \( u \in \C^n \), \( \|u\|^2 = |u_1|^2 + \dots + |u_n|^2 \) (for \( z \in \C \), \( |z|^2 = z\overline{z} = \overline{z}z \)). Since \( (uu\herm)_{ij} = u_i \overline{u_j} \),
-    \[ \tr(uu\herm) = \sum_{i=1}^{n} u_i \overline{u_i} = \sum_{i=1}^{n} |u_i|^2 = \|u\|^2. \]</p>
-    <p class="qed"></p>
-  </div>
+    \[ \tr(uu\herm) = \sum_{i=1}^{n} u_i \overline{u_i} = \sum_{i=1}^{n} |u_i|^2 = \|u\|^2. \]</p>  </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (5)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (5)</p>
     <p>From Ch. 3, \( M \sim N \) iff there is an invertible matrix \( P \) such that \( M = PNP^{-1} \). So \( A \sim B \implies \exists\, P : A = PBP^{-1} \), and
     \[ \tr(A) = \tr(PBP^{-1}) = \tr\big((PB)P^{-1}\big) = \tr\big(P^{-1}(PB)\big) = \tr(IB) = \tr(B) \qquad (\text{as } \tr(AB) = \tr(BA)). \]
-    \( \therefore\ \tr(A) = \tr(B). \)</p>
-    <p class="qed"></p>
-  </div>
+    \( \therefore\ \tr(A) = \tr(B). \)</p>  </div>
 
   <div class="box ex">
     <p class="box-head">Ex 74</p>
     <p>If \( A \) and \( B \) are matrix representations of an operator \( T \), show that \( \tr A = \tr B \). Thus we can define the trace of \( T \) as \( \tr A \), where \( A = [T] \).</p>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof</p>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
     <p>From Ch. 3 (Ex 37), if \( M \) and \( N \) are two matrix representations of a linear operator corresponding to two different bases, then \( M \sim N \).</p>
     <p>Let \( T \in \Lin(V) \), and let \( \phi \) and \( \psi \) be the coordinate maps for the two bases of \( V \). Then
     \[ T = \phi^{-1} A\, \phi = \psi^{-1} B\, \psi \implies A = \phi\psi^{-1} B\, \psi\phi^{-1}. \]
-    Put \( P = \phi\psi^{-1} \Rightarrow P^{-1} = \psi\phi^{-1} \). Then \( A = PBP^{-1} \implies A \sim B \). By Ex 73 (5), \( \tr A = \tr B \), so we are done.</p>
-    <p class="qed"></p>
-  </div>
+    Put \( P = \phi\psi^{-1} \Rightarrow P^{-1} = \psi\phi^{-1} \). Then \( A = PBP^{-1} \implies A \sim B \). By Ex 73 (5), \( \tr A = \tr B \), so we are done.</p>  </div>
 
   <details class="scan">
     <summary>View original handwritten scans — Trace (pages 1–5)</summary>
@@ -138,8 +126,8 @@
     <p>Compute \( |\Pi_n| \), i.e. the number of possible permutations on \( [n] \).</p>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof</p>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
     <p>\( [n] = \{1, 2, \dots, n\} \). Filling the \( n \) positions:</p>
     <ul class="arrows">
       <li>1st position: \( n \) choices</li>
@@ -148,9 +136,7 @@
       <li>\( (n-1) \)th position: \( 2 \) choices</li>
       <li>\( n \)th position: \( 1 \) choice</li>
     </ul>
-    <p>\[ n \times (n-1) \times (n-2) \times \dots \times 1 = n!. \qquad \therefore\ |\Pi_n| = n!. \]</p>
-    <p class="qed"></p>
-  </div>
+    <p>\[ n \times (n-1) \times (n-2) \times \dots \times 1 = n!. \qquad \therefore\ |\Pi_n| = n!. \]</p>  </div>
 
   <p>→&nbsp; A permutation can be decomposed into elementary permutations.</p>
 
@@ -172,12 +158,10 @@
     <p>Compute \( |T_n| \) and compare with \( |\Pi_n| \).</p>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof</p>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
     <p>For a transposition, choose any two positions to exchange. Choosing 2 out of \( n \): \( {}^{n}C_{2} = \dfrac{n(n-1)}{2} \). Hence
-    \[ |T_n| = {}^{n}C_{2} = \frac{n(n-1)}{2}, \qquad \text{while}\quad |\Pi_n| = n! = n(n-1)(n-2)\cdots 2 \cdot 1. \]</p>
-    <p class="qed"></p>
-  </div>
+    \[ |T_n| = {}^{n}C_{2} = \frac{n(n-1)}{2}, \qquad \text{while}\quad |\Pi_n| = n! = n(n-1)(n-2)\cdots 2 \cdot 1. \]</p>  </div>
 
   <div class="box ex">
     <p class="box-head">Ex 77</p>
@@ -185,8 +169,8 @@
     \[ \forall\, \sigma \in \Pi_n,\ \exists\, \tau_1, \dots, \tau_k \in T_n : \sigma = \tau_1 \circ \dots \circ \tau_k. \]</p>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof</p>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
     <p>Define a cycle \( (a_1\, a_2 \cdots a_k) \) by
     \[ \sigma(a_i) = \begin{cases} a_{i+1} & 1 \le i < k \\ a_1 & i = k \\ a_i & \text{for all other } i \end{cases} \]</p>
     <p>For \( \sigma \in \Pi_n \), define a relation \( \sim\ \subseteq [n] \times [n] \) by
@@ -200,9 +184,7 @@
     <p>Thus \( \sim \) partitions \( [n] \) into orbits, and each orbit corresponds to a cycle (since \( \sigma \) is a bijection, \( \sigma^{k}(a) = a \) after some \( k \) steps). So any permutation \( \sigma \in \Pi_n \) decomposes into disjoint cycles.</p>
     <p>Each cycle decomposes into transpositions:
     \[ (a_1\, a_2 \cdots a_k) = (a_1\, a_k)(a_1\, a_{k-1}) \cdots (a_1\, a_2) = \tau_1 \circ \dots \circ \tau_{k-1}. \]
-    Doing this for each disjoint cycle, any permutation breaks down into a composition of transpositions.</p>
-    <p class="qed"></p>
-  </div>
+    Doing this for each disjoint cycle, any permutation breaks down into a composition of transpositions.</p>  </div>
 
   <!-- TODO verify (correctness pass): image009 (Example 12) is low-resolution;
        confirm the exact transpositions against the original scan. -->
@@ -220,16 +202,14 @@
     Show that \( k \) and \( l \) are both even or both odd. Thus every \( \sigma \in \Pi_n \) has even parity (an even permutation) or odd parity (an odd permutation).</p>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof</p>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
     <p>First, the identity permutation \( \sigma_I(x) = x \) can be written as \( \sigma_I = (1\,2)(1\,2) \) — exchange the first two elements, then exchange again — so \( \sigma_I \) has even parity.</p>
     <p>Now take \( \sigma = \tau_1 \circ \dots \circ \tau_k = s_1 \circ \dots \circ s_l \). Since a transposition exchanges just two elements, it is its own inverse: \( \tau_i^{-1} = \tau_i\ (1 \le i \le k) \), \( s_j^{-1} = s_j\ (1 \le j \le l) \). So
     \[ \sigma^{-1} = \tau_k \circ \dots \circ \tau_1 = s_l \circ \dots \circ s_1, \]
     and therefore
     \[ \sigma_I = \sigma\sigma^{-1} = \underbrace{\tau_1 \circ \dots \circ \tau_k \circ s_l \circ \dots \circ s_1}_{k + l \text{ transpositions}}. \]
-    Since \( \sigma_I \) has even parity, \( k + l \) must be even \( \implies \) both \( k \) and \( l \) are odd, or both are even.</p>
-    <p class="qed"></p>
-  </div>
+    Since \( \sigma_I \) has even parity, \( k + l \) must be even \( \implies \) both \( k \) and \( l \) are odd, or both are even.</p>  </div>
 
   <div class="box def">
     <p class="box-head">Definition 37 <span class="name">— Sign</span></p>
@@ -247,27 +227,21 @@
     </ol>
   </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (1)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (1)</p>
     <p>Let \( \sigma = \tau_1 \circ \dots \circ \tau_k \) and \( s = s_1 \circ \dots \circ s_l \) (compositions of transpositions). Then \( \sigma s = \tau_1 \circ \dots \circ \tau_k \circ s_1 \circ \dots \circ s_l \), so
-    \[ \sign(\sigma s) = (-1)^{k+l} = (-1)^{k}(-1)^{l} = \sign(\sigma)\,\sign(s). \]</p>
-    <p class="qed"></p>
-  </div>
+    \[ \sign(\sigma s) = (-1)^{k+l} = (-1)^{k}(-1)^{l} = \sign(\sigma)\,\sign(s). \]</p>  </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (2)</p>
+  <div class="box sol">
+    <p class="box-head">Solution — (2)</p>
     <p>Take any \( w \in \Pi_n \). From \( \sigma s = w \) we get \( s = \sigma^{-1} w \); and from \( s\sigma = \theta \) (with \( \theta \in \Pi_n \)) we get \( s = \theta\sigma^{-1} \). Since \( \sigma \) is bijective, \( \sigma^{-1} \in \Pi_n \). Hence any \( s \in \Pi_n \) can be written as \( s = \sigma^{-1} w \) or \( s = \theta\sigma^{-1} \).</p>
     <p>So for any \( \tau \in \Pi_n \),
     \[ \tau = \sigma s = \sigma(\sigma^{-1} w) = w, \qquad \text{or} \qquad \tau = s\sigma = (\theta\sigma^{-1})\sigma = \theta. \]
-    Thus \( \Pi_n = \{ \sigma s : s \in \Pi_n \} = \{ s\sigma : s \in \Pi_n \}\ \forall\, \sigma \in \Pi_n. \)</p>
-    <p class="qed"></p>
-  </div>
+    Thus \( \Pi_n = \{ \sigma s : s \in \Pi_n \} = \{ s\sigma : s \in \Pi_n \}\ \forall\, \sigma \in \Pi_n. \)</p>  </div>
 
-  <div class="box pf">
-    <p class="box-head">Proof — (3)</p>
-    <p>\( \sigma \) is bijective, so \( \sigma^{-1} \) exists and \( \sigma^{-1} \in \Pi_n \); hence \( \{ \sigma^{-1} : \sigma \in \Pi_n \} \subseteq \Pi_n \). We can also write \( \sigma = (\sigma^{-1})^{-1} \) for any \( \sigma \in \Pi_n \) — every permutation is the inverse of some permutation. So \( \Pi_n = \{ \sigma^{-1} : \sigma \in \Pi_n \} \).</p>
-    <p class="qed"></p>
-  </div>
+  <div class="box sol">
+    <p class="box-head">Solution — (3)</p>
+    <p>\( \sigma \) is bijective, so \( \sigma^{-1} \) exists and \( \sigma^{-1} \in \Pi_n \); hence \( \{ \sigma^{-1} : \sigma \in \Pi_n \} \subseteq \Pi_n \). We can also write \( \sigma = (\sigma^{-1})^{-1} \) for any \( \sigma \in \Pi_n \) — every permutation is the inverse of some permutation. So \( \Pi_n = \{ \sigma^{-1} : \sigma \in \Pi_n \} \).</p>  </div>
 
   <details class="scan">
     <summary>View original handwritten scans — Permutations (pages 6–13)</summary>
@@ -338,7 +312,7 @@
   </details>
 
   <footer>
-    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 7. <a href="index.html">← All chapters</a></p>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 7. <a href="index.html">← All chapters</a> · <a href="Ch7_%20Trace%20and%20Determinant.htm">complete original export ↗</a></p>
     <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises (especially in earlier chapters) may have incomplete answers. This page is a faithful 1:1 typeset reproduction of the handwritten scans — a separate correctness pass is planned.</p>
   </footer>
 

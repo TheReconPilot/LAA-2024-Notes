@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch10: Singular Value Decomposition · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch10 · Singular Value Decomposition</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 10 — Singular Value Decomposition</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- ================================================================== -->
+  <!-- TRUNCATED / COMPACT SVD                                            -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Truncated SVD</h2>
+
+  <p>Let \( A \in \R^{m\times n} \). Diagonalization can only be performed on square matrices, and even then not all square matrices can be diagonalized. The next best thing is the SVD.</p>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 18 <span class="name">— Partial / compact SVD</span></p>
+    <p>Let \( A \in \R^{m\times n} \) (this also works for \( A \in \C^{m\times n} \)) and \( r = \rank(A) \ge 1 \). Then there exist orthonormal vectors \( v_1, \dots, v_r \in \R^n \), orthonormal vectors \( u_1, \dots, u_r \in \R^m \), and \( \sigma_1 \ge \dots \ge \sigma_r > 0 \) such that
+    \[ A = \sigma_1 u_1 v_1\T + \dots + \sigma_r u_r v_r\T, \]
+    and for \( A \in \C^{m\times n} \),
+    \[ A = \sum_{i=1}^{r} \sigma_i u_i v_i\herm. \]</p>
+    <p>We call \( \sigma_1, \dots, \sigma_r \) the <strong>singular values</strong> of \(A\); \( u_1, \dots, u_r \) the <strong>left singular vectors</strong> of \(A\); and \( v_1, \dots, v_r \) the <strong>right singular vectors</strong> of \(A\).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <!-- TODO verify (correctness pass): for complex A the test vector should be x ∈ C^n, not R^n (as written in the scan). -->
+    <p>Consider \( A \in \C^{m\times n} \). Let \( B = A\herm A \). Then \( B\herm = B \), so \( B \) is Hermitian, with \( B \in \C^{n\times n} \). For any \( x \in \R^n \),
+    \[ \langle x, Bx \rangle = \langle x, A\herm A x \rangle = \langle Ax, Ax \rangle = \|Ax\|^2 \ge 0, \]
+    so \( B \) is PSD (positive semi-definite).</p>
+
+    <p>Since \( \rank(A) = r \ge 1 \), we have \( \rank(B) = r \): with \( B = A\herm A \), \( \Null(A\herm A) = \Null(A) \) and \( \Range(A\herm A) = \Range(A\herm) \) (Ch. 5, Theorem 9), so
+    \[ \rank(A\herm A) = \rank(A\herm) = \rank(A) \]
+    (transposing and conjugating does not change the rank of a matrix).</p>
+
+    <p>Consider the eigenvalue decomposition of \( B = A\herm A \):
+    \[ B = V \Lambda V\herm, \]
+    where \( \Lambda = \diag(\lambda_1, \dots, \lambda_n) \) holds the eigenvalues of \(B\) (which are real) and \( V = [\,v_1 \ \cdots \ v_n\,] \) is unitary with columns an ONB of eigenvectors of \(B\). Since \(B\) is PSD with \( \rank(B) = r \), WLOG
+    \[ \lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_r > 0, \qquad \lambda_{r+1} = \dots = \lambda_n = 0. \]
+    So
+    \[ B = V \Lambda V\herm = \sum_{j=1}^{r} \lambda_j v_j v_j\herm. \]</p>
+
+    <p>Put \( \sigma_i = \sqrt{\lambda_i} \) and \( u_i = \dfrac{1}{\sigma_i} A v_i \), \( i = 1, \dots, r \). The \( v_1, \dots, v_r \) are orthonormal by construction. For the \( u_i \):
+    \[ \langle u_i, u_j \rangle = \Big\langle \tfrac{1}{\sqrt{\lambda_i}} A v_i,\ \tfrac{1}{\sqrt{\lambda_j}} A v_j \Big\rangle = \tfrac{1}{\sqrt{\lambda_i}\sqrt{\lambda_j}} \langle v_i, A\herm A v_j \rangle = \tfrac{1}{\sqrt{\lambda_i \lambda_j}} \langle v_i, \lambda_j v_j \rangle = \tfrac{\lambda_j}{\sqrt{\lambda_i \lambda_j}} \langle v_i, v_j \rangle, \]
+    so \( \langle u_i, u_j \rangle = \dfrac{\sqrt{\lambda_j}}{\sqrt{\lambda_i}}\, \delta_{ij} = \dfrac{\sigma_j}{\sigma_i}\, \delta_{ij} \). Hence \( u_1, \dots, u_r \) are orthonormal.</p>
+
+    <p><strong>Claim:</strong> \( A = \displaystyle\sum_{j=1}^{r} \sigma_j u_j v_j\herm \). (A matrix is specified by its action on all vectors.) For \( x \in \C^n \), the claim gives
+    \[ Ax = \sum_{j=1}^{r} \sigma_j u_j v_j\herm x = \sum_{j=1}^{r} \sigma_j \langle v_j, x \rangle u_j. \]
+    Since \( v_1, \dots, v_n \) form an ONB, any \( x \in \C^n \) can be written as \( x = \sum_{i=1}^{n} \langle v_i, x \rangle v_i \) (Ch. 4, Ex 51). Therefore
+    \[ Ax = \sum_{i=1}^{n} \langle v_i, x \rangle A v_i. \]
+    Now \( v_{r+1}, \dots, v_n \) are eigenvectors of \( A\herm A \) for the zero eigenvalue, so \( v_{r+1}, \dots, v_n \in \Null(A\herm A) = \Null(A) \), giving \( A v_j = 0 \) for \( j = r+1, \dots, n \). Thus
+    \[ Ax = \sum_{i=1}^{r} \langle v_i, x \rangle A v_i, \quad\text{and since } u_i = \tfrac{1}{\sigma_i} A v_i \implies A v_i = \sigma_i u_i, \]
+    \[ Ax = \sum_{i=1}^{r} \langle v_i, x \rangle \sigma_i u_i = \sum_{i=1}^{r} \sigma_i u_i v_i\herm x, \]
+    which proves the claim, and hence the theorem.</p>
+
+    <p><strong>The idea of the proof.</strong> We wanted \( A = \sum_{j=1}^{r} \sigma_j u_j v_j\herm \). Suppose it were so. Then
+    \[ A\herm A = \Big(\sum_i \sigma_i v_i u_i\herm\Big)\Big(\sum_j \sigma_j u_j v_j\herm\Big) = \sum_{i=1}^{r} \sigma_i^2 v_i v_i\herm. \]
+    So we get the singular values and right singular vectors from \( A\herm A \); setting \( u_j \) appropriately gave us what we needed.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Truncated SVD &amp; proof (pages 1–5)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image001.png" alt="Original handwritten page 1">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image003.png" alt="Original handwritten page 3">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image004.png" alt="Original handwritten page 4">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image005.png" alt="Original handwritten page 5">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- FULL SVD                                                           -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Full SVD</h2>
+
+  <p>By extending the orthonormal vectors into an ONB, we can write
+  \[ A = U \Sigma V\T \qquad (\text{Full SVD of } A). \]
+  Here \( A \in \C^{m\times n} \), \( U \in \C^{m\times m} \), \( V \in \C^{n\times n} \), and \( \rank(A) = r \). \( \Sigma \) is a diagonal matrix with
+  \[ \Sigma_{ij} = \begin{cases} \sigma_i & 1 \le i = j \le r \\ 0 & \text{otherwise} \end{cases} \]</p>
+
+  <div class="box rem">
+    <p class="box-head">Remark</p>
+    <p>SVD and the eigen-decomposition of \(A\) may not be the same, even if \(A\) is Hermitian: eigenvalues can be negative, but singular values are non-negative by construction. However, they are the same if \(A\) is PSD.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 96</p>
+    <p>Prove that for \( A \in \R^{m\times n} \),
+    \[ \sigma_1(A) = \max\big\{ \|Ax\|_{\R^m} : \|x\|_{\R^n} = 1 \big\}, \]
+    where \( \|\cdot\|_{\R^m} \) and \( \|\cdot\|_{\R^n} \) are the Euclidean norms on \( \R^m \) and \( \R^n \). In other words, \( \sigma_1(A) = \|A\|_2 \), the spectral norm of \(A\) — the matrix norm induced by the standard Euclidean norms.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Let \( x \in \R^n \), \( \|x\| = 1 \), and \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\herm \) where \( r = \rank(A) \), \( \sigma_1 \ge \dots \ge \sigma_r > 0 \). Then
+    \[ Ax = \sum_{i=1}^{r} \sigma_i u_i v_i\herm x = \sum_{i=1}^{r} \sigma_i \langle v_i, x \rangle u_i. \]</p>
+    <!-- TODO verify (correctness pass): the bound is σ_1^2 (the square is faint in the scan); ‖Ax‖^2 ≤ σ_1^2, hence ‖Ax‖ ≤ σ_1. -->
+    <p>So
+    \[ \|Ax\|^2 = \langle Ax, Ax \rangle = \Big\langle \sum_{i=1}^{r} \sigma_i \langle v_i,x\rangle u_i,\ \sum_{j=1}^{r} \sigma_j \langle v_j,x\rangle u_j \Big\rangle = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j \langle v_i,x\rangle \langle v_j,x\rangle \underbrace{\langle u_i,u_j\rangle}_{\delta_{ij}} \]
+    \[ = \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \underbrace{\sum_{i=1}^{r} \langle v_i,x\rangle^2}_{=\,1\ \text{as } \|x\|=1} = \sigma_1^2, \]
+    using \( \|x\|^2 = \sum_{i=1}^{r} \langle v_i,x\rangle^2 \). Thus \( \|Ax\|^2 \le \sigma_1^2 \ \forall\, x \in \R^n,\ \|x\|=1 \), with equality attained when \( x = \pm v_1 \) (then \( x \perp v_2, \dots, v_r \)). So
+    \[ \max_{\|x\|=1} \|Ax\| = \sigma_1(A) \implies \sigma_1(A) = \|A\|_2. \]</p>
+  </div>
+
+  <p>Consider the full SVD, \( A = U\Sigma V\herm \) (or \( A = U\Sigma V\T \) for \( A \in \R^{m\times n} \)). Let \( A \in \R^{m\times n} \), let \( v_1, \dots, v_n \in \R^n \) be the columns of \(V\) and \( u_1, \dots, u_m \in \R^m \) the columns of \(U\). The following result relates these to the four fundamental subspaces of \(A\).</p>
+
+  <div class="box ex">
+    <p class="box-head">Ex 97</p>
+    <p>Show that \( \Range(A) = \operatorname{span}(u_1, \dots, u_r) \) and \( \Null(A) = \operatorname{span}(v_{r+1}, \dots, v_n) \). Equivalently, \( \Range(A\T) = \operatorname{span}(v_1, \dots, v_r) \) and \( \Null(A\T) = \operatorname{span}(u_{r+1}, \dots, u_m) \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Consider any \( x \in \R^n \); \( v_1, \dots, v_n \) forms an ONB of \( \R^n \). With \( A = U\Sigma V\T \) and \(V\) orthogonal, \( V\T = V^{-1} \), hence \( AV = U\Sigma \). So
+    \[ A[\,v_1 \ \cdots \ v_n\,] = [\,u_1 \ \cdots \ u_m\,]\,\Sigma \implies [\,Av_1 \ \cdots \ Av_n\,] = [\,\sigma_1 u_1 \ \cdots \ \sigma_r u_r \ 0 \ \cdots \ 0\,], \]
+    giving \( A v_i = \sigma_i u_i \) (\( i = 1, \dots, r \)) and \( A v_j = 0 \) (\( j = r+1, \dots, n \)).</p>
+    <p>So \( v_{r+1}, \dots, v_n \in \Null(A) \); they are LI (by construction) with \( \dim \operatorname{span}(v_{r+1}, \dots, v_n) = n - r \). Since \( \rank(A) = r \), by rank–nullity \( \dim \R^n = \rank(A) + \nullity(A) \), so \( n = r + \nullity(A) \), i.e. \( \nullity(A) = n - r \). Hence \( v_{r+1}, \dots, v_n \) is a list of LI vectors of the right length, so they form a basis of \( \Null(A) \):
+    \[ \Null(A) = \operatorname{span}(v_{r+1}, \dots, v_n). \]</p>
+    <p>Since \( v_1, \dots, v_n \) form an ONB of \( \R^n \), any \( x \in \R^n \) is \( x = a_1 v_1 + \dots + a_n v_n \), \( a_i \in \R \). Then
+    \[ Ax = a_1 A v_1 + \dots + a_n A v_n = a_1 \sigma_1 u_1 + \dots + a_r \sigma_r u_r + 0 + \dots + 0 = \sum_{i=1}^{r} a_i \sigma_i u_i. \]
+    So any \( Ax \in \R^m \) is a linear combination of \( u_1, \dots, u_r \); these are LI and, since \( \rank(A) = r \), they form a basis of \( \Range(A) \):
+    \[ \Range(A) = \operatorname{span}(u_1, \dots, u_r). \]</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Remark</p>
+    <p>Similar to Theorem 17 (variational characterization / Courant–Fischer), we have the following min–max characterization.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 98</p>
+    <p>Show that, for all \( 1 \le k \le r \),
+    \[ \sigma_k = \max_{\dim U = k} \ \min\big\{ \|Ax\|_2 : x \in U,\ \|x\|_2 = 1 \big\}, \]
+    where \(U\) is a subspace of \( V = \R^n \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>From Theorem 17, for a self-adjoint \(T\) with eigenvalues \( \lambda_1 \ge \dots \ge \lambda_n \),
+    \[ \lambda_k = \max_{\dim U = k} \ \min\big\{ \langle x, Tx \rangle : x \in U,\ \|x\| = 1 \big\}. \]
+    Here \( A \in \R^{m\times n} \) and \( \|Ax\|^2 = \langle Ax, Ax \rangle = \langle x, A\T A x \rangle \). Since \( B = A\T A \) is symmetric, we can use Theorem 17:
+    \[ \lambda_k = \max_{\dim U = k} \ \min_{\substack{x \in U \\ \|x\|=1}} \langle x, A\T A x \rangle, \]
+    where the \( \lambda_k \) are eigenvalues of \( A\T A \). From the proof of the SVD (Theorem 18), \( \sigma_k = \sqrt{\lambda_k} \). Hence
+    \[ \sigma_k = \max_{\dim U = k} \ \min_{\substack{x \in U \\ \|x\|=1}} \|Ax\|. \]</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Remark</p>
+    <p>An important special case is that the largest singular value is simply the spectral norm of the matrix: \( \sigma_1(A) = \|A\|_2 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 99</p>
+    <p>Let \( A \in \R^{m\times n} \) with \( \rank(A) = r \) and singular values \( \sigma_1 \ge \dots \ge \sigma_r \). If \( \|E\|_2 < \sigma_r \), prove that \( \rank(A + E) \ge r \). (A "small" perturbation cannot reduce the rank of a matrix.)</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <!-- TODO verify (correctness pass): the scan cites "Ex 97" for the min–max characterization; that result is Ex 98. -->
+    <p>By the reverse triangle inequality, \( \|A - (-E)\| \ge \big|\,\|A\| - \|-E\|\,\big| \), so \( \|A + E\| \ge \big|\,\|A\| - \|E\|\,\big| \), and likewise \( \|(A+E)x\| \ge \big|\,\|Ax\| - \|Ex\|\,\big| \). From Ex 98,
+    \[ \sigma_k(A) = \max_{\dim U = k} \ \min\big\{ \|Ax\| : x \in U,\ \|x\| = 1 \big\}, \]
+    and \( \|Ex\| \le \|E\| < \sigma_r(A) \ \forall\, \|x\| = 1 \). So \( \|(A+E)x\| \ge \big|\,\|Ax\| - \sigma_r(A)\,\big| \). Putting this in the min–max characterization,
+    \[ \sigma_k(A+E) \ge \sigma_k(A) - \sigma_r(A). \]
+    Since \( \sigma_1(A) \ge \dots \ge \sigma_r(A) > 0 \), we get \( \sigma_i(A+E) > 0 \) for \( i = 1, \dots, r \). Hence \( \rank(A+E) \ge \rank(A) \).</p>
+  </div>
+
+  <p>We can use the SVD to define two important matrix norms:</p>
+  <ul class="arrows">
+    <li><strong>Spectral norm</strong> — the largest singular value: \( \|A\|_2 = \sigma_1 \).</li>
+    <li><strong>Nuclear norm</strong> — the sum of the singular values: \( \|A\|_* = \sigma_1 + \dots + \sigma_r \).</li>
+  </ul>
+
+  <div class="box ex">
+    <p class="box-head">Ex 100</p>
+    <p>Let the SVD of \(A\) be \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\T \) for \( A \in \R^{m\times n} \). Define \( \|A\|_2 = \sigma_1 \) and \( \|A\|_* = \sigma_1 + \dots + \sigma_r \). Verify that these are matrix norms on \( \R^{m\times n} \). Moreover, prove that they are dual to each other, in the sense that
+    \[ \|A\|_* = \max_{\|X\|_2 \le 1} \tr(X\T A), \qquad \|A\|_2 = \max_{\|X\|_* \le 1} \tr(X\T A), \]
+    where the variable \( X \in \R^{m\times n} \). <span class="aside">[Incomplete Answer]</span></p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>\( \|A\|_2 = \sigma_1 \) is a matrix norm.</strong></p>
+    <!-- TODO verify (correctness pass): absolute homogeneity should read ‖cA‖ = |c|‖A‖ (scan writes c without bars). -->
+    <ul class="dots">
+      <li>\( \|A\|_2 = \sigma_1 \ge 0 \ \forall\, A \in \R^{m\times n} \) (singular values are non-negative); \( \|A\|_2 = 0 \iff \sigma_1 = 0 \iff \) all singular values are \(0\) \( \iff A = 0 \).</li>
+      <li>Let \( c \in \R \), \( A = U\Sigma V\T \). Then \( \|cA\|_2 = \|c\,U\Sigma V\T\|_2 = \|U(c\Sigma)V\T\|_2 = c\,\sigma_1 \), so \( \|cA\|_2 = c\,\|A\|_2 \).</li>
+      <li>Let \( A, B \in \R^{m\times n} \), \( x \in \R^n \), \( \|x\| = 1 \). Then \( \|(A+B)x\| \le \|Ax\| + \|Bx\| \) (triangle inequality). Using the min–max characterization on each term, \( \sigma_1(A+B) \le \sigma_1(A) + \sigma_1(B) \), i.e. \( \|A+B\|_2 \le \|A\|_2 + \|B\|_2 \).</li>
+      <li>Let \( A, B \in \R^{n\times n} \). From \( \|A\|_2 = \sigma_1(A) = \max_{\|x\|=1}\|Ax\| \) we get \( \|Ax\| \le \|A\|_2 \) for \( \|x\| = 1 \), so for \( x \in \R^n \), \( \big\|A \tfrac{x}{\|x\|}\big\| \le \|A\|_2 \implies \|Ax\| \le \|A\|_2\|x\| \). Then \( \|ABx\| \le \|A\|_2\|Bx\| \le \|A\|_2\|B\|_2\|x\| \); setting \( \|x\|=1 \) and taking the max, \( \|AB\|_2 \le \|A\|_2\|B\|_2 \). Hence \( \|A\|_2 = \sigma_1 \) is a valid matrix norm.</li>
+    </ul>
+    <p><strong>\( \|A\|_* = \sigma_1 + \dots + \sigma_r \) is a matrix norm.</strong></p>
+    <ul class="dots">
+      <li>\( \|A\|_* \ge 0 \ \forall\, A \in \R^{m\times n} \); \( \|A\|_* = 0 \iff \sigma_1 + \dots + \sigma_r = 0 \iff \sigma_1 = \dots = \sigma_r = 0 \iff A = 0 \).</li>
+      <li>Let \( c \in \R \), \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\T \). Then \( \|cA\|_* = \big\|\sum_{i=1}^{r} c\,\sigma_i u_i v_i\T\big\|_* = c\sigma_1 + \dots + c\sigma_r = c(\sigma_1 + \dots + \sigma_r) \), so \( \|cA\|_* = c\,\|A\|_* \).</li>
+      <li>Let \( A, B \in \R^{m\times n} \), \( x \in \R^n \). Using \( \|(A+B)x\| \le \|Ax\| + \|Bx\| \) and the min–max characterization on each term, \( \sigma_k(A+B) \le \sigma_k(A) + \sigma_k(B) \) for \( k = 1, \dots, r \), hence \( \sum_{k=1}^{r}\sigma_k(A+B) \le \sum_{k=1}^{r}\sigma_k(A) + \sum_{k=1}^{r}\sigma_k(B) \), i.e. \( \|A+B\|_* \le \|A\|_* + \|B\|_* \).</li>
+      <li>Let \( A, B \in \R^{n\times n} \), \( x \in \R^n \). To show \( \|AB\|_* \le \|A\|_*\|B\|_* \): <span class="aside">"Not sure how to do this part and the duals."</span></li>
+    </ul>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Full SVD, spectral &amp; nuclear norms (pages 6–16)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image006.png" alt="Original handwritten page 6">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image007.png" alt="Original handwritten page 7">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image008.png" alt="Original handwritten page 8">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image009.png" alt="Original handwritten page 9">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image010.png" alt="Original handwritten page 10">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image011.png" alt="Original handwritten page 11">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image012.png" alt="Original handwritten page 12">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image013.png" alt="Original handwritten page 13">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image014.png" alt="Original handwritten page 14">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image015.png" alt="Original handwritten page 15">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image016.png" alt="Original handwritten page 16">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- MOORE–PENROSE PSEUDOINVERSE                                        -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Moore–Penrose Pseudoinverse</h2>
+
+  <p>The Moore–Penrose pseudoinverse \( A^{+} \) is characterized by four properties:</p>
+  <ul class="dots">
+    <li>\( AA^{+} \) and \( A^{+}A \) are symmetric;</li>
+    <li>\( AA^{+}A = A \);</li>
+    <li>\( A^{+}AA^{+} = A^{+} \).</li>
+  </ul>
+  <p>For a given matrix \(A\), the Moore–Penrose pseudoinverse \( A^{+} \) is unique.</p>
+
+  <div class="box ex">
+    <p class="box-head">Ex 101</p>
+    <p>Let \( A \in \R^{m\times n} \) with partial SVD \( A = \sum_{j=1}^{r} \sigma_j u_j v_j\T \). Verify that
+    \[ A^{+} = \sigma_1^{-1} v_1 u_1\T + \dots + \sigma_r^{-1} v_r u_r\T \]
+    satisfies the four defining properties of the Moore–Penrose pseudoinverse of \(A\). Moreover, for all \( A \in \R^{m\times n} \) and \( b \in \R^m \):</p>
+    <ol class="claims">
+      <li>Verify that \( x_0 = A^{+}b \) is a solution of the normal equation \( A\T A x = A\T b \).</li>
+      <li>If \(x\) is any solution of the normal equation, prove that \( x - x_0 \perp x_0 \).</li>
+      <li>Of all solutions of the normal equation, prove that \( x_0 \) has the smallest \( \|\cdot\|_2 \)-norm.</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution — verifying the four properties</p>
+    <p>With \( A = \sigma_1 u_1 v_1\T + \dots + \sigma_r u_r v_r\T \) and \( A^{+} = \sigma_1^{-1} v_1 u_1\T + \dots + \sigma_r^{-1} v_r u_r\T \):</p>
+
+    <p><strong>(i) \( AA^{+} \) is symmetric.</strong>
+    \[ AA^{+} = \Big(\sum_{i=1}^{r}\sigma_i u_i v_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j^{-1} v_j u_j\T\Big) = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j^{-1} u_i \underbrace{v_i\T v_j}_{\delta_{ij}} u_j\T = \sum_{i=1}^{r} \sigma_i \sigma_i^{-1} u_i u_i\T, \]
+    so \( AA^{+} = \sum_{i=1}^{r} u_i u_i\T \) and \( (AA^{+})\T = \sum_{i=1}^{r} u_i u_i\T = AA^{+} \). Hence \( AA^{+} \) is symmetric.</p>
+
+    <p><strong>(ii) \( A^{+}A \) is symmetric.</strong>
+    \[ A^{+}A = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i^{-1}\sigma_j v_i \underbrace{u_i\T u_j}_{\delta_{ij}} v_j\T = \sum_{i=1}^{r} v_i v_i\T, \]
+    and \( (A^{+}A)\T = \sum_{i=1}^{r} v_i v_i\T = A^{+}A \). Hence \( A^{+}A \) is symmetric.</p>
+
+    <p><em>Alternate way.</em> With \( A = U\Sigma V\T \), \( A^{+} = V\Sigma^{+}U\T \), \( \Sigma = \diag(\sigma_1, \dots, \sigma_r, 0, \dots) \), \( \Sigma^{+} = \diag(\sigma_1^{-1}, \dots, \sigma_r^{-1}, 0, \dots) \):
+    \[ AA^{+} = U\Sigma V\T V\Sigma^{+}U\T = U\Sigma\Sigma^{+}U\T = U\begin{bmatrix}1 & & & \\ & \ddots & & \\ & & 1 & \\ & & & 0\end{bmatrix}U\T, \qquad A^{+}A = V\Sigma^{+}\Sigma V\T = V\begin{bmatrix}1 & & & \\ & \ddots & & \\ & & 1 & \\ & & & 0\end{bmatrix}V\T. \]</p>
+
+    <p><strong>(iii) \( AA^{+}A = A \).</strong>
+    \[ AA^{+}A = \Big(\sum_{i=1}^{r} u_i u_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j u_j v_j\T\Big) = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_j u_i \underbrace{u_i\T u_j}_{\delta_{ij}} v_j\T = \sum_{i=1}^{r}\sigma_i u_i v_i\T = A. \]</p>
+
+    <p><strong>(iv) \( A^{+}AA^{+} = A^{+} \).</strong>
+    \[ A^{+}AA^{+} = \Big(\sum_{i=1}^{r} v_i v_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j^{-1} v_j u_j\T\Big) = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_j^{-1} v_i \underbrace{v_i\T v_j}_{\delta_{ij}} u_j\T = \sum_{i=1}^{r}\sigma_i^{-1} v_i u_i\T = A^{+}. \]</p>
+
+    <p><em>Alternately, in matrix notation:</em>
+    \[ AA^{+}A = (U\Sigma\Sigma^{+}U\T)(U\Sigma V\T) = U\Sigma\Sigma^{+}\Sigma V\T = U\Sigma V\T = A, \qquad A^{+}AA^{+} = (V\Sigma^{+}\Sigma V\T)(V\Sigma^{+}U\T) = V\Sigma^{+}\Sigma\Sigma^{+}U\T = V\Sigma^{+}U\T = A^{+}. \]
+    Hence \( A^{+} \) is a Moore–Penrose pseudoinverse.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution — (1) \( x_0 = A^{+}b \) solves \( A\T A x = A\T b \)</p>
+    <p>With \( A = U\Sigma V\T \), \( A^{+} = V\Sigma^{+}U\T \), put \( x_0 = A^{+}b \) into the LHS:
+    \[ A\T A A^{+}b = (V\Sigma U\T)(UU\T)b = V\Sigma\,\underbrace{(U\T U)}_{I}\,U\T b = V\Sigma U\T b = A\T b = \text{RHS}. \]
+    Therefore \( x_0 = A^{+}b \) is indeed a solution of \( A\T A x = A\T b \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution — (2) \( x - x_0 \perp x_0 \)</p>
+    <p>If \(x\) is any solution, \( A\T A x_0 = A\T b \) and \( A\T A x = A\T b \), so \( A\T A x_0 = A\T A x \), giving \( A\T A (x - x_0) = 0 \), i.e. \( x - x_0 \in \Null(A) \).</p>
+    <p>Now we show \( A^{+} = (A\T A)^{+} A\T \). With \( A = U\Sigma V\T \), \( A^{+} = V\Sigma^{+}U\T \):
+    \[ (A\T A)^{+} A\T = (V\Sigma U\T U\Sigma V\T)^{+}(V\Sigma U\T) = (V\Sigma^2 V\T)^{+}(V\Sigma U\T) = V(\Sigma^{+})^2 V\T V\Sigma U\T = V\Sigma^{+}\Sigma\Sigma^{+}U\T = V\Sigma^{+}U\T = A^{+}, \]
+    using that for diagonal \( A, B, C \), \( ABC = ACB \), so \( \Sigma^{+}\Sigma^{+}\Sigma = \Sigma^{+}\Sigma\Sigma^{+} \).</p>
+    <p>Then
+    \[ x_0 = A^{+}b = (A\T A)^{+} A\T b = (A\T A)^{+} A\T A x. \]
+    Let \( B = A\T A = V\Sigma^2 V\T \), \( B^{+} = V(\Sigma^{+})^2 V\T \). Since \( \Sigma, \Sigma^{+} \) are diagonal (so their products commute),
+    \[ BB^{+} = V\Sigma^2 V\T V(\Sigma^{+})^2 V\T = V\Sigma^2(\Sigma^{+})^2 V\T = V(\Sigma^{+})^2\Sigma^2 V\T = B^{+}B, \]
+    hence \( x_0 = (A\T A)^{+} A\T A x = (A\T A)(A\T A)^{+} x \). Therefore
+    \[ \langle x - x_0, x_0 \rangle = \langle x - x_0, (A\T A)(A\T A)^{+}x \rangle = \langle (A\T A)\T(x - x_0), (A\T A)^{+}x \rangle = \big\langle \underbrace{(A\T A)(x - x_0)}_{=\,0\ \text{as } x - x_0 \in \Null(A\T A)}, (A\T A)^{+}x \big\rangle = 0. \]
+    So \( \langle x - x_0, x_0 \rangle = 0 \implies x - x_0 \perp x_0 \). Thus if \(x\) is any solution of the normal equation, \( x - x_0 \perp x_0 \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution — (3) \( x_0 \) has the smallest norm</p>
+    <p>Let \(x\) be any solution to \( A\T A x = A\T b \). Then \( x - x_0 \perp x_0 \), so
+    \[ \|x\|^2 = \|x - x_0 + x_0\|^2 = \|x - x_0\|^2 + \|x_0\|^2 \quad\text{(by the Pythagoras theorem)}, \]
+    hence \( \|x\|^2 \ge \|x_0\|^2 \). So \( \|x\|_2 \) is minimized when \( x = x_0 \); that is, \( x_0 \) has the smallest \( \|\cdot\|_2 \)-norm.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Moore–Penrose pseudoinverse (pages 17–23)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image017.png" alt="Original handwritten page 17">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image018.png" alt="Original handwritten page 18">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image019.png" alt="Original handwritten page 19">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image020.png" alt="Original handwritten page 20">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image021.png" alt="Original handwritten page 21">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image022.png" alt="Original handwritten page 22">
+      <img loading="lazy" src="Ch10_%20Singular%20Value%20Decomposition_files/image023.png" alt="Original handwritten page 23">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 10. <a href="index.html">← All chapters</a> · <a href="Ch10_%20Singular%20Value%20Decomposition.htm">complete original export ↗</a></p>
+    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers (Ex 100 and parts of Ex 101 are marked incomplete in the original). This page is a faithful 1:1 typeset reproduction of the handwritten scans — a separate correctness pass is planned.</p>
+  </footer>
+
+</div>
+</body>
+</html>

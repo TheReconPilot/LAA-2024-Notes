@@ -127,13 +127,13 @@ ol.claims > li { margin: 0.5rem 0; }
 .box.thm  { border-color: var(--c-thm);  background: color-mix(in srgb, var(--c-thm)  7%, var(--bg)); }
 .box.ex   { border-color: var(--c-ex);   background: color-mix(in srgb, var(--c-ex)   7%, var(--bg)); }
 .box.rem  { border-color: var(--c-rem);  background: color-mix(in srgb, var(--c-rem)  7%, var(--bg)); }
-.box.pf   { border-color: var(--c-proof); background: transparent; }
+.box.pf, .box.sol   { border-color: var(--c-proof); background: transparent; }
 
 .box.def .box-head  { color: var(--c-def); }
 .box.thm .box-head  { color: var(--c-thm); }
 .box.ex  .box-head  { color: var(--c-ex); }
 .box.rem .box-head  { color: var(--c-rem); }
-.box.pf  .box-head  { color: var(--c-proof); }
+.box.pf  .box-head, .box.sol .box-head  { color: var(--c-proof); }
 
 /* a definition that wraps a "headline" boxed formula (e.g. Leibniz det) */
 .box .keyformula {
@@ -181,11 +181,31 @@ details.scan[open] > summary::before { content: "\25BE"; } /* ▾ */
 details.scan > summary:hover { color: var(--link); }
 .scan-imgs { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; }
 .scan-imgs img {
-  width: 100%;
   height: auto;
   border: 1px solid var(--rule);
   border-radius: 6px;
   background: var(--bg);
+}
+.scan-imgs > img { width: 100%; }            /* a full page stacks on its own row */
+/* side-by-side / partial fragments, as the OneNote export laid them out in a
+   table grid: keep them on one wrapping row at their natural size */
+.scan-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-start; }
+.scan-row img { width: auto; max-width: 100%; flex: 0 1 auto; }
+
+/* ---- figures (hand-drawn diagrams kept from the scans, or redrawn) ------- */
+figure.diagram { margin: 1.6rem 0; text-align: center; }
+figure.diagram img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg);
+}
+figure.diagram figcaption {
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 /* ---- KaTeX tweaks -------------------------------------------------------- */

@@ -22,7 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
       "\\sign": "\\operatorname{sign}",
       "\\Lin": "\\mathcal{L}",
       "\\herm": "^{\\mathsf{H}}",
-      "\\T": "^{\\mathsf{T}}"
+      "\\T": "^{\\mathsf{T}}",
+      "\\rank": "\\operatorname{rank}",
+      "\\nullity": "\\operatorname{nullity}",
+      "\\diag": "\\operatorname{diag}",
+      "\\Null": "\\mathcal{N}",
+      "\\Range": "\\mathcal{R}"
     }
   });
 });
