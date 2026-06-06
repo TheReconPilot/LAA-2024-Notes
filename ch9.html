@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch9: Eigen Decomposition · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch9 · Eigen Decomposition</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 9 — Eigen Decomposition</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- ================================================================== -->
+  <!-- THE SPECTRAL THEOREM                                               -->
+  <!-- ================================================================== -->
+  <h2 class="sec">The Spectral Theorem</h2>
+
+  <p>Recall the classes of operators:</p>
+  <ul class="arrows">
+    <li>Normal: \( TT^* = T^*T \).</li>
+    <li>Unitary: \( TT^* = T^*T = I \).</li>
+    <li>Skew-adjoint: \( T^* = -T \).</li>
+    <li>Self-adjoint: \( T^* = T \). For a matrix \(A\): if \(A\) is real, \( A\T = A \) (symmetric); if \(A\) is complex, \( A\herm = A \) (Hermitian).</li>
+  </ul>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 15 <span class="name">— Spectral Theorem</span></p>
+    <p>Let \(V\) be a complex, finite-dimensional inner product space, and let \( T \in \Lin(V) \) be self-adjoint. Then there exists an orthonormal basis of eigenvectors of \(T\). (Proof after Ex 93.) The eigenvalues of \(T\) are real.</p>
+    <ul class="arrows">
+      <li>For \( A \in \R^{n\times n} \) symmetric, \( A = Q\Lambda Q\T \), where \(Q\) is orthogonal (\( QQ\T = Q\T Q = I \)) and \( \Lambda = \diag(\lambda_1, \dots, \lambda_n) \).</li>
+      <li>For \( A \in \C^{n\times n} \) Hermitian, \( A = U\Lambda U\herm \), where \(U\) is unitary, \( \Lambda = \diag(\lambda_1, \dots, \lambda_n) \), \( \lambda_i \in \R \).</li>
+    </ul>
+    <p>For a real matrix, the theorem is called the <strong>Spectral Theorem</strong>: \( A = A\T \Rightarrow A = Q\Lambda Q\T \), and \( A = A\herm \Rightarrow A = U\Lambda U\herm \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Lemma 3</p>
+    <p>Every self-adjoint operator has an eigenvector with a real eigenvalue.</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>\( T \in \Lin(V) \) is self-adjoint, i.e. \( T = T^* \). \(T\) has at least one eigenvalue (by existence of roots of the characteristic polynomial). Let \( \lambda \in \C \) be an eigenvalue with \( Tv = \lambda v \), \( v \in V \), \( v \neq 0 \). We show \( \lambda \) is real:
+    \[ \langle Tv, v \rangle = \langle v, T^*v \rangle \implies \langle \lambda v, v \rangle = \langle v, Tv \rangle \implies \overline{\lambda}\langle v,v\rangle = \langle v, \lambda v\rangle \implies \overline{\lambda}\langle v,v\rangle = \lambda\langle v,v\rangle. \]
+    Since \( v \neq 0 \), \( \langle v,v\rangle = \|v\|^2 > 0 \), so \( \overline{\lambda} = \lambda \), i.e. \( \lambda \) is real.</p>
+    <p><em>Alternate solution.</em> Let \( A = [T] \). By Schur, \( A = U\Lambda U\herm \) with \( \Lambda \) upper triangular. Then \( A\herm = (U\Lambda U\herm)\herm = U\Lambda\herm U\herm \), and \( A = A\herm \Rightarrow \Lambda = \Lambda\herm \), so \( \Lambda \) is diagonal with real diagonal entries (the eigenvalues). They may all be the same, but nonetheless we have a real eigenvalue.</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 45 <span class="name">— Invariant subspace</span></p>
+    <p>A subspace \( U \subseteq V \) is an invariant subspace of \( T \in \Lin(V) \) if \( Tu \in U \ \forall\, u \in U \). In short, we say \(T\) is \(U\)-invariant. We can define \( T_U : U \to U \) by \( T_U u = Tu \ \forall\, u \in U \); we call \( T_U \) the restriction of \(T\) on \(U\).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 92</p>
+    <p>Let \( T \in \Lin(V) \) be self-adjoint and \(U\)-invariant, with \( T_U \) the restriction of \(T\) on \(U\). Verify that \( T_U \in \Lin(U) \) and is self-adjoint.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>\( T_U \in \Lin(U) \).</strong> Let \( u_1, u_2 \in U \), \( \alpha \in \F \) (so \( u_1 + u_2 \in U \), \( \alpha u_1 \in U \)).
+    \[ T_U(u_1 + u_2) = T(u_1 + u_2) = T(u_1) + T(u_2) = T_U(u_1) + T_U(u_2), \qquad T_U(\alpha u_1) = T(\alpha u_1) = \alpha T(u_1) = \alpha T_U(u_1). \]
+    So \( T_U \in \Lin(U) \) — an operator on \( U \subseteq V \).</p>
+    <p><strong>\( T_U \) is self-adjoint.</strong> For \( u_1, u_2 \in U \),
+    \[ \langle T_U u_1, u_2 \rangle = \langle T u_1, u_2 \rangle = \langle u_1, T^* u_2 \rangle = \langle u_1, T u_2 \rangle = \langle u_1, T_U u_2 \rangle \quad \forall\, u_1, u_2 \in U, \]
+    so \( T_U^* = T_U \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 93</p>
+    <p>Let \(q\) be an eigenvector of a self-adjoint operator \(T\). Show that \(T\) is invariant on the subspace \( \operatorname{span}\{q\} \) and on its orthogonal complement.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( T \in \Lin(V) \), \( T = T^* \), \( q \) an eigenvector so \( Tq = \lambda q \). For any \( c \in \F \), \( T(cq) = cTq = c\lambda q \in \operatorname{span}(q) \), so \(T\) is invariant on \( \operatorname{span}(q) \). By Proposition 6 (Ch. 8), \( T^* \) is invariant on \( \operatorname{span}(q)^{\perp} \); but \( T = T^* \), so \(T\) is also invariant on \( \operatorname{span}(q)^{\perp} \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof of Theorem 15</p>
+    <p>\( T \in \Lin(V) \) has at least one eigenvalue (existence of roots of the complex polynomial). Let \( \lambda \in \C \), \( Tv = \lambda v \), \( v \neq 0 \). By the argument of Lemma 3, \( \lambda \) is real. We prove the claim by induction on \( \dim V \).</p>
+    <p><strong>Base case</strong> \( \dim V = 1 \): one real eigenvalue \( \lambda \) exists, \( Tv = \lambda v \), \( v \neq 0 \). Then \( \tfrac{v}{\|v\|} \) forms an ONB for \(V\), with \( \lambda \) real.</p>
+    <p><strong>Inductive step.</strong> Assume the result for \( \dim V = n \). For \( \dim V = n+1 \): \( T \in \Lin(V) \), \( T^* = T \), with a real eigenvalue \( \lambda \) and \( Tv = \lambda v \). Let \( u_1 = \tfrac{v}{\|v\|} \) (so \( \|u_1\| = 1 \)) and \( U = \operatorname{span}(u_1)^{\perp} \). Since \(T\) is invariant on \( \operatorname{span}(u_1) \), \( T^* \) is invariant on \( U = \operatorname{span}(u_1)^{\perp} \) (Ch. 8, Proposition 6; Ex 93); and as \( T = T^* \), \(T\) is invariant on \(U\). Let \( T_U \) be the restriction of \(T\) on \(U\); then \( T_U \in \Lin(U) \) is self-adjoint (Ex 92). Now \( \dim U = n \), so by induction there is an ONB of eigenvectors of \( T_U \), say \( u_2, \dots, u_{n+1} \); these are also eigenvectors of \( T \in \Lin(V) \), and \( u_1 \perp U = \operatorname{span}(u_2, \dots, u_{n+1}) \). So \( u_1, \dots, u_{n+1} \) forms an ONB of eigenvectors of \(V\), completing the induction.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Spectral Theorem, Lemma 3, Ex 92–93 &amp; proof (pages 1–8)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image001.png" alt="Original handwritten page 1">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image003.png" alt="Original handwritten page 3">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image004.png" alt="Original handwritten page 4">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image005.png" alt="Original handwritten page 5">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image006.png" alt="Original handwritten page 6">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image007.png" alt="Original handwritten page 7">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image008.png" alt="Original handwritten page 8">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- RAYLEIGH QUOTIENT                                                  -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Rayleigh Quotient</h2>
+
+  <p><strong>Optimization / Lagrange multipliers.</strong> Given \( A \in \R^{n\times n} \) with \( A\T = A \), find
+  \[ \min_{x \in \R^n} x\T A x \quad\text{subject to}\quad \|x\|^2 = 1. \]
+  The Lagrangian is \( \mathcal{L} = x\T A x - \lambda(x\T x - 1) \), and \( \nabla\mathcal{L} = 0 \Rightarrow 2Ax^* - 2\lambda x^* = 0 \), so \( Ax^* = \lambda x^* \) with \( \lambda \in \R \) — the Lagrange multiplier is an eigenvalue.</p>
+
+  <!-- TODO verify (correctness pass): the Rayleigh-quotient page was heavily fragmented in the
+       export (image009–018 are tiny ink pieces in two table grids); reconstructed here as the
+       standard statement. Check details against the original scans below. -->
+  <div class="box def">
+    <p class="box-head">Rayleigh Quotient</p>
+    <p>For a symmetric \( A \in \R^{n\times n} \) (\( A\T = A \)), the Rayleigh quotient is
+    \[ R(x) = \frac{x\T A x}{x\T x}. \]
+    Its extreme values over \( x \neq 0 \) are the extreme eigenvalues: \( \displaystyle\max_{x\neq 0} R(x) = \lambda_{\max} \) and \( \displaystyle\min_{x\neq 0} R(x) = \lambda_{\min} \), i.e. \( \lambda_{\min} \le R(x) \le \lambda_{\max} \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Rayleigh quotient (pages 9–18, laid out side-by-side in the export)</summary>
+    <div class="scan-imgs">
+      <div class="scan-row">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image009.png" alt="Original fragment 9">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image010.png" alt="Original fragment 10">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image011.png" alt="Original fragment 11">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image012.png" alt="Original fragment 12">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image013.png" alt="Original fragment 13">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image014.png" alt="Original fragment 14">
+      </div>
+      <div class="scan-row">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image015.png" alt="Original fragment 15">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image016.png" alt="Original fragment 16">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image017.png" alt="Original fragment 17">
+        <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image018.png" alt="Original fragment 18">
+      </div>
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- NORMAL OPERATORS                                                   -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Normal Operators</h2>
+
+  <p>We can extend Theorem 15 to the class of normal operators (\( TT^* = T^*T \)), which includes unitary (\( TT^* = T^*T = I \)) and skew-adjoint (\( T^* = -T \)) operators. However, the eigenvalues are no longer guaranteed to be real. (Theorem 16, after Proposition 7.)</p>
+
+  <!-- TODO verify (correctness pass): Proposition 7 and its proof (image019–021) are low-resolution
+       in the export; reconstructed conservatively. Check the exact statement against the scans. -->
+  <div class="box thm">
+    <p class="box-head">Proposition 7</p>
+    <p>Let \(V\) be a finite-dimensional inner product space, and let \( S, T \in \Lin(V) \) be self-adjoint with \( TS = ST \). Then \(T\) is invariant on every eigenspace of \(S\) (and vice versa), and \(S\) and \(T\) can be diagonalized in a common basis.</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof (sketch)</p>
+    <p>Suppose \( TS = ST \). Let \( \lambda \) be an eigenvalue of \(S\) with eigenspace \( E_\lambda = \Null(S - \lambda I) \). For \( v \in E_\lambda \), applying \(T\): \( TSv = T(\lambda v) = \lambda(Tv) \), and since \( TS = ST \), \( S(Tv) = \lambda(Tv) \), so \( Tv \in E_\lambda \). Hence \(T\) is invariant on every eigenspace of \(S\); exchanging the roles of \(S\) and \(T\) gives the converse.</p>
+    <p>Since \(T\) and \(S\) are self-adjoint they are each diagonalizable. Decompose \( V = E_1 \oplus \dots \oplus E_k \) into eigenspaces \( E_i = \Null(T - \lambda_i I) \) of \(T\). By the above, \(S\) is invariant on each \( E_i \); let \( S_i \) be the restriction of \(S\) to \( E_i \). By Ex 92, \( S_i \in \Lin(E_i) \) is self-adjoint, hence diagonalizable, giving \( \dim E_i \) orthonormal eigenvectors that are eigenvectors of both \(T\) and \(S\). Doing this for each \( E_i \) yields \( \sum_i \dim E_i = n \) orthonormal vectors forming an ONB of \(V\) of common eigenvectors. Hence \(T\) and \(S\) share a common ONB in which they are diagonalized.</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 16</p>
+    <p>Let \(V\) be a complex, finite-dimensional inner product space, and let \( T \in \Lin(V) \) be a normal operator. Then there exists an orthonormal basis of eigenvectors of \(T\) (though, unlike the self-adjoint case, the eigenvalues need not be real).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p><em>Idea (even–odd decomposition).</em> For functions, even means \( f(-t) = f(t) \) and odd means \( f(-t) = -f(t) \); any \(g\) splits as \( g(t) = \tfrac12[g(t) + g(-t)] + \tfrac12[g(t) - g(-t)] \) (even + odd).</p>
+    <p>For a normal operator \(T\) (\( TT^* = T^*T \)), write \( T = \tfrac12(T + T^*) + \tfrac12(T - T^*) \) (self-adjoint + skew-adjoint). To use Theorem 15 we want self-adjoint components, so
+    \[ T = \underbrace{\tfrac12(T + T^*)}_{T_e} + i\,\underbrace{\tfrac{1}{2i}(T - T^*)}_{T_o}, \qquad i = \sqrt{-1}, \]
+    where \( T_e \) and \( T_o \) are both self-adjoint: \( T = T_e + iT_o \), \( T_e^* = T_e \), \( T_o^* = T_o \).</p>
+    <p><strong>Claim:</strong> \( T_e T_o = T_o T_e \).
+    \[ T_e T_o = \tfrac12(T + T^*)\cdot\tfrac{1}{2i}(T - T^*) = \tfrac{1}{4i}(TT - TT^* + T^*T - T^*T^*), \]
+    \[ T_o T_e = \tfrac{1}{2i}(T - T^*)\cdot\tfrac12(T + T^*) = \tfrac{1}{4i}(TT + TT^* - T^*T - T^*T^*). \]
+    Since \(T\) is normal (\( TT^* = T^*T \)), \( T_e T_o = T_o T_e \). By Proposition 7 they are diagonalized in a common basis:
+    \[ [T_e] = Q\Lambda_e Q\herm, \quad [T_o] = Q\Lambda_o Q\herm \quad (Q \text{ unitary, columns an ONB of eigenvectors}). \]
+    Therefore \( [T] = [T_e] + i[T_o] = Q\Lambda_e Q\herm + iQ\Lambda_o Q\herm = Q(\Lambda_e + i\Lambda_o)Q\herm \), so \(T\) has an ONB of eigenvectors.</p>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- VARIATIONAL CHARACTERIZATION                                       -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Variational Characterization</h2>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 17 <span class="name">— Min–Max / Courant–Fischer</span></p>
+    <p>Let \(V\) be a finite-dimensional inner product space and \(T\) self-adjoint with eigenvalues \( \lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n \). Then for all \( 1 \le k \le n \),
+    \[ \lambda_k = \max_{\dim U = k} \ \min\big\{ \langle x, Tx \rangle : x \in U,\ \|x\| = 1 \big\}, \]
+    where \(U\) is a subspace of \(V\). In particular, \( \lambda_1 = \max_{x\in V,\ \|x\|=1}\langle x, Tx\rangle \) and \( \lambda_n = \min_{x\in V,\ \|x\|=1}\langle x, Tx\rangle \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Let \( \varphi(U) = \min_{x\in U,\ \|x\|=1}\langle x, Tx\rangle \); we show \( \lambda_k = \max_{\dim U = k}\varphi(U) \). Take \( U \subseteq V \) with \( \dim U = k \), \( 1 \le k \le n = \dim V \). As \(T\) is self-adjoint, an ONB of eigenvectors \( q_1, \dots, q_n \) exists with \( Tq_i = \lambda_i q_i \).</p>
+    <p>Let \( W = \operatorname{span}(q_k, \dots, q_n) \), so \( \dim W = n - k + 1 \). Since \( \dim W + \dim U > \dim V \), \( W \cap U \) is non-empty with \( \dim(W \cap U) \ge 1 \). Take \( x_0 \in W \cap U \), \( \|x_0\| = 1 \). Writing \( x_0 = a_1 q_1 + \dots + a_n q_n \) (with \( \sum_{i=1}^{n}|a_i|^2 = 1 \) as the \( q_i \) are an ONB),
+    \[ Tx_0 = a_1\lambda_1 q_1 + \dots + a_n\lambda_n q_n, \qquad \langle x_0, Tx_0\rangle = \sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_j a_j\overline{a_i}\underbrace{\langle q_i, q_j\rangle}_{\delta_{ij}} = \sum_{i=1}^{n}\lambda_i|a_i|^2. \]
+    The largest eigenvalue appearing in \( W \cap U \) is \( \lambda_k \), so \( \langle x_0, Tx_0\rangle \le \lambda_k\sum_{i=1}^{n}|a_i|^2 = \lambda_k \). Hence for all \(U\) with \( \dim U = k \) there is \( x_0 \in U \), \( \|x_0\| = 1 \), with \( \langle x_0, Tx_0\rangle \le \lambda_k \), so \( \min_{x\in U,\|x\|=1}\langle x, Tx\rangle \le \lambda_k \), i.e. \( \varphi(U) \le \lambda_k \).</p>
+    <p>Equality is attained when \( U \cap W = \operatorname{span}(q_k) \) and \( x_0 = q_k \): then \( \langle q_k, Tq_k\rangle = \langle q_k, \lambda_k q_k\rangle = \lambda_k \). Therefore
+    \[ \lambda_k = \max_{\dim U = k}\ \min\big\{\langle x, Tx\rangle : x \in U,\ \|x\| = 1\big\}. \]</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 94</p>
+    <p>Using Theorem 17, establish the perturbation result of Problem 19: let \( A, B \in \C^{n\times n} \) be Hermitian. Show that \( \forall\, 1 \le i \le n \): \( \lambda_i(A) - \|B\|_2 \le \lambda_i(A+B) \le \lambda_i(A) + \|B\|_2 \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( \lambda_i(A+B) = \max_{\dim U = i}\min\{\langle x, (A+B)x\rangle : x \in U,\ \|x\| = 1\} \), and \( \langle x, (A+B)x\rangle = \langle x, Ax\rangle + \langle x, Bx\rangle \). Now \( \|B\|_2 = \max_{\|x\|=1}\|Bx\| \Rightarrow \|Bx\| \le \|B\|_2 \) for \( \|x\|=1 \). By Cauchy–Schwarz, \( |\langle x, Bx\rangle| \le \|x\|\,\|Bx\| \le \|x\|\,\|B\|_2 = \|B\|_2 \) (as \( \|x\|=1 \)), so \( -\|B\|_2 \le \langle x, Bx\rangle \le \|B\|_2 \). Therefore
+    \[ \lambda_i(A) - \|B\|_2 \le \lambda_i(A+B) \le \lambda_i(A) + \|B\|_2. \]</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Normal operators &amp; variational characterization (pages 19–27)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image019.png" alt="Original handwritten page 19">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image020.png" alt="Original handwritten page 20">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image021.png" alt="Original handwritten page 21">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image022.png" alt="Original handwritten page 22">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image023.png" alt="Original handwritten page 23">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image024.png" alt="Original handwritten page 24">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image025.png" alt="Original handwritten page 25">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image026.png" alt="Original handwritten page 26">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image027.png" alt="Original handwritten page 27">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- POSITIVE OPERATORS                                                 -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Positive Operators</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 46 <span class="name">— Positive (semi)definite</span></p>
+    <p>A self-adjoint operator is positive semidefinite (resp. positive definite) if the eigenvalues of \(T\) are non-negative (resp. positive).</p>
+    <ul class="arrows">
+      <li>Positive semidefinite — PSD: eigenvalues \( \ge 0 \).</li>
+      <li>Positive definite — PD: eigenvalues \( > 0 \).</li>
+    </ul>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Example 14 <span class="name">— PSD and PD operators</span></p>
+    <ol class="claims">
+      <li>The zero operator is PSD; the identity operator is PD.</li>
+      <li>For any \( q \in V \), the operator \( Tx = \langle x, q\rangle q \) is PSD: from \( (T - \lambda I)x = 0 \), \( \lambda x = \langle x, q\rangle q \), so \(q\) is an eigenvector and \( \langle q, q\rangle = \|q\|^2 \ge 0 \) is the eigenvalue \( \Rightarrow \) PSD.</li>
+      <li>The Hessian of a twice continuously differentiable convex function is PSD: \( f \in C^2 \) convex \( \Rightarrow \nabla^2 f(x) \succeq 0 \).</li>
+      <li>The Gram and covariance matrices associated with a system of vectors are PSD. With \( X = [\,x_1\ x_2\ \cdots\ x_n\,] \): the Gram matrix is \( G = X\herm X \) (or \( X\T X \) if \(X\) is real); the covariance matrix \(C\) has \( C_{ij} = \operatorname{cov}(x_i, x_j) \).</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 95 <span class="name">— Characterization of PSD / PD</span></p>
+    <p>Let \( T \in \Lin(V) \) be self-adjoint. Show that \(T\) is PSD \( \iff \forall\, x \in V : \langle x, Tx\rangle \ge 0 \), and \(T\) is PD \( \iff \forall\, x \in V\setminus\{0\} : \langle x, Tx\rangle > 0 \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( T \in \Lin(V) \) is self-adjoint, so there is an ONB of eigenvectors \( q_1, \dots, q_n \) with real eigenvalues \( \lambda_1, \dots, \lambda_n \), \( Tq_i = \lambda_i q_i \). For any \( x \in V \), write \( x = a_1 q_1 + \dots + a_n q_n \) (\( a_i \in \C \)). Then \( Tx = a_1\lambda_1 q_1 + \dots + a_n\lambda_n q_n \), and
+    \[ \langle x, Tx\rangle = \sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_j a_j\overline{a_i}\underbrace{\langle q_i, q_j\rangle}_{\delta_{ij}} = \sum_{i=1}^{n}\lambda_i|a_i|^2, \]
+    where \( |a_i|^2 \ge 0 \) and not all \( a_i \) are zero (unless \( x = 0 \)). Hence
+    \[ \langle x, Tx\rangle \ge 0 \iff \lambda_i \ge 0\ (i = 1, \dots, n) \quad\text{i.e. } T \text{ is PSD}, \]
+    and for \( x \in V\setminus\{0\} \), \( \langle x, Tx\rangle > 0 \iff \lambda_i > 0\ (i = 1, \dots, n) \), i.e. \(T\) is PD.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Positive operators (pages 28–30)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image028.png" alt="Original handwritten page 28">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image029.png" alt="Original handwritten page 29">
+      <img loading="lazy" src="Ch9_%20Eigen%20Decomposition_files/image030.png" alt="Original handwritten page 30">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 9. <a href="index.html">← All chapters</a> · <a href="Ch9_%20Eigen%20Decomposition.htm">complete original export ↗</a></p>
+    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. The Rayleigh-quotient page and Proposition 7 were reconstructed from heavily-fragmented / low-resolution scans (see the toggles). This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+  </footer>
+
+</div>
+</body>
+</html>

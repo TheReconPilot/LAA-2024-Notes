@@ -179,18 +179,20 @@ details.scan > summary {
 details.scan > summary::before { content: "\25B8"; }  /* ▸ */
 details.scan[open] > summary::before { content: "\25BE"; } /* ▾ */
 details.scan > summary:hover { color: var(--link); }
-.scan-imgs { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.75rem; }
+/* align-items:flex-start so images keep their natural width (a small header
+   scan stays small) rather than being stretched to the column width */
+.scan-imgs { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 0.75rem; }
 .scan-imgs img {
+  max-width: 100%;       /* large full pages cap to the column; small ones stay small */
   height: auto;
   border: 1px solid var(--rule);
   border-radius: 6px;
   background: var(--bg);
 }
-.scan-imgs > img { width: 100%; }            /* a full page stacks on its own row */
 /* side-by-side / partial fragments, as the OneNote export laid them out in a
    table grid: keep them on one wrapping row at their natural size */
-.scan-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-start; }
-.scan-row img { width: auto; max-width: 100%; flex: 0 1 auto; }
+.scan-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-start; width: 100%; }
+.scan-row img { max-width: 100%; flex: 0 1 auto; }
 
 /* ---- figures (hand-drawn diagrams kept from the scans, or redrawn) ------- */
 figure.diagram { margin: 1.6rem 0; text-align: center; }
