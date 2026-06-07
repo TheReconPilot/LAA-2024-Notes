@@ -191,14 +191,12 @@
     <p>Any finite-dimensional vector space is an inner product space.</p>
   </div>
 
-  <!-- TODO verify (correctness pass): the original writes the basis as v_1,...,v_m
-       in one spot while stating dim V = n and summing to v_n; typeset consistently
-       with n here. -->
+  <!-- RESOLVED (correctness pass): scan (image011) writes φ(u)=(α_1,…,α_m), φ(w)=(β_1,…,β_m) — subscript m — though dim V = n, the basis is v_1,…,v_n, and the inner-product sum runs to ᾱ_n β_n. A recurring m-for-n handwriting slip in this chapter. Normalized to n; the φ coordinate tuples are flagged with .corr. -->
   <div class="box pf">
     <p class="box-head">Proof</p>
     <p>Let \( V \) be a finite-dimensional vector space over \( \F \), and let \( v_1, \dots, v_n \) be a basis of \( V \) (\( \dim V = n \)). For \( u, w \in V \), represent them in the basis:
     \[ u = \alpha_1 v_1 + \dots + \alpha_n v_n, \qquad w = \beta_1 v_1 + \dots + \beta_n v_n. \]
-    If \( \phi : V \to \F^n \) is the coordinate map for the basis \( v_1, \dots, v_n \), we can write \( \phi(u) = (\alpha_1, \dots, \alpha_n) \) and \( \phi(w) = (\beta_1, \dots, \beta_n) \). Define
+    If \( \phi : V \to \F^n \) is the coordinate map for the basis \( v_1, \dots, v_n \), we can write <span class="corr" title="scan slips this subscript to m, though dim V = n">\( \phi(u) = (\alpha_1, \dots, \alpha_n) \)</span> and <span class="corr" title="scan slips this subscript to m, though dim V = n">\( \phi(w) = (\beta_1, \dots, \beta_n) \)</span> <span class="corr-note">(scan: subscripts written as m)</span>. Define
     \[ \langle u, w\rangle = \phi(u) \cdot \phi(w) = \bar\alpha_1 \beta_1 + \dots + \bar\alpha_n \beta_n. \]
     We showed in Ex 42 that this has the properties of an inner product on \( \C^n \) (as \( \phi(u), \phi(w) \in \C^n \)). This holds for all \( u, w \in V \). So, every finite-dimensional vector space is an inner product space.</p>
   </div>
@@ -442,12 +440,11 @@
     <p>A list of vectors \( q_1, \dots, q_n \) in \( V \) is said to be an orthonormal system if \( \|q_i\| = 1 \ \forall\, i \) and \( q_i \perp q_j \ \forall\, i \neq j \).</p>
   </div>
 
-  <!-- TODO verify (correctness pass): in Example 9(1) the original writes the index
-       ranges as i,j = 1,...,m while listing e_1,...,e_n; typeset with n here. -->
+  <!-- RESOLVED (correctness pass): scan (image025) writes the index ranges as ∀ i=1,…,m, ∀ j=1,…,m while listing e_1,…,e_n ∈ F^n; the m is a slip (should be n). Normalized to n; flagged with .corr. -->
   <div class="box ex">
     <p class="box-head">Example 9</p>
     <ol class="claims">
-      <li><strong>Standard basis.</strong> \( e_1, \dots, e_n \in \F^n \) with \( e_i(j) = \begin{cases} 1 & \text{if } j = i \\ 0 & \text{if } j \neq i \end{cases} \) for \( i, j = 1, \dots, n \). The \( e_1, \dots, e_n \) form an orthonormal system w.r.t. the dot product.</li>
+      <li><strong>Standard basis.</strong> \( e_1, \dots, e_n \in \F^n \) with \( e_i(j) = \begin{cases} 1 & \text{if } j = i \\ 0 & \text{if } j \neq i \end{cases} \) for <span class="corr" title="scan: i,j = 1,…,m, though the list is e_1,…,e_n ∈ F^n">\( i, j = 1, \dots, n \)</span> <span class="corr-note">(scan: 1,…,m)</span>. The \( e_1, \dots, e_n \) form an orthonormal system w.r.t. the dot product.</li>
       <li><strong>Fourier exponentials.</strong> \( e_1, e_2, \dots : [0, 1] \to \C \), \( e_k(t) = \exp(i\,2\pi k t) \), \( t \in [0, 1] \). The functions \( e_1, e_2, \dots \) are orthonormal w.r.t. the inner product \( \langle f, g\rangle = \int_{0}^{1} \overline{f(t)}\, g(t)\, dt \):
       \[ \langle e_m, e_n\rangle = \int_{0}^{1} e^{-i 2\pi m t}\, e^{i 2\pi n t}\, dt = \int_{0}^{1} e^{i 2\pi (n - m) t}\, dt = \frac{1}{i\,2\pi(n - m)}\Big(e^{i 2\pi(n - m)} - 1\Big) = 0 \quad (n \neq m), \]
       since \( e^{i 2\pi(n - m)} = 1 \) (periodicity, \( e^{i 2\pi k} = 1 \)); and when \( m = n \),
@@ -590,8 +587,7 @@
   <!-- ================================================================== -->
   <h2 class="sec">Linear Functionals &amp; the Dual Space</h2>
 
-  <!-- TODO verify (correctness pass): the linear-functional definition is unnumbered
-       in the source; LADR reference read as 6.39. -->
+  <!-- RESOLVED (correctness pass): verified against LADR4e.pdf — 6.39 "definition: linear functional, dual space, V'" (Ch 6, restated from §3F) matches this text verbatim, incl. V' = L(V,F). The reference is correct; the source leaves it unnumbered (no course number), kept as-is. -->
   <div class="box def">
     <p class="box-head">Definition <span class="name">— Linear functional (LADR 6.39)</span></p>
     <p>A linear functional on \( V \) is a linear map from \( V \) to \( \F \). The dual space of \( V \), denoted \( V' \), is the vector space of all linear functionals on \( V \):
@@ -691,7 +687,7 @@
 
   <div class="box ex">
     <p class="box-head">Ex 54</p>
-    <p>Let \( q_1, \dots, q_n \) be an ONB. For \( 1 \le k \le n \), let \( U = \operatorname{span}(q_1, \dots, q_k) \) and \( W = \operatorname{span}(q_{k+1}, \dots, q_n) \). Show that \( W = U^{\perp} \).</p>
+    <p>Let \( q_1, \dots, q_n \) be an ONB. For <span class="corr" title="scan writes the strict range 1 < k < n; broadened to the endpoints, where W = U⊥ still holds (k=n gives W={0})">\( 1 \le k \le n \)</span> <span class="corr-note">(scan: 1 &lt; k &lt; n)</span>, let \( U = \operatorname{span}(q_1, \dots, q_k) \) and \( W = \operatorname{span}(q_{k+1}, \dots, q_n) \). Show that \( W = U^{\perp} \).</p>
   </div>
 
   <div class="box sol">
@@ -717,7 +713,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 4. <a href="index.html">← All chapters</a> · <a href="Ch4_%20Inner-Product%20and%20Normed%20Spaces.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. The nested NS ⊃ IPS ⊃ FD diagram was redrawn as inline SVG from the hand-drawn original (see the Normed Spaces scan toggle). This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. The nested NS ⊃ IPS ⊃ FD diagram was redrawn as inline SVG from the hand-drawn original (see the Normed Spaces scan toggle). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
   </footer>
 
 </div>

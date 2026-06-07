@@ -21,9 +21,7 @@
   <h1 class="chap-title">Chapter 8 — Diagonalization</h1>
   <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
 
-  <!-- TODO verify (correctness pass): several pages here are low-resolution in the export
-       (image001, 003, 005, 007, 008, 011, 012, 028, 030); definition numbers 42–44 and a few
-       cross-references were reconstructed. Check against the scans in the toggles. -->
+  <!-- RESOLVED (correctness pass): definition numbers verified continuous — Ch7 ends at Def 38, Ch8 runs Def 39–44 (no gaps/dupes), Ch9 starts at Def 45 — so the reconstructed 42–44 are correct. The one reconstructed cross-reference (Ex 72 → Ex 73 of Ch6) is corrected & flagged below. Some export pages remain low-resolution but content was checked against the toggles. -->
   <p class="aside">For this chapter, \( \F = \C \). \( P_{\F} \) denotes the space of polynomials with complex coefficients.</p>
 
   <!-- ================================================================== -->
@@ -354,8 +352,8 @@
 
   <div class="box sol">
     <p class="box-head">Cayley–Hamilton for all matrices</p>
-    <!-- TODO verify (correctness pass): the scan cites "Ex 72 (Ch6)" for p(A_n) → p(A); that result is Ch6 Ex 73. -->
-    <p>Using Lemma 2, Ex 91, and Ex 73 of Ch. 6 (if \( \|A_n - A\| \to 0 \) then \( \|p(A_n) - p(A)\| \to 0 \) for any polynomial \(p\)): the characteristic polynomial \( f_A(t) \) is continuous in both \(A\) and \(t\). For any \( A \in \C^{n\times n} \) take diagonalizable \( A_k \to A \). Since \( f_{A_k}(A_k) = 0 \) (Ex 91) and everything is continuous,
+    <!-- RESOLVED (correctness pass): scan (image036) cites "Ex 72 (Ch 6)" — twice — for the p(A_n) → p(A) continuity; that result is Ch 6 Ex 73 (Ch 6 Ex 72 is invertibility-under-perturbation). Corrected to Ex 73, flagged with .corr. -->
+    <p>Using Lemma 2, Ex 91, and <span class="corr" title="the p(Aₙ)→p(A) continuity result is Ch 6 Ex 73; Ch 6 Ex 72 is the invertibility-under-perturbation result">Ex 73 of Ch. 6</span> <span class="corr-note">(scan: Ex 72)</span> (if \( \|A_n - A\| \to 0 \) then \( \|p(A_n) - p(A)\| \to 0 \) for any polynomial \(p\)): the characteristic polynomial \( f_A(t) \) is continuous in both \(A\) and \(t\). For any \( A \in \C^{n\times n} \) take diagonalizable \( A_k \to A \). Since \( f_{A_k}(A_k) = 0 \) (Ex 91) and everything is continuous,
     \[ f_A(A) = \lim_{k\to\infty} f_{A_k}(A_k) = 0. \]
     Hence the Cayley–Hamilton theorem holds for any \( A \in \C^{n\times n} \).</p>
   </div>
@@ -375,7 +373,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 8. <a href="index.html">← All chapters</a> · <a href="Ch8_%20Diagonalization.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. Several pages were low-resolution in the export, so definition numbers (42–44) and a couple of cross-references were reconstructed — see the scan toggles. This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes. (Definition numbers 42–44, low-res in the export, were verified continuous with Ch7/Ch9.)</p>
   </footer>
 
 </div>

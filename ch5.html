@@ -132,8 +132,7 @@
 
   <p>The definition of the adjoint is motivated by the following result.</p>
 
-  <!-- TODO verify (correctness pass): for the transpose the original writes the index
-       ranges as 1<=i<=m, 1<=j<=n, though A^T is n x m. -->
+  <!-- RESOLVED (correctness pass): the scan annotates the transpose with index ranges 1<=i<=m, 1<=j<=n, which are the wrong ranges for A^T in R^{n x m} (should be 1<=i<=n, 1<=j<=m). The body omits the ranges entirely — (A^T)_{ij}=A_{ji} is unambiguous without them — so no error is shown and no .corr is needed. -->
   <div class="box def">
     <p class="box-head">Definition <span class="name">— Transpose &amp; Hermitian transpose</span></p>
     <ol class="claims">
@@ -404,14 +403,16 @@
     <p><strong>(5) \( \Rightarrow \) (1).</strong> Let \( e_1, \dots, e_n \) be an ONB, so \( Te_1, \dots, Te_n \) is too. For \( u = \sum a_i e_i \), \( v = \sum b_i e_i \), both \( \langle u, v\rangle \) and \( \langle Tu, Tv\rangle \) equal \( \bar a_1 b_1 + \dots + \bar a_n b_n \). Hence \( \langle u, (T^*T - I)v\rangle = 0 \ \forall\, u, v \Rightarrow T^*T = I \), and (Ex 64) \( TT^* = I \), so \( T \) is unitary.</p>
   </div>
 
-  <!-- TODO verify (correctness pass): on the scan, the intermediate ||x +- iy||^2
-       expansions (image047-048) carry handwriting sign slips in the <iy,iy> term
-       (conjugate-linearity of the first slot); the boxed Polarization Identity itself
-       is the standard, correct one and is reproduced here. -->
+  <!-- RESOLVED (correctness pass): scan (image047-048) derivation has sign slips — writes <iy,iy> = -||y||^2 (should be +||y||^2) and flips the Im sign — landing on the standard textbook identity, which assumes conjugate-linearity in the SECOND slot. This course is conjugate-linear in the FIRST slot (Ch4 Thm 4: <u,w>=conj(a1)b1+...; the derivation's own <x,iy>=+i<x,y> confirms it). Under first-slot convention the boxed identity computes <y,x>, not <x,y> (check x=1,y=i: <x,y>=i but the formula gives -i). Corrected: imaginary-part signs flipped (user-approved). Explained in .box.corr. -->
   <div class="box rem">
     <p class="box-head">Polarization Identity</p>
-    <p>From \( \|x \pm y\|^2 = \|x\|^2 + \|y\|^2 \pm (\langle x, y\rangle + \langle y, x\rangle) \) one gets \( \operatorname{Re}\langle x, y\rangle = \tfrac14(\|x+y\|^2 - \|x-y\|^2) \), and from the analogous \( \|x \pm iy\|^2 \) expansions \( \operatorname{Im}\langle x, y\rangle = \tfrac14(\|x+iy\|^2 - \|x-iy\|^2) \). Hence
-    \[ \langle x, y\rangle = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 + i\|x+iy\|^2 - i\|x-iy\|^2\big). \]</p>
+    <p>From \( \|x \pm y\|^2 = \|x\|^2 + \|y\|^2 \pm (\langle x, y\rangle + \langle y, x\rangle) \) one gets \( \operatorname{Re}\langle x, y\rangle = \tfrac14(\|x+y\|^2 - \|x-y\|^2) \), and from the analogous \( \|x \pm iy\|^2 \) expansions <span class="corr" title="sign corrected for the first-slot convention; see the Correction below">\( \operatorname{Im}\langle x, y\rangle = \tfrac14(\|x-iy\|^2 - \|x+iy\|^2) \)</span>. Hence
+    \[ \langle x, y\rangle = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 - i\|x+iy\|^2 + i\|x-iy\|^2\big). \]</p>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction</p>
+    <p>The handwritten derivation writes \( \langle iy, iy\rangle = -\|y\|^2 \) (it is \( +\|y\|^2 \)) and flips the sign of \( \operatorname{Im}\langle x,y\rangle \), landing on the standard textbook identity \( \tfrac14(\dots + i\|x+iy\|^2 - i\|x-iy\|^2) \). That form assumes the inner product is conjugate-linear in the <em>second</em> slot. This course's convention is conjugate-linear in the <strong>first</strong> slot (Ch 4, Theorem 4: \( \langle u,w\rangle = \bar\alpha_1\beta_1 + \dots \)), under which the standard form computes \( \langle y, x\rangle \) instead. The imaginary signs are flipped above to match: e.g. with \( x = 1,\ y = i \), \( \langle x,y\rangle = \bar 1\cdot i = i \), which the corrected formula gives (the original yields \( -i \)).</p>
   </div>
 
   <div class="box rem">
@@ -472,7 +473,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 5. <a href="index.html">← All chapters</a> · <a href="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. The orthogonal-basis projection formula (Ex 55) was reconstructed from fragments the export scattered across a layout grid (shown side-by-side in the scan toggle). This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. The orthogonal-basis projection formula (Ex 55) was reconstructed from fragments the export scattered across a layout grid (shown side-by-side in the scan toggle). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
   </footer>
 
 </div>

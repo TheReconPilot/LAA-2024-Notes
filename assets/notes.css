@@ -150,9 +150,20 @@ ol.claims > li { margin: 0.5rem 0; }
 /* editorial asides written by the author, e.g. "[answer may be incomplete]" */
 .aside { color: var(--muted); font-style: italic; }
 
-/* reserved for the later correctness pass — fix-and-flag annotations */
+/* correctness pass — fix-and-flag annotations.
+   .corr      inline: dotted amber underline on the CORRECTED token (token stays in
+              the normal ink palette). A title="…" may carry extra context on hover.
+   .corr-note small amber inline aside placed right after a .corr token, showing the
+              scan's ORIGINAL reading so it stays visible on mobile/print (a title=
+              tooltip is hover-only and unreachable on touch — so it is never the
+              sole carrier of the original).
+   .box.corr  a "Correction" callout when a fix needs a sentence of explanation;
+              matches the semantic .def/.thm/… box family, in the amber warn hue. */
 .corr { border-bottom: 2px dotted var(--c-warn); cursor: help; }
 .corr-note { color: var(--c-warn); font-size: 0.85rem; font-family: var(--font-ui); }
+
+.box.corr { border-color: var(--c-warn); background: color-mix(in srgb, var(--c-warn) 7%, var(--bg)); }
+.box.corr .box-head { color: var(--c-warn); }
 
 /* ---- separators ---------------------------------------------------------- */
 hr {

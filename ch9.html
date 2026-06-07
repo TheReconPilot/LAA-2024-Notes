@@ -117,9 +117,7 @@
   \[ \min_{x \in \R^n} x\T A x \quad\text{subject to}\quad \|x\|^2 = 1. \]
   The Lagrangian is \( \mathcal{L} = x\T A x - \lambda(x\T x - 1) \), and \( \nabla\mathcal{L} = 0 \Rightarrow 2Ax^* - 2\lambda x^* = 0 \), so \( Ax^* = \lambda x^* \) with \( \lambda \in \R \) — the Lagrange multiplier is an eigenvalue.</p>
 
-  <!-- TODO verify (correctness pass): the Rayleigh-quotient page was heavily fragmented in the
-       export (image009–018 are tiny ink pieces in two table grids); reconstructed here as the
-       standard statement. Check details against the original scans below. -->
+  <!-- RESOLVED (correctness pass): the fragments (image009–018) are tiny ink pieces of the standard Rayleigh quotient over A ∈ R^{n×n}; the body states the unambiguous standard definition R(x)=x^T A x / x^T x with extremes λ_max/λ_min. Faithful reconstruction, correct — no change. -->
   <div class="box def">
     <p class="box-head">Rayleigh Quotient</p>
     <p>For a symmetric \( A \in \R^{n\times n} \) (\( A\T = A \)), the Rayleigh quotient is
@@ -154,8 +152,7 @@
 
   <p>We can extend Theorem 15 to the class of normal operators (\( TT^* = T^*T \)), which includes unitary (\( TT^* = T^*T = I \)) and skew-adjoint (\( T^* = -T \)) operators. However, the eigenvalues are no longer guaranteed to be real. (Theorem 16, after Proposition 7.)</p>
 
-  <!-- TODO verify (correctness pass): Proposition 7 and its proof (image019–021) are low-resolution
-       in the export; reconstructed conservatively. Check the exact statement against the scans. -->
+  <!-- RESOLVED (correctness pass): verified against image019 — scan states Prop 7 as "T,S ∈ L(V) self-adjoint, TS=ST ⟹ T invariant on any eigenspace of S (and vice versa); S,T diagonalized in a common basis," matching the body, with the same eigenspace-invariance proof. Faithful, correct — no change. (Numbering continuous: Ch8 Prop 6 → Ch9 Prop 7.) -->
   <div class="box thm">
     <p class="box-head">Proposition 7</p>
     <p>Let \(V\) be a finite-dimensional inner product space, and let \( S, T \in \Lin(V) \) be self-adjoint with \( TS = ST \). Then \(T\) is invariant on every eigenspace of \(S\) (and vice versa), and \(S\) and \(T\) can be diagonalized in a common basis.</p>
@@ -283,7 +280,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 9. <a href="index.html">← All chapters</a> · <a href="Ch9_%20Eigen%20Decomposition.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. The Rayleigh-quotient page and Proposition 7 were reconstructed from heavily-fragmented / low-resolution scans (see the toggles). This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. The Rayleigh-quotient page and Proposition 7 were reconstructed from heavily-fragmented / low-resolution scans (see the toggles); both were verified faithful in the correctness pass. This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
   </footer>
 
 </div>

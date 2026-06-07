@@ -36,9 +36,7 @@
     <p>Linear transforms are also called linear maps or linear operators; in this course we use "operator" when \( V = W \). We write \( \Lin(V, W) \) for the set of all linear transforms from \( V \) to \( W \), and \( \Lin(V) = \Lin(V, V) \). A linear transform maps \( 0_V \) to \( 0_W \). We use \( 0 \) and \( \mathrm{Id} \) for the zero and identity maps: \( 0(v) = 0 \), \( \mathrm{Id}(v) = v \).</p>
   </div>
 
-  <!-- TODO verify (correctness pass): in Eg 6.2 the original sets V = R^m but
-       defines T(x) = a_1 x_1 + a_2 x_2 (only the first two coordinates; the proof
-       uses two terms). Reproduced as written. -->
+  <!-- RESOLVED (correctness pass): scan (image002) explicitly writes V = R^m with u=(u_1,…,u_m), v=(v_1,…,v_m) AND T(x)=a_1 x_1 + a_2 x_2 — so R^m is intended (not a typo for R^2). T(x)=a_1 x_1 + a_2 x_2 is a valid linear functional on R^m (linear, just independent of coords 3…m); the proof correctly shows linearity. Not an error — reproduced faithfully, no .corr. -->
   <div class="box ex">
     <p class="box-head">Example 6 <span class="name">— linear maps</span></p>
     <ol class="claims">
@@ -383,7 +381,7 @@
 
   <div class="box sol">
     <p class="box-head">Solution</p>
-    <p>For \( v = b_1 v_1 + \dots + b_n v_n \), \( \varphi(v) = (b_1, \dots, b_n)\T \), and \( A\varphi(v) \) has \( i \)-th entry \( c_i = \sum_{j=1}^{n} a_{ij} b_j \). Then
+    <p>For \( v = b_1 v_1 + \dots + b_n v_n \), \( \varphi(v) = (b_1, \dots, b_n)\T \), and \( A\varphi(v) \in \F^m \) is the <span class="corr" title="an m×1 array is m rows by 1 column — a column vector; the scan labels it 'a row matrix'">column vector</span> <span class="corr-note">(scan: "a row matrix")</span> with \( i \)-th entry \( c_i = \sum_{j=1}^{n} a_{ij} b_j \). Then
     \[ \psi^{-1}(A\varphi(v)) = \sum_{i=1}^{m} c_i w_i = \sum_{i=1}^{m}\Big(\sum_{j=1}^{n} a_{ij} b_j\Big) w_i. \tag{1} \]
     On the other hand, using \( T(v_j) = \sum_i a_{ij} w_i \),
     \[ T(v) = \sum_{j=1}^{n} b_j\, T(v_j) = \sum_{j=1}^{n}\sum_{i=1}^{m} a_{ij} b_j w_i. \tag{2} \]
@@ -509,7 +507,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 3. <a href="index.html">← All chapters</a> · <a href="Ch3_%20Linear%20Transforms%20and%20Matrices.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. The two hand-drawn diagrams (the \( \Null(T) \) line in Ex 29 and the commutative diagram in Ex 34) were redrawn as inline SVG; the invertibility equations (Def of inverse) were reconstructed from fragments the export scattered across a layout grid (shown side-by-side in the scan toggle). This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. The two hand-drawn diagrams (the \( \Null(T) \) line in Ex 29 and the commutative diagram in Ex 34) were redrawn as inline SVG; the invertibility equations (Def of inverse) were reconstructed from fragments the export scattered across a layout grid (shown side-by-side in the scan toggle). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
   </footer>
 
 </div>

@@ -39,8 +39,8 @@
 
   <div class="box pf">
     <p class="box-head">Proof</p>
-    <!-- TODO verify (correctness pass): for complex A the test vector should be x ∈ C^n, not R^n (as written in the scan). -->
-    <p>Consider \( A \in \C^{m\times n} \). Let \( B = A\herm A \). Then \( B\herm = B \), so \( B \) is Hermitian, with \( B \in \C^{n\times n} \). For any \( x \in \R^n \),
+    <!-- RESOLVED (correctness pass): scan (image001) writes "x ∈ R^n"; B = A^H A is complex Hermitian, so the test vector ranges over C^n. Corrected to C^n, flagged with .corr. -->
+    <p>Consider \( A \in \C^{m\times n} \). Let \( B = A\herm A \). Then \( B\herm = B \), so \( B \) is Hermitian, with \( B \in \C^{n\times n} \). For any <span class="corr" title="B = AᴴA is complex Hermitian, so the test vector ranges over ℂⁿ">\( x \in \C^n \)</span> <span class="corr-note">(scan: ℝⁿ)</span>,
     \[ \langle x, Bx \rangle = \langle x, A\herm A x \rangle = \langle Ax, Ax \rangle = \|Ax\|^2 \ge 0, \]
     so \( B \) is PSD (positive semi-definite).</p>
 
@@ -110,12 +110,17 @@
     <p class="box-head">Solution</p>
     <p>Let \( x \in \R^n \), \( \|x\| = 1 \), and \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\herm \) where \( r = \rank(A) \), \( \sigma_1 \ge \dots \ge \sigma_r > 0 \). Then
     \[ Ax = \sum_{i=1}^{r} \sigma_i u_i v_i\herm x = \sum_{i=1}^{r} \sigma_i \langle v_i, x \rangle u_i. \]</p>
-    <!-- TODO verify (correctness pass): the bound is σ_1^2 (the square is faint in the scan); ‖Ax‖^2 ≤ σ_1^2, hence ‖Ax‖ ≤ σ_1. -->
+    <!-- RESOLVED (correctness pass): scan (image007–008) writes the bound as σ_1 (the square is dropped, not merely faint); the correct bound is σ_1^2. Body uses σ_1^2; a .box.corr after this solution flags it. -->
     <p>So
     \[ \|Ax\|^2 = \langle Ax, Ax \rangle = \Big\langle \sum_{i=1}^{r} \sigma_i \langle v_i,x\rangle u_i,\ \sum_{j=1}^{r} \sigma_j \langle v_j,x\rangle u_j \Big\rangle = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j \langle v_i,x\rangle \langle v_j,x\rangle \underbrace{\langle u_i,u_j\rangle}_{\delta_{ij}} \]
     \[ = \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \underbrace{\sum_{i=1}^{r} \langle v_i,x\rangle^2}_{=\,1\ \text{as } \|x\|=1} = \sigma_1^2, \]
     using \( \|x\|^2 = \sum_{i=1}^{r} \langle v_i,x\rangle^2 \). Thus \( \|Ax\|^2 \le \sigma_1^2 \ \forall\, x \in \R^n,\ \|x\|=1 \), with equality attained when \( x = \pm v_1 \) (then \( x \perp v_2, \dots, v_r \)). So
     \[ \max_{\|x\|=1} \|Ax\| = \sigma_1(A) \implies \sigma_1(A) = \|A\|_2. \]</p>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction</p>
+    <p>The scan (pages 7–8) writes the bound without the square — \( \|Ax\|^2 \le \sigma_1 \) — but pulling the largest singular value out of \( \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \) leaves \( \le \sigma_1^2 \sum_{i=1}^{r}\langle v_i,x\rangle^2 = \sigma_1^2 \). Taking square roots recovers \( \|Ax\| \le \sigma_1 \), so the conclusion \( \sigma_1 = \|A\|_2 \) is unaffected.</p>
   </div>
 
   <p>Consider the full SVD, \( A = U\Sigma V\herm \) (or \( A = U\Sigma V\T \) for \( A \in \R^{m\times n} \)). Let \( A \in \R^{m\times n} \), let \( v_1, \dots, v_n \in \R^n \) be the columns of \(V\) and \( u_1, \dots, u_m \in \R^m \) the columns of \(U\). The following result relates these to the four fundamental subspaces of \(A\).</p>
@@ -172,8 +177,8 @@
 
   <div class="box sol">
     <p class="box-head">Solution</p>
-    <!-- TODO verify (correctness pass): the scan cites "Ex 97" for the min–max characterization; that result is Ex 98. -->
-    <p>By the reverse triangle inequality, \( \|A - (-E)\| \ge \big|\,\|A\| - \|-E\|\,\big| \), so \( \|A + E\| \ge \big|\,\|A\| - \|E\|\,\big| \), and likewise \( \|(A+E)x\| \ge \big|\,\|Ax\| - \|Ex\|\,\big| \). From Ex 98,
+    <!-- RESOLVED (correctness pass): scan (image012) cites "Ex 97" for the min–max characterization; that result is Ex 98 (Ex 97 is the range/null-space result). Corrected to Ex 98, flagged with .corr. -->
+    <p>By the reverse triangle inequality, \( \|A - (-E)\| \ge \big|\,\|A\| - \|-E\|\,\big| \), so \( \|A + E\| \ge \big|\,\|A\| - \|E\|\,\big| \), and likewise \( \|(A+E)x\| \ge \big|\,\|Ax\| - \|Ex\|\,\big| \). From <span class="corr" title="the min–max characterization is Ex 98; Ex 97 is the range/null-space result">Ex 98</span> <span class="corr-note">(scan: Ex 97)</span>,
     \[ \sigma_k(A) = \max_{\dim U = k} \ \min\big\{ \|Ax\| : x \in U,\ \|x\| = 1 \big\}, \]
     and \( \|Ex\| \le \|E\| < \sigma_r(A) \ \forall\, \|x\| = 1 \). So \( \|(A+E)x\| \ge \big|\,\|Ax\| - \sigma_r(A)\,\big| \). Putting this in the min–max characterization,
     \[ \sigma_k(A+E) \ge \sigma_k(A) - \sigma_r(A). \]
@@ -196,17 +201,17 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <p><strong>\( \|A\|_2 = \sigma_1 \) is a matrix norm.</strong></p>
-    <!-- TODO verify (correctness pass): absolute homogeneity should read ‖cA‖ = |c|‖A‖ (scan writes c without bars). -->
+    <!-- RESOLVED (correctness pass): scan (image014–015) writes c without bars for BOTH the spectral and nuclear homogeneity bullets; absolute homogeneity is ‖cA‖ = |c|‖A‖ (σ_i(cA) = |c|σ_i(A) ≥ 0). Corrected to |c| in both, flagged with .corr. -->
     <ul class="dots">
       <li>\( \|A\|_2 = \sigma_1 \ge 0 \ \forall\, A \in \R^{m\times n} \) (singular values are non-negative); \( \|A\|_2 = 0 \iff \sigma_1 = 0 \iff \) all singular values are \(0\) \( \iff A = 0 \).</li>
-      <li>Let \( c \in \R \), \( A = U\Sigma V\T \). Then \( \|cA\|_2 = \|c\,U\Sigma V\T\|_2 = \|U(c\Sigma)V\T\|_2 = c\,\sigma_1 \), so \( \|cA\|_2 = c\,\|A\|_2 \).</li>
+      <li>Let \( c \in \R \), \( A = U\Sigma V\T \). Then \( \|cA\|_2 = \|c\,U\Sigma V\T\|_2 = \|U(c\Sigma)V\T\|_2 = |c|\,\sigma_1 \), so <span class="corr" title="|c| since σ₁(cA) = |c|σ₁(A) ≥ 0">\( \|cA\|_2 = |c|\,\|A\|_2 \)</span> <span class="corr-note">(scan: c, no bars)</span>.</li>
       <li>Let \( A, B \in \R^{m\times n} \), \( x \in \R^n \), \( \|x\| = 1 \). Then \( \|(A+B)x\| \le \|Ax\| + \|Bx\| \) (triangle inequality). Using the min–max characterization on each term, \( \sigma_1(A+B) \le \sigma_1(A) + \sigma_1(B) \), i.e. \( \|A+B\|_2 \le \|A\|_2 + \|B\|_2 \).</li>
       <li>Let \( A, B \in \R^{n\times n} \). From \( \|A\|_2 = \sigma_1(A) = \max_{\|x\|=1}\|Ax\| \) we get \( \|Ax\| \le \|A\|_2 \) for \( \|x\| = 1 \), so for \( x \in \R^n \), \( \big\|A \tfrac{x}{\|x\|}\big\| \le \|A\|_2 \implies \|Ax\| \le \|A\|_2\|x\| \). Then \( \|ABx\| \le \|A\|_2\|Bx\| \le \|A\|_2\|B\|_2\|x\| \); setting \( \|x\|=1 \) and taking the max, \( \|AB\|_2 \le \|A\|_2\|B\|_2 \). Hence \( \|A\|_2 = \sigma_1 \) is a valid matrix norm.</li>
     </ul>
     <p><strong>\( \|A\|_* = \sigma_1 + \dots + \sigma_r \) is a matrix norm.</strong></p>
     <ul class="dots">
       <li>\( \|A\|_* \ge 0 \ \forall\, A \in \R^{m\times n} \); \( \|A\|_* = 0 \iff \sigma_1 + \dots + \sigma_r = 0 \iff \sigma_1 = \dots = \sigma_r = 0 \iff A = 0 \).</li>
-      <li>Let \( c \in \R \), \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\T \). Then \( \|cA\|_* = \big\|\sum_{i=1}^{r} c\,\sigma_i u_i v_i\T\big\|_* = c\sigma_1 + \dots + c\sigma_r = c(\sigma_1 + \dots + \sigma_r) \), so \( \|cA\|_* = c\,\|A\|_* \).</li>
+      <li>Let \( c \in \R \), \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\T \). Then \( \|cA\|_* = \big\|\sum_{i=1}^{r} c\,\sigma_i u_i v_i\T\big\|_* = |c|\sigma_1 + \dots + |c|\sigma_r = |c|(\sigma_1 + \dots + \sigma_r) \), so <span class="corr" title="|c| since σᵢ(cA) = |c|σᵢ(A) ≥ 0">\( \|cA\|_* = |c|\,\|A\|_* \)</span> <span class="corr-note">(scan: c, no bars)</span>.</li>
       <li>Let \( A, B \in \R^{m\times n} \), \( x \in \R^n \). Using \( \|(A+B)x\| \le \|Ax\| + \|Bx\| \) and the min–max characterization on each term, \( \sigma_k(A+B) \le \sigma_k(A) + \sigma_k(B) \) for \( k = 1, \dots, r \), hence \( \sum_{k=1}^{r}\sigma_k(A+B) \le \sum_{k=1}^{r}\sigma_k(A) + \sum_{k=1}^{r}\sigma_k(B) \), i.e. \( \|A+B\|_* \le \|A\|_* + \|B\|_* \).</li>
       <li>Let \( A, B \in \R^{n\times n} \), \( x \in \R^n \). To show \( \|AB\|_* \le \|A\|_*\|B\|_* \): <span class="aside">"Not sure how to do this part and the duals."</span></li>
     </ul>
@@ -324,7 +329,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 10. <a href="index.html">← All chapters</a> · <a href="Ch10_%20Singular%20Value%20Decomposition.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers (Ex 100 and parts of Ex 101 are marked incomplete in the original). This page is a faithful 1:1 typeset reproduction of the handwritten scans — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises have incomplete answers (Ex 100 and parts of Ex 101 are marked incomplete in the original). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
   </footer>
 
 </div>

@@ -80,11 +80,11 @@
 
   <div class="box def">
     <p class="box-head">Definition 32 <span class="name">— Matrix norm</span></p>
-    <!-- TODO verify (correctness pass): property 2 should read c ∈ ℂ (a scalar); the scan superscripts it as ℂ^n. -->
+    <!-- RESOLVED (correctness pass): scan (image006) writes property 2's scalar as "c ∈ ℂ^n"; c multiplies a matrix so it is a scalar, c ∈ ℂ. Body uses ℂ; flagged with .corr. (image007 shows the Frobenius proof already wrote c ∈ ℂ — a one-off slip in the definition.) -->
     <p>A map \( \|\cdot\| : \C^{n\times n} \to \R \) is called a matrix norm if it satisfies:</p>
     <ol class="claims">
       <li>\( \forall\, A \in \C^{n\times n} \): \( \|A\| \ge 0 \), and \( \|A\| = 0 \iff A = 0 \).</li>
-      <li>\( \forall\, A \in \C^{n\times n},\ c \in \C \): \( \|cA\| = |c|\,\|A\| \).</li>
+      <li>\( \forall\, A \in \C^{n\times n},\ \)<span class="corr" title="c is a scalar multiplier, so c ∈ ℂ — not ℂⁿ">\( c \in \C \)</span> <span class="corr-note">(scan: c ∈ ℂⁿ)</span>: \( \|cA\| = |c|\,\|A\| \).</li>
       <li>\( \forall\, A, B \in \C^{n\times n} \): \( \|A + B\| \le \|A\| + \|B\| \).</li>
       <li>\( \forall\, A, B \in \C^{n\times n} \): \( \|AB\| \le \|A\|\,\|B\| \).</li>
     </ol>
@@ -325,7 +325,7 @@
 
   <footer>
     <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 6. <a href="index.html">← All chapters</a> · <a href="Ch6_%20Operator%20and%20Matrix%20Norms.htm">complete original export ↗</a></p>
-    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. This page is a faithful 1:1 typeset reproduction of the handwritten scans — a separate correctness pass is planned.</p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
   </footer>
 
 </div>
