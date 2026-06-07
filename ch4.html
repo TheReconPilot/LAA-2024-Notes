@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch4: Inner-Product and Normed Spaces · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch4 · Inner-Product and Normed Spaces</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 4 — Inner-Product and Normed Spaces</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- ================================================================== -->
+  <!-- RECAP: COMPLEX NUMBERS                                             -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Recap: Complex Numbers</h2>
+
+  <p>A complex number is \( z = a + bi \) where \( i = \sqrt{-1} \), with \( \operatorname{Re}(z) = a \) and \( \operatorname{Im}(z) = b \). Its conjugate is \( \bar z = a - bi \), its modulus \( |z| = \sqrt{a^2 + b^2} \), and
+  \[ z = \bar z \iff z \in \R \quad(\text{i.e. } \operatorname{Im}(z) = 0). \]</p>
+
+  <div class="box rem">
+    <p class="box-head">Properties <span class="name">— LADR 4.4</span></p>
+    <p>For \( w, z \in \C \):</p>
+    <ol class="claims">
+      <li>\( z + \bar z = 2\operatorname{Re}(z) \)</li>
+      <li>\( z - \bar z = 2\operatorname{Im}(z)\, i \)</li>
+      <li>\( z\bar z = |z|^2 \)</li>
+      <li>\( \overline{w + z} = \bar w + \bar z \)</li>
+      <li>\( \overline{wz} = \bar w\, \bar z \)</li>
+      <li>\( \overline{\bar z} = z \) (double conjugate)</li>
+      <li>\( |z| = |\bar z| \)</li>
+      <li>\( |wz| = |w|\,|z| \)</li>
+      <li>\( |\operatorname{Re}(z)| \le |z| \)</li>
+      <li>\( |\operatorname{Im}(z)| \le |z| \)</li>
+      <li>\( |w + z| \le |w| + |z| \) (triangle inequality)</li>
+    </ol>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scan — complex-number recap &amp; the dot product (page 1)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image001.png" alt="Original handwritten page 1">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- INNER PRODUCTS                                                     -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Inner Products</h2>
+
+  <h3>Dot product and length</h3>
+  <p>The dot product on \( \R^n \) and \( \C^n \):
+  \[ x, y \in \R^n : \quad x \cdot y = x_1 y_1 + \dots + x_n y_n, \qquad
+     x, y \in \C^n : \quad x \cdot y = \bar x_1 y_1 + \dots + \bar x_n y_n. \]
+  The length of a vector is
+  \[ x \in \R^n : \ \|x\| = \sqrt{x \cdot x} = \sqrt{x_1^2 + \dots + x_n^2}, \qquad
+     z \in \C^n : \ \|z\| = \sqrt{z \cdot z} = \sqrt{|z_1|^2 + \dots + |z_n|^2}. \]
+  The Euclidean distance between \( \alpha \) and \( \beta \) is \( |\alpha - \beta| \). For an inner product we must differentiate between \( \R \) and \( \C \): \( V \) is a <em>real</em> vector space if \( \F = \R \), and a <em>complex</em> vector space if \( \F = \C \).</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 18 <span class="name">— Inner product on a real vector space</span></p>
+    <p>Let \( V \) be a real vector space. An inner product on \( V \) is a map \( \langle\cdot,\cdot\rangle : V \times V \to \R \) such that</p>
+    <ol class="claims">
+      <li>\( \langle x, x\rangle \ge 0 \ \forall\, x \in V \), and \( \langle x, x\rangle = 0 \) if and only if \( x = 0 \) (positive-definiteness);</li>
+      <li>\( \langle x, y\rangle = \langle y, x\rangle \ \forall\, x, y \in V \) (symmetry);</li>
+      <li>\( \forall\, y \in V \), the map \( x \mapsto \langle y, x\rangle \) is linear.</li>
+    </ol>
+    <p>It follows from (2) that \( x \mapsto \langle x, y\rangle \) is also linear \( \forall\, y \in V \) (bilinearity). Thus, any positive-definite, symmetric, bilinear map on \( V \) is an inner product.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 39</p>
+    <p>Verify that the dot product on \( \R^n \) has the properties of an inner product on \( \R^n \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Here \( \langle x, y\rangle = x \cdot y = x_1 y_1 + \dots + x_n y_n \) for \( x, y \in \R^n \).</p>
+    <p><strong>Positive-definiteness.</strong> \( \langle x, x\rangle = x \cdot x = x_1^2 + \dots + x_n^2 \ge 0 \ \forall\, x \in \R^n \), and \( \langle x, x\rangle = 0 \iff x_i = 0 \) for \( i = 1, \dots, n \), i.e. \( x = 0 \).</p>
+    <p><strong>Symmetry.</strong> \( \langle y, x\rangle = y \cdot x = y_1 x_1 + \dots + y_n x_n = x_1 y_1 + \dots + x_n y_n = x \cdot y = \langle x, y\rangle \).</p>
+    <p><strong>Linearity.</strong> Consider \( T(x) = \langle y, x\rangle \) for fixed \( y \in \R^n \).
+    \[ T(x + w) = \langle y, x + w\rangle = y \cdot (x + w) = (y_1 x_1 + \dots + y_n x_n) + (y_1 w_1 + \dots + y_n w_n) = \langle y, x\rangle + \langle y, w\rangle = T(x) + T(w), \]
+    \[ T(\alpha x) = \langle y, \alpha x\rangle = y \cdot (\alpha x) = \alpha(y_1 x_1 + \dots + y_n x_n) = \alpha\langle y, x\rangle = \alpha T(x) \quad \forall\, \alpha \in \R,\ x \in \R^n. \]
+    So \( T \) is linear \( \forall\, y \in \R^n \). Combining everything, \( \langle x, y\rangle = x \cdot y \) has the properties of an inner product on \( \R^n \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 40</p>
+    <p>Let \( V \) be the space of polynomials with real coefficients. Verify that the following is an inner product on \( V \):
+    \[ \forall\, h, q \in V : \quad \langle h, q\rangle = \int_{-1}^{1} h(t)\, q(t)\, dt. \]</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Positive-definiteness.</strong> \( \langle h, h\rangle = \int_{-1}^{1} \big(h(t)\big)^2\, dt \ge 0 \), and \( \langle h, h\rangle = 0 \iff h(t) = 0 \).</p>
+    <p><strong>Symmetry.</strong> \( \langle h, q\rangle = \int_{-1}^{1} h(t)\, q(t)\, dt = \int_{-1}^{1} q(t)\, h(t)\, dt = \langle q, h\rangle \).</p>
+    <p><strong>Linearity.</strong> Consider \( T(h) = \langle q, h\rangle \).
+    \[ T(h + r) = \langle q, h + r\rangle = \int_{-1}^{1} q(t)\big[h(t) + r(t)\big]\, dt = \int_{-1}^{1} q(t)h(t)\, dt + \int_{-1}^{1} q(t)r(t)\, dt = \langle q, h\rangle + \langle q, r\rangle = T(h) + T(r), \]
+    \[ T(\alpha h) = \langle q, \alpha h\rangle = \int_{-1}^{1} q(t)\,\alpha h(t)\, dt = \alpha \int_{-1}^{1} q(t) h(t)\, dt = \alpha\langle q, h\rangle = \alpha T(h) \quad \forall\, \alpha \in \R,\ h \in V. \]
+    So \( h \mapsto \langle q, h\rangle \) is linear \( \forall\, q \in V \). Combining all the above, \( \langle h, q\rangle = \int_{-1}^{1} h(t) q(t)\, dt \) is an inner product on \( V \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 41</p>
+    <p>Let \( V = \R^n \) and fix \( w_1, \dots, w_n > 0 \). Verify that the following is an inner product on \( V \):
+    \[ \forall\, x, y \in V : \quad \langle x, y\rangle = w_1 x_1 y_1 + \dots + w_n x_n y_n. \]</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Positive-definiteness.</strong> \( \langle x, x\rangle = w_1 x_1^2 + \dots + w_n x_n^2 \ge 0 \) as \( w_1, \dots, w_n > 0 \); and \( \langle x, x\rangle = 0 \iff x_i = 0 \) for \( i = 1, \dots, n \) (as all \( w_i > 0 \)), i.e. \( x = 0 \).</p>
+    <p><strong>Symmetry.</strong> \( \langle y, x\rangle = w_1 y_1 x_1 + \dots + w_n y_n x_n = w_1 x_1 y_1 + \dots + w_n x_n y_n = \langle x, y\rangle \).</p>
+    <p><strong>Linearity.</strong> With \( T(x) = \langle y, x\rangle \),
+    \[ T(x + z) = \langle y, x + z\rangle = (w_1 y_1 x_1 + \dots + w_n y_n x_n) + (w_1 y_1 z_1 + \dots + w_n y_n z_n) = \langle y, x\rangle + \langle y, z\rangle = T(x) + T(z), \]
+    \[ T(\alpha x) = \langle y, \alpha x\rangle = w_1 y_1(\alpha x_1) + \dots + w_n y_n(\alpha x_n) = \alpha(w_1 y_1 x_1 + \dots + w_n y_n x_n) = \alpha\langle y, x\rangle = \alpha T(x) \quad \forall\, \alpha \in \R,\ x \in V. \]
+    So \( x \mapsto \langle y, x\rangle \) is linear \( \forall\, y \in V \). Combining the above, \( \langle x, y\rangle = \sum_{i=1}^{n} w_i x_i y_i \) is an inner product on \( V \).</p>
+  </div>
+
+  <h3>Inner product on a complex vector space</h3>
+
+  <div class="box def">
+    <p class="box-head">Definition 19 <span class="name">— Inner product on a complex vector space</span></p>
+    <p>An inner product on a complex vector space \( V \) is a map \( \langle\cdot,\cdot\rangle : V \times V \to \C \) such that</p>
+    <ol class="claims">
+      <li>\( \langle x, x\rangle \ge 0 \ \forall\, x \in V \), and \( \langle x, x\rangle = 0 \) if and only if \( x = 0 \);</li>
+      <li>\( \langle x, y\rangle = \overline{\langle y, x\rangle} \ \forall\, x, y \in V \) (conjugate symmetry);</li>
+      <li>\( \forall\, y \in V \), the map \( x \mapsto \langle y, x\rangle \) is linear.</li>
+    </ol>
+    <p>Unlike the inner product on a real vector space, we do not have bilinearity, but something called <strong>sesquilinearity</strong>:
+    \[ \langle x + y, v\rangle = \langle x, v\rangle + \langle y, v\rangle, \qquad \langle \alpha x, v\rangle = \bar\alpha\,\langle x, v\rangle. \]
+    So \( x \mapsto \langle y, x\rangle \) is linear, but \( x \mapsto \langle x, y\rangle \) is <em>not</em>:
+    \[ \langle y, x + z\rangle = \langle y, x\rangle + \langle y, z\rangle, \qquad \langle y, \alpha x\rangle = \alpha\langle y, x\rangle, \]
+    \[ \langle x + z, y\rangle = \langle x, y\rangle + \langle z, y\rangle, \qquad \boxed{\ \langle \alpha x, y\rangle = \bar\alpha\,\langle x, y\rangle\ }. \]</p>
+    <p class="aside">Note: LADR defines \( \langle \alpha u, v\rangle = \alpha\langle u, v\rangle \) and \( \langle u, \alpha v\rangle = \bar\alpha\langle u, v\rangle \) in 6.2 — i.e. LADR puts the linearity in the <em>first</em> slot, whereas these notes put it in the second.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 42</p>
+    <p>Let \( x \cdot y = \bar x_1 y_1 + \dots + \bar x_n y_n \) for \( x, y \in \C^n \). Verify that this has the properties of an inner product on \( \C^n \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Here \( \langle x, y\rangle = \bar x_1 y_1 + \dots + \bar x_n y_n \).</p>
+    <p><strong>Positive-definiteness.</strong> \( \langle x, x\rangle = \bar x_1 x_1 + \dots + \bar x_n x_n = |x_1|^2 + \dots + |x_n|^2 \ge 0 \ \forall\, x \in \C^n \), and \( \langle x, x\rangle = 0 \iff x_i = 0 \ \forall\, i = 1, \dots, n \), i.e. \( x = 0 \).</p>
+    <p><strong>Conjugate symmetry.</strong>
+    \[ \langle x, y\rangle = \bar x_1 y_1 + \dots + \bar x_n y_n = \overline{x_1 \bar y_1} + \dots + \overline{x_n \bar y_n} = \overline{\bar y_1 x_1} + \dots + \overline{\bar y_n x_n} = \overline{\langle y, x\rangle}. \]</p>
+    <p><strong>Linearity.</strong> With \( T(x) = \langle y, x\rangle \),
+    \[ T(x + w) = \langle y, x + w\rangle = \bar y_1(x_1 + w_1) + \dots + \bar y_n(x_n + w_n) = \langle y, x\rangle + \langle y, w\rangle = T(x) + T(w), \]
+    \[ T(\alpha x) = \langle y, \alpha x\rangle = \bar y_1(\alpha x_1) + \dots + \bar y_n(\alpha x_n) = \alpha\langle y, x\rangle = \alpha T(x). \]
+    Thus \( x \mapsto \langle y, x\rangle \) is linear, and \( x \cdot y = \sum_{i=1}^{n} \bar x_i y_i \) has the properties of an inner product on \( \C^n \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — dot product, Def 18–19 &amp; Ex 39–42 (pages 2–9)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image003.png" alt="Original handwritten page 3">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image004.png" alt="Original handwritten page 4">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image005.png" alt="Original handwritten page 5">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image006.png" alt="Original handwritten page 6">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image007.png" alt="Original handwritten page 7">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image008.png" alt="Original handwritten page 8">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image009.png" alt="Original handwritten page 9">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- INNER PRODUCT SPACES                                               -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Inner Product Spaces</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 20 <span class="name">— Inner product space</span></p>
+    <p>A vector space with an inner product is called an inner product space. \( \R^n \) and \( \C^n \) are examples of inner product spaces.</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 4</p>
+    <p>Any finite-dimensional vector space is an inner product space.</p>
+  </div>
+
+  <!-- TODO verify (correctness pass): the original writes the basis as v_1,...,v_m
+       in one spot while stating dim V = n and summing to v_n; typeset consistently
+       with n here. -->
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Let \( V \) be a finite-dimensional vector space over \( \F \), and let \( v_1, \dots, v_n \) be a basis of \( V \) (\( \dim V = n \)). For \( u, w \in V \), represent them in the basis:
+    \[ u = \alpha_1 v_1 + \dots + \alpha_n v_n, \qquad w = \beta_1 v_1 + \dots + \beta_n v_n. \]
+    If \( \phi : V \to \F^n \) is the coordinate map for the basis \( v_1, \dots, v_n \), we can write \( \phi(u) = (\alpha_1, \dots, \alpha_n) \) and \( \phi(w) = (\beta_1, \dots, \beta_n) \). Define
+    \[ \langle u, w\rangle = \phi(u) \cdot \phi(w) = \bar\alpha_1 \beta_1 + \dots + \bar\alpha_n \beta_n. \]
+    We showed in Ex 42 that this has the properties of an inner product on \( \C^n \) (as \( \phi(u), \phi(w) \in \C^n \)). This holds for all \( u, w \in V \). So, every finite-dimensional vector space is an inner product space.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Def 20 &amp; Theorem 4 (pages 10–11)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image010.png" alt="Original handwritten page 10">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image011.png" alt="Original handwritten page 11">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- NORMED SPACES                                                      -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Normed Spaces</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 21 <span class="name">— Norm</span></p>
+    <p>Let \( V \) be a vector space over \( \F \). A norm on \( V \) is a map \( \|\cdot\| : V \to \R \) such that</p>
+    <ol class="claims">
+      <li>\( \|x\| \ge 0 \ \forall\, x \in V \), and \( \|x\| = 0 \) if and only if \( x = 0 \) (positive-definiteness);</li>
+      <li>\( \|ax\| = |a|\,\|x\| \ \forall\, x \in V,\ a \in \F \) (homogeneity);</li>
+      <li>\( \|x + y\| \le \|x\| + \|y\| \ \forall\, x, y \in V \) (triangle inequality).</li>
+    </ol>
+    <p>The norm of a vector is always a real number, even for a complex vector space.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 43</p>
+    <ol class="claims">
+      <li>\( \|x\| = \sqrt{x \cdot x} = \big(x_1^2 + \dots + x_n^2\big)^{1/2} \), \( x \in \R^n \). Verify that this is a valid norm on \( \R^n \).</li>
+      <li>\( \|z\| = \sqrt{z \cdot z} = \big(|z_1|^2 + \dots + |z_n|^2\big)^{1/2} \), \( z \in \C^n \). Verify that this is a valid norm on \( \C^n \).</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution 43.1 <span class="name">— Euclidean norm on \( \R^n \)</span></p>
+    <p>\( \|x\| = \sqrt{x \cdot x} = (x_1^2 + \dots + x_n^2)^{1/2} \).</p>
+    <p><strong>Positive-definiteness.</strong> \( \|x\| \ge 0 \ \forall\, x \in \R^n \), and \( \|x\| = 0 \iff x_i = 0 \ \forall\, i = 1, \dots, n \), i.e. \( x = 0 \).</p>
+    <p><strong>Homogeneity.</strong> \( \|ax\| = \sqrt{(ax_1)^2 + \dots + (ax_n)^2} = \sqrt{a^2(x_1^2 + \dots + x_n^2)} = |a|\sqrt{x_1^2 + \dots + x_n^2} = |a|\,\|x\| \ \forall\, a \in \F \).</p>
+    <p><strong>Triangle inequality.</strong>
+    \[ \|x + y\|^2 = (x_1 + y_1)^2 + \dots + (x_n + y_n)^2 = (x_1^2 + \dots + x_n^2) + (y_1^2 + \dots + y_n^2) + 2(x_1 y_1 + \dots + x_n y_n) = \|x\|^2 + \|y\|^2 + 2\langle x, y\rangle. \]
+    By Cauchy–Schwarz, \( |\langle x, y\rangle| \le \|x\|\,\|y\| \), so
+    \[ \|x + y\|^2 \le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \implies \|x + y\| \le \|x\| + \|y\| \quad \forall\, x, y \in \R^n. \]
+    So it is a valid norm on \( \R^n \). <span class="aside">(Tricky without Cauchy–Schwarz.)</span></p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution 43.2 <span class="name">— Euclidean norm on \( \C^n \)</span></p>
+    <p>\( \|z\| = \sqrt{|z_1|^2 + \dots + |z_n|^2} \).</p>
+    <p><strong>Positive-definiteness.</strong> \( \|z\| \ge 0 \ \forall\, z \in \C^n \) as \( |z_i|^2 \ge 0 \ \forall\, i = 1, \dots, n \); and \( \|z\| = 0 \iff |z_i| = 0 \), i.e. \( z = 0 \).</p>
+    <p><strong>Homogeneity.</strong> \( \|\alpha z\| = \sqrt{(\alpha z) \cdot (\alpha z)} = \sqrt{|\alpha|^2 |z_1|^2 + \dots + |\alpha|^2 |z_n|^2} = |\alpha|\,\|z\| \ \forall\, \alpha \in \C \).</p>
+    <p><strong>Triangle inequality.</strong>
+    \[ \|x + y\|^2 = \langle x + y, x + y\rangle = \langle x, x\rangle + \langle y, y\rangle + \langle x, y\rangle + \langle y, x\rangle = \|x\|^2 + \|y\|^2 + \langle x, y\rangle + \overline{\langle x, y\rangle} = \|x\|^2 + \|y\|^2 + 2\operatorname{Re}\langle x, y\rangle. \]
+    Using \( |\operatorname{Re}(z)| \le |z| \) and Cauchy–Schwarz \( |\langle u, v\rangle| \le \|u\|\,\|v\| \),
+    \[ \|x + y\|^2 \le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \implies \|x + y\| \le \|x\| + \|y\| \quad \forall\, x, y \in \C^n. \]
+    So it is a valid norm on \( \C^n \).</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 22 <span class="name">— Normed space</span></p>
+    <p>A vector space with a norm is called a normed space. \( \R^n \) and \( \C^n \) are both inner product spaces and normed spaces. Any inner product naturally induces a norm.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 44</p>
+    <p>Let \( (V, \langle\cdot,\cdot\rangle) \) be an inner product space. Define \( \forall\, x \in V : \|x\| = \langle x, x\rangle^{1/2} \). Verify that \( \|\cdot\| \) is a norm. (We call \( \|\cdot\| \) the norm <em>induced</em> by the inner product \( \langle\cdot,\cdot\rangle \).)</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Positive-definiteness.</strong> \( \|x\| = \sqrt{\langle x, x\rangle} \ge 0 \) as \( \langle x, x\rangle \ge 0 \); also \( \|x\| = \sqrt{\langle x, x\rangle} = 0 \iff x = 0 \) (again by the properties of the inner product).</p>
+    <p><strong>Homogeneity.</strong> \( \|ax\| = \sqrt{\langle ax, ax\rangle} = \sqrt{\bar a\langle x, ax\rangle} = \sqrt{\bar a\, a\langle x, x\rangle} = \sqrt{|a|^2\langle x, x\rangle} = |a|\,\|x\| \).</p>
+    <p><strong>Triangle inequality.</strong>
+    \[ \|x + y\|^2 = \langle x + y, x + y\rangle = \|x\|^2 + \|y\|^2 + \langle x, y\rangle + \overline{\langle x, y\rangle} = \|x\|^2 + \|y\|^2 + 2\operatorname{Re}\langle x, y\rangle. \]
+    Using \( |\operatorname{Re}(z)| \le |z| \) and Cauchy–Schwarz \( |\langle u, v\rangle| \le \|u\|\,\|v\| \),
+    \[ \|x + y\|^2 \le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \implies \|x + y\| \le \|x\| + \|y\|. \]
+    Hence the norm induced by an inner product is a valid norm.</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Corollary 4</p>
+    <p>Any finite-dimensional vector space is a normed space.</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>By Theorem 4, any finite-dimensional vector space is an inner product space; by Ex 44, any inner product space is a normed space. Combining the two proves the claim.</p>
+  </div>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 440 300" role="img" aria-label="Three nested classes: finite-dimensional spaces sit inside inner product spaces, which sit inside normed spaces">
+      <ellipse cx="220" cy="150" rx="210" ry="142" fill="none" stroke="#5fa8e6" stroke-width="2"></ellipse>
+      <ellipse cx="220" cy="166" rx="148" ry="104" fill="none" stroke="#45b8b0" stroke-width="2"></ellipse>
+      <ellipse cx="220" cy="186" rx="80" ry="58" fill="none" stroke="#74c490" stroke-width="2"></ellipse>
+      <text x="220" y="32" text-anchor="middle" fill="#5fa8e6" font-family="system-ui, sans-serif" font-size="19" font-weight="700">NS</text>
+      <text x="220" y="92" text-anchor="middle" fill="#45b8b0" font-family="system-ui, sans-serif" font-size="17" font-weight="700">IPS</text>
+      <text x="220" y="191" text-anchor="middle" fill="#74c490" font-family="system-ui, sans-serif" font-size="15" font-weight="700">FD</text>
+    </svg>
+    <figcaption>Every finite-dimensional vector space (FD) is an inner product space (IPS), and every inner product space is a normed space (NS) — not all norms come from an inner product. (Def 22, Corollary 4)</figcaption>
+  </figure>
+
+  <p>Not all norms are induced by an inner product.</p>
+
+  <div class="box ex">
+    <p class="box-head">Ex 45</p>
+    <p>Let \( V = \R^2 \) and \( \|x\| = |x_1| + |x_2| \). Verify that this is a norm. Explain why there does not exist an inner product \( \langle\cdot,\cdot\rangle \) on \( V \) such that \( \|x\| = \langle x, x\rangle^{1/2} \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>It is a norm.</strong> With \( \|x\| = |x_1| + |x_2| \):</p>
+    <ul class="dots">
+      <li>\( \|x\| \ge 0 \) as \( |x_1| \ge 0,\ |x_2| \ge 0 \); and \( \|x\| = 0 \iff x_1 = x_2 = 0 \), i.e. \( x = 0 \).</li>
+      <li>\( \|ax\| = |ax_1| + |ax_2| = |a|(|x_1| + |x_2|) = |a|\,\|x\| \).</li>
+      <li>\( \|x + y\| = |x_1 + y_1| + |x_2 + y_2| \le |x_1| + |y_1| + |x_2| + |y_2| = \|x\| + \|y\| \) (by the triangle inequality on \( \R \)).</li>
+    </ul>
+    <p>Thus \( \|\cdot\| \) is a valid norm.</p>
+    <p><strong>No inner product induces it.</strong> Suppose some inner product induced this norm. Then
+    \[ \|x + y\|^2 + \|x - y\|^2 = \langle x + y, x + y\rangle + \langle x - y, x - y\rangle = 2\big(\|x\|^2 + \|y\|^2\big), \]
+    the <strong>parallelogram law</strong> (the cross terms \( \langle x, y\rangle \) and \( \langle y, x\rangle \) cancel). So:
+    \[ \text{an inner product induces the norm} \implies \text{the norm satisfies the parallelogram law,} \]
+    equivalently, if the norm <em>violates</em> the parallelogram law, no inner product can induce it. Take \( x = (1, 0) \) and \( y = (0, 1) \):
+    \[ \|x\|^2 = (|1| + |0|)^2 = 1, \quad \|y\|^2 = (|0| + |1|)^2 = 1, \]
+    \[ x + y = (1, 1) \Rightarrow \|x + y\|^2 = (|1| + |1|)^2 = 4, \quad x - y = (1, -1) \Rightarrow \|x - y\|^2 = (|1| + |{-1}|)^2 = 4. \]
+    So \( \|x + y\|^2 + \|x - y\|^2 = 8 \), but \( 2(\|x\|^2 + \|y\|^2) = 4 \), and \( 4 \neq 8 \). The norm violates the parallelogram law, so there is no inner product which induces it.</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Remark <span class="name">— not part of the course</span></p>
+    <p>The \( \ell^p \) norm is \( \|x\|_p = \big(|x_1|^p + \dots + |x_n|^p\big)^{1/p} \) for \( x \in \R^n \), \( p \ge 1 \), \( p \in \R \). Only the \( \ell^2 \) norm is induced by an inner product (it satisfies the parallelogram law); the recovery of the inner product from such a norm is the <em>polarization identity</em>.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — norms, Def 21–22, Ex 43–45 &amp; the parallelogram counterexample (pages 11–19)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image011.png" alt="Original handwritten page 11">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image012.png" alt="Original handwritten page 12">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image013.png" alt="Original handwritten page 13">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image014.png" alt="Original handwritten page 14">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image015.png" alt="Original handwritten page 15">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image016.png" alt="Original handwritten page 16">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image017.png" alt="Original handwritten page 17">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image018.png" alt="Original handwritten page 18">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image019.png" alt="Original handwritten page 19">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- CAUCHY-SCHWARZ INEQUALITY                                          -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Cauchy–Schwarz Inequality</h2>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 5 <span class="name">— Cauchy–Schwarz (LADR 6.14)</span></p>
+    <p>Let \( (V, \langle\cdot,\cdot\rangle) \) be an inner product space with induced norm \( \|\cdot\| \). Then
+    \[ \forall\, x, y \in V : \quad |\langle x, y\rangle| \le \|x\|\,\|y\|. \]</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>If \( y = 0 \), then \( \langle x, 0\rangle = 0 \) and \( \|x\|\,\|0\| = 0 \), so the inequality holds. Suppose \( y \neq 0 \). We write \( x \) as a scalar multiple of \( y \) plus a vector orthogonal to \( y \): \( x = cy + (x - cy) \) with \( c \in \F \) such that \( \langle x - cy, y\rangle = 0 \). Then
+    \[ \langle x, y\rangle - \bar c\langle y, y\rangle = 0 \implies \bar c = \frac{\langle x, y\rangle}{\|y\|^2} \implies c = \frac{\langle y, x\rangle}{\|y\|^2}. \]</p>
+    <p class="aside">Note: in LADR this would be \( c = \dfrac{\langle x, y\rangle}{\|y\|^2} \), due to how the inner product is defined there.</p>
+    <p>This is the <strong>orthogonal decomposition</strong> (LADR 6.13): \( x = cy + w \) with \( w = x - cy = x - \dfrac{\langle y, x\rangle}{\|y\|^2}\, y \), \( \langle w, y\rangle = 0 \), \( y \neq 0 \). Since \( w \perp y \), by the Pythagorean theorem,
+    \[ \|x\|^2 = \left\| \frac{\langle y, x\rangle}{\|y\|^2}\, y \right\|^2 + \|w\|^2 = \frac{|\langle x, y\rangle|^2}{\|y\|^4}\,\|y\|^2 + \|w\|^2 = \frac{|\langle x, y\rangle|^2}{\|y\|^2} + \|w\|^2, \]
+    using \( \langle y, x\rangle = \overline{\langle x, y\rangle} \) so \( |\langle y, x\rangle| = |\langle x, y\rangle| \). Therefore
+    \[ \|x\|^2 \ge \frac{|\langle x, y\rangle|^2}{\|y\|^2} \quad (\text{as } \|w\|^2 \ge 0) \implies |\langle x, y\rangle| \le \|x\|\,\|y\|. \]</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Pythagorean Theorem <span class="name">— LADR 6.12</span></p>
+    <p>Suppose \( u, v \in V \). If \( u \) and \( v \) are orthogonal, then \( \|u + v\|^2 = \|u\|^2 + \|v\|^2 \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Given \( \langle u, v\rangle = 0 \Rightarrow \langle v, u\rangle = 0 \). Then
+    \[ \|u + v\|^2 = \langle u + v, u + v\rangle = \langle u, u\rangle + \langle v, v\rangle + \underbrace{\langle u, v\rangle}_{0} + \underbrace{\langle v, u\rangle}_{0} = \|u\|^2 + \|v\|^2. \]</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Cauchy–Schwarz, orthogonal decomposition &amp; Pythagoras (pages 20–22)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image020.png" alt="Original handwritten page 20">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image021.png" alt="Original handwritten page 21">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image022.png" alt="Original handwritten page 22">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- ORTHOGONALITY                                                      -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Orthogonality</h2>
+
+  <p>For the rest of this chapter, we assume that \( V \) is an inner product space.</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 23 <span class="name">— Orthogonal / orthonormal</span></p>
+    <p>We say that \( x, y \in V \) are orthogonal, denoted \( x \perp y \), if \( \langle x, y\rangle = 0 \). Furthermore, they are orthonormal if \( \|x\| = \|y\| = 1 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Example 8</p>
+    <ol class="claims">
+      <li>\( (1, 1) \perp (1, -1) \): \( \langle u, v\rangle = (1)(1) + (1)(-1) = 1 - 1 = 0 \). But \( (1, 1) \) and \( (1, 0) \) are not orthogonal: \( \langle u, v\rangle = (1)(1) + (1)(0) = 1 \).</li>
+      <li>\( (1, 0) \) and \( (0, 1) \) are orthonormal: \( \langle u, v\rangle = (1)(0) + (0)(1) = 0 \), \( \|u\| = \sqrt{1^2 + 0^2} = 1 \), \( \|v\| = \sqrt{0^2 + 1^2} = 1 \).</li>
+      <li>With \( \langle h, q\rangle = \int_{-1}^{1} h(t)q(t)\, dt \), the polynomials \( h(t) = t \) and \( q(t) = t^2 \) are orthogonal: \( \langle h, q\rangle = \int_{-1}^{1} t \cdot t^2\, dt = \int_{-1}^{1} t^3\, dt = \big[\tfrac{t^4}{4}\big]_{-1}^{1} = 0 \Rightarrow h \perp q \).</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 46 <span class="name">— Pythagorean theorem</span></p>
+    <p>Show that \( x \perp y \implies \|x + y\|^2 = \|x\|^2 + \|y\|^2 \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( \|x + y\|^2 = \langle x + y, x + y\rangle = \langle x, x\rangle + \langle y, y\rangle + \underbrace{\langle x, y\rangle}_{0} + \underbrace{\langle y, x\rangle}_{0} = \|x\|^2 + \|y\|^2 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 47 <span class="name">— Parallelogram law</span></p>
+    <p>Show that \( \|x + y\|^2 + \|x - y\|^2 = 2\big(\|x\|^2 + \|y\|^2\big) \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\[ \|x + y\|^2 + \|x - y\|^2 = \langle x + y, x + y\rangle + \langle x - y, x - y\rangle \]
+    \[ = \langle x, x\rangle + \langle y, y\rangle + \langle x, y\rangle + \langle y, x\rangle + \langle x, x\rangle + \langle y, y\rangle - \langle x, y\rangle - \langle y, x\rangle = 2\big(\|x\|^2 + \|y\|^2\big). \]</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Remark 10</p>
+    <p>The parallelogram law depends on the fact that the norm in question is derived from an inner product. In fact, the law may not hold in general normed spaces.</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 24 <span class="name">— Orthonormal system</span></p>
+    <p>A list of vectors \( q_1, \dots, q_n \) in \( V \) is said to be an orthonormal system if \( \|q_i\| = 1 \ \forall\, i \) and \( q_i \perp q_j \ \forall\, i \neq j \).</p>
+  </div>
+
+  <!-- TODO verify (correctness pass): in Example 9(1) the original writes the index
+       ranges as i,j = 1,...,m while listing e_1,...,e_n; typeset with n here. -->
+  <div class="box ex">
+    <p class="box-head">Example 9</p>
+    <ol class="claims">
+      <li><strong>Standard basis.</strong> \( e_1, \dots, e_n \in \F^n \) with \( e_i(j) = \begin{cases} 1 & \text{if } j = i \\ 0 & \text{if } j \neq i \end{cases} \) for \( i, j = 1, \dots, n \). The \( e_1, \dots, e_n \) form an orthonormal system w.r.t. the dot product.</li>
+      <li><strong>Fourier exponentials.</strong> \( e_1, e_2, \dots : [0, 1] \to \C \), \( e_k(t) = \exp(i\,2\pi k t) \), \( t \in [0, 1] \). The functions \( e_1, e_2, \dots \) are orthonormal w.r.t. the inner product \( \langle f, g\rangle = \int_{0}^{1} \overline{f(t)}\, g(t)\, dt \):
+      \[ \langle e_m, e_n\rangle = \int_{0}^{1} e^{-i 2\pi m t}\, e^{i 2\pi n t}\, dt = \int_{0}^{1} e^{i 2\pi (n - m) t}\, dt = \frac{1}{i\,2\pi(n - m)}\Big(e^{i 2\pi(n - m)} - 1\Big) = 0 \quad (n \neq m), \]
+      since \( e^{i 2\pi(n - m)} = 1 \) (periodicity, \( e^{i 2\pi k} = 1 \)); and when \( m = n \),
+      \[ \langle e_m, e_m\rangle = \int_{0}^{1} e^{-i 2\pi m t}\, e^{i 2\pi m t}\, dt = \int_{0}^{1} e^{0}\, dt = \big[t\big]_{0}^{1} = 1. \]
+      Thus they form an orthonormal system.</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 48 <span class="name">— LADR 6.25</span></p>
+    <p>Show that any orthonormal system of vectors is linearly independent.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Let \( e_1, \dots, e_n \) be an orthonormal system of vectors in \( V \), and consider their linear combination \( a_1 e_1 + \dots + a_n e_n \).</p>
+    <p>Since \( e_1, e_2 \) are orthogonal, \( a_1 e_1 \perp a_2 e_2 \), so by the Pythagorean theorem \( \|a_1 e_1 + a_2 e_2\|^2 = |a_1|^2\|e_1\|^2 + |a_2|^2\|e_2\|^2 = |a_1|^2 + |a_2|^2 \). Next, \( (a_1 e_1 + a_2 e_2) \perp a_3 e_3 \) because \( \langle a_1 e_1 + a_2 e_2, a_3 e_3\rangle = \langle a_1 e_1, a_3 e_3\rangle + \langle a_2 e_2, a_3 e_3\rangle = 0 + 0 \), so again by Pythagoras \( \|a_1 e_1 + a_2 e_2 + a_3 e_3\|^2 = |a_1|^2 + |a_2|^2 + |a_3|^2 \). By repeated application,
+    \[ \|a_1 e_1 + \dots + a_n e_n\|^2 = |a_1|^2 + \dots + |a_n|^2. \]
+    So if \( a_1 e_1 + \dots + a_n e_n = 0 \), then \( |a_1|^2 + \dots + |a_n|^2 = 0 \Rightarrow a_1 = \dots = a_n = 0 \Rightarrow e_1, \dots, e_n \) are linearly independent.</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 25 <span class="name">— Orthonormal basis (ONB)</span></p>
+    <p>A basis in which the vectors form an orthonormal system is called an orthonormal basis (ONB).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 49</p>
+    <p>Show that the standard orthonormal system \( e_i(j) = \begin{cases} 1 & j = i \\ 0 & j \neq i \end{cases} \) (\( i, j = 1, \dots, n \)) is an ONB of \( \R^n \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Consider the linear combination \( a_1 e_1 + \dots + a_n e_n = 0 \):
+    \[ a_1 \begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix} + \dots + a_n \begin{bmatrix} 0 \\ \vdots \\ 0 \\ 1 \end{bmatrix} = 0 \implies \begin{bmatrix} a_1 \\ \vdots \\ a_n \end{bmatrix} = 0 \implies a_1 = \dots = a_n = 0, \]
+    so \( e_1, \dots, e_n \) are linearly independent. Also \( \|e_i\| = 1 \) and \( \langle e_i, e_j\rangle = 0 \) for \( i \neq j \). For any \( x \in \R^n \) we can write \( x = x_1 e_1 + \dots + x_n e_n \) where \( x = (x_1, \dots, x_n) \in \R^n \). So \( e_1, \dots, e_n \) is a linearly independent orthonormal system that spans \( \R^n \), i.e. an ONB.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — orthogonality, Def 23–25, Examples 8–9 &amp; Ex 46–49 (pages 23–29)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image023.png" alt="Original handwritten page 23">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image024.png" alt="Original handwritten page 24">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image025.png" alt="Original handwritten page 25">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image026.png" alt="Original handwritten page 26">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image027.png" alt="Original handwritten page 27">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image028.png" alt="Original handwritten page 28">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image029.png" alt="Original handwritten page 29">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- GRAM-SCHMIDT ORTHOGONALIZATION                                     -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Gram–Schmidt Orthogonalization</h2>
+
+  <div class="box thm">
+    <p class="box-head">Gram–Schmidt <span class="name">— LADR 6.32</span></p>
+    <p>Suppose \( v_1, \dots, v_m \) is a linearly independent list of vectors in \( V \). Let \( f_1 = v_1 \). For \( k = 2, \dots, m \), define \( f_k \) inductively by
+    \[ f_k = v_k - \frac{\langle f_1, v_k\rangle}{\|f_1\|^2}\, f_1 - \dots - \frac{\langle f_{k-1}, v_k\rangle}{\|f_{k-1}\|^2}\, f_{k-1}. \]
+    For each \( k = 1, \dots, m \), let \( e_k = \dfrac{f_k}{\|f_k\|} \). Then \( e_1, \dots, e_m \) is an orthonormal list of vectors in \( V \) such that \( \operatorname{span}(v_1, \dots, v_k) = \operatorname{span}(e_1, \dots, e_k) \) for each \( k = 1, \dots, m \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof of Gram–Schmidt</p>
+    <p>We use induction on \( k \).</p>
+    <p><strong>Base case</strong> \( k = 1 \): \( f_1 = v_1 \), \( e_1 = \dfrac{f_1}{\|f_1\|} \Rightarrow \|e_1\| = 1 \). Also \( \operatorname{span}(v_1) = \operatorname{span}(e_1) \), as \( e_1 \) is a non-zero multiple of \( v_1 \).</p>
+    <p><strong>Inductive hypothesis.</strong> Assume true for \( k - 1 \): \( e_1, \dots, e_{k-1} \) is an orthonormal system and \( \operatorname{span}(v_1, \dots, v_{k-1}) = \operatorname{span}(e_1, \dots, e_{k-1}) \).</p>
+    <p><strong>Inductive step.</strong> Since \( v_1, \dots, v_m \) are linearly independent, \( v_k \notin \operatorname{span}(v_1, \dots, v_{k-1}) \Rightarrow v_k \notin \operatorname{span}(e_1, \dots, e_{k-1}) = \operatorname{span}(f_1, \dots, f_{k-1}) \Rightarrow f_k \neq 0 \). (If \( f_k = 0 \), the defining relation would make \( v_k \) a linear combination of \( f_1, \dots, f_{k-1} \), contradicting \( v_k \notin \operatorname{span}(f_1, \dots, f_{k-1}) \).) So in \( e_k = \dfrac{f_k}{\|f_k\|} \) we are not dividing by \( 0 \), and \( \|e_k\| = \dfrac{\|f_k\|}{\|f_k\|} = 1 \).</p>
+    <p>For \( j = 1, \dots, k-1 \), write \( c = \dfrac{1}{\|f_k\|\,\|f_j\|} \) and \( a_j := \dfrac{\langle f_j, v_k\rangle}{\|f_j\|^2} \) (so \( \bar a_j = \dfrac{\langle v_k, f_j\rangle}{\|f_j\|^2} \)). Then
+    \[ \langle e_k, e_j\rangle = c\,\langle f_k, f_j\rangle = c\,\Big\langle v_k - a_1 f_1 - \dots - a_{k-1} f_{k-1},\ f_j \Big\rangle = c\big(\langle v_k, f_j\rangle - \langle a_1 f_1, f_j\rangle - \dots - \langle a_{k-1} f_{k-1}, f_j\rangle\big). \]
+    Since \( f_1, \dots, f_{k-1} \) are orthogonal, \( \langle f_i, f_j\rangle = 0 \) for \( i \neq j \), so only the \( j \)-th term survives:
+    \[ \langle e_k, e_j\rangle = c\big(\langle v_k, f_j\rangle - \bar a_j\langle f_j, f_j\rangle\big) = c\Big(\langle v_k, f_j\rangle - \frac{\langle v_k, f_j\rangle}{\|f_j\|^2}\,\|f_j\|^2\Big) = 0. \]
+    Hence \( e_1, \dots, e_k \) is an orthonormal system. From the way \( e_k = \dfrac{f_k}{\|f_k\|} \) is defined, \( v_k \in \operatorname{span}(e_1, \dots, e_k) \), so \( \operatorname{span}(v_1, \dots, v_k) \subseteq \operatorname{span}(e_1, \dots, e_k) \). Both lists are linearly independent (\( e_1, \dots, e_k \) is an orthonormal system, so LI by Ex 48), so both subspaces have dimension \( k \) and are therefore equal. This completes the induction.</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 6 <span class="name">— LADR 6.34</span></p>
+    <p>Any finite-dimensional inner product space has an ONB.</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Let \( V \) be the finite-dimensional inner product space with \( \dim V = n \). Take any basis \( v_1, \dots, v_n \). Applying the Gram–Schmidt procedure, we get an orthonormal system \( e_1, \dots, e_n \) such that \( \operatorname{span}(e_1, \dots, e_n) = \operatorname{span}(v_1, \dots, v_n) \). Since an orthonormal system is also linearly independent (Ex 48), \( e_1, \dots, e_n \) forms an ONB.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 50</p>
+    <p>Let \( V \) be the space of polynomials with inner product \( \langle h, q\rangle = \int_{-1}^{1} h(t)q(t)\, dt \). Apply Gram–Schmidt to \( h_1(t) = 1 \), \( h_2(t) = t \), \( h_3(t) = t^2 \) to derive an orthonormal system that spans the same space.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>\( f_1 \).</strong> \( f_1(t) = h_1(t) = 1 \), \( \|f_1\|^2 = \langle f_1, f_1\rangle = \int_{-1}^{1} (1)(1)\, dt = [t]_{-1}^{1} = 2 \). So \( e_1 = \dfrac{f_1}{\|f_1\|} \Rightarrow \boxed{\, e_1(t) = \tfrac{1}{\sqrt 2} \,} \).</p>
+    <p><strong>\( f_2 \).</strong> \( f_2 = h_2 - \dfrac{\langle f_1, h_2\rangle}{\|f_1\|^2}\, f_1 \). Now \( \langle f_1, h_2\rangle = \int_{-1}^{1} (1)(t)\, dt = \big[\tfrac{t^2}{2}\big]_{-1}^{1} = 0 \), so \( f_2(t) = h_2(t) - 0 = t \), and \( \|f_2\|^2 = \int_{-1}^{1} (t)(t)\, dt = \big[\tfrac{t^3}{3}\big]_{-1}^{1} = \tfrac{2}{3} \). So \( e_2 = \dfrac{f_2}{\|f_2\|} \Rightarrow \boxed{\, e_2(t) = \tfrac{\sqrt 3}{\sqrt 2}\, t \,} \).</p>
+    <p><strong>\( f_3 \).</strong> \( f_3 = h_3 - \dfrac{\langle f_1, h_3\rangle}{\|f_1\|^2}\, f_1 - \dfrac{\langle f_2, h_3\rangle}{\|f_2\|^2}\, f_2 \). Here \( \langle f_1, h_3\rangle = \int_{-1}^{1} (1)(t^2)\, dt = \big[\tfrac{t^3}{3}\big]_{-1}^{1} = \tfrac{2}{3} \) and \( \langle f_2, h_3\rangle = \int_{-1}^{1} (t)(t^2)\, dt = \big[\tfrac{t^4}{4}\big]_{-1}^{1} = 0 \). So
+    \[ f_3 = h_3 - \frac{2/3}{2}\, f_1 - 0 \implies f_3(t) = t^2 - \tfrac{1}{3}. \]
+    Then
+    \[ \|f_3\|^2 = \int_{-1}^{1} \Big(t^2 - \tfrac{1}{3}\Big)^2 dt = \int_{-1}^{1} \Big(t^4 - \tfrac{2t^2}{3} + \tfrac{1}{9}\Big) dt = \Big[\tfrac{t^5}{5}\Big]_{-1}^{1} - \tfrac{2}{3}\Big[\tfrac{t^3}{3}\Big]_{-1}^{1} + \tfrac{1}{9}\big[t\big]_{-1}^{1} = \tfrac{2}{5} - \tfrac{2}{3}\cdot\tfrac{2}{3} + \tfrac{1}{9}\cdot 2 = \tfrac{2}{5} - \tfrac{4}{9} + \tfrac{2}{9} = \tfrac{2}{5} - \tfrac{2}{9} = \tfrac{8}{45}. \]
+    So \( e_3 = \dfrac{f_3}{\|f_3\|} \Rightarrow \boxed{\, e_3(t) = \sqrt{\tfrac{45}{8}}\,\Big(t^2 - \tfrac{1}{3}\Big) \,} \).</p>
+    <p>Thus the new orthonormal system is
+    \[ e_1(t) = \tfrac{1}{\sqrt 2}, \qquad e_2(t) = \sqrt{\tfrac{3}{2}}\, t, \qquad e_3(t) = \sqrt{\tfrac{45}{8}}\,\Big(t^2 - \tfrac{1}{3}\Big). \]</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 51 <span class="name">— Parseval's formula</span></p>
+    <p>Let \( q_1, \dots, q_n \) be an ONB of \( V \). Prove that \( \forall\, x \in V \),
+    \[ x = \sum_{i=1}^{n} \langle q_i, x\rangle\, q_i \qquad\text{and}\qquad \|x\|^2 = \sum_{i=1}^{n} |\langle x, q_i\rangle|^2. \]
+    <span class="aside">(An easy way of computing the norm of a vector from its coefficients.)</span></p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Expansion.</strong> Since \( q_1, \dots, q_n \) is an ONB, for \( x \in V \) write \( x = a_1 q_1 + \dots + a_n q_n \), \( a_i \in \F \). For \( k = 1, \dots, n \),
+    \[ \langle q_k, x\rangle = \langle q_k, a_1 q_1 + \dots + a_n q_n\rangle = a_1\langle q_k, q_1\rangle + \dots + a_n\langle q_k, q_n\rangle = a_k \]
+    because \( \langle q_i, q_k\rangle = 0 \) for \( i \neq k \) and \( \langle q_k, q_k\rangle = 1 \). Hence \( a_k = \langle q_k, x\rangle \), giving \( x = \langle q_1, x\rangle q_1 + \dots + \langle q_n, x\rangle q_n \).</p>
+    <p><strong>Parseval.</strong> First, with \( x = a_1 q_1 + \dots + a_n q_n \): \( q_1 \perp q_2 \Rightarrow a_1 q_1 \perp a_2 q_2 \), so by the Pythagorean theorem \( \|a_1 q_1 + a_2 q_2\|^2 = |a_1|^2\|q_1\|^2 + |a_2|^2\|q_2\|^2 = |a_1|^2 + |a_2|^2 \) (as \( \|q_i\| = 1 \)). Repeatedly applying Pythagoras,
+    \[ \|x\|^2 = \|a_1 q_1 + \dots + a_n q_n\|^2 = |a_1|^2 + \dots + |a_n|^2. \]
+    From the previous part \( a_i = \langle q_i, x\rangle \), so \( \|x\|^2 = \sum_{i=1}^{n} |\langle q_i, x\rangle|^2 \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Gram–Schmidt, Theorem 6, Ex 50 (Legendre) &amp; Ex 51 (Parseval) (pages 30–39)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image030.png" alt="Original handwritten page 30">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image031.png" alt="Original handwritten page 31">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image032.png" alt="Original handwritten page 32">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image033.png" alt="Original handwritten page 33">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image034.png" alt="Original handwritten page 34">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image035.png" alt="Original handwritten page 35">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image036.png" alt="Original handwritten page 36">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image037.png" alt="Original handwritten page 37">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image038.png" alt="Original handwritten page 38">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image039.png" alt="Original handwritten page 39">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- LINEAR FUNCTIONALS & DUAL SPACE                                    -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Linear Functionals &amp; the Dual Space</h2>
+
+  <!-- TODO verify (correctness pass): the linear-functional definition is unnumbered
+       in the source; LADR reference read as 6.39. -->
+  <div class="box def">
+    <p class="box-head">Definition <span class="name">— Linear functional (LADR 6.39)</span></p>
+    <p>A linear functional on \( V \) is a linear map from \( V \) to \( \F \). The dual space of \( V \), denoted \( V' \), is the vector space of all linear functionals on \( V \):
+    \[ V' = \Lin(V, \F). \]</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 7 <span class="name">— Riesz Representation (LADR 6.42)</span></p>
+    <p>Let \( V \) be a finite-dimensional inner product space. Then \( \forall\, \ell \in V' \), \( \exists\, v \in V \) such that
+    \[ \ell(x) = \langle v, x\rangle \quad (x \in V). \]
+    That is, every linear functional is given by an inner product.</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Aside <span class="name">— convention</span></p>
+    <p>Once again, LADR defines the inner product differently:</p>
+    <ul class="dots">
+      <li><strong>These notes:</strong> \( \langle x, \alpha y\rangle = \alpha\langle x, y\rangle \), \( \langle \alpha x, y\rangle = \bar\alpha\langle x, y\rangle \), \( x \cdot y = \bar x_1 y_1 + \dots + \bar x_n y_n \) (the "physicist" convention).</li>
+      <li><strong>LADR:</strong> \( \langle x, \alpha y\rangle = \bar\alpha\langle x, y\rangle \), \( \langle \alpha x, y\rangle = \alpha\langle x, y\rangle \), \( x \cdot y = x_1 \bar y_1 + \dots + x_n \bar y_n \) (the "mathematician" convention).</li>
+    </ul>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Let \( e_1, \dots, e_n \) be an ONB for \( V \) (\( \dim V = n \)). For \( x \in V \), write \( x = a_1 e_1 + \dots + a_n e_n \). For \( k \in \{1, \dots, n\} \), \( \langle e_k, x\rangle = a_1\langle e_k, e_1\rangle + \dots + a_n\langle e_k, e_n\rangle = a_k \), so \( x = \langle e_1, x\rangle e_1 + \dots + \langle e_n, x\rangle e_n \).</p>
+    <p>We need some \( v \in V \) with \( \ell(x) = \langle v, x\rangle \ \forall\, x \in V \). Using linearity of \( \ell \) and \( \alpha\langle y, x\rangle = \langle \bar\alpha y, x\rangle \),
+    \[ \ell(x) = \ell\big(\langle e_1, x\rangle e_1 + \dots + \langle e_n, x\rangle e_n\big) = \langle e_1, x\rangle\,\ell(e_1) + \dots + \langle e_n, x\rangle\,\ell(e_n) = \big\langle \overline{\ell(e_1)}\, e_1, x\big\rangle + \dots + \big\langle \overline{\ell(e_n)}\, e_n, x\big\rangle. \]
+    So \( \ell(x) = \big\langle \overline{\ell(e_1)}\, e_1 + \dots + \overline{\ell(e_n)}\, e_n,\ x\big\rangle \). Set \( v = \overline{\ell(e_1)}\, e_1 + \dots + \overline{\ell(e_n)}\, e_n \); then \( \ell(x) = \langle v, x\rangle \ \forall\, x \in V \).</p>
+    <p><strong>Uniqueness.</strong> Suppose \( \exists\, v_1, v_2 \in V \) with \( \ell(x) = \langle v_1, x\rangle = \langle v_2, x\rangle \). Then \( \langle v_1 - v_2, x\rangle = 0 \ \forall\, x \in V \). Taking \( x = v_1 - v_2 \) gives \( \langle v_1 - v_2, v_1 - v_2\rangle = 0 \Rightarrow v_1 - v_2 = 0 \Rightarrow v_1 = v_2 \). Thus \( v \) is unique.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 52</p>
+    <p>If \( V \) is finite-dimensional, show that \( V' \cong V \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( V' = \Lin(V, \F) \). By Ex 28 (LADR 3.72), \( \dim \Lin(V, W) = \dim V \cdot \dim W \), so \( \dim V' = \dim V \cdot \dim \F \). Since \( \dim \F = 1 \), \( \dim V' = \dim V \), hence \( V' \cong V \) (LADR 3.70).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">LADR 3.70</p>
+    <p>Let \( V, W \) be two finite-dimensional vector spaces. Then \( V \cong W \iff \dim V = \dim W \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p><strong>(\( \Rightarrow \))</strong> \( V \cong W \) means there is an isomorphism \( T \) from \( V \) onto \( W \). Since \( T \) is invertible, \( \Null(T) = \{0\} \) and \( \Range(T) = W \), so \( \nullity T = 0 \) and \( \rank T = \dim W \). By rank–nullity, \( \dim V = \nullity T + \rank T = 0 + \dim W \), i.e. \( \dim V = \dim W \).</p>
+    <p><strong>(\( \Leftarrow \))</strong> Suppose \( \dim V = \dim W \). Let \( v_1, \dots, v_n \) be a basis of \( V \) and \( w_1, \dots, w_n \) a basis of \( W \). Define \( T \in \Lin(V, W) \) by \( T(c_1 v_1 + \dots + c_n v_n) = c_1 w_1 + \dots + c_n w_n \). Then \( T \) is surjective (as \( W = \operatorname{span}(w_1, \dots, w_n) \)) and \( \Null(T) = \{0\} \) (as \( w_1, \dots, w_n \) are LI), so \( T \) is injective. Hence \( T \) is an isomorphism.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — linear functionals, Riesz (Thm 7), Ex 52 &amp; LADR 3.70 (pages 39–44)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image039.png" alt="Original handwritten page 39">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image040.png" alt="Original handwritten page 40">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image041.png" alt="Original handwritten page 41">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image042.png" alt="Original handwritten page 42">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image043.png" alt="Original handwritten page 43">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image044.png" alt="Original handwritten page 44">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- ORTHOGONAL COMPLEMENT                                              -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Orthogonal Complement</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 26 <span class="name">— Orthogonal complement</span></p>
+    <p>Let \( U \) be a subspace of an inner product space \( V \). The orthogonal complement of \( U \) is
+    \[ U^{\perp} = \{x \in V : x \perp u \ \forall\, u \in U\}. \]
+    Two trivial cases: \( V^{\perp} = \{0\} \) and \( \{0\}^{\perp} = V \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 53</p>
+    <p>Verify that \( U^{\perp} \) is a subspace of \( V \). Moreover, show that \( U \cap U^{\perp} = \{0\} \), \( (U^{\perp})^{\perp} = U \), and \( V = U \oplus U^{\perp} \) (the orthogonal decomposition of \( V \)).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>(1) \( U^{\perp} \) is a subspace of \( V \).</strong></p>
+    <ul class="dots">
+      <li>\( 0 \in U^{\perp} \), as \( \langle u, 0\rangle = 0 \ \forall\, u \in U \), i.e. \( 0 \perp u \ \forall\, u \in U \).</li>
+      <li>Let \( u_1, u_2 \in U^{\perp} \), \( u \in U \): \( \langle u, u_1 + u_2\rangle = \langle u, u_1\rangle + \langle u, u_2\rangle = 0 + 0 = 0 \Rightarrow u_1 + u_2 \perp u \ \forall\, u \in U \Rightarrow u_1 + u_2 \in U^{\perp} \).</li>
+      <li>Let \( \alpha \in \F \): \( \langle u, \alpha u_1\rangle = \alpha\langle u, u_1\rangle = 0 \Rightarrow \alpha u_1 \perp u \ \forall\, u \in U \Rightarrow \alpha u_1 \in U^{\perp} \).</li>
+    </ul>
+    <p>Thus \( U^{\perp} \) is a subspace of \( V \).</p>
+    <p><strong>(2) \( U \cap U^{\perp} = \{0\} \).</strong> Suppose \( u \in U \cap U^{\perp} \). Then \( u \in U \) and \( u \in U^{\perp} \Rightarrow \langle u, u\rangle = 0 \) (as \( u \perp u \)). But \( \langle u, u\rangle = 0 \iff u = 0 \). So \( U \cap U^{\perp} = \{0\} \).</p>
+    <p><strong>(3) \( V = U \oplus U^{\perp} \)</strong> (shown before the next part, since it is used there). \( V \) is finite-dimensional, so \( U \subseteq V \) is finite-dimensional. Let \( e_1, \dots, e_m \) be an ONB for \( U \). For \( v \in V \), let \( u = \langle e_1, v\rangle e_1 + \dots + \langle e_m, v\rangle e_m \). Clearly \( u \in U \) (since \( e_i \in U \)). Write \( v = u + (v - u) = u + w \) with \( w = v - u \). For \( w \),
+    \[ \langle e_k, w\rangle = \Big\langle e_k,\ v - \sum_{i=1}^{m} \langle e_i, v\rangle e_i\Big\rangle = \langle e_k, v\rangle - \sum_{i=1}^{m} \langle e_i, v\rangle\langle e_k, e_i\rangle = \langle e_k, v\rangle - \langle e_k, v\rangle = 0 \]
+    for all \( k = 1, \dots, m \) (using \( \langle e_k, e_i\rangle = \delta_{ik} \)). So \( w \perp u \ \forall\, u \in \operatorname{span}(e_1, \dots, e_m) = U \Rightarrow w \in U^{\perp} \). Thus every \( v \in V \) is \( v = u + w \) with \( u \in U \), \( w \in U^{\perp} \), giving \( V = U + U^{\perp} \). Combined with \( U \cap U^{\perp} = \{0\} \) (and recalling that \( V = U + W \) is a direct sum \( \iff U \cap W = \{0\} \)), we get \( V = U \oplus U^{\perp} \).</p>
+    <p><strong>(4) \( (U^{\perp})^{\perp} = U \).</strong> Suppose \( u \in U \). Then \( \langle u, w\rangle = 0 \ \forall\, w \in U^{\perp} \), so \( u \perp w \ \forall\, w \in U^{\perp} \), i.e. \( u \in (U^{\perp})^{\perp} \). Hence \( U \subseteq (U^{\perp})^{\perp} \). For the other direction, suppose \( v \in (U^{\perp})^{\perp} \). Since \( V = U \oplus U^{\perp} \), write \( v = u + w \) with \( u \in U \), \( w \in U^{\perp} \), so \( v - u = w \in U^{\perp} \). Also \( v \in (U^{\perp})^{\perp} \) and \( u \in (U^{\perp})^{\perp} \) (as \( U \subseteq (U^{\perp})^{\perp} \)), so \( v - u \in (U^{\perp})^{\perp} \). Hence \( v - u \in (U^{\perp})^{\perp} \cap U^{\perp} = \{0\} \Rightarrow v = u \Rightarrow v \in U \), giving \( (U^{\perp})^{\perp} \subseteq U \). Therefore \( (U^{\perp})^{\perp} = U \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 54</p>
+    <p>Let \( q_1, \dots, q_n \) be an ONB. For \( 1 \le k \le n \), let \( U = \operatorname{span}(q_1, \dots, q_k) \) and \( W = \operatorname{span}(q_{k+1}, \dots, q_n) \). Show that \( W = U^{\perp} \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>\( W \subseteq U^{\perp} \).</strong> For \( w \in W \), write \( w = a_1 q_{k+1} + \dots + a_{n-k} q_n \). For \( i \in \{1, \dots, k\} \),
+    \[ \langle q_i, w\rangle = a_1\langle q_i, q_{k+1}\rangle + \dots + a_{n-k}\langle q_i, q_n\rangle = 0 \]
+    as \( q_1, \dots, q_n \) is an ONB. So \( w \perp u \ \forall\, u \in \operatorname{span}(q_1, \dots, q_k) = U \Rightarrow w \in U^{\perp} \Rightarrow W \subseteq U^{\perp} \).</p>
+    <p><strong>\( U^{\perp} \subseteq W \).</strong> Let \( v \in U^{\perp} \), so \( v \perp q_i \) for \( i = 1, \dots, k \). Since \( v \in V \) and \( q_1, \dots, q_n \) is an ONB, \( v = \langle q_1, v\rangle q_1 + \dots + \langle q_n, v\rangle q_n \). But \( \langle q_i, v\rangle = 0 \) for \( i \in \{1, \dots, k\} \), so \( v = \langle q_{k+1}, v\rangle q_{k+1} + \dots + \langle q_n, v\rangle q_n \), giving \( v \in \operatorname{span}(q_{k+1}, \dots, q_n) = W \). Hence \( U^{\perp} \subseteq W \). Therefore \( W = U^{\perp} \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — orthogonal complement, Def 26, Ex 53–54 (pages 44–50)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image044.png" alt="Original handwritten page 44">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image045.png" alt="Original handwritten page 45">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image046.png" alt="Original handwritten page 46">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image047.png" alt="Original handwritten page 47">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image048.png" alt="Original handwritten page 48">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image049.png" alt="Original handwritten page 49">
+      <img loading="lazy" src="Ch4_%20Inner-Product%20and%20Normed%20Spaces_files/image050.png" alt="Original handwritten page 50">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 4. <a href="index.html">← All chapters</a> · <a href="Ch4_%20Inner-Product%20and%20Normed%20Spaces.htm">complete original export ↗</a></p>
+    <p><strong>Disclaimer:</strong> correctness is not guaranteed; some exercises may have incomplete answers. The nested NS ⊃ IPS ⊃ FD diagram was redrawn as inline SVG from the hand-drawn original (see the Normed Spaces scan toggle). This page is a faithful typeset reproduction — a separate correctness pass is planned.</p>
+  </footer>
+
+</div>
+</body>
+</html>
