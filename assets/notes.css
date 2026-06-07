@@ -196,6 +196,7 @@ details.scan > summary:hover { color: var(--link); }
 
 /* ---- figures (hand-drawn diagrams kept from the scans, or redrawn) ------- */
 figure.diagram { margin: 1.6rem 0; text-align: center; }
+figure.diagram svg { max-width: 100%; height: auto; }
 figure.diagram img {
   max-width: 100%;
   height: auto;
