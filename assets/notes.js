@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   initToc();
+  initCrossRefs();
   initCollapsibles();
 });
 
@@ -96,6 +97,163 @@ function initToc() {
   }, { passive: true });
 
   updateActive();
+}
+
+function initCrossRefs() {
+  // prefix lookup for both full words and abbreviations
+  var TYPE_MAP = {
+    'definition': 'def',  'def':  'def',
+    'theorem':    'thm',  'thm':  'thm',
+    'lemma':      'lem',
+    'proposition':'prop', 'prop': 'prop',
+    'corollary':  'cor',  'cor':  'cor',
+    'example':    'example',
+    'exercise':   'ex',   'ex':   'ex',
+    'remark':     'rem',
+  };
+
+  // Complete map of every numbered item id -> its chapter file.
+  // Allows cross-chapter links when the target is not on the current page.
+  var XREF_CHAPTER = (function() {
+    var map = {};
+    function range(prefix, lo, hi, ch) {
+      for (var i = lo; i <= hi; i++) map[prefix + i] = ch;
+    }
+    range('def-',      1,  9,  'ch2.html');
+    range('def-',     10, 17,  'ch3.html');
+    range('def-',     18, 26,  'ch4.html');
+    range('def-',     27, 30,  'ch5.html');
+    range('def-',     31, 33,  'ch6.html');
+    range('def-',     34, 38,  'ch7.html');
+    range('def-',     39, 44,  'ch8.html');
+    range('def-',     45, 46,  'ch9.html');
+    map['thm-1']  = 'ch2.html';
+    range('thm-',   2,  3,  'ch3.html');
+    range('thm-',   4,  7,  'ch4.html');
+    range('thm-',   8,  9,  'ch5.html');
+    map['thm-10'] = 'ch6.html';
+    range('thm-',  11, 14,  'ch8.html');
+    range('thm-',  15, 17,  'ch9.html');
+    map['thm-18'] = 'ch10.html';
+    range('prop-',  1,  5,  'ch2.html');
+    map['prop-6'] = 'ch8.html';
+    map['prop-7'] = 'ch9.html';
+    map['lem-1']  = 'ch2.html';
+    map['lem-2']  = 'ch8.html';
+    map['lem-3']  = 'ch9.html';
+    map['cor-1']  = 'ch2.html';
+    range('cor-',   2,  3,  'ch3.html');
+    map['cor-4']  = 'ch4.html';
+    map['example-5']  = 'ch2.html';
+    range('example-',  6,  7, 'ch3.html');
+    range('example-',  8,  9, 'ch4.html');
+    range('example-', 10, 12, 'ch7.html');
+    map['example-14'] = 'ch9.html';
+    map['rem-6']  = 'ch3.html';
+    map['rem-10'] = 'ch4.html';
+    range('ex-',   1, 25, 'ch2.html');
+    range('ex-',  26, 38, 'ch3.html');
+    range('ex-',  39, 54, 'ch4.html');
+    range('ex-',  55, 66, 'ch5.html');
+    range('ex-',  67, 72, 'ch6.html');
+    range('ex-',  73, 80, 'ch7.html');
+    range('ex-',  81, 89, 'ch8.html');
+    map['ex-91'] = 'ch8.html';   // ex-90 does not exist in the notes
+    range('ex-',  92, 95,  'ch9.html');
+    range('ex-',  96, 101, 'ch10.html');
+    return map;
+  })();
+
+  // Return the best href for an id: in-page anchor if present, else cross-chapter.
+  function getHref(id) {
+    if (document.getElementById(id)) return '#' + id;
+    var ch = XREF_CHAPTER[id];
+    return ch ? ch + '#' + id : null;
+  }
+
+  // 1. Assign IDs to numbered boxes from their .box-head text.
+  //    Two patterns: anchored (normal) and unanchored fallback for
+  //    heads like "Definition / Theorem 8" where the number follows
+  //    a secondary keyword.
+  var HEAD_ANCHORED = /^(Definition|Theorem|Lemma|Proposition|Corollary|Example|Exercise|Ex|Remark)\.?\s+(\d+(?:\.\d+)?)/i;
+  var HEAD_ANYWHERE = /(Theorem|Lemma|Proposition|Corollary|Example|Exercise|Ex|Remark)\.?\s+(\d+(?:\.\d+)?)/i;
+
+  document.querySelectorAll('.box').forEach(function(box) {
+    if (box.id) return;
+    var head = box.querySelector(':scope > .box-head');
+    if (!head) return;
+    var raw = '';
+    for (var i = 0; i < head.childNodes.length; i++) {
+      if (head.childNodes[i].nodeType === Node.TEXT_NODE) {
+        raw = head.childNodes[i].nodeValue.trim();
+        break;
+      }
+    }
+    var m = HEAD_ANCHORED.exec(raw) || HEAD_ANYWHERE.exec(raw);
+    if (!m) return;
+    var prefix = TYPE_MAP[m[1].toLowerCase().replace(/\.$/, '')];
+    if (prefix) box.id = prefix + '-' + m[2];
+  });
+
+  // 2. Auto-link prose references. In-page refs become #id anchors;
+  //    cross-chapter refs become chapter.html#id links.
+  var REF_PAT = /\b(Definition|Def\.?|Theorem|Thm\.?|Lemma|Proposition|Prop\.?|Corollary|Cor\.?|Example|Exercise|Ex\.?|Remark)[\s ]+(\d+(?:\.\d+)?)\b/g;
+
+  function refId(type, num) {
+    var prefix = TYPE_MAP[type.toLowerCase().replace(/\.$/, '')];
+    return prefix ? prefix + '-' + num : null;
+  }
+
+  var walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode: function(node) {
+        var el = node.parentElement;
+        while (el && el !== document.body) {
+          var tag = el.tagName.toLowerCase();
+          if (tag === 'a' || tag === 'script' || tag === 'style') {
+            return NodeFilter.FILTER_REJECT;
+          }
+          var cls = el.classList;
+          if (cls.contains('katex') || cls.contains('box-head') ||
+              cls.contains('toc-sidebar')) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          el = el.parentElement;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  var nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(function(node) {
+    var text = node.nodeValue;
+    var parts = [];
+    var last = 0;
+    REF_PAT.lastIndex = 0;
+    var m;
+    while ((m = REF_PAT.exec(text)) !== null) {
+      var id = refId(m[1], m[2]);
+      var href = id ? getHref(id) : null;
+      if (!href) continue;
+      if (m.index > last) parts.push(document.createTextNode(text.slice(last, m.index)));
+      var a = document.createElement('a');
+      a.href = href;
+      a.className = 'xref';
+      a.textContent = m[0];
+      parts.push(a);
+      last = m.index + m[0].length;
+    }
+    if (!parts.length) return;
+    if (last < text.length) parts.push(document.createTextNode(text.slice(last)));
+    var parent = node.parentNode;
+    parts.forEach(function(p) { parent.insertBefore(p, node); });
+    parent.removeChild(node);
+  });
 }
 
 function initCollapsibles() {

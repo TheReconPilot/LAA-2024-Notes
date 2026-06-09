@@ -224,6 +224,10 @@ ol.claims > li { margin: 0.5rem 0; }
 /* give anchor targets a little breathing room below the topnav */
 h2.sec { scroll-margin-top: 1rem; }
 
+/* auto-generated cross-reference links — subtle dotted underline, no colour shift */
+a.xref { color: inherit; text-decoration-style: dotted; text-underline-offset: 2px; }
+a.xref:hover { color: var(--link); text-decoration-style: solid; }
+
 /* editorial asides written by the author, e.g. "[answer may be incomplete]" */
 .aside { color: var(--muted); font-style: italic; }
 
