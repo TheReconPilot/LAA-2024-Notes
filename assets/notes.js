@@ -31,8 +31,72 @@ document.addEventListener("DOMContentLoaded", function () {
       "\\Range": "\\mathcal{R}"
     }
   });
+  initToc();
   initCollapsibles();
 });
+
+function initToc() {
+  var headings = Array.from(document.querySelectorAll('h2.sec'));
+  if (headings.length === 0) return;
+
+  // auto-assign IDs from slugified heading text
+  headings.forEach(function(h) {
+    if (!h.id) {
+      h.id = 'sec-' + h.textContent.trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+  });
+
+  // build the sidebar nav
+  var nav = document.createElement('nav');
+  nav.id = 'toc-sidebar';
+  nav.className = 'toc-sidebar';
+  nav.setAttribute('aria-label', 'Page contents');
+
+  var title = document.createElement('p');
+  title.className = 'toc-title';
+  title.textContent = 'Contents';
+  nav.appendChild(title);
+
+  var ol = document.createElement('ol');
+  ol.className = 'toc-list';
+  headings.forEach(function(h) {
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent.trim();
+    li.appendChild(a);
+    ol.appendChild(li);
+  });
+  nav.appendChild(ol);
+
+  document.body.insertBefore(nav, document.body.firstChild);
+
+  // scroll spy — highlight the last heading that has scrolled past the threshold
+  var links = Array.from(ol.querySelectorAll('a'));
+  var ticking = false;
+
+  function updateActive() {
+    var threshold = 120;
+    var active = null;
+    headings.forEach(function(h) {
+      if (h.getBoundingClientRect().top <= threshold) active = h;
+    });
+    links.forEach(function(a) {
+      a.parentElement.classList.toggle('toc-active',
+        active !== null && a.hash === '#' + active.id);
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(updateActive); ticking = true; }
+  }, { passive: true });
+
+  updateActive();
+}
 
 function initCollapsibles() {
   var configs = [

@@ -171,6 +171,59 @@ ol.claims > li { margin: 0.5rem 0; }
 .box-body > :first-child { margin-top: 0; }
 .box-body > :last-child { margin-bottom: 0; }
 
+/* ---- table of contents sidebar ------------------------------------------- */
+/* Hidden by default; shown as a fixed panel in the right margin on wide screens.
+   Breakpoint is chosen so the 11rem sidebar fits alongside the 50rem wrap. */
+.toc-sidebar { display: none; }
+
+@media (min-width: 76rem) {
+  .toc-sidebar {
+    display: block;
+    position: fixed;
+    top: 4.5rem;
+    left: calc(50% + var(--maxw) / 2 + 1.5rem);
+    width: 11rem;
+    max-height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule) transparent;
+  }
+  .toc-title {
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .toc-list a {
+    display: block;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.73rem;
+    line-height: 1.35;
+    color: var(--muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc-list a:hover { color: var(--text); }
+  .toc-list li.toc-active > a {
+    color: var(--c-section);
+    border-left-color: var(--c-section);
+  }
+}
+
+/* give anchor targets a little breathing room below the topnav */
+h2.sec { scroll-margin-top: 1rem; }
+
 /* editorial asides written by the author, e.g. "[answer may be incomplete]" */
 .aside { color: var(--muted); font-style: italic; }
 
