@@ -1,0 +1,337 @@
+/* ==========================================================================
+   LAA-2024 Notes — shared stylesheet for the typeset chapter pages.
+   Dark theme echoing the original handwritten notes, with the ink palette
+   re-mapped onto a *consistent* set of semantic callout colours
+   (definition / theorem / proof / example / remark).
+   ========================================================================== */
+
+:root {
+  --bg:        #201f1e;   /* same charcoal as the OneNote pages            */
+  --bg-soft:   #2a2928;   /* slightly raised surfaces (callouts, code)     */
+  --text:      #e8e6e3;   /* off-white body text                           */
+  --muted:     #9aa0a6;   /* secondary / editorial notes                   */
+  --rule:      #3a4654;   /* separators, echoing the blue ink underlines   */
+  --link:      #7bb8e8;
+
+  /* Ink-inspired, role-based accents (consistent everywhere) */
+  --c-section: #e8836b;   /* red/orange  — section titles                  */
+  --c-def:     #74c490;   /* green       — definitions (statement ink)     */
+  --c-thm:     #45b8b0;   /* teal        — theorems / lemmas / corollaries */
+  --c-proof:   #8b9299;   /* grey        — proofs                          */
+  --c-ex:      #e07cc0;   /* pink        — examples / exercises (labels)   */
+  --c-rem:     #5fa8e6;   /* blue        — remarks / derivations           */
+  --c-warn:    #e0b341;   /* amber       — corrections / TODO flags        */
+  --c-add:     #b08ce0;   /* violet      — solutions completed in review   */
+  --c-example: #7090b0;  /* dusty steel blue — worked examples            */
+
+  --font-body: "Cambria", "Charter", "Bitstream Charter", "Georgia", serif;
+  --font-ui:   system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --maxw: 50rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  /* keep the original notes' generous left breathing room on wide screens,
+     while staying centred and readable */
+  padding: 0 1.25rem 5rem;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; }
+
+/* ---- top bar / navigation ------------------------------------------------ */
+.topnav {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1.25rem 0 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2rem;
+}
+.topnav a { color: var(--link); text-decoration: none; }
+.topnav a:hover { text-decoration: underline; }
+.topnav .crumb::before { content: "\2190\00a0"; } /* ← */
+
+/* ---- headings ------------------------------------------------------------ */
+.chap-title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin: 0.5rem 0 0.25rem;
+}
+.chap-sub { color: var(--muted); font-family: var(--font-ui); margin: 0 0 2.5rem; }
+
+h2.sec {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--c-section);
+  margin: 3rem 0 1.25rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid color-mix(in srgb, var(--c-section) 45%, transparent);
+}
+
+h3 { font-family: var(--font-ui); font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+
+p { margin: 0.8rem 0; }
+a { color: var(--link); }
+
+/* informal arrow / dotted bullet lists used throughout the notes */
+ul.arrows, ul.dots { list-style: none; padding-left: 1.5rem; margin: 0.8rem 0; }
+ul.arrows > li, ul.dots > li { position: relative; margin: 0.45rem 0; }
+ul.arrows > li::before {
+  content: "\2192"; /* → */
+  position: absolute; left: -1.5rem; color: var(--c-rem); font-weight: 700;
+}
+ul.dots > li::before {
+  content: "\2299"; /* ⊙ */
+  position: absolute; left: -1.5rem; color: var(--muted);
+}
+
+ol.claims { padding-left: 1.5rem; margin: 0.6rem 0; }
+ol.claims > li { margin: 0.5rem 0; }
+
+/* ---- semantic callout boxes --------------------------------------------- */
+.box {
+  background: var(--bg-soft);
+  border-left: 4px solid var(--muted);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  margin: 1.4rem 0;
+}
+.box > :first-child { margin-top: 0; }
+.box > :last-child { margin-bottom: 0; }
+
+.box-head {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+.box-head .name { text-transform: none; letter-spacing: 0; color: var(--muted); font-weight: 600; }
+
+.box.def  { border-color: var(--c-def);  background: color-mix(in srgb, var(--c-def)  7%, var(--bg)); }
+.box.thm  { border-color: var(--c-thm);  background: color-mix(in srgb, var(--c-thm)  7%, var(--bg)); }
+.box.ex   { border-color: var(--c-ex);   background: color-mix(in srgb, var(--c-ex)   7%, var(--bg)); }
+.box.rem  { border-color: var(--c-rem);  background: color-mix(in srgb, var(--c-rem)  7%, var(--bg)); }
+.box.example { border-color: var(--c-example); background: color-mix(in srgb, var(--c-example) 7%, var(--bg)); }
+.box.pf, .box.sol   { border-color: var(--c-proof); background: transparent; }
+
+.box.def .box-head  { color: var(--c-def); }
+.box.thm .box-head  { color: var(--c-thm); }
+.box.ex  .box-head  { color: var(--c-ex); }
+.box.rem .box-head  { color: var(--c-rem); }
+.box.example .box-head { color: var(--c-example); }
+.box.pf  .box-head, .box.sol .box-head  { color: var(--c-proof); }
+
+/* a definition that wraps a "headline" boxed formula (e.g. Leibniz det) */
+.box .keyformula {
+  border: 1px solid color-mix(in srgb, var(--c-def) 55%, transparent);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  margin: 0.8rem 0 0.2rem;
+}
+
+/* proofs: terminating ∎ */
+.qed { text-align: right; color: var(--muted); margin: 0.4rem 0 0; }
+.qed::before { content: "\220E"; } /* ∎ */
+
+/* ---- collapsible proof / solution / added-solution boxes ----------------- */
+.box details { margin: 0; }
+.box details > summary.box-head {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+  margin: 0;
+}
+.box details > summary.box-head::-webkit-details-marker { display: none; }
+.box details > summary.box-head::before {
+  content: "\25B8"; /* ▸ */
+  font-size: 0.85em;
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+.box details[open] > summary.box-head::before { content: "\25BE"; } /* ▾ */
+.box-body { margin-top: 0.5rem; }
+.box-body > :first-child { margin-top: 0; }
+.box-body > :last-child { margin-bottom: 0; }
+
+/* ---- table of contents sidebar ------------------------------------------- */
+/* Hidden by default; shown as a fixed panel in the right margin on wide screens.
+   Breakpoint is chosen so the 11rem sidebar fits alongside the 50rem wrap. */
+.toc-sidebar { display: none; }
+
+@media (min-width: 76rem) {
+  .toc-sidebar {
+    display: block;
+    position: fixed;
+    top: 4.5rem;
+    left: calc(50% + var(--maxw) / 2 + 1.5rem);
+    width: 11rem;
+    max-height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rule) transparent;
+  }
+  .toc-title {
+    font-family: var(--font-ui);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .toc-list a {
+    display: block;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.73rem;
+    line-height: 1.35;
+    color: var(--muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc-list a:hover { color: var(--text); }
+  .toc-list li.toc-active > a {
+    color: var(--c-section);
+    border-left-color: var(--c-section);
+  }
+}
+
+/* give anchor targets a little breathing room below the topnav */
+h2.sec { scroll-margin-top: 1rem; }
+
+/* auto-generated cross-reference links — subtle dotted underline, no colour shift */
+a.xref { color: inherit; text-decoration-style: dotted; text-underline-offset: 2px; }
+a.xref:hover { color: var(--link); text-decoration-style: solid; }
+
+/* editorial asides written by the author, e.g. "[answer may be incomplete]" */
+.aside { color: var(--muted); font-style: italic; }
+
+/* correctness pass — fix-and-flag annotations.
+   .corr      inline: dotted amber underline on the CORRECTED token (token stays in
+              the normal ink palette). A title="…" may carry extra context on hover.
+   .corr-note small amber inline aside placed right after a .corr token, showing the
+              scan's ORIGINAL reading so it stays visible on mobile/print (a title=
+              tooltip is hover-only and unreachable on touch — so it is never the
+              sole carrier of the original).
+   .box.corr  a "Correction" callout when a fix needs a sentence of explanation;
+              matches the semantic .def/.thm/… box family, in the amber warn hue. */
+.corr { border-bottom: 2px dotted var(--c-warn); cursor: help; }
+.corr-note { color: var(--c-warn); font-size: 0.85rem; font-family: var(--font-ui); }
+
+.box.corr { border-color: var(--c-warn); background: color-mix(in srgb, var(--c-warn) 7%, var(--bg)); }
+.box.corr .box-head { color: var(--c-warn); }
+
+/* added-in-review: a worked solution supplied during the deep correctness pass
+   (pass 2) for an exercise the notes left missing or incomplete. Distinct violet
+   accent + an explicit "added in review" header so it is never mistaken for the
+   author's own worked solution (.box.sol). */
+.box.add { border-color: var(--c-add); background: color-mix(in srgb, var(--c-add) 8%, var(--bg)); }
+.box.add .box-head { color: var(--c-add); }
+
+/* ---- separators ---------------------------------------------------------- */
+hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rule) 12%, var(--rule) 88%, transparent);
+  margin: 2.2rem 0;
+}
+
+/* ---- "view original scan" collapsibles ----------------------------------- */
+details.scan { margin: 1rem 0 0; }
+details.scan > summary {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0;
+}
+details.scan > summary::before { content: "\25B8"; }  /* ▸ */
+details.scan[open] > summary::before { content: "\25BE"; } /* ▾ */
+details.scan > summary:hover { color: var(--link); }
+/* align-items:flex-start so images keep their natural width (a small header
+   scan stays small) rather than being stretched to the column width */
+.scan-imgs { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-top: 0.75rem; }
+.scan-imgs img {
+  max-width: 100%;       /* large full pages cap to the column; small ones stay small */
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg);
+}
+/* side-by-side / partial fragments, as the OneNote export laid them out in a
+   table grid: keep them on one wrapping row at their natural size */
+.scan-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-start; width: 100%; }
+.scan-row img { max-width: 100%; flex: 0 1 auto; }
+
+/* ---- figures (hand-drawn diagrams kept from the scans, or redrawn) ------- */
+figure.diagram { margin: 1.6rem 0; text-align: center; }
+figure.diagram svg { max-width: 100%; height: auto; }
+figure.diagram img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--bg);
+}
+figure.diagram figcaption {
+  color: var(--muted);
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* ---- KaTeX tweaks -------------------------------------------------------- */
+/* let wide display equations scroll horizontally on small screens           */
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; }
+.katex { font-size: 1.05em; }
+
+/* ---- footer -------------------------------------------------------------- */
+footer {
+  margin-top: 4rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+footer a { color: var(--link); text-decoration: none; }
+
+/* ---- responsive ---------------------------------------------------------- */
+@media (max-width: 640px) {
+  body { font-size: 1.05rem; padding: 0 0.9rem 4rem; }
+  .chap-title { font-size: 1.7rem; }
+  h2.sec { font-size: 1.3rem; }
+}

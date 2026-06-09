@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch5: Transforms on Inner Product Spaces · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch5 · Transforms on Inner Product Spaces</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 5 — Transforms on Inner Product Spaces</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- ================================================================== -->
+  <!-- ORTHOGONAL PROJECTOR                                               -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Orthogonal Projector</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 27 <span class="name">— Orthogonal projector</span></p>
+    <p>The orthogonal projector onto a subspace \( U \) is an operator \( P_U : V \to V \) defined as
+    \[ \forall\, x \in V : \quad P_U(x) = u \qquad (x = u + v,\ u \in U,\ v \in U^{\perp}). \]</p>
+    <ul class="arrows">
+      <li>\( P_U \in \Lin(V) \), i.e. it is a linear operator.</li>
+      <li>When we say \( P = P_U \) is an orthogonal projector, it is understood that \( P = P_U \) for some subspace \( U \subseteq V \).</li>
+    </ul>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 55 <span class="name">— LADR 6.56</span></p>
+    <p>Let \( u \in V \) and \( U = \operatorname{span}(u) \). Give a formula for \( P_U \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>For \( v \in V \), write \( v = \alpha u + (v - \alpha u) \) with \( w = v - \alpha u \) such that \( u \perp w \); then \( P_U(v) = \alpha u \). From \( \langle u, w\rangle = 0 \):
+    \[ \langle u, v - \alpha u\rangle = 0 \implies \langle u, v\rangle - \alpha\langle u, u\rangle = 0 \implies \alpha = \frac{\langle u, v\rangle}{\|u\|^2}. \]
+    So if \( \|u\| = 0 \iff u = 0 \) (and \( 0 \perp v \ \forall\, v \in V \)), then \( P_U(v) = 0 \). For \( u \neq 0 \),
+    \[ \boxed{\ P_U(v) = \frac{\langle u, v\rangle}{\|u\|^2}\, u\ }. \]</p>
+    <p>If \( u_1, \dots, u_n \) is an orthogonal basis for \( V \), then we can write
+    \[ P_U(v) = \frac{\langle u_1, v\rangle}{\|u_1\|^2}\, u_1 + \dots + \frac{\langle u_n, v\rangle}{\|u_n\|^2}\, u_n \qquad \text{for } v \in V. \]</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — orthogonal projector, Def 27 &amp; Ex 55 (pages 1–14; the projection formula was fragmented across a layout grid, shown side-by-side)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image001.png" alt="Original handwritten page 1">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image003.png" alt="Original handwritten page 3">
+      <div class="scan-row">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image004.png" alt="Original fragment 4">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image005.png" alt="Original fragment 5">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image006.png" alt="Original fragment 6">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image007.png" alt="Original fragment 7">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image008.png" alt="Original fragment 8">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image009.png" alt="Original fragment 9">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image010.png" alt="Original fragment 10">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image011.png" alt="Original fragment 11">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image012.png" alt="Original fragment 12">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image013.png" alt="Original fragment 13">
+        <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image014.png" alt="Original fragment 14">
+      </div>
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- PROPERTIES OF THE ORTHOGONAL PROJECTOR                             -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Properties of the Orthogonal Projector</h2>
+
+  <div class="box ex">
+    <p class="box-head">Ex 56 <span class="name">— LADR 6.57, 6.61</span></p>
+    <p>Let \( P = P_U \) be an orthogonal projector on \( V \). Show that:</p>
+    <ol class="claims">
+      <li>\( P^2 = P \);</li>
+      <li>\( \Range(P) = U \) and \( \Null(P) = U^{\perp} \);</li>
+      <li>\( P_U + P_{U^{\perp}} = \mathrm{Id} \);</li>
+      <li>\( \|Px\| \le \|x\| \ \forall\, x \in V \);</li>
+      <li>\( \forall\, x \in V \), \( P(x) = \displaystyle\operatorname*{arg\,min}_{u \in U} \|u - x\| \) — i.e. \( P(x) \) is the (unique) point in \( U \) that is "closest" to \( x \).</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Throughout, write \( v = u + w \) with \( u \in U \), \( w \in U^{\perp} \), so \( P_U(v) = u \).</p>
+    <p><strong>(1) \( P^2 = P \).</strong> \( P_U^2(v) = P_U(P_U(v)) = P_U(u) = u = P_U(v) \ \forall\, v \in V \), so \( P^2 = P \).</p>
+    <p><strong>(2) \( \Range(P) = U \), \( \Null(P) = U^{\perp} \).</strong> \( P_U(v) = u \in U \Rightarrow \Range(P) \subseteq U \); and for \( u \in U \), \( u = u + 0 \Rightarrow P_U(u) = u \Rightarrow U \subseteq \Range(P) \). So \( \Range(P) = U \). If \( P_U(v) = 0 \), the decomposition is \( v = 0 + w \Rightarrow v = w \in U^{\perp} \Rightarrow \Null(P) \subseteq U^{\perp} \); and for \( w \in U^{\perp} \), \( w = 0 + w \Rightarrow P_U(w) = 0 \Rightarrow U^{\perp} \subseteq \Null(P) \). So \( \Null(P) = U^{\perp} \).</p>
+    <p><strong>(3) \( P_U + P_{U^{\perp}} = \mathrm{Id} \).</strong> Since \( V = U \oplus U^{\perp} \), \( v = u + w \) gives \( P_U(v) = u \), \( P_{U^{\perp}}(v) = w \), so \( (P_U + P_{U^{\perp}})(v) = u + w = v = \mathrm{Id}(v) \ \forall\, v \).</p>
+    <p><strong>(4) \( \|Px\| \le \|x\| \).</strong> For \( x = u + w \), \( P_U(x) = u \) and \( u \perp w \), so by the Pythagorean theorem \( \|x\|^2 = \|u\|^2 + \|w\|^2 = \|P_U(x)\|^2 + \|w\|^2 \). Hence \( \|P_U(x)\|^2 = \|x\|^2 - \|w\|^2 \le \|x\|^2 \), i.e. \( \|P_U(x)\| \le \|x\| \).</p>
+    <p><strong>(5) Closest point (Axler's method).</strong> Write \( x = u' + w \) with \( u' \in U \), \( w \in U^{\perp} \), so \( P(x) = u' \). For any \( u \in U \), \( u' - u \in U \) and \( w \in U^{\perp} \) are orthogonal, so by the Pythagorean theorem
+    \[ \|u - x\|^2 = \|(u' - u) + w\|^2 = \|u' - u\|^2 + \|w\|^2 \ge \|w\|^2, \]
+    with equality iff \( u = u' \). Hence \( P(x) = u' = \operatorname*{arg\,min}_{u \in U}\|u - x\|^2 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 57</p>
+    <p>If \( P \) is an orthogonal projector, show that \( \forall\, x, y \in V : \langle Px, y\rangle = \langle x, Py\rangle \), i.e. \( P \) is a self-adjoint operator.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Since \( V = U \oplus U^{\perp} \), write \( x = u_x + w_x \), \( y = u_y + w_y \) with \( u_x, u_y \in U \), \( w_x, w_y \in U^{\perp} \). Then
+    \[\begin{aligned}
+    \langle Px, y\rangle &= \langle u_x, u_y + w_y\rangle \\
+                        &= \langle u_x, u_y\rangle + \underbrace{\langle u_x, w_y\rangle}_{0} = \langle u_x, u_y\rangle + \underbrace{\langle w_x, u_y\rangle}_{0} \\
+                        &= \langle u_x + w_x, u_y\rangle = \langle x, Py\rangle.
+    \end{aligned}\]</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — properties of the orthogonal projector, Ex 56–57 (pages 15–20)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image015.png" alt="Original handwritten page 15">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image016.png" alt="Original handwritten page 16">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image017.png" alt="Original handwritten page 17">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image018.png" alt="Original handwritten page 18">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image019.png" alt="Original handwritten page 19">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image020.png" alt="Original handwritten page 20">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- THE ADJOINT                                                        -->
+  <!-- ================================================================== -->
+  <h2 class="sec">The Adjoint</h2>
+
+  <p>The definition of the adjoint is motivated by the following result.</p>
+
+  <!-- RESOLVED (correctness pass): the scan annotates the transpose with index ranges 1<=i<=m, 1<=j<=n, which are the wrong ranges for A^T in R^{n x m} (should be 1<=i<=n, 1<=j<=m). The body omits the ranges entirely — (A^T)_{ij}=A_{ji} is unambiguous without them — so no error is shown and no .corr is needed. -->
+  <div class="box def">
+    <p class="box-head">Definition <span class="name">— Transpose &amp; Hermitian transpose</span></p>
+    <ol class="claims">
+      <li>For \( A \in \R^{m\times n} \), the transpose \( A\T \in \R^{n\times m} \) is \( (A\T)_{ij} = A_{ji} \).</li>
+      <li>For \( A \in \C^{m\times n} \), the Hermitian transpose \( A\herm \in \C^{n\times m} \) is \( (A\herm)_{ij} = \overline{A_{ji}} \).</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 58</p>
+    <p>Show that (with \( \langle\cdot,\cdot\rangle \) the dot products):</p>
+    <ol class="claims">
+      <li>\( \forall\, x \in \R^n,\ y \in \R^m : \langle Ax, y\rangle_{\R^m} = \langle x, A\T y\rangle_{\R^n} \);</li>
+      <li>\( \forall\, x \in \C^n,\ y \in \C^m : \langle Ax, y\rangle_{\C^m} = \langle x, A\herm y\rangle_{\C^n} \).</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>With \( (Ax)_i = \sum_{j=1}^{n} A_{ij} x_j \) for \( i = 1, \dots, m \):</p>
+    <p><strong>(1) Real case.</strong>
+    \[\begin{aligned}
+    \langle Ax, y\rangle_{\R^m} &= \sum_{i=1}^{m} (Ax)_i\, y_i = \sum_{i=1}^{m}\sum_{j=1}^{n} A_{ij} x_j y_i \\
+                                &= \sum_{j=1}^{n} x_j \sum_{i=1}^{m} (A\T)_{ji}\, y_i \\
+                                &= \sum_{j=1}^{n} x_j\, (A\T y)_j = \langle x, A\T y\rangle_{\R^n}.
+    \end{aligned}\]</p>
+    <p><strong>(2) Complex case.</strong>
+    \[\begin{aligned}
+    \langle Ax, y\rangle_{\C^m} &= \sum_{i=1}^{m} \overline{(Ax)_i}\, y_i = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_j}\,\overline{A_{ij}}\, y_i \\
+                                &= \sum_{j=1}^{n} \overline{x_j} \sum_{i=1}^{m} (A\herm)_{ji}\, y_i \\
+                                &= \sum_{j=1}^{n} \overline{x_j}\,(A\herm y)_j = \langle x, A\herm y\rangle_{\C^n}.
+    \end{aligned}\]</p>
+  </div>
+
+  <p>It follows from the Riesz Representation Theorem that every operator has an adjoint.</p>
+
+  <div class="box thm">
+    <p class="box-head">Definition / Theorem 8 <span class="name">— Adjoint (LADR 7.1, 7.4)</span></p>
+    <p>Let \( V \) and \( W \) be finite-dimensional vector spaces and \( T \in \Lin(V, W) \). There exists a unique operator \( T^* \in \Lin(W, V) \) such that
+    \[ \forall\, x \in V,\ y \in W : \quad \langle Tx, y\rangle_W = \langle x, T^* y\rangle_V. \]
+    We call \( T^* \) the adjoint of \( T \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Recall the Riesz Representation Theorem (Theorem 7): for a finite-dimensional inner product space \( V \), every linear functional \( \ell \in V' \) is \( \ell(x) = \langle v, x\rangle \) for a unique \( v \in V \).</p>
+    <p>Fix \( y \in W \) and consider the linear functional \( \phi : V \to \F \), \( \phi(x) = \langle y, Tx\rangle \). By Riesz, there is a unique \( v \in V \) with \( \phi(x) = \langle v, x\rangle \); write \( v = T^* y \). Then \( \langle y, Tx\rangle = \langle T^* y, x\rangle \); taking conjugates, \( \langle Tx, y\rangle_W = \langle x, T^* y\rangle_V \), and \( T^* y \) is unique.</p>
+    <p><strong>\( T^* \) is linear.</strong> For \( y_1, y_2 \in W \): \( \langle Tx, y_1 + y_2\rangle = \langle Tx, y_1\rangle + \langle Tx, y_2\rangle \) gives \( \langle x, T^*(y_1 + y_2)\rangle = \langle x, T^* y_1 + T^* y_2\rangle \ \forall\, x \), so \( T^*(y_1 + y_2) = T^* y_1 + T^* y_2 \). For \( \alpha \in \F \): \( \langle Tx, \alpha y\rangle = \alpha\langle Tx, y\rangle \) gives \( \langle x, T^*(\alpha y)\rangle = \alpha\langle x, T^* y\rangle \), so \( T^*(\alpha y) = \alpha T^* y \). Hence \( T^* \in \Lin(W, V) \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 59 <span class="name">— Properties of the adjoint (LADR 7.5)</span></p>
+    <p>Let \( T, S \in \Lin(V) \) and \( a \in \F \). Show that</p>
+    <ol class="claims">
+      <li>\( (T + S)^* = T^* + S^* \) and \( (aT)^* = \bar a\, T^* \);</li>
+      <li>\( (T^*)^* = T \);</li>
+      <li>\( (TS)^* = S^* T^* \);</li>
+      <li>\( I^* = I \) (\( I \) the identity operator on \( V \));</li>
+      <li>if \( T \) is invertible, then \( T^* \) is invertible and \( (T^*)^{-1} = (T^{-1})^* \).</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Each identity follows by moving operators across \( \langle\cdot,\cdot\rangle \) and using uniqueness of the adjoint.</p>
+    <p><strong>(1)</strong> \( \langle (S+T)v, w\rangle = \langle Sv, w\rangle + \langle Tv, w\rangle = \langle v, (S^* + T^*)w\rangle \Rightarrow (S+T)^* = S^* + T^* \). And \( \langle (aT)v, w\rangle = \bar a\langle Tv, w\rangle = \langle v, \bar a T^* w\rangle \Rightarrow (aT)^* = \bar a\, T^* \).</p>
+    <p><strong>(2)</strong> \( \langle T^* w, v\rangle = \overline{\langle v, T^* w\rangle} = \overline{\langle Tv, w\rangle} = \langle w, Tv\rangle \), and \( \langle T^* w, v\rangle = \langle w, (T^*)^* v\rangle \), so \( (T^*)^* = T \).</p>
+    <p><strong>(3)</strong> \( \langle (TS)v, w\rangle = \langle T(Sv), w\rangle = \langle Sv, T^* w\rangle = \langle v, S^* T^* w\rangle \Rightarrow (TS)^* = S^* T^* \).</p>
+    <p><strong>(4)</strong> \( \langle Iv, w\rangle = \langle v, w\rangle \Rightarrow \langle v, I^* w\rangle = \langle v, w\rangle \Rightarrow I^* = I \).</p>
+    <p><strong>(5)</strong> From \( TT^{-1} = I \), taking adjoints, \( (T^{-1})^* T^* = I \); from \( T^{-1}T = I \), \( T^*(T^{-1})^* = I \). So \( T^* \) is invertible with \( (T^*)^{-1} = (T^{-1})^* \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — transpose/Hermitian transpose, Ex 58, the adjoint (Thm 8) &amp; Ex 59 (pages 20–29)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image020.png" alt="Original handwritten page 20">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image021.png" alt="Original handwritten page 21">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image022.png" alt="Original handwritten page 22">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image023.png" alt="Original handwritten page 23">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image024.png" alt="Original handwritten page 24">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image025.png" alt="Original handwritten page 25">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image026.png" alt="Original handwritten page 26">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image027.png" alt="Original handwritten page 27">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image028.png" alt="Original handwritten page 28">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image029.png" alt="Original handwritten page 29">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- THE FOUR FUNDAMENTAL SUBSPACES                                     -->
+  <!-- ================================================================== -->
+  <h2 class="sec">The Four Fundamental Subspaces</h2>
+
+  <p>We can identify four "fundamental subspaces" associated with any \( T \in \Lin(V, W) \): \( \Null(T),\ \Range(T^*) \subseteq V \) and \( \Null(T^*),\ \Range(T) \subseteq W \).</p>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 9 <span class="name">— LADR 7.6</span></p>
+    <p>Let \( T \in \Lin(V, W) \). Then</p>
+    <ol class="claims">
+      <li>\( \Null(T^*T) = \Null(T) \) and \( \Null(TT^*) = \Null(T^*) \);</li>
+      <li>\( \rank T^* = \rank T \);</li>
+      <li>\( \Null(T)^{\perp} = \Range(T^*) \) and \( \Null(T^*)^{\perp} = \Range(T) \);</li>
+      <li>\( V = \Null(T) \oplus \Range(T^*) \) and \( W = \Null(T^*) \oplus \Range(T) \).</li>
+    </ol>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p><strong>(1)</strong> Since \( (T^*)^* = T \), we only prove one (the other follows by exchanging \( T \leftrightarrow T^* \)). If \( (T^*T)v = 0 \), then \( \langle v, T^*Tv\rangle = 0 \), i.e. \( \langle Tv, Tv\rangle = 0 \), so \( Tv = 0 \). Hence \( \Null(T^*T) = \Null(T) \); similarly \( \Null(TT^*) = \Null(T^*) \).</p>
+    <p><strong>(3)</strong> Suppose \( v \in \Null(T) \), so \( Tv = 0 \) and \( \langle Tv, w\rangle = 0 \ \forall\, w \), i.e. \( \langle v, T^*w\rangle = 0 \), so \( v \perp T^*w \). Hence \( \Null(T)^{\perp} = \Range(T^*) \); exchanging \( T \leftrightarrow T^* \) gives \( \Null(T^*)^{\perp} = \Range(T) \).</p>
+    <p><strong>(4)</strong> For any subspace \( U \subseteq V \) we have \( V = U \oplus U^{\perp} \). With \( \Null(T)^{\perp} = \Range(T^*) \), \( V = \Null(T) \oplus \Range(T^*) \); and \( W = \Null(T^*) \oplus \Range(T) \).</p>
+    <p><strong>(2)</strong> By rank–nullity, \( \dim V = \rank T + \nullity T \). From \( V = \Null(T) \oplus \Range(T^*) \), \( \dim V = \nullity T + \rank T^* \). Equating, \( \rank T = \rank T^* \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 60</p>
+    <p>Let \( A \in \R^{m\times n} \) and \( b \in \R^m \) be such that \( Ax = b \) admits a solution. Show that there is a solution of the form \( x = A\T z \) where \( z \in \R^m \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Let \( T \) with \( [T] = A \), so \( [T^*] = A\T \) (since \( A \in \R^{m\times n} \); used without proof, LADR 7.9), and \( \Null(A) = \Null(T) \), \( \Range(A) = \Range(T) \), etc. Given \( Ax = b \) has a solution, \( b \in \Range(A) \). Now
+    \[\begin{aligned}
+    \Range(A) &= \Null(A\T)^{\perp} = \Null(AA\T)^{\perp} \\
+              &= \Range\big((AA\T)\T\big) = \Range\big((A\T)\T A\T\big) = \Range(AA\T),
+    \end{aligned}\]
+    using \( \Null(TT^*) = \Null(T^*) \) and \( (AA\T)\T = AA\T \). Since \( b \in \Range(A) = \Range(AA\T) \), there exists \( z \in \R^m \) with \( AA\T z = b \), i.e. \( A(A\T z) = b \). Thus \( x = A\T z \) is a solution.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 61 <span class="name">— Normal equations</span></p>
+    <p>Let \( A \in \R^{m\times n} \). Show that \( A\T A x = A\T b \) has a solution for all \( b \in \R^m \). Moreover, show that the solution is unique if and only if \( \Null(A) = \{0\} \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Existence.</strong> \( A\T b \in \Range(A\T) \) for all \( b \). And
+    \[\begin{aligned}
+    \Range(A\T) &= \Null(A)^{\perp} = \Null(A\T A)^{\perp} \\
+                &= \Range\big((A\T A)\T\big) = \Range(A\T A),
+    \end{aligned}\]
+    using \( \Null(T^*T) = \Null(T) \) and \( (A\T A)\T = A\T A \). The system \( A\T A x = A\T b \) needs \( A\T b \in \Range(A\T A) = \Range(A\T) \), which always holds. So a solution always exists.</p>
+    <p><strong>Uniqueness \( \iff \Null(A) = \{0\} \).</strong> A unique solution requires the map \( T \) (\( [T] = A \)) to be injective: \( T(x_1) = T(x_2) \Rightarrow x_1 = x_2 \). We showed earlier that \( T \) is injective \( \iff \Null(T) = \{0\} \) (LADR 3.15). So the normal equations have a unique solution iff \( \Null(A) = \{0\} \).</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Result <span class="name">— LADR 3.15</span></p>
+    <p>\( T \in \Lin(V, W) \) is injective \( \iff \Null(T) = \{0\} \). <em>(\( \Rightarrow \))</em> If \( v \in \Null(T) \), then \( Tv = 0 = T(0) \Rightarrow v = 0 \). <em>(\( \Leftarrow \))</em> If \( Tv_1 = Tv_2 \), then \( T(v_1 - v_2) = 0 \Rightarrow v_1 - v_2 = 0 \Rightarrow v_1 = v_2 \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Theorem 9 &amp; proof, Ex 60–61, LADR 3.15 (pages 29–38)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image029.png" alt="Original handwritten page 29">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image030.png" alt="Original handwritten page 30">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image031.png" alt="Original handwritten page 31">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image032.png" alt="Original handwritten page 32">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image033.png" alt="Original handwritten page 33">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image034.png" alt="Original handwritten page 34">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image035.png" alt="Original handwritten page 35">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image036.png" alt="Original handwritten page 36">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image037.png" alt="Original handwritten page 37">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image038.png" alt="Original handwritten page 38">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- SELF-ADJOINT OPERATORS                                             -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Self-Adjoint Operators</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 28 <span class="name">— Self-adjoint</span></p>
+    <p>An operator is self-adjoint if \( T^* = T \), i.e. if \( \forall\, x, y \in V : \langle Tx, y\rangle = \langle x, Ty\rangle \). In particular, a real self-adjoint matrix (\( A\T = A \)) is called symmetric, and a complex self-adjoint matrix (\( A\herm = A \)) is called Hermitian.</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Remark</p>
+    <p>The inner product is essential in deciding if an operator is self-adjoint. An operator that is self-adjoint w.r.t. one inner product need not be self-adjoint w.r.t. a different inner product.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 62</p>
+    <p>Let \( P \in \Lin(V) \) be such that \( P^2 = P \). Prove that \( P \) is an orthogonal projector if and only if \( P \) is self-adjoint.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>(\( \Rightarrow \)) Orthogonal projector \( \Rightarrow \) self-adjoint.</strong> This is Ex 57: with \( V = U \oplus U^{\perp} \), \( P = P_U \), and \( v_1 = u_1 + w_1 \), \( v_2 = u_2 + w_2 \),
+    \[ \langle Pv_1, v_2\rangle = \langle u_1, u_2\rangle = \langle v_1, Pv_2\rangle, \]
+    so \( P = P^* \).</p>
+    <p><strong>(\( \Leftarrow \)) Self-adjoint \( \Rightarrow \) orthogonal projector.</strong> Given \( P = P^* \) and \( P^2 = P \). Then
+    \[ V = \Null(P) \oplus \Range(P^*) = \Null(P) \oplus \Range(P), \qquad \Null(P) = \Range(P)^{\perp}, \]
+    using \( P = P^* \). Put \( U = \Range(P) \), \( U^{\perp} = \Null(P) \). For \( v = u + w \) (\( u \in U \), \( w \in U^{\perp} \)): any \( u \in \Range(P) \) satisfies \( P(u) = u \) (since \( u = P(x) \Rightarrow P(u) = P^2(x) = P(x) = u \)), and \( P(w) = 0 \). Hence \( P(v) = u \), so \( P \) is the orthogonal projector onto \( U = \Range(P) \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 63</p>
+    <p>Let \( u \in \R^n \). Verify that \( A_{ij} = u_i u_j \) (\( 1 \le i, j \le n \)) is symmetric. For \( v \in \C^n \), verify that \( A_{ij} = v_i \bar v_j \) (\( 1 \le i, j \le n \)) is Hermitian.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Symmetric.</strong> \( A_{ij} = u_i u_j = u_j u_i = A_{ji} \ \forall\, i, j \), so \( A = A\T \).</p>
+    <p><strong>Hermitian.</strong> \( A_{ij} = v_i \bar v_j = \bar v_j v_i = \overline{v_j \bar v_i} = \overline{A_{ji}} \ \forall\, i, j \), so \( A = A\herm \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — self-adjoint operators, Def 28, Ex 62–63 (pages 38–41)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image038.png" alt="Original handwritten page 38">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image039.png" alt="Original handwritten page 39">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image040.png" alt="Original handwritten page 40">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image041.png" alt="Original handwritten page 41">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- NORMAL & UNITARY OPERATORS                                         -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Normal &amp; Unitary Operators</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 29 <span class="name">— Normal</span></p>
+    <p>An operator \( T \in \Lin(V) \) is said to be normal if it commutes with its adjoint:
+    \[ TT^* = T^*T. \]
+    A self-adjoint operator (\( T = T^* \)) is normal. In particular, any symmetric or Hermitian matrix is normal.</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 30 <span class="name">— Unitary</span></p>
+    <p>An operator \( T \in \Lin(V) \) is said to be unitary if
+    \[ TT^* = T^*T = \mathrm{Id}. \]
+    A real-valued unitary matrix is called an orthogonal matrix. If \( V \) is finite-dimensional, we just need one of the equalities above for \( T \) to be unitary.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 64</p>
+    <p>Let \( V \) be finite-dimensional. Show that \( T^*T = \mathrm{Id} \) if and only if \( TT^* = \mathrm{Id} \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>(\( \Rightarrow \))</strong> \( T^*T = \mathrm{Id} \Rightarrow \Null(T^*T) = \{0\} \); but \( \Null(T^*T) = \Null(T) \), so \( \Null(T) = \{0\} \) and \( T \) is injective. In finite dimensions injectivity implies surjectivity (LADR 3.65), so by rank–nullity \( \rank T = \dim V \) and \( T \) is invertible. From \( TT^{-1} = \mathrm{Id} \), applying \( T^* \): \( T^*T\,T^{-1} = T^* \Rightarrow T^{-1} = T^* \), hence \( TT^* = \mathrm{Id} \).</p>
+    <p><strong>(\( \Leftarrow \))</strong> \( TT^* = \mathrm{Id} \Rightarrow \Range(TT^*) = V \), and \( \Range(TT^*) = \Null(TT^*)^{\perp} = \Null(T^*)^{\perp} = \Range(T) \), so \( \Range(T) = V \) and \( T \) is surjective, hence (finite dimensions) bijective and invertible. From \( T^{-1}T = \mathrm{Id} \), applying \( T^* \) on the right: \( T^{-1}TT^* = T^* \Rightarrow T^{-1} = T^* \), hence \( T^*T = \mathrm{Id} \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — normal &amp; unitary operators, Def 29–30, Ex 64 (pages 41–44)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image041.png" alt="Original handwritten page 41">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image042.png" alt="Original handwritten page 42">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image043.png" alt="Original handwritten page 43">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image044.png" alt="Original handwritten page 44">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- CHARACTERIZATION OF UNITARY OPERATORS                              -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Characterization of Unitary Operators</h2>
+
+  <div class="box ex">
+    <p class="box-head">Ex 65 <span class="name">— LADR 7.53</span></p>
+    <p>Let \( V \) be finite-dimensional and \( T \in \Lin(V) \). Show that the following are equivalent:</p>
+    <ol class="claims">
+      <li>\( T \) is unitary, i.e. \( T^*T = TT^* = \mathrm{Id} \);</li>
+      <li>\( T \) is an isomorphism and \( T^{-1} = T^* \);</li>
+      <li>\( \forall\, x \in V : \|Tx\| = \|x\| \) (isometry);</li>
+      <li>\( \forall\, x, y \in V : \langle Tx, Ty\rangle = \langle x, y\rangle \);</li>
+      <li>\( T \) maps any ONB into a (possibly different) ONB.</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution <span class="name">— cycle (1) ⟹ (2) ⟹ (3) ⟹ (4) ⟹ (5) ⟹ (1)</span></p>
+    <p><strong>(1) \( \Rightarrow \) (2).</strong> \( T^*T = \mathrm{Id} \Rightarrow T \) injective and \( TT^* = \mathrm{Id} \Rightarrow T \) surjective (Ex 64); in finite dimensions \( T \) is an isomorphism. Applying \( T^{-1} \) to \( T^*T = \mathrm{Id} \) gives \( T^* = T^{-1} \).</p>
+    <p><strong>(2) \( \Rightarrow \) (3).</strong> \( \|Tx\|^2 = \langle Tx, Tx\rangle = \langle x, T^*Tx\rangle = \langle x, \mathrm{Id}(x)\rangle = \langle x, x\rangle \) (using \( T^* = T^{-1} \)), so \( \|Tx\| = \|x\| \).</p>
+    <p><strong>(3) \( \Rightarrow \) (4).</strong> By the polarization identity (below), the inner product is determined by the norm; since \( T \) preserves norms,
+    \[\begin{aligned}
+    \langle Tx, Ty\rangle
+      &= \tfrac14\big(\|T(x+y)\|^2 - \|T(x-y)\|^2 - i\|T(x+iy)\|^2 + i\|T(x-iy)\|^2\big) \\
+      &= \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 - i\|x+iy\|^2 + i\|x-iy\|^2\big) \\
+      &= \langle x, y\rangle.
+    \end{aligned}\]</p>
+    <p><strong>(4) \( \Rightarrow \) (5).</strong> Let \( e_1, \dots, e_n \) be an ONB and \( q_i = Te_i \). Then \( \langle q_i, q_j\rangle = \langle Te_i, Te_j\rangle = \langle e_i, e_j\rangle = \delta_{ij} \), and \( \|q_i\|^2 = \langle e_i, e_i\rangle = 1 \). So \( Te_1, \dots, Te_n \) is an ONB.</p>
+    <p><strong>(5) \( \Rightarrow \) (1).</strong> Let \( e_1, \dots, e_n \) be an ONB, so \( Te_1, \dots, Te_n \) is too. For \( u = \sum a_i e_i \), \( v = \sum b_i e_i \), both \( \langle u, v\rangle \) and \( \langle Tu, Tv\rangle \) equal \( \bar a_1 b_1 + \dots + \bar a_n b_n \). Hence \( \langle u, (T^*T - I)v\rangle = 0 \ \forall\, u, v \Rightarrow T^*T = I \), and (Ex 64) \( TT^* = I \), so \( T \) is unitary.</p>
+  </div>
+
+  <!-- RESOLVED (correctness pass): scan (image047-048) derivation has sign slips — writes <iy,iy> = -||y||^2 (should be +||y||^2) and flips the Im sign — landing on the standard textbook identity, which assumes conjugate-linearity in the SECOND slot. This course is conjugate-linear in the FIRST slot (Ch4 Thm 4: <u,w>=conj(a1)b1+...; the derivation's own <x,iy>=+i<x,y> confirms it). Under first-slot convention the boxed identity computes <y,x>, not <x,y> (check x=1,y=i: <x,y>=i but the formula gives -i). Corrected: imaginary-part signs flipped (user-approved). Explained in .box.corr. -->
+  <div class="box rem">
+    <p class="box-head">Polarization Identity</p>
+    <p>From \( \|x \pm y\|^2 = \|x\|^2 + \|y\|^2 \pm (\langle x, y\rangle + \langle y, x\rangle) \) one gets \( \operatorname{Re}\langle x, y\rangle = \tfrac14(\|x+y\|^2 - \|x-y\|^2) \), and from the analogous \( \|x \pm iy\|^2 \) expansions <span class="corr" title="sign corrected for the first-slot convention; see the Correction below">\( \operatorname{Im}\langle x, y\rangle = \tfrac14(\|x-iy\|^2 - \|x+iy\|^2) \)</span>. Hence
+    \[ \langle x, y\rangle = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 - i\|x+iy\|^2 + i\|x-iy\|^2\big). \]</p>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction</p>
+    <p>The handwritten derivation writes \( \langle iy, iy\rangle = -\|y\|^2 \) (it is \( +\|y\|^2 \)) and flips the sign of \( \operatorname{Im}\langle x,y\rangle \), landing on the standard textbook identity \( \tfrac14(\dots + i\|x+iy\|^2 - i\|x-iy\|^2) \). That form assumes the inner product is conjugate-linear in the <em>second</em> slot. This course's convention is conjugate-linear in the <strong>first</strong> slot (Ch 4, Theorem 4: \( \langle u,w\rangle = \bar\alpha_1\beta_1 + \dots \)), under which the standard form computes \( \langle y, x\rangle \) instead. The imaginary signs are flipped above to match: e.g. with \( x = 1,\ y = i \), \( \langle x,y\rangle = \bar 1\cdot i = i \), which the corrected formula gives (the original yields \( -i \)). <strong>The same corrected signs are now used in the (3) ⟹ (4) step of Ex 65 above</strong>, which pass 1 had inadvertently left in the textbook (second-slot) form.</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Alternative proof approach <span class="name">— cycle (3) ⟹ (1) ⟹ (4) ⟹ (2) ⟹ (5) ⟹ (3); LADR 7.45, 7.49</span></p>
+    <p>The genuinely different step is <strong>(3) \( \Rightarrow \) (1)</strong>: for \( v \in V \),
+    \[ \langle (I - T^*T)v, v\rangle = \langle v, v\rangle - \langle T^*Tv, v\rangle = \|v\|^2 - \|Tv\|^2 = 0 \quad \forall\, v \implies I - T^*T = 0, \]
+    so \( T^*T = I \), and (Ex 64) \( TT^* = I \). The remaining implications mirror the cycle above.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — unitary characterization Ex 65, both proof routes &amp; polarization identity (pages 45–54)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image045.png" alt="Original handwritten page 45">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image046.png" alt="Original handwritten page 46">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image047.png" alt="Original handwritten page 47">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image048.png" alt="Original handwritten page 48">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image049.png" alt="Original handwritten page 49">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image050.png" alt="Original handwritten page 50">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image051.png" alt="Original handwritten page 51">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image052.png" alt="Original handwritten page 52">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image053.png" alt="Original handwritten page 53">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image054.png" alt="Original handwritten page 54">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- EXAMPLES OF UNITARY OPERATORS                                      -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Examples of Unitary Operators</h2>
+
+  <div class="box ex">
+    <p class="box-head">Ex 66</p>
+    <p>Show that the following operators are unitary.</p>
+    <ol class="claims">
+      <li>\( T \in \Lin(\R^2) \), \( T(x_1, x_2) = (x_2, -x_1) \).</li>
+      <li>\( A \in \R^{2\times 2} \), \( A = \begin{bmatrix} \cos\theta &amp; \sin\theta \\ -\sin\theta &amp; \cos\theta \end{bmatrix} \).</li>
+      <li>\( A \in \C^{2\times 2} \), \( A = \dfrac{1}{\sqrt 2}\begin{bmatrix} e^{i\theta} &amp; -e^{-i\theta} \\ e^{i\theta} &amp; e^{-i\theta} \end{bmatrix} \).</li>
+    </ol>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>(1)</strong> For \( x = (x_1, x_2) \in \R^2 \), \( \|Tx\| = \sqrt{x_2^2 + (-x_1)^2} = \sqrt{x_1^2 + x_2^2} = \|x\| \). As \( \R^2 \) is finite-dimensional, \( T \) is unitary (isometry \( \Rightarrow \) unitary, Ex 65).</p>
+    <p><strong>(2)</strong> With ONB \( e_1 = (1,0) \), \( e_2 = (0,1) \): \( Ae_1 = (\cos\theta, -\sin\theta) = q_1 \), \( Ae_2 = (\sin\theta, \cos\theta) = q_2 \). Then \( \langle q_1, q_2\rangle = \cos\theta\sin\theta - \sin\theta\cos\theta = 0 \) and \( \|q_1\| = \|q_2\| = \sqrt{\cos^2\theta + \sin^2\theta} = 1 \), so \( q_1, q_2 \) is an ONB. Thus \( A \) maps an ONB to an ONB, so \( A \) is unitary. (Equivalently, \( A\T A = I \).)</p>
+    <p><strong>(3)</strong> Here \( A\herm = \dfrac{1}{\sqrt 2}\begin{bmatrix} e^{-i\theta} &amp; e^{-i\theta} \\ -e^{i\theta} &amp; e^{i\theta} \end{bmatrix} \), and
+    \[ A\herm A = \frac12 \begin{bmatrix} e^{-i\theta} &amp; e^{-i\theta} \\ -e^{i\theta} &amp; e^{i\theta} \end{bmatrix}\begin{bmatrix} e^{i\theta} &amp; -e^{-i\theta} \\ e^{i\theta} &amp; e^{-i\theta} \end{bmatrix} = \frac12 \begin{bmatrix} 1+1 &amp; -e^{-2i\theta} + e^{-2i\theta} \\ -e^{2i\theta} + e^{2i\theta} &amp; 1+1 \end{bmatrix} = \frac12\begin{bmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{bmatrix} = I. \]
+    So \( A\herm A = I \), hence \( A \) is unitary.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — unitary examples, Ex 66 (pages 54–56)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image054.png" alt="Original handwritten page 54">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image055.png" alt="Original handwritten page 55">
+      <img loading="lazy" src="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces_files/image056.png" alt="Original handwritten page 56">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 5. <a href="index.html">← All chapters</a> · <a href="Ch5_%20Transforms%20on%20Inner%20Product%20Spaces.htm">complete original export ↗</a></p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. The orthogonal-basis projection formula (Ex 55) was reconstructed from fragments the export scattered across a layout grid (shown side-by-side in the scan toggle). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
+  </footer>
+
+</div>
+</body>
+</html>

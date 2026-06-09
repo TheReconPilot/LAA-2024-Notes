@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch2: Vector Spaces · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch2 · Vector Spaces</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 2 — Vector Spaces</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- RESOLVED (correctness pass): numbering verified continuous against the scans — Def 1–9 (Ch3 begins at Def 10), Prop 1–5, Lemma 1, Thm 1, Cor 1, Ex 1–25. ONE real gap found & fixed: Definition 6 (finite-dimensional vector space) had been dropped in the condensed transcription (body jumped Def 5 → Def 7); restored below from image018–019. Colours normalised by role (intentional, per project conventions). -->
+
+  <!-- ================================================================== -->
+  <!-- VECTOR SPACES                                                      -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Vector Spaces</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 1 <span class="name">— Vector space</span></p>
+    <p>A vector space over a field \( (\F, +, \cdot) \) is a set \(V\) with addition \( + : V\times V \to V \) and scalar multiplication \( \cdot : \F\times V \to V \) satisfying, for all \( u, v, w \in V \) and \( \alpha, \beta \in \F \):</p>
+    <ol class="claims">
+      <li>\( u + v = v + u \) (commutativity);</li>
+      <li>\( (u + v) + w = u + (v + w) \) (associativity);</li>
+      <li>\( \exists\, 0_V \in V : v + 0_V = v \) (additive identity);</li>
+      <li>\( \exists\, -v \in V : v + (-v) = 0_V \) (additive inverse);</li>
+      <li>\( \alpha(u + v) = \alpha u + \alpha v \) and \( (\alpha + \beta)v = \alpha v + \beta v \) (distributivity);</li>
+      <li>\( \alpha(\beta v) = (\alpha\beta)v \); and \( 1\cdot v = v \).</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 1</p>
+    <p>Show that the null vector and the inverse of a given vector are unique.</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>If \( 0 \) and \( 0' \) are both null vectors, \( 0 = 0 + 0' = 0' \). If \(w, w'\) are both inverses of \(v\), \( w = w + 0 = w + (v + w') = (w + v) + w' = 0 + w' = w' \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 2</p>
+    <p>Let \(V\) be a vector space over \( \F \). Show that \( \alpha\,0_V = 0_V \), \( 0_\F\, v = 0_V \), and \( \alpha v = 0_V \Rightarrow \alpha = 0 \) or \( v = 0 \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( \alpha\,0_V = \alpha(0_V + 0_V) = \alpha\,0_V + \alpha\,0_V \), so \( \alpha\,0_V = 0_V \). Similarly \( 0_\F\,v = (0_\F + 0_\F)v = 0_\F v + 0_\F v \Rightarrow 0_\F v = 0_V \). If \( \alpha v = 0_V \) with \( \alpha \neq 0 \), then \( v = 1\cdot v = (\alpha^{-1}\alpha)v = \alpha^{-1}(\alpha v) = \alpha^{-1}0_V = 0_V \).</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 2(3), added in review</span></p>
+    <p>The instructor's Exercise 2(3) asks to show \( (-1)_\F\, v = -v \); the solution above instead proves the cancellation law, so we supply this part. Since \( (-1)v + v = (-1)v + 1\cdot v = \big((-1) + 1\big)v = 0_\F\, v = 0_V \) (using part 2), \( (-1)v \) is an additive inverse of \(v\); by uniqueness of inverses (Ex 1), \( (-1)v = -v \).</p>
+  </div>
+
+  <div class="box example">
+    <p class="box-head">Examples of vector spaces</p>
+    <ol class="claims">
+      <li>\( \F \) is a vector space over \( \F \); more generally \( \F^n \).</li>
+      <li>For a set \(X\) and field-valued functions \( \mathcal{F} = \{ f : X \to \F \} \), with \( (f + g)(x) = f(x) + g(x) \) and \( (\alpha f)(x) = \alpha\,f(x) \), \( \mathcal{F} \) is a vector space (a function space).</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 3</p>
+    <p>Verify the function space \( \mathcal{F} = \{ f : X \to \F \} \) is a vector space, and that the sequence spaces \( \ell^1 = \{ x \in S : \sum_n |x_n| < \infty \} \) and \( \ell^2 = \{ x \in S : \sum_n |x_n|^2 < \infty \} \) (where \( S \) is all complex sequences) are vector spaces over \( \C \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>Function space.</strong> Each of the eight axioms reduces pointwise to the field axioms; e.g. \( (f + g)(x) = f(x) + g(x) = g(x) + f(x) = (g + f)(x) \), the zero is \( 0_{\mathcal F}(x) = 0_\F \), and the inverse is \( (-f)(x) = -f(x) \).</p>
+    <p><strong>\( \ell^1 \).</strong> For \( \ell_1 = (x_n) \), \( \ell_2 = (y_n) \in \ell^1 \), the triangle inequality gives \( \sum_n |x_n + y_n| \le \sum_n |x_n| + \sum_n |y_n| < \infty \), so \( \ell_1 + \ell_2 \in \ell^1 \); the zero sequence and \( -\ell = (-x_n) \) lie in \( \ell^1 \). So \( \ell^1 \) is a vector space.</p>
+    <p><strong>\( \ell^2 \).</strong> Using \( (a - b)^2 \ge 0 \Rightarrow 2ab \le a^2 + b^2 \), \( \sum_n |x_n + y_n|^2 = \sum_n(|x_n|^2 + |y_n|^2 + 2|x_n||y_n|) \le 2\sum_n|x_n|^2 + 2\sum_n|y_n|^2 < \infty \), so \( \ell^2 \) is a vector space.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 4</p>
+    <p>Is \( \mathrm{GL}_n(\C) \) (invertible \( n\times n \) complex matrices) a vector space over \( \C \)?</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>No. The zero matrix \(O\) is not in \( \mathrm{GL}_n(\C) \) (not invertible). Also \( I_n, -I_n \in \mathrm{GL}_n(\C) \) but \( I_n + (-I_n) = O \notin \mathrm{GL}_n(\C) \), so it is not closed under addition.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 5</p>
+    <p>Verify that the set of continuous functions is a vector space over \( \R \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Sums and scalar multiples of continuous functions are continuous, so the set is closed under both operations; the axioms hold pointwise, the zero is the zero function, and \( -f \) is the inverse.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Vector spaces, Ex 1–5 (pages 1–6)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image001.png" alt="Original handwritten page 1">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image003.png" alt="Original handwritten page 3">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image004.png" alt="Original handwritten page 4">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image005.png" alt="Original handwritten page 5">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image006.png" alt="Original handwritten page 6">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- SUBSPACES                                                          -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Subspaces</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 2 <span class="name">— Subspace</span></p>
+    <p>A non-empty set \( U \subseteq V \) is a subspace of \(V\) if \( (U, +, \cdot) \) is itself a vector space over \( \F \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Proposition 1 <span class="name">— Subspace test</span></p>
+    <p>A non-empty \( U \subseteq V \) is a subspace iff \( u + v \in U \) and \( \alpha u \in U \) for all \( u, v \in U \), \( \alpha \in \F \).</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>If \(U\) is a subspace it is closed under both operations. Conversely, closure under scalar multiplication gives \( 0_V = 0\cdot u \in U \) and \( -u = (-1)u \in U \), and the remaining axioms are inherited from \(V\). So it suffices to check the two closure conditions rather than all eight axioms.</p>
+  </div>
+
+  <div class="box example">
+    <p class="box-head">Examples of subspaces</p>
+    <p>\( V \) itself and \( \{0_V\} \); for \( V = \F^n \), sets like \( \{x : x_1 = x_n\} \); and for \( V \) the space of polynomials, \( U = \{ h : h(0) = 0 \} \) (no constant term), which contains \(0\) and is closed under \(+\) and scalar multiplication.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 6</p>
+    <p>Let \( a = (a_1, \dots, a_n) \in \R^n \). Show that \( H = \{ (x_1, \dots, x_n) \in \R^n : a_1 x_1 + \dots + a_n x_n = 0 \} \) is a subspace of \( \R^n \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( 0 \in H \) since \( \sum_i a_i\cdot 0 = 0 \). For \( u = (x_i), v = (y_i) \in H \), \( \sum_i a_i(x_i + y_i) = \sum_i a_i x_i + \sum_i a_i y_i = 0 \), so \( u + v \in H \); and \( \sum_i a_i(\alpha x_i) = \alpha\sum_i a_i x_i = 0 \), so \( \alpha u \in H \). Hence \(H\) is a subspace.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 7</p>
+    <p>Let \(V\) be a vector space over \( \F \) and \(X\) a non-empty subset with \( tu + (1 - t)v \in X \) for all \( u, v \in X \), \( t \in \F \). Prove there is an \( x_0 \in X \) and a subspace \( U \subseteq V \) with \( X = x_0 + U \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Take \( U = X - x_0 \) (any \( x_0 \in X \)). Then \( 0 = x_0 - x_0 \in U \). For \( u = u_x - x_0, v = v_x - x_0 \in U \), \( u + v = (u_x + v_x) - 2x_0 = 2\big[\tfrac12(u_x + v_x) - x_0\big] \in U \) (using the given closure with \( t = \tfrac12 \)), and \( \alpha u = \alpha(u_x - x_0) \in U \). So \(U\) is a subspace, and \( X = U + x_0 \) follows since \( U + x_0 = \{ u_x : u_x \in X \} = X \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Proposition 2</p>
+    <p>Let \( (U_\alpha)_{\alpha\in I} \) be a collection of subspaces of \(V\). Then \( \bigcap_{\alpha\in I} U_\alpha \) is a subspace of \(V\). (The union of two subspaces need not be a subspace.)</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>\( 0 \in U_\alpha \ \forall\,\alpha \), so \( 0 \in \bigcap_\alpha U_\alpha \). If \( u, v \in \bigcap_\alpha U_\alpha \) then \( u, v \in U_\alpha \) for every \( \alpha \), so \( u + v \in U_\alpha \) and \( \alpha' u \in U_\alpha \) for every \( \alpha \); hence both lie in \( \bigcap_\alpha U_\alpha \).</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 3 <span class="name">— Sum of subspaces</span></p>
+    <p>For subspaces \( U_1, \dots, U_m \) of \(V\), \( U_1 + \dots + U_m = \{ u_1 + \dots + u_m : u_i \in U_i \} \). E.g. with \( U_1 = \{x : x_1 = 0\} \), \( U_2 = \{x : x_2 = 0\} \) in \( \R^2 \), \( U_1 + U_2 = \R^2 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 8</p>
+    <p>Verify that \( U_1 + \dots + U_m \) is a subspace, and that it is the smallest subspace containing \( U_1 \cup \dots \cup U_m \): for any subspace \( W \) containing the union, \( U_1 + \dots + U_m \subseteq W \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>It contains \(0\) and is closed under \(+\) and scalar multiplication (componentwise in each \(U_i\)), so it is a subspace. If \(W\) is a subspace containing each \(U_i\), then any \( u_1 + \dots + u_m \) (with \( u_i \in U_i \subseteq W \)) lies in \(W\) by closure; hence \( U_1 + \dots + U_m \subseteq W \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Subspaces, Ex 6–8 (pages 7–13)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image007.png" alt="Original handwritten page 7">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image008.png" alt="Original handwritten page 8">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image009.png" alt="Original handwritten page 9">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image010.png" alt="Original handwritten page 10">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image011.png" alt="Original handwritten page 11">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image012.png" alt="Original handwritten page 12">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image013.png" alt="Original handwritten page 13">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- DIRECT SUMS                                                        -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Direct Sums</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 4 <span class="name">— Direct sum</span></p>
+    <p>\( U_1 + \dots + U_m \) is a direct sum, written \( U_1 \oplus \dots \oplus U_m \), if every element has a unique representation \( v = u_1 + \dots + u_m \) (\( u_i \in U_i \)); equivalently, \( u_1 + \dots + u_m = 0 \Rightarrow u_1 = \dots = u_m = 0 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 9</p>
+    <p>(9.1) Show \( U_1 + \dots + U_m \) is a direct sum iff \( 0 \) has a unique representation \( 0 = u_1 + \dots + u_m \), \( u_i \in U_i \). (9.2) Show \( U_1 + U_2 \) is a direct sum iff \( U_1 \cap U_2 = \{0\} \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>(9.1)</strong> If the sum is direct, \(0\) has the unique representation \( 0 = 0 + \dots + 0 \). Conversely, if \( v = \sum u_i = \sum w_i \) are two representations, subtracting gives \( 0 = \sum(u_i - w_i) \); by uniqueness for \(0\), \( u_i = w_i \), so the representation of every \(v\) is unique.</p>
+    <p><strong>(9.2)</strong> If \( U_1 + U_2 \) is direct and \( v \in U_1 \cap U_2 \), then \( v \in U_1 \), \( -v \in U_2 \), and \( 0 = v + (-v) \); uniqueness forces \( v = 0 \), so \( U_1 \cap U_2 = \{0\} \). Conversely, if \( U_1 \cap U_2 = \{0\} \) and \( u_1 + u_2 = 0 \) (\( u_i \in U_i \)), then \( u_1 = -u_2 \in U_1 \cap U_2 = \{0\} \), so \( u_1 = u_2 = 0 \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Direct sums, Ex 9 (pages 14–16)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image014.png" alt="Original handwritten page 14">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image015.png" alt="Original handwritten page 15">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image016.png" alt="Original handwritten page 16">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- SPAN & LINEAR INDEPENDENCE                                         -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Span &amp; Linear Independence</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 5 <span class="name">— Span</span></p>
+    <p>\( \operatorname{span}(v_1, \dots, v_m) = \{ a_1 v_1 + \dots + a_m v_m : a_i \in \F \} \), the set of all linear combinations.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 10</p>
+    <p>Let \( v_1 = (1, -1) \) and \( v_2 = (1, 1) \). Show \( \operatorname{span}(v_1, v_2) = \R^2 \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>For \( v = (x, y) \), solving \( v = a v_1 + b v_2 \) gives \( x = a + b \), \( y = -a + b \), so \( b = \tfrac{x + y}{2} \), \( a = \tfrac{x - y}{2} \). Hence any \( (x, y) = \tfrac{x-y}{2}v_1 + \tfrac{x+y}{2}v_2 \in \operatorname{span}(v_1, v_2) \), so \( \operatorname{span}(v_1, v_2) = \R^2 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 11</p>
+    <p>Show \( U = \operatorname{span}(v_1, \dots, v_m) \) is a subspace of \(V\), and is the smallest subspace containing \( v_1, \dots, v_m \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( 0 = \sum_i 0\cdot v_i \in U \); sums and scalar multiples of linear combinations are linear combinations, so \(U\) is a subspace. Any subspace \( W \) containing all \( v_i \) must (by closure) contain every \( \sum a_i v_i \), so \( U \subseteq W \); thus \(U\) is the smallest such subspace.</p>
+  </div>
+
+  <!-- RESTORED (correctness pass): Definition 6 (finite-dimensional) was dropped in the condensed Pass-1 transcription (the body jumped Def 5 → Def 7, with finite-dimensionality only summarised in a later aside). Restored from scan image018-019 in its proper position; numbering is now continuous 1–9 (Ch3 begins at Def 10). -->
+  <div class="box def">
+    <p class="box-head">Definition 6 <span class="name">— Finite-dimensional vector space</span></p>
+    <p>A vector space \( V \) is <strong>finite-dimensional</strong> if there exist \( v_1, \dots, v_n \in V \) with \( V = \operatorname{span}(v_1, \dots, v_n) \). A vector space that is not finite-dimensional is <strong>infinite-dimensional</strong>.</p>
+  </div>
+
+  <div class="box example">
+    <p class="box-head">Example 5 <span class="name">— Finite-dimensional spaces</span></p>
+    <p>\( \F^n \), the matrix space \( \F^{m\times n} \), and the polynomials of degree at most \(k\) are all finite-dimensional.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 12</p>
+    <p>Prove that every subspace of a finite-dimensional vector space is finite-dimensional.</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>Let \(V\) be finite-dimensional and \( U \subseteq V \) a subspace. If \( U = \{0\} \) it is finite-dimensional. Otherwise pick \( u_1 \in U\setminus\{0\} \); inductively, while \( \operatorname{span}(u_1, \dots, u_j) \neq U \), choose \( u_{j+1} \in U \setminus \operatorname{span}(u_1, \dots, u_j) \). Adjoining a vector outside the current span keeps the list linearly independent. A linearly independent list in \(V\) can be no longer than a spanning list of \(V\) (Proposition 3 below), and \(V\) has a finite spanning list, so the process must stop after \( r \le \dim V \) steps with \( \operatorname{span}(u_1, \dots, u_r) = U \). Hence \(U\) is finite-dimensional.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 13</p>
+    <p>Verify that \( \R \) is a vector space over \( \R \) and over \( \Q \). Is \( \R \) finite-dimensional over \( \R \)? Over \( \Q \)?</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>With ordinary addition and multiplication, \( \R \) satisfies the eight axioms with scalars drawn from \( \R \), and equally with scalars restricted to \( \Q \) — so it is a vector space over each. Over \( \R \) it is finite-dimensional: \( \{1\} \) spans (every \( x = x\cdot 1 \)), so \( \dim_\R \R = 1 \). Over \( \Q \) it is <em>infinite</em>-dimensional: if \( \{b_1, \dots, b_n\} \) were a basis, every real would be a rational combination \( \sum_i q_i b_i \), giving a surjection \( \Q^n \to \R \); but \( \Q^n \) is countable and \( \R \) is uncountable — a contradiction.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 14</p>
+    <p>Show that (1) the polynomials with complex coefficients and (2) the continuous functions \( f : \R \to \R \) are infinite-dimensional.</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>In both spaces the monomials \( 1, x, x^2, \dots \) are linearly independent: \( a_0 + a_1 x + \dots + a_k x^k = 0 \) as a function forces every \( a_i = 0 \). So for each \(k\) there is a linearly independent list of length \( k+1 \). A finite-dimensional space of dimension \(d\) admits no linearly independent list longer than \(d\) (Proposition 3 below), so neither space is finite-dimensional.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 15</p>
+    <p>Let \(V\) be a vector space. Show the following are equivalent: (1) \(V\) is infinite-dimensional; (2) for every \( k \ge 1 \) there exist \(k\) linearly independent vectors; (3) for every \( k \ge 1 \) and \( v_1, \dots, v_k \in V \) there exists \( v \in V \setminus \operatorname{span}(v_1, \dots, v_k) \).</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p><strong>(1) \( \Rightarrow \) (3).</strong> If some \( v_1, \dots, v_k \) had \( \operatorname{span}(v_1, \dots, v_k) = V \), then \(V\) would be finite-dimensional; so for every list there is a \(v\) outside its span. <strong>(3) \( \Rightarrow \) (2).</strong> Build the list inductively: given linearly independent \( v_1, \dots, v_j \), (3) supplies \( v_{j+1} \notin \operatorname{span}(v_1, \dots, v_j) \), and a vector outside the span preserves independence; so lists of every length exist. <strong>(2) \( \Rightarrow \) (1).</strong> If \(V\) were finite-dimensional with \( \dim V = d \), no linearly independent list could exceed length \(d\) (Proposition 3 below), contradicting (2) at \( k = d+1 \).</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 7 <span class="name">— Linear independence</span></p>
+    <p>\( v_1, \dots, v_m \in V \) are linearly independent (LI) if \( a_1 v_1 + \dots + a_m v_m = 0 \Rightarrow a_1 = \dots = a_m = 0 \); otherwise they are linearly dependent (LD).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 16</p>
+    <ol class="claims">
+      <li>Show \( v_1 = (1, 1) \), \( v_2 = (-1, 1) \) are LI in \( \R^2 \). From \( a_1 v_1 + a_2 v_2 = 0 \): \( a_1 - a_2 = 0 \), \( a_1 + a_2 = 0 \Rightarrow 2a_1 = 0 \Rightarrow a_1 = a_2 = 0 \).</li>
+      <li>The standard basis \( e_1, \dots, e_n \in \F^n \) (\( (e_i)_j = \delta_{ij} \)) is LI: \( \sum_i a_i e_i = 0 \) gives \( a_1 = \dots = a_n = 0 \) componentwise.</li>
+      <li>The functions \( e_k(t) = \exp(i\,2\pi k t) \), \( t \in [0, 1] \), are LI in the space of complex-valued functions. <span class="aside">(worked below)</span></li>
+    </ol>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 16(3), added in review</span></p>
+    <p>The \( e_k \) are pairwise orthogonal on \( [0,1] \): for integers \( k, l \),
+      \[ \int_0^1 e_k(t)\,\overline{e_l(t)}\,dt = \int_0^1 \exp\!\big(i\,2\pi (k - l) t\big)\,dt = \begin{cases} 1, & k = l,\\ 0, & k \neq l,\end{cases} \]
+      since a full-period complex exponential integrates to \(0\). So if \( \sum_j a_j e_{k_j} = 0 \) as a function (distinct integers \( k_j \)), multiplying by \( \overline{e_{k_i}} \) and integrating gives \( a_i = 0 \) for each \(i\). Hence the \( e_k \) are linearly independent.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 17</p>
+    <p>If \( v_1, \dots, v_m \) are linearly independent, show \( \operatorname{span}(v_1, \dots, v_m) = \operatorname{span}(v_1) \oplus \dots \oplus \operatorname{span}(v_m) \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>For a direct sum we need \( u_1 + \dots + u_m = 0 \Rightarrow u_i = 0 \) with \( u_i \in \operatorname{span}(v_i) \), i.e. \( u_i = a_i v_i \). Then \( \sum a_i v_i = 0 \) and LI of the \( v_i \) give \( a_i = 0 \), so each \( u_i = 0 \); the sum is direct. Both inclusions \( \operatorname{span}(v_1, \dots, v_m) = \sum_i \operatorname{span}(v_i) \) are immediate, so \( \operatorname{span}(v_1, \dots, v_m) = \bigoplus_i \operatorname{span}(v_i) \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Span, linear independence &amp; finite-dimensionality, Ex 10–17 (pages 16–28)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image017.png" alt="Original handwritten page 17">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image018.png" alt="Original handwritten page 18">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image019.png" alt="Original handwritten page 19">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image020.png" alt="Original handwritten page 20">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image021.png" alt="Original handwritten page 21">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image022.png" alt="Original handwritten page 22">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image023.png" alt="Original handwritten page 23">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image024.png" alt="Original handwritten page 24">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image025.png" alt="Original handwritten page 25">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image026.png" alt="Original handwritten page 26">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image027.png" alt="Original handwritten page 27">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image028.png" alt="Original handwritten page 28">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- BASIS & DIMENSION                                                  -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Basis &amp; Dimension</h2>
+
+  <div class="box thm">
+    <p class="box-head">Lemma 1 <span class="name">— Linear dependence lemma</span></p>
+    <p>Let \( v_1, \dots, v_k \) be LI and \( v_1, \dots, v_{k+p} \) be LD. Then there exists \( 1 \le j \le p \) with \( v_{k+j} \in \operatorname{span}(v_1, \dots, v_{k+j-1}) \).</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Since \( v_1, \dots, v_{k+p} \) are LD, \( a_1 v_1 + \dots + a_{k+p}v_{k+p} = 0 \) with not all \( a_i = 0 \). Let \(j\) be the largest index with \( a_{k+j} \neq 0 \) (some \( a_{k+i} \) with \( i > 0 \) is non-zero, else the LI \( v_1, \dots, v_k \) would be dependent). Then \( v_{k+j} = -\tfrac{1}{a_{k+j}}\big(a_1 v_1 + \dots + a_{k+j-1}v_{k+j-1}\big) \in \operatorname{span}(v_1, \dots, v_{k+j-1}) \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Proposition 3</p>
+    <p>If \( V = \operatorname{span}(v_1, \dots, v_m) \) and \( u_1, \dots, u_n \in V \) are LI, then \( n \le m \) (the length of a LI list is at most the length of a spanning list).</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof (sketch)</p>
+    <p>Repeatedly swap a \(u\) into the spanning list and remove a \(v\): at each step the list still spans \(V\), and the linear-dependence lemma guarantees a \(v\) can be removed. If \( n > m \) we would run out of \(v\)'s while some \(u_{m+1}\) is still LI and in the span — a contradiction. Hence \( n \le m \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Corollary 1</p>
+    <p>Any \( n + 1 \) vectors in \( \F^n \) are linearly dependent, and any \( n - 1 \) vectors cannot span \( \F^n \).</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>\( e_1, \dots, e_n \) span \( \F^n \); by Proposition 3 a LI list has length \( \le n \), so \( n + 1 \) vectors are LD. Likewise \( e_1, \dots, e_n \) are LI, so a spanning list has length \( \ge n \), so \( n - 1 \) vectors cannot span.</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 8 <span class="name">— Basis</span></p>
+    <p>A basis for \(V\) is a set of linearly independent vectors that span \(V\).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 18</p>
+    <ol class="claims">
+      <li>The standard basis \( e_1, \dots, e_n \in \F^n \) is LI (as in Ex 16) and spans \( \F^n \), so it is a basis.</li>
+      <li>A basis for \( \F^{m\times n} \): the matrices \( E_{kl} \) with a \(1\) in entry \( (k, l) \) and \(0\) elsewhere — the \(mn\) such matrices form a basis.</li>
+      <li>A basis for the cubic polynomials is \( \{1, x, x^2, x^3\} \), since any cubic is \( p(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3 \).</li>
+    </ol>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 1</p>
+    <p>Every (non-trivial) finite-dimensional vector space has a basis.</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>\( V = \operatorname{span}(v_1, \dots, v_n) \). If the \( v_i \) are LI they form a basis. Otherwise, repeatedly: if some \( v_i = 0 \) or \( v_i \in \operatorname{span}(v_1, \dots, v_{i-1}) \), remove it. After at most \(n\) steps only vectors that were already in the span of earlier ones have been removed, so the remaining list still spans \(V\) and is now LI — a basis.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 19</p>
+    <p>Show \( \{v_1, \dots, v_n\} \) is a basis of \(V\) iff every \( v \in V \) has a unique representation \( v = a_1 v_1 + \dots + a_n v_n \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>If it is a basis and \( v = \sum a_i v_i = \sum b_i v_i \), subtracting gives \( \sum(a_i - b_i)v_i = 0 \); LI forces \( a_i = b_i \), so the representation is unique. Conversely, unique representations make the \( v_i \) span (existence) and LI (the representation of \(0\) is unique, namely all-zero), so they form a basis.</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 9 <span class="name">— Dimension</span></p>
+    <p>For a finite-dimensional space \(V\), the dimension is the cardinality of a basis (the trivial space \( V = \{0\} \) has dimension \(0\)). Dimension does not depend on the choice of basis — it is an intrinsic quantity.</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Proposition 4</p>
+    <p>Any two bases of a finite-dimensional space \(V\) have the same cardinality.</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Let \( B_1 = \{u_1, \dots, u_m\} \), \( B_2 = \{v_1, \dots, v_n\} \) be bases. Since \( B_1 \) is LI and \( B_2 \) spans, Proposition 3 gives \( m \le n \); swapping roles gives \( n \le m \). Hence \( m = n \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Basis &amp; dimension, Lemma 1, Prop 3–4, Ex 18–19 (pages 28–36)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image029.png" alt="Original handwritten page 29">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image030.png" alt="Original handwritten page 30">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image031.png" alt="Original handwritten page 31">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image032.png" alt="Original handwritten page 32">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image033.png" alt="Original handwritten page 33">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image034.png" alt="Original handwritten page 34">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image035.png" alt="Original handwritten page 35">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image036.png" alt="Original handwritten page 36">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- DIMENSION RESULTS                                                  -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Dimension Results</h2>
+
+  <!-- RESOLVED (correctness pass 2): exercise-numbering drift fixed. Instructor's Ex 20 is one exercise (two parts); the notes had split it into "20"/"21", shifting Ex 21→22, 22→23, 23→24 and dropping instructor Ex 24 (dim V = dim U + dim W). Renumbered to match LAA-2024.pdf and restored Ex 24 (below, after Prop 5). -->
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— exercise numbering</span></p>
+    <p>The instructor's Exercise 20 is a single exercise with two parts; these notes had split it into "Ex 20" and "Ex 21", which shifted the following exercises. Numbering is corrected here to match the instructor: <strong>Ex 20</strong> (two parts), <strong>Ex 21</strong> \( \dim U \le \dim V \), <strong>Ex 22</strong> \( \dim H \), <strong>Ex 23</strong> \( \dim U_1 + \dim U_2 > \dim V \Rightarrow \dim(U_1\cap U_2)\ge 1 \), <strong>Ex 24</strong> \( \dim V = \dim U + \dim W \), <strong>Ex 25</strong> complementary subspaces.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 20</p>
+    <p>Let \( \dim V = n \). Show that (1) any \(n\) linearly independent vectors form a basis of \(V\); (2) any \(n\) vectors that span \(V\) form a basis.</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>(1) If \(n\) LI vectors did not span, some \( v \in V \setminus \operatorname{span} \) would extend them to \( n+1 \) LI vectors, exceeding the spanning length \(n\) — contradiction. (2) If \(n\) spanning vectors were LD, the linear dependence lemma lets us remove one, leaving \( n-1 \) vectors spanning \(V\), contradicting that any basis has length \(n\).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 21</p>
+    <p>If \(V\) is finite-dimensional and \( U \subseteq V \) a subspace, then \( \dim U \le \dim V \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>A basis of \(U\) is a LI list in \(V\); by Proposition 3 its length is at most that of a spanning list of \(V\), so \( \dim U \le \dim V \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 22</p>
+    <p>For \( H = \{ x \in \R^n : \sum_i a_i x_i = 0 \} \), find \( \dim H \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>If all \( a_i = 0 \), the constraint is vacuous and \( H = \R^n \), so \( \dim H = n \). Otherwise pick \(j\) with \( a_j \neq 0 \); then \( x_j = -\tfrac{1}{a_j}\sum_{i\neq j}a_i x_i \) is determined by the other \( n - 1 \) coordinates. Concretely, the vectors \( f_i = e_i - \tfrac{a_i}{a_j}e_j \) for \( i \neq j \) are \( n - 1 \) linearly independent elements of \(H\) that span it, so \( \dim H = n - 1 \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 23</p>
+    <p>Let \( U_1, U_2 \) be subspaces of \(V\) with \( \dim U_1 + \dim U_2 > \dim V \). Prove \( \dim(U_1 \cap U_2) \ge 1 \).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Let \( \dim V = n \), bases \( u_1, \dots, u_m \) of \( U_1 \) and \( w_1, \dots, w_p \) of \( U_2 \) with \( m + p > n \). The combined \( m + p \) vectors lie in \(V\), so (exceeding \(n\)) they are LD. By the linear dependence lemma some \( w_j = a_1 u_1 + \dots + a_m u_m + b_1 w_1 + \dots + b_{j-1}w_{j-1} \), giving a non-zero \( w = w_j - \sum_{i&lt;j} b_i w_i \in U_2 \) that also equals \( \sum_i a_i u_i \in U_1 \). So \( 0 \neq w \in U_1 \cap U_2 \), hence \( \dim(U_1 \cap U_2) \ge 1 \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Proposition 5 <span class="name">— Complementary subspace</span></p>
+    <p>Let \(V\) be finite-dimensional and \( U \subseteq V \) a subspace. There exists a subspace \( W \subseteq V \) with \( V = U \oplus W \). We call \(W\) a complementary subspace of \(U\) (it is not unique).</p>
+  </div>
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Take a basis \( u_1, \dots, u_m \) of \(U\) and extend it to a basis \( u_1, \dots, u_m, w_1, \dots, w_{n-m} \) of \(V\) (possible since \(V\) is finite-dimensional). Set \( W = \operatorname{span}(w_1, \dots, w_{n-m}) \). Then \( V = U + W \) (the combined list spans), and \( U \cap W = \{0\} \): if \( v \in U \cap W \), writing it in both bases and subtracting uses LI of the full basis to force all coefficients \(0\). So \( V = U \oplus W \). Moreover \( \dim V = m + (n - m) = \dim U + \dim W \) (Ex 24 below).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 24</p>
+    <p>In Proposition 5, prove that \( \dim V = \dim U + \dim W \).</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>From the proof of Proposition 5, a basis \( u_1, \dots, u_m \) of \(U\) extends to a basis \( u_1, \dots, u_m, w_1, \dots, w_{n-m} \) of \(V\), and the \( w_j \) are a basis of \( W = \operatorname{span}(w_1, \dots, w_{n-m}) \). Hence \( \dim U + \dim W = m + (n-m) = n = \dim V \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 25</p>
+    <p>Let \( V = \R^2 \), \( U = \{ (x, 0) : x \in \R \} \). Show \( W_1 = \{ (0, x) : x \in \R \} \) and \( W_2 = \{ (x, x) : x \in \R \} \) are both complementary subspaces of \(U\).</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( \{(1,0)\} \) is a basis of \(U\). For \( W_1 \): any \( v = a(1,0) + b(0,1) \), so \( V = U + W_1 \); and \( a(1,0) + b(0,1) = 0 \Rightarrow a = b = 0 \), so \( U \cap W_1 = \{0\} \) and \( V = U \oplus W_1 \). For \( W_2 \) (basis \( (1,1) \)): \( v = a(1,0) + b(1,1) = (a+b,\ b) \) is solvable (\( b = v_2 \), \( a = v_1 - v_2 \)), so \( V = U + W_2 \); and \( a(1,0) + b(1,1) = 0 \Rightarrow b = 0, a = 0 \), so \( U \cap W_2 = \{0\} \) and \( V = U \oplus W_2 \). Thus \( W_1 \) and \( W_2 \) are both complementary to \(U\).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Dimension results, Ex 20–25 &amp; Prop 5 (pages 36–44)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image037.png" alt="Original handwritten page 37">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image038.png" alt="Original handwritten page 38">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image039.png" alt="Original handwritten page 39">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image040.png" alt="Original handwritten page 40">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image041.png" alt="Original handwritten page 41">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image042.png" alt="Original handwritten page 42">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image043.png" alt="Original handwritten page 43">
+      <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image044.png" alt="Original handwritten page 44">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 2. <a href="index.html">← All chapters</a> · <a href="Ch2_%20Vector%20Spaces.htm">complete original export ↗</a></p>
+    <p><strong>Disclaimer:</strong> some early-chapter exercises may have incomplete answers. This early chapter had dense, multi-column, sometimes lower-resolution pages — solutions are condensed and definition/exercise numbers were reconstructed (verified continuous in the correctness pass; the dropped Definition 6, finite-dimensional, was restored). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ch3: Linear Transforms and Matrices · LAA 2024 Notes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/notes.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script defer src="assets/notes.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="topnav">
+    <a class="crumb" href="index.html">LAA 2024 Notes</a>
+    <span>Ch3 · Linear Transforms and Matrices</span>
+  </nav>
+
+  <h1 class="chap-title">Chapter 3 — Linear Transforms and Matrices</h1>
+  <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
+
+  <!-- ================================================================== -->
+  <!-- LINEAR TRANSFORMS                                                  -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Linear Transforms</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 10 <span class="name">— Linear transform</span></p>
+    <p>Let \( V \) and \( W \) be two vector spaces over \( \F \). A linear transform from \( V \) to \( W \) is a function \( T : V \to W \) with the following properties:</p>
+    <ol class="claims">
+      <li>\( \forall\, u, v \in V : T(u + v) = T(u) + T(v) \) (additivity);</li>
+      <li>\( \forall\, u \in V,\ a \in \F : T(au) = a\,T(u) \) (homogeneity).</li>
+    </ol>
+    <p>Linear transforms are also called linear maps or linear operators; in this course we use "operator" when \( V = W \). We write \( \Lin(V, W) \) for the set of all linear transforms from \( V \) to \( W \), and \( \Lin(V) = \Lin(V, V) \). A linear transform maps \( 0_V \) to \( 0_W \). We use \( 0 \) and \( \mathrm{Id} \) for the zero and identity maps: \( 0(v) = 0 \), \( \mathrm{Id}(v) = v \).</p>
+  </div>
+
+  <!-- RESOLVED (correctness pass): scan (image002) explicitly writes V = R^m with u=(u_1,…,u_m), v=(v_1,…,v_m) AND T(x)=a_1 x_1 + a_2 x_2 — so R^m is intended (not a typo for R^2). T(x)=a_1 x_1 + a_2 x_2 is a valid linear functional on R^m (linear, just independent of coords 3…m); the proof correctly shows linearity. Not an error — reproduced faithfully, no .corr. -->
+  <div class="box example">
+    <p class="box-head">Example 6 <span class="name">— linear maps</span></p>
+    <ol class="claims">
+      <li><strong>\( V = W = \R \), \( T(x) = ax \) (\( a \in \R \)):</strong> \( T(u+v) = a(u+v) = au + av = T(u) + T(v) \) and \( T(\alpha u) = a(\alpha u) = \alpha(au) = \alpha T(u) \). Linear.</li>
+      <li><strong>\( V = \R^m \), \( W = \R \), \( T(x) = a_1 x_1 + a_2 x_2 \):</strong> \( T(u+v) = (a_1 u_1 + a_2 u_2) + (a_1 v_1 + a_2 v_2) = T(u) + T(v) \), \( T(\alpha u) = \alpha T(u) \). Linear.</li>
+      <li><strong>\( V = W = \R^2 \), \( T(x_1, x_2) = (x_2, x_1) \):</strong> \( T(u+v) = (u_2 + v_2, u_1 + v_1) = T(u) + T(v) \), \( T(\alpha u) = \alpha T(u) \). Linear.</li>
+      <li><strong>Derivative operator.</strong> \( V = W = P \) (polynomials), \( T(p) = p' \): \( T(p+q) = (p+q)' = p' + q' = T(p) + T(q) \), \( T(\alpha p) = (\alpha p)' = \alpha p' = \alpha T(p) \). Linear.</li>
+      <li><strong>Integration.</strong> \( V = C([0,1]) \), \( W = \R \), \( T(f) = \int_0^1 f(t)\, dt \): linear by the properties of integration.</li>
+    </ol>
+    <p>From LADR (Example 3.3): the <em>backward shift</em> \( T \in \Lin(\F^\infty) \), \( T(x_1, x_2, x_3, \dots) = (x_2, x_3, \dots) \); and <em>multiplication by \( x^2 \)</em>, \( (Tp)(x) = x^2 p(x) \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Linear Map Lemma <span class="name">— LADR 3.4</span></p>
+    <p>Suppose \( v_1, \dots, v_n \) is a basis of \( V \) and \( w_1, \dots, w_n \in W \). Then there exists a unique linear map \( T : V \to W \) such that \( T(v_k) = w_k \) for each \( k = 1, \dots, n \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p><strong>Existence.</strong> Define \( T(c_1 v_1 + \dots + c_n v_n) = c_1 w_1 + \dots + c_n w_n \). Since \( v_1, \dots, v_n \) is a basis, every \( v \in V \) has this form; taking \( c_k = 1 \) and the rest \( 0 \) gives \( T(v_k) = w_k \). For \( u = \sum a_i v_i \), \( v = \sum b_i v_i \), \( \alpha \in \F \): \( T(u+v) = \sum (a_i + b_i) w_i = T(u) + T(v) \) and \( T(\alpha u) = \sum \alpha a_i w_i = \alpha T(u) \), so \( T \) is linear.</p>
+    <p><strong>Uniqueness.</strong> If \( T' \in \Lin(V, W) \) with \( T'(v_k) = w_k \), then by linearity \( T'(c_1 v_1 + \dots + c_n v_n) = c_1 w_1 + \dots + c_n w_n \), the same as \( T \). So \( T \) is uniquely determined on \( V \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — linear transforms, Def 10, Example 6 &amp; the Linear Map Lemma (pages 1–6)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image001.png" alt="Original handwritten page 1">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image002.png" alt="Original handwritten page 2">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image003.png" alt="Original handwritten page 3">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image004.png" alt="Original handwritten page 4">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image005.png" alt="Original handwritten page 5">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image006.png" alt="Original handwritten page 6">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- ISOMORPHISMS & INVERTIBILITY                                       -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Isomorphisms &amp; Invertibility</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 11 <span class="name">— Coordinate map</span></p>
+    <p>Let \( V \) be a finite-dimensional vector space with \( \dim V = n \), and fix a basis \( \{v_1, \dots, v_n\} \). Define \( \varphi : V \to \F^n \), \( \varphi(v) = (x_1, \dots, x_n) \), where \( v = x_1 v_1 + \dots + x_n v_n \) is the unique representation of \( v \) in the basis. We call \( \varphi \) the coordinate map and \( x = \varphi(v) \) the coordinates of \( v \). It is a linear transform (additivity and homogeneity follow coordinate-wise).</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 12 <span class="name">— Isomorphism</span></p>
+    <p>A linear map \( T \in \Lin(V, W) \) is called an isomorphism if it is a bijection, i.e. \( \forall\, w \in W \), \( \exists \) a unique \( v \in V \) such that \( w = T(v) \). We say \( V \) and \( W \) are isomorphic (written \( V \cong W \)) if there exists an isomorphism \( T \in \Lin(V, W) \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 26</p>
+    <p>Show that the coordinate map is a linear isomorphism from \( V \) to \( \F^n \) (\( \dim V = n \)).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( \varphi : V \to \F^n \) is a linear transform (above). <strong>Surjective:</strong> for \( w = (w_1, \dots, w_n) \in \F^n \), set \( v = w_1 v_1 + \dots + w_n v_n \in V \); then \( \varphi(v) = w \). <strong>Injective:</strong> if \( \varphi(v) = \varphi(v') = w \), then \( v \) and \( v' \) have the same coordinates \( (w_1, \dots, w_n) \); since the basis representation is unique, \( v = v' \). So \( \varphi \) is a bijection, hence a linear isomorphism, and \( V \cong \F^n \).</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition <span class="name">— Invertible, inverse (LADR 3.99)</span></p>
+    <p>Every isomorphism admits an inverse, which is again linear. (Inverse functions are defined only for bijections: injective = one-to-one, surjective = onto, bijective = both.) A linear map \( T \in \Lin(V, W) \) is called invertible if there exists a linear map \( T^{-1} \in \Lin(W, V) \) such that
+    \[ T^{-1}T = I_V \qquad\text{and}\qquad T\,T^{-1} = I_W, \]
+    where \( I_V, I_W \) are the identity operators on \( V \) and \( W \). Such a \( T^{-1} \) is called an inverse of \( T \).</p>
+    <p><strong>Uniqueness of the inverse.</strong> If \( S_1, S_2 \) are both inverses of \( T \), then \( S_1 = S_1 I = S_1(T S_2) = (S_1 T) S_2 = I S_2 = S_2 \). So the inverse is unique and is denoted \( T^{-1} \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 27</p>
+    <p>Let \( T \in \Lin(V, W) \) be an isomorphism. Show that \( T^{-1} \in \Lin(W, V) \) is also an isomorphism.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( T^{-1} \) is linear and satisfies \( T^{-1}T = I \), \( TT^{-1} = I \). <strong>Injective:</strong> if \( T^{-1}(w_1) = T^{-1}(w_2) \), apply \( T \): \( w_1 = w_2 \). <strong>Surjective:</strong> for any \( v \in V \), \( v = T^{-1}(T(v)) \), so \( v \) is in the range of \( T^{-1} \). Hence \( T^{-1} \) is a bijection, i.e. an isomorphism.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — coordinate map, isomorphism, Ex 26, invertibility &amp; Ex 27 (pages 7–27; the invertibility equations were fragmented across a layout grid, shown side-by-side)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image007.png" alt="Original handwritten page 7">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image008.png" alt="Original handwritten page 8">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image009.png" alt="Original handwritten page 9">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image010.png" alt="Original handwritten page 10">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image011.png" alt="Original handwritten page 11">
+      <div class="scan-row">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image012.png" alt="Original fragment 12">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image013.png" alt="Original fragment 13">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image014.png" alt="Original fragment 14">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image015.png" alt="Original fragment 15">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image016.png" alt="Original fragment 16">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image017.png" alt="Original fragment 17">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image018.png" alt="Original fragment 18">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image019.png" alt="Original fragment 19">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image020.png" alt="Original fragment 20">
+      </div>
+      <div class="scan-row">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image021.png" alt="Original fragment 21">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image022.png" alt="Original fragment 22">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image023.png" alt="Original fragment 23">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image024.png" alt="Original fragment 24">
+        <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image025.png" alt="Original fragment 25">
+      </div>
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image026.png" alt="Original handwritten page 26">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image027.png" alt="Original handwritten page 27">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- THE SPACE L(V,W)                                                   -->
+  <!-- ================================================================== -->
+  <h2 class="sec">The Space \( \Lin(V, W) \)</h2>
+
+  <p>We give \( \Lin(V, W) \) a natural vector-space structure: for \( T, T' \in \Lin(V, W) \) and \( a \in \F \), define \( (T + T')(v) = T(v) + T'(v) \) and \( (aT)(v) = aT(v) \).</p>
+
+  <div class="box ex">
+    <p class="box-head">Ex 28</p>
+    <p>Verify that \( T + T' \) and \( aT \) are linear transforms and that \( \Lin(V, W) \) is a vector space over \( \F \). In particular, prove that \( \dim \Lin(V, W) = \dim V \cdot \dim W \) (LADR 3.72).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>\( T + T' \) and \( aT \) are linear.</strong> \( (T+T')(u+v) = (T+T')(u) + (T+T')(v) \) and \( (T+T')(\alpha u) = \alpha(T+T')(u) \); similarly \( (aT)(u+v) = (aT)(u) + (aT)(v) \), \( (aT)(\alpha u) = \alpha(aT)(u) \). So both lie in \( \Lin(V, W) \).</p>
+    <p><strong>Vector space.</strong> The axioms (commutativity, associativity, distributivity, \( 1T = T \), zero map \( 0 \), additive inverse \( (-T)(v) = -T(v) \)) all hold pointwise from the structure of \( W \). So \( \Lin(V, W) \) is a vector space over \( \F \).</p>
+    <p><strong>Dimension.</strong> Fix bases \( \{v_1, \dots, v_m\} \) of \( V \) and \( \{w_1, \dots, w_n\} \) of \( W \), so \( \dim V = m \), \( \dim W = n \). Define \( T_{ij} \in \Lin(V, W) \) by \( T_{ij}(v_k) = \begin{cases} w_j & k = i \\ 0 & k \neq i \end{cases} \) (so \( T_{ij}(\textstyle\sum_k a_k v_k) = a_i w_j \)).</p>
+    <p><em>Linearly independent:</em> if \( \sum_{i=1}^{m}\sum_{j=1}^{n} \alpha_{ij} T_{ij} = 0 \), apply to \( v_k \): \( \sum_{j=1}^{n} \alpha_{kj} w_j = 0 \), and as \( w_1, \dots, w_n \) are independent, \( \alpha_{kj} = 0 \) for all \( j \); this holds for each \( k \), so all \( \alpha_{ij} = 0 \).</p>
+    <p><em>Spanning:</em> given \( T \in \Lin(V, W) \), let \( c_{ij} \in \F \) be the coordinates of \( T(v_i) \) in the \( w \)-basis, i.e. \( T(v_i) = \sum_{j} c_{ij} w_j \). Then \( \sum_{i,j} c_{ij} T_{ij} \) and \( T \) agree on every basis vector: \( \big(\sum_{i,j} c_{ij} T_{ij}\big)(v_k) = \sum_j c_{kj} w_j = T(v_k) \). Two linear maps that agree on a basis are equal, so \( T = \sum_{i,j} c_{ij} T_{ij} \); thus the \( T_{ij} \) span \( \Lin(V, W) \).</p>
+    <p>Hence \( \{T_{ij}\} \) is a basis of size \( mn \), so \( \dim \Lin(V, W) = mn = \dim V \cdot \dim W \).</p>
+  </div>
+
+  <!-- RESOLVED (correctness pass 2): the original "spanning" step wrote a single T(v) as a v-dependent combination of the T_ij, which does not show T is a fixed linear combination of them. Replaced with the standard argument (T = sum c_ij T_ij where c_ij are the coordinates of T(v_i)). -->
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— Ex 28 spanning step</span></p>
+    <p>The original spanning argument expressed a single output \( T(v) \) as a combination of the \( T_{ij}(v) \) with coefficients depending on \(v\); that does not exhibit \(T\) itself as a fixed linear combination of the \( T_{ij} \). The corrected step above instead reads off the constants \( c_{ij} \) from \( T(v_i) = \sum_j c_{ij} w_j \), giving the operator identity \( T = \sum_{i,j} c_{ij} T_{ij} \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — Ex 28 (\( \Lin(V,W) \) is a vector space; \( \dim = \dim V \cdot \dim W \)) (pages 28–33)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image028.png" alt="Original handwritten page 28">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image029.png" alt="Original handwritten page 29">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image030.png" alt="Original handwritten page 30">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image031.png" alt="Original handwritten page 31">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image032.png" alt="Original handwritten page 32">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image033.png" alt="Original handwritten page 33">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- FUNDAMENTAL SUBSPACES                                              -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Fundamental Subspaces</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 13 <span class="name">— Null space &amp; range space</span></p>
+    <p>Let \( T \in \Lin(V, W) \). The null space and range space of \( T \) are
+    \[ \Null(T) = \{v \in V : T(v) = 0\} \subseteq V, \qquad \Range(T) = \{T(v) : v \in V\} \subseteq W. \]
+    Both are nonempty (\( 0_V \in \Null(T) \), \( 0_W \in \Range(T) \)). If \( T = 0 \), \( \Null(T) = V \) and \( \Range(T) = \{0\} \); if \( T = \mathrm{Id} \), \( \Null(T) = \{0\} \) and \( \Range(T) = V \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 29</p>
+    <p>Let \( V = \R^2 \), \( W = \R \), \( T(x) = x_1 + x_2 \). Find \( \Null(T) \), \( \Range(T) \) and give their geometric descriptions.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( T(x) = x_1 + x_2 = 0 \Rightarrow x_2 = -x_1 \), so \( \Null(T) = \{(x, -x) : x \in \R\} \) — a line through the origin in \( \R^2 \). Since \( x_1, x_2 \) are arbitrary, \( x_1 + x_2 \) takes every real value, so \( \Range(T) = \R = W \).</p>
+    <figure class="diagram">
+      <svg viewBox="0 0 300 220" width="300" height="220" role="img" aria-label="The null space of T is the line x1 + x2 = 0 through the origin in the plane">
+        <defs>
+          <marker id="ah3a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#9aa0a6"></path></marker>
+        </defs>
+        <line x1="20" y1="110" x2="280" y2="110" stroke="#9aa0a6" stroke-width="1.5" marker-end="url(#ah3a)"></line>
+        <line x1="150" y1="205" x2="150" y2="15" stroke="#9aa0a6" stroke-width="1.5" marker-end="url(#ah3a)"></line>
+        <line x1="40" y1="20" x2="260" y2="200" stroke="#e0607e" stroke-width="2.5"></line>
+        <text x="285" y="124" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" font-style="italic">x₁</text>
+        <text x="158" y="20" fill="#9aa0a6" font-family="system-ui, sans-serif" font-size="13" font-style="italic">x₂</text>
+        <text x="250" y="196" fill="#e0607e" font-family="system-ui, sans-serif" font-size="13">x₁ + x₂ = 0</text>
+      </svg>
+      <figcaption>\( \Null(T) = \{(x,-x)\} \): the line \( x_1 + x_2 = 0 \) through the origin (Ex 29).</figcaption>
+    </figure>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 30</p>
+    <p>Show that \( \Null(T) \) is a subspace of \( V \) and \( \Range(T) \) is a subspace of \( W \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>\( \Null(T) \le V \).</strong> \( 0 \in \Null(T) \) as \( T(0) = 0 \). If \( u, v \in \Null(T) \), \( T(u+v) = T(u) + T(v) = 0 \), so \( u + v \in \Null(T) \). For \( \alpha \in \F \), \( T(\alpha u) = \alpha T(u) = 0 \), so \( \alpha u \in \Null(T) \).</p>
+    <p><strong>\( \Range(T) \le W \).</strong> \( 0_W \in \Range(T) \) as \( T(0_V) = 0_W \). If \( w_1 = T(v_1) \), \( w_2 = T(v_2) \), then \( w_1 + w_2 = T(v_1 + v_2) \in \Range(T) \). For \( \alpha \in \F \), \( \alpha w = \alpha T(v) = T(\alpha v) \in \Range(T) \).</p>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Result <span class="name">— injectivity ⟺ trivial null space (LADR 3.15)</span></p>
+    <p>\( T \in \Lin(V, W) \) is injective \( \iff \Null(T) = \{0\} \). <em>(\( \Rightarrow \))</em> If \( v \in \Null(T) \), \( T(v) = 0 = T(0) \Rightarrow v = 0 \). <em>(\( \Leftarrow \))</em> If \( T(v_1) = T(v_2) \), then \( T(v_1 - v_2) = 0 \Rightarrow v_1 - v_2 = 0 \Rightarrow v_1 = v_2 \).</p>
+  </div>
+
+  <div class="box def">
+    <p class="box-head">Definition 14 <span class="name">— Nullity &amp; rank</span></p>
+    <p>\( \nullity T = \dim \Null(T) \) and \( \rank T = \dim \Range(T) \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 31</p>
+    <p>For \( T(x) = x_1 + x_2 \) (Ex 29), find \( \nullity T \) and \( \rank T \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>\( \Null(T) = \{(x,-x)\} \) has basis \( (1,-1) \), so \( \nullity T = 1 \). \( \Range(T) = \R \), so \( \rank T = 1 \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 2 <span class="name">— Rank–Nullity Theorem (LADR 3.21)</span></p>
+    <p>Let \( T \in \Lin(V, W) \). If \( V \) is finite-dimensional, then \( \Range(T) \) is finite-dimensional and
+    \[ \nullity T + \rank T = \dim V. \]
+    (\( V \) finite-dimensional; \( W \) may be infinite-dimensional.)</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>Let \( u_1, \dots, u_m \) be a basis of \( \Null(T) \) and extend it to a basis \( u_1, \dots, u_m, v_1, \dots, v_n \) of \( V \) (so \( \dim V = m + n \)). We show \( T(v_1), \dots, T(v_n) \) is a basis of \( \Range(T) \).</p>
+    <p><em>Spanning:</em> for \( v = \sum a_i u_i + \sum b_j v_j \), applying \( T \) (with \( T(u_i) = 0 \)) gives \( T(v) = \sum_j b_j T(v_j) \). So they span \( \Range(T) \) (which is therefore finite-dimensional). <em>Independent:</em> if \( \sum_j c_j T(v_j) = 0 \), then \( T(\sum_j c_j v_j) = 0 \), so \( \sum_j c_j v_j \in \Null(T) \), say \( = \sum_i d_i u_i \); then \( \sum_j c_j v_j - \sum_i d_i u_i = 0 \), and independence of the full basis forces all \( c_j = d_i = 0 \).</p>
+    <p>So \( \rank T = \dim \Range(T) = n \), and \( \dim V = m + n = \nullity T + \rank T \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Corollary 2</p>
+    <p>For \( T \in \Lin(V) \): \( \Null(T) = \{0\} \iff \Range(T) = V \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p>If \( \Null(T) = \{0\} \) but \( \Range(T) \neq V \), then \( \rank T < \dim V \), so by rank–nullity \( \nullity T = \dim V - \rank T > 0 \), contradicting \( \Null(T) = \{0\} \); hence \( \Range(T) = V \). Conversely, if \( \Range(T) = V \), then \( \nullity T = \dim V - \rank T = 0 \), so \( \Null(T) = \{0\} \).</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Corollary 3 <span class="name">— LADR 3.22, 3.24</span></p>
+    <p>Let \( T \in \Lin(V, W) \). (1) If \( \dim W < \dim V \), then \( T \) cannot be injective. (2) If \( \dim W > \dim V \), then \( T \) cannot be surjective.</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p><strong>(1)</strong> \( \rank T = \dim \Range(T) \le \dim W < \dim V \), so by rank–nullity \( \nullity T = \dim V - \rank T > 0 \); thus \( \Null(T) \neq \{0\} \) and (LADR 3.15) \( T \) is not injective.</p>
+    <p><strong>(2)</strong> \( \rank T = \dim V - \nullity T \le \dim V < \dim W \), so \( \dim \Range(T) < \dim W \), i.e. \( \Range(T) \neq W \) and \( T \) is not surjective.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — null/range spaces, Def 13–14, Ex 29–31, rank–nullity (Thm 2) &amp; Cor 2–3 (pages 33–41)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image033.png" alt="Original handwritten page 33">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image034.png" alt="Original handwritten page 34">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image035.png" alt="Original handwritten page 35">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image036.png" alt="Original handwritten page 36">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image037.png" alt="Original handwritten page 37">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image038.png" alt="Original handwritten page 38">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image039.png" alt="Original handwritten page 39">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image040.png" alt="Original handwritten page 40">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image041.png" alt="Original handwritten page 41">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- PROJECTIONS                                                        -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Projections</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 15 <span class="name">— Projector</span></p>
+    <p>\( P \in \Lin(V) \) is a projection operator (projector) if \( P^2 = P \).</p>
+  </div>
+
+  <div class="box example">
+    <p class="box-head">Example 7 <span class="name">— projectors</span></p>
+    <ol class="claims">
+      <li>Zero and identity maps: \( 0^2 = 0 \), \( \mathrm{Id}^2 = \mathrm{Id} \).</li>
+      <li>\( V = \R^2 \), \( P(x_1, x_2) = (x_1, 0) \): \( P^2(x) = P(x_1, 0) = (x_1, 0) = P(x) \). Projection onto the \( x \)-axis.</li>
+      <li>\( V = \R^2 \), \( P(x) = (x_1 + x_2, 0) \): \( P^2(x) = P(x_1 + x_2, 0) = (x_1 + x_2, 0) = P(x) \).</li>
+    </ol>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 32</p>
+    <p>Show that \( P \) is a projector iff \( \mathrm{Id} - P \) is a projector.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p><strong>(\( \Rightarrow \))</strong> With \( P^2 = P \), for \( v \in V \),
+    \[ (\mathrm{Id}-P)^2(v) = (\mathrm{Id}-P)(v - P(v)) = v - P(v) - P(v) + P^2(v) = v - P(v) = (\mathrm{Id}-P)(v), \]
+    so \( \mathrm{Id} - P \) is a projector. <strong>(\( \Leftarrow \))</strong> Applying the same to \( \mathrm{Id} - P \): \( \mathrm{Id} - (\mathrm{Id} - P) = P \) is a projector.</p>
+  </div>
+
+  <div class="box thm">
+    <p class="box-head">Theorem 3 <span class="name">— Projector decomposition</span></p>
+    <p>Let \( P \in \Lin(V) \) be a projector. Then \( V = \Null(P) \oplus \Range(P) \). Conversely, if \( V = U \oplus W \), there is a projector \( P \in \Lin(V) \) with \( U = \Null(P) \) and \( W = \Range(P) \); we call \( P \) the projection of \( V \) onto \( W \) along \( U \).</p>
+  </div>
+
+  <div class="box pf">
+    <p class="box-head">Proof</p>
+    <p><strong>(\( \Rightarrow \))</strong> For \( v \in V \), write \( v = (\mathrm{Id} - P)(v) + P(v) \). Here \( P(v) \in \Range(P) \), and \( P((\mathrm{Id}-P)(v)) = P(v) - P^2(v) = 0 \), so \( (\mathrm{Id}-P)(v) \in \Null(P) \). Thus \( V = \Null(P) + \Range(P) \). For the direct sum, if \( u \in \Null(P) \cap \Range(P) \), then \( u = P(v) \) for some \( v \), so \( P(u) = P^2(v) = P(v) = u \); but \( u \in \Null(P) \) gives \( P(u) = 0 \), so \( u = 0 \). Hence \( V = \Null(P) \oplus \Range(P) \).</p>
+    <p><strong>(\( \Leftarrow \))</strong> Given \( V = U \oplus W \), define \( P(v) = w \) where \( v = u + w \) (\( u \in U \), \( w \in W \)). Then \( P(P(v)) = P(w) = w = P(v) \), so \( P \) is a projector; and \( P(v) = 0 \iff w = 0 \iff v \in U \), so \( \Null(P) = U \) and \( \Range(P) = W \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — projections, Def 15, Example 7, Ex 32 &amp; Theorem 3 (pages 42–47)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image042.png" alt="Original handwritten page 42">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image043.png" alt="Original handwritten page 43">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image044.png" alt="Original handwritten page 44">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image045.png" alt="Original handwritten page 45">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image046.png" alt="Original handwritten page 46">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image047.png" alt="Original handwritten page 47">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- MATRIX REPRESENTATION                                              -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Matrix Representation</h2>
+
+  <p>An \( \F \)-valued matrix \( A \) of size \( m \times n \) has entries \( a_{ij} \in \F \), \( m \) rows and \( n \) columns; the \( (i,j) \) entry is \( a_{ij} \). The \( j \)-th column is \( c_j = (a_{1j}, \dots, a_{mj})\T \) and the \( i \)-th row is \( r_i = (a_{i1}, \dots, a_{in}) \). Matrices can be viewed as linear transforms; the space of \( \F \)-valued \( m \times n \) matrices is \( \F^{m\times n} \).</p>
+
+  <div class="box def">
+    <p class="box-head">Definition 16 <span class="name">— Matrix product</span></p>
+    <p>For \( A \in \F^{m\times n} \) and \( B \in \F^{n\times p} \), the product \( C = AB \in \F^{m\times p} \) is given by
+    \[ c_{ij} = \sum_{k=1}^{n} a_{ik} b_{kj} \qquad (1 \le i \le m,\ 1 \le j \le p). \]</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 33</p>
+    <p>Let \( A \) be defined by \( (A)_{ij} = a_{ij} \), and \( T : \F^n \to \F^m \) by \( (T(x))_i = \sum_{j=1}^{n} a_{ij} x_j \) (\( 1 \le i \le m \)). Show that \( T \in \Lin(\F^n, \F^m) \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>In matrix form \( T(x) = Ax \). For \( u, v \in \F^n \) and \( \alpha \in \F \): \( (T(u+v))_i = \sum_j a_{ij}(u_j + v_j) = (T(u))_i + (T(v))_i \), and \( (T(\alpha u))_i = \sum_j a_{ij}(\alpha u_j) = \alpha (T(u))_i \). So \( T(u+v) = T(u) + T(v) \), \( T(\alpha u) = \alpha T(u) \), i.e. \( T \in \Lin(\F^n, \F^m) \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 34 <span class="name">— matrix representation of a linear map</span></p>
+    <p>Let \( T \in \Lin(V, W) \), \( \dim V = n \), \( \dim W = m \), with bases \( v_1, \dots, v_n \) of \( V \) (coordinate map \( \varphi : V \to \F^n \)) and \( w_1, \dots, w_m \) of \( W \) (coordinate map \( \psi : W \to \F^m \)). Then there exist \( a_{ij} \in \F \) with \( T(v_j) = \sum_{i=1}^{m} a_{ij} w_i \). Define \( A \in \F^{m\times n} \) by \( (A)_{ij} = a_{ij} \). Show that \( T = \psi^{-1} \circ A \circ \varphi \). We call \( A \) the matrix representation of \( T \), written \( A = [T] \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>For \( v = b_1 v_1 + \dots + b_n v_n \), \( \varphi(v) = (b_1, \dots, b_n)\T \), and \( A\varphi(v) \in \F^m \) is the <span class="corr" title="an m×1 array is m rows by 1 column — a column vector; the scan labels it 'a row matrix'">column vector</span> <span class="corr-note">(scan: "a row matrix")</span> with \( i \)-th entry \( c_i = \sum_{j=1}^{n} a_{ij} b_j \). Then
+    \[ \psi^{-1}(A\varphi(v)) = \sum_{i=1}^{m} c_i w_i = \sum_{i=1}^{m}\Big(\sum_{j=1}^{n} a_{ij} b_j\Big) w_i. \tag{1} \]
+    On the other hand, using \( T(v_j) = \sum_i a_{ij} w_i \),
+    \[ T(v) = \sum_{j=1}^{n} b_j\, T(v_j) = \sum_{j=1}^{n}\sum_{i=1}^{m} a_{ij} b_j w_i. \tag{2} \]
+    Expressions (1) and (2) agree for all \( v \in V \), so \( T = \psi^{-1} \circ A \circ \varphi \).</p>
+    <figure class="diagram">
+      <svg viewBox="0 0 360 220" width="360" height="220" role="img" aria-label="Commutative diagram: T from V to W equals psi-inverse composed with A composed with phi">
+        <defs>
+          <marker id="ah3b" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#9aa0a6"></path></marker>
+        </defs>
+        <text x="55" y="40" text-anchor="middle" fill="#d7dadd" font-family="system-ui, sans-serif" font-size="20" font-style="italic">V</text>
+        <text x="305" y="40" text-anchor="middle" fill="#d7dadd" font-family="system-ui, sans-serif" font-size="20" font-style="italic">W</text>
+        <text x="55" y="195" text-anchor="middle" fill="#5fa8e6" font-family="system-ui, sans-serif" font-size="18">𝔽ⁿ</text>
+        <text x="305" y="195" text-anchor="middle" fill="#5fa8e6" font-family="system-ui, sans-serif" font-size="18">𝔽ᵐ</text>
+        <line x1="75" y1="34" x2="285" y2="34" stroke="#9aa0a6" stroke-width="1.5" marker-end="url(#ah3b)"></line>
+        <line x1="55" y1="52" x2="55" y2="170" stroke="#9aa0a6" stroke-width="1.5" marker-end="url(#ah3b)"></line>
+        <line x1="80" y1="188" x2="280" y2="188" stroke="#9aa0a6" stroke-width="1.5" marker-end="url(#ah3b)"></line>
+        <line x1="305" y1="170" x2="305" y2="52" stroke="#9aa0a6" stroke-width="1.5" marker-end="url(#ah3b)"></line>
+        <text x="180" y="24" text-anchor="middle" fill="#e0607e" font-family="system-ui, sans-serif" font-size="15" font-style="italic">T</text>
+        <text x="42" y="116" text-anchor="middle" fill="#74c490" font-family="system-ui, sans-serif" font-size="15" font-style="italic">φ</text>
+        <text x="180" y="208" text-anchor="middle" fill="#74c490" font-family="system-ui, sans-serif" font-size="15" font-style="italic">A</text>
+        <text x="324" y="116" text-anchor="middle" fill="#74c490" font-family="system-ui, sans-serif" font-size="14" font-style="italic">ψ⁻¹</text>
+      </svg>
+      <figcaption>\( T = \psi^{-1} \circ A \circ \varphi \): coordinatize with \( \varphi \), apply the matrix \( A \), then map back with \( \psi^{-1} \) (Ex 34).</figcaption>
+    </figure>
+  </div>
+
+  <div class="box rem">
+    <p class="box-head">Remark 6</p>
+    <p>The matrix representation depends on the choice of basis.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 35</p>
+    <p>Let \( T_1 \in \Lin(V, W) \) and \( T_2 \in \Lin(U, V) \). For a fixed choice of bases for \( U, V, W \), show that \( [T_1 \circ T_2] = [T_1][T_2] \) (LADR 3.43).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>With bases of \( U, V, W \) of sizes \( p, n, m \), let \( [T_1] = A \in \F^{m\times n} \), \( [T_2] = B \in \F^{n\times p} \), so \( T_2(u_j) = \sum_i b_{ij} v_i \) and \( T_1(v_i) = \sum_k a_{ki} w_k \). Then
+    \[ T_1(T_2(u_j)) = \sum_{i=1}^{n} b_{ij}\, T_1(v_i) = \sum_{i=1}^{n} b_{ij} \sum_{k=1}^{m} a_{ki} w_k = \sum_{k=1}^{m}\Big(\sum_{i=1}^{n} a_{ki} b_{ij}\Big) w_k, \]
+    and \( \sum_i a_{ki} b_{ij} \) is the \( (k,j) \) entry of \( AB \). Hence \( [T_1 \circ T_2] = [T_1][T_2] \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 36</p>
+    <p>Let \( T \in \Lin(\R^2, \R^2) \), \( T(x_1, x_2) = (x_1 + 2x_2,\ 2x_1 + 4x_2) \). Find \( [T] \) for the following bases.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Using \( T(v_j) = \sum_i a_{ij} w_i \):</p>
+    <p><strong>(36.1)</strong> \( v_1 = (1,0), v_2 = (0,1) \); \( w_1 = (1,0), w_2 = (0,1) \). \( T(1,0) = (1,2) \Rightarrow (a_{11}, a_{21}) = (1,2) \); \( T(0,1) = (2,4) \Rightarrow (a_{12}, a_{22}) = (2,4) \). So \( A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \).</p>
+    <p><strong>(36.2)</strong> \( v_1 = (1,2), v_2 = (-2,1) \); \( w_1 = (1,0), w_2 = (0,1) \). \( T(1,2) = (5,10) \Rightarrow (b_{11}, b_{21}) = (5,10) \); \( T(-2,1) = (0,0) \Rightarrow (b_{12}, b_{22}) = (0,0) \). So \( B = \begin{bmatrix} 5 & 0 \\ 10 & 0 \end{bmatrix} \).</p>
+    <p><strong>(36.3)</strong> \( v_1 = (1,2), v_2 = (-2,1) \); \( w_1 = (1,2), w_2 = (-2,1) \). From \( T(1,2) = (5,10) = c_{11}(1,2) + c_{21}(-2,1) \): \( c_{11} - 2c_{21} = 5 \), \( 2c_{11} + c_{21} = 10 \Rightarrow c_{21} = 0,\ c_{11} = 5 \). From \( T(-2,1) = (0,0) = c_{12}(1,2) + c_{22}(-2,1) \): \( c_{12} = c_{22} = 0 \). So \( C = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix} \).</p>
+  </div>
+
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 36 relation, added in review</span></p>
+    <p>The instructor's closing question asks how the three representations relate. \(A\) and \(C\) represent the same operator \(T\) — \(A\) in the standard basis (both sides), \(C\) in the basis \( \{(1,2),(-2,1)\} \) (both sides) — so they are <strong>similar</strong>: with \( P = \begin{bmatrix} 1 & -2 \\ 2 & 1 \end{bmatrix} \) (columns the new basis vectors), \( C = P^{-1} A P = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix} \). \(C\) is diagonal because \( (1,2) \) and \( (-2,1) \) are eigenvectors of \(T\) with eigenvalues \(5\) and \(0\) — i.e. (36.3) diagonalizes \(T\). The mixed-basis matrix \(B\) (new basis on the domain, standard on the codomain) is the intermediate \( B = AP \).</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — matrix representation, Def 16, Ex 33–36 (pages 48–59)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image048.png" alt="Original handwritten page 48">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image049.png" alt="Original handwritten page 49">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image050.png" alt="Original handwritten page 50">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image051.png" alt="Original handwritten page 51">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image052.png" alt="Original handwritten page 52">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image053.png" alt="Original handwritten page 53">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image054.png" alt="Original handwritten page 54">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image055.png" alt="Original handwritten page 55">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image056.png" alt="Original handwritten page 56">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image057.png" alt="Original handwritten page 57">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image058.png" alt="Original handwritten page 58">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image059.png" alt="Original handwritten page 59">
+    </div>
+  </details>
+
+  <!-- ================================================================== -->
+  <!-- SIMILAR MATRICES                                                   -->
+  <!-- ================================================================== -->
+  <h2 class="sec">Similar Matrices</h2>
+
+  <div class="box def">
+    <p class="box-head">Definition 17 <span class="name">— Similar matrices</span></p>
+    <p>\( M, N \in \F^{n\times n} \) are similar, denoted \( M \sim N \), if there exists an invertible matrix \( P \in \F^{n\times n} \) such that \( M = PNP^{-1} \).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 37</p>
+    <p>Let \( M \) and \( N \) be matrix representations of a linear operator corresponding to two different bases. Prove that \( M \sim N \).</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>For \( T \in \Lin(V) \) with two coordinate maps \( \varphi_1, \varphi_2 \): \( [T] = M \) means \( T = \varphi_1^{-1} M \varphi_1 \), and \( [T] = N \) means \( T = \varphi_2^{-1} N \varphi_2 \). Equating,
+    \[ \varphi_1^{-1} M \varphi_1 = \varphi_2^{-1} N \varphi_2 \implies M = \varphi_1\varphi_2^{-1}\, N\, \varphi_2\varphi_1^{-1}. \]
+    Put \( P = \varphi_1\varphi_2^{-1} \) (invertible, with \( P^{-1} = \varphi_2\varphi_1^{-1} \)); then \( M = PNP^{-1} \), so \( M \sim N \).</p>
+  </div>
+
+  <p>The space \( \F^{n\times n} \) is partitioned into equivalence classes \( [M] = \{N : N \sim M\} \), each consisting of all matrix representations of the transform represented by \( M \).</p>
+
+  <div class="box ex">
+    <p class="box-head">Ex 38</p>
+    <p>Show that \( \sim \) (similarity) is an equivalence relation on \( \F^{n\times n} \): reflexive, symmetric and transitive.</p>
+  </div>
+
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>Recall \( A \sim B \iff \exists \) invertible \( P \) with \( A = PBP^{-1} \).</p>
+    <p><strong>Reflexive.</strong> \( M = IMI^{-1} \), so \( M \sim M \).</p>
+    <p><strong>Symmetric.</strong> If \( M \sim N \), \( M = PNP^{-1} \Rightarrow P^{-1}MP = N \); with \( P' = P^{-1} \), \( N = P'M(P')^{-1} \), so \( N \sim M \).</p>
+    <p><strong>Transitive.</strong> If \( M = P_1 N P_1^{-1} \) and \( N = P_2 Q P_2^{-1} \), then \( M = P_1 P_2\, Q\, P_2^{-1}P_1^{-1} \); with \( P_3 = P_1 P_2 \) (\( P_3^{-1} = P_2^{-1}P_1^{-1} \)), \( M = P_3 Q P_3^{-1} \), so \( M \sim Q \).</p>
+    <p>Hence \( \sim \) is an equivalence relation.</p>
+  </div>
+
+  <details class="scan">
+    <summary>View original handwritten scans — similar matrices, Def 17, Ex 37–38 (pages 59–63)</summary>
+    <div class="scan-imgs">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image059.png" alt="Original handwritten page 59">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image060.png" alt="Original handwritten page 60">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image061.png" alt="Original handwritten page 61">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image062.png" alt="Original handwritten page 62">
+      <img loading="lazy" src="Ch3_%20Linear%20Transforms%20and%20Matrices_files/image063.png" alt="Original handwritten page 63">
+    </div>
+  </details>
+
+  <footer>
+    <p>Handwritten notes by Purva Parmar (MTech AI 2024–26, IISc). Typeset reproduction of Chapter 3. <a href="index.html">← All chapters</a> · <a href="Ch3_%20Linear%20Transforms%20and%20Matrices.htm">complete original export ↗</a></p>
+    <p><strong>Disclaimer:</strong> some exercises may have incomplete answers. The two hand-drawn diagrams (the \( \Null(T) \) line in Ex 29 and the commutative diagram in Ex 34) were redrawn as inline SVG; the invertibility equations (Def of inverse) were reconstructed from fragments the export scattered across a layout grid (shown side-by-side in the scan toggle). This page is a typeset reproduction of the handwritten scans with the <strong>correctness pass applied</strong>: corrections to the original are flagged in amber — a <span class="corr">dotted underline</span> marks a corrected token, with the scan's original shown beside it <span class="corr-note">(like this)</span>, and "Correction" callouts explain the larger fixes.</p>
+  </footer>
+
+</div>
+</body>
+</html>
