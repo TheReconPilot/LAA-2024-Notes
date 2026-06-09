@@ -49,7 +49,10 @@
   <div class="box sol">
     <p class="box-head">Solution — (1)</p>
     <p>\( \tr(AB) = \sum_{i=1}^{n} (AB)_{ii} \), and \( (AB)_{ii} = \sum_{k=1}^{n} a_{ik} b_{ki} \) (the diagonal elements of \( AB \)). Hence
-    \[ \tr(AB) = \sum_{i=1}^{n}\sum_{k=1}^{n} a_{ik} b_{ki} = \sum_{k=1}^{n}\sum_{i=1}^{n} b_{ki} a_{ik} = \sum_{k=1}^{n} (BA)_{kk} = \tr(BA). \]
+    \[\begin{aligned}
+    \tr(AB) &= \sum_{i=1}^{n}\sum_{k=1}^{n} a_{ik} b_{ki} \\
+            &= \sum_{k=1}^{n}\sum_{i=1}^{n} b_{ki} a_{ik} = \sum_{k=1}^{n} (BA)_{kk} = \tr(BA).
+    \end{aligned}\]
     \( \therefore\ \tr(AB) = \tr(BA) \quad \forall\, A, B \in \F^{n\times n}. \)</p>  </div>
 
   <!-- RESOLVED (correctness pass): scan (image001) states claim (2) explicitly for A ∈ F^{m×n}, and (image002–003) runs every sum to n. A^H A is n×n (so the trace index i=1..n is correct), but the contraction is over A's m rows, so the k-sums are 1..m. Corrected; explained in a .box.corr. -->
@@ -81,7 +84,10 @@
   <div class="box sol">
     <p class="box-head">Solution — (5)</p>
     <p>From Ch. 3, \( M \sim N \) iff there is an invertible matrix \( P \) such that \( M = PNP^{-1} \). So \( A \sim B \implies \exists\, P : A = PBP^{-1} \), and
-    \[ \tr(A) = \tr(PBP^{-1}) = \tr\big((PB)P^{-1}\big) = \tr\big(P^{-1}(PB)\big) = \tr(IB) = \tr(B) \qquad (\text{as } \tr(AB) = \tr(BA)). \]
+    \[\begin{aligned}
+    \tr(A) &= \tr(PBP^{-1}) = \tr\big((PB)P^{-1}\big) \\
+           &= \tr\big(P^{-1}(PB)\big) = \tr(IB) = \tr(B) \qquad (\text{as } \tr(AB) = \tr(BA)).
+    \end{aligned}\]
     \( \therefore\ \tr(A) = \tr(B). \)</p>  </div>
 
   <div class="box ex">

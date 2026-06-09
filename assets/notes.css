@@ -148,6 +148,29 @@ ol.claims > li { margin: 0.5rem 0; }
 .qed { text-align: right; color: var(--muted); margin: 0.4rem 0 0; }
 .qed::before { content: "\220E"; } /* ∎ */
 
+/* ---- collapsible proof / solution / added-solution boxes ----------------- */
+.box details { margin: 0; }
+.box details > summary.box-head {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+  margin: 0;
+}
+.box details > summary.box-head::-webkit-details-marker { display: none; }
+.box details > summary.box-head::before {
+  content: "\25B8"; /* ▸ */
+  font-size: 0.85em;
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+.box details[open] > summary.box-head::before { content: "\25BE"; } /* ▾ */
+.box-body { margin-top: 0.5rem; }
+.box-body > :first-child { margin-top: 0; }
+.box-body > :last-child { margin-bottom: 0; }
+
 /* editorial asides written by the author, e.g. "[answer may be incomplete]" */
 .aside { color: var(--muted); font-style: italic; }
 

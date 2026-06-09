@@ -118,7 +118,12 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <p>\(A\) and \(B\) represent \(T\) in different bases, so \( A \sim B \) (Ex 37), i.e. \( A = PBP^{-1} \) for some invertible \(P\). Since \( P(tI)P^{-1} = tI \),
-    \[ f_A(\lambda) = \det(A - \lambda I) = \det(PBP^{-1} - \lambda PIP^{-1}) = \det\!\big(P(B - \lambda I)P^{-1}\big) = \det(P)\det(B - \lambda I)\det(P^{-1}) = \det(B - \lambda I) = f_B(\lambda). \]</p>
+    \[\begin{aligned}
+    f_A(\lambda) &= \det(A - \lambda I) = \det(PBP^{-1} - \lambda PIP^{-1}) \\
+                 &= \det\!\big(P(B - \lambda I)P^{-1}\big) \\
+                 &= \det(P)\det(B - \lambda I)\det(P^{-1}) \\
+                 &= \det(B - \lambda I) = f_B(\lambda).
+    \end{aligned}\]</p>
   </div>
 
   <div class="box rem">
@@ -174,7 +179,11 @@
     <p>Let \( g = g(\lambda) \), \( a = a(\lambda) \), \( [T] = A \), \( \dim\Null(A - \lambda I) = g \). Let \( x_1, \dots, x_g \) be a basis of \( \Null(A - \lambda I) \) (so \( Ax_j = \lambda x_j \)), and extend to a basis \( x_1, \dots, x_g, x_{g+1}, \dots, x_n \) of \( \C^n \). Then
     \[ A\,[\,x_1 \cdots x_g \mid x_{g+1} \cdots x_n\,] = [\,x_1 \cdots x_n\,]\underbrace{\begin{bmatrix} \lambda I_g & B \\ O & C \end{bmatrix}}_{\Sigma}, \qquad AX = X\Sigma, \]
     so \( A = X\Sigma X^{-1} \) (\(X\) invertible as its columns are LI). Then
-    \[ f_A(t) = \det(A - tI_n) = \det\!\big(X(\Sigma - tI_n)X^{-1}\big) = \det(\Sigma - tI_n) = \det\begin{bmatrix} (\lambda - t)I_g & B \\ O & C - tI_{n-g} \end{bmatrix} = (\lambda - t)^g\,h(t), \]
+    \[\begin{aligned}
+    f_A(t) &= \det(A - tI_n) = \det\!\big(X(\Sigma - tI_n)X^{-1}\big) \\
+           &= \det(\Sigma - tI_n) \\
+           &= \det\begin{bmatrix} (\lambda - t)I_g & B \\ O & C - tI_{n-g} \end{bmatrix} = (\lambda - t)^g\,h(t),
+    \end{aligned}\]
     using \( \det\begin{bmatrix} A & B \\ O & C \end{bmatrix} = \det(A)\det(C) \). So \( f_A(t) = (-1)^g(t - \lambda)^g h(t) \), and by the definition of algebraic multiplicity \( g \le a \), i.e. \( a(\lambda) \ge g(\lambda) \).</p>
     <p>For \( A = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \): \( f_A(t) = t^2 = 0 \), so \( \lambda = 0 \) with \( a(\lambda) = 2 \). From \( (A - \lambda I)v = 0 \), \( v_2 = 0 \), so \( \begin{bmatrix} 1 \\ 0 \end{bmatrix} \) is the only eigenvector direction, \( \nullity(A - \lambda I) = 1 \), giving \( g(\lambda) = 1 < a(\lambda) = 2 \). An operator is <strong>defective</strong> if some eigenvalue has algebraic multiplicity strictly larger than its geometric multiplicity.</p>
   </div>
@@ -338,7 +347,11 @@
     <p class="box-head">Solution</p>
     <p><strong>Diagonal case.</strong> For \( A = \diag(\lambda_1, \dots, \lambda_n) \), \( f_A(t) = \prod_{i=1}^{n}(\lambda_i - t) \), so \( f_A(A) = \prod_{i=1}^{n}(\lambda_i I - A) \). Each \( \lambda_i I - A = \diag(\lambda_i - \lambda_1, \dots, \lambda_i - \lambda_n) \) is diagonal with a \(0\) in the \(i\)-th slot. Since the product of diagonal matrices multiplies entrywise, the \(j\)-th diagonal entry of \( \prod_i(\lambda_i I - A) \) contains the factor \( (\lambda_j - \lambda_j) = 0 \). Hence \( f_A(A) = O \) for diagonal \(A\).</p>
     <p><strong>Diagonalizable case.</strong> If \( A = PDP^{-1} \) with \(D\) diagonal, then \( f_A(t) = f_D(t) \) (similar matrices). Writing \( f_A(t) = (-1)^n t^n + a_{n-1}t^{n-1} + \dots + a_0 \),
-    \[ f_A(A) = (-1)^n A^n + \dots + a_0 I = P\big[(-1)^n(P^{-1}AP)^n + \dots + a_0 I\big]P^{-1} = P\,f_D(D)\,P^{-1}, \]
+    \[\begin{aligned}
+    f_A(A) &= (-1)^n A^n + \dots + a_0 I \\
+           &= P\big[(-1)^n(P^{-1}AP)^n + \dots + a_0 I\big]P^{-1} \\
+           &= P\,f_D(D)\,P^{-1},
+    \end{aligned}\]
     using \( (P^{-1}AP)^m = P^{-1}A^m P \). Since \( f_D(D) = 0 \), \( f_A(A) = 0 \). Hence Cayley–Hamilton holds for diagonalizable matrices.</p>
   </div>
 

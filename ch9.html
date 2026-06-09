@@ -52,7 +52,12 @@
   <div class="box pf">
     <p class="box-head">Proof</p>
     <p>\( T \in \Lin(V) \) is self-adjoint, i.e. \( T = T^* \). \(T\) has at least one eigenvalue (by existence of roots of the characteristic polynomial). Let \( \lambda \in \C \) be an eigenvalue with \( Tv = \lambda v \), \( v \in V \), \( v \neq 0 \). We show \( \lambda \) is real:
-    \[ \langle Tv, v \rangle = \langle v, T^*v \rangle \implies \langle \lambda v, v \rangle = \langle v, Tv \rangle \implies \overline{\lambda}\langle v,v\rangle = \langle v, \lambda v\rangle \implies \overline{\lambda}\langle v,v\rangle = \lambda\langle v,v\rangle. \]
+    \[\begin{aligned}
+    \langle Tv, v \rangle = \langle v, T^*v \rangle
+      &\implies \langle \lambda v, v \rangle = \langle v, Tv \rangle \\
+      &\implies \overline{\lambda}\langle v,v\rangle = \langle v, \lambda v\rangle \\
+      &\implies \overline{\lambda}\langle v,v\rangle = \lambda\langle v,v\rangle.
+    \end{aligned}\]
     Since \( v \neq 0 \), \( \langle v,v\rangle = \|v\|^2 > 0 \), so \( \overline{\lambda} = \lambda \), i.e. \( \lambda \) is real.</p>
     <p><em>Alternate solution.</em> Let \( A = [T] \). By Schur, \( A = U\Lambda U\herm \) with \( \Lambda \) upper triangular. Then \( A\herm = (U\Lambda U\herm)\herm = U\Lambda\herm U\herm \), and \( A = A\herm \Rightarrow \Lambda = \Lambda\herm \), so \( \Lambda \) is diagonal with real diagonal entries (the eigenvalues). They may all be the same, but nonetheless we have a real eigenvalue.</p>
   </div>
@@ -70,10 +75,16 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <p><strong>\( T_U \in \Lin(U) \).</strong> Let \( u_1, u_2 \in U \), \( \alpha \in \F \) (so \( u_1 + u_2 \in U \), \( \alpha u_1 \in U \)).
-    \[ T_U(u_1 + u_2) = T(u_1 + u_2) = T(u_1) + T(u_2) = T_U(u_1) + T_U(u_2), \qquad T_U(\alpha u_1) = T(\alpha u_1) = \alpha T(u_1) = \alpha T_U(u_1). \]
+    \[\begin{aligned}
+    T_U(u_1 + u_2) &= T(u_1 + u_2) = T(u_1) + T(u_2) = T_U(u_1) + T_U(u_2), \\
+    T_U(\alpha u_1) &= T(\alpha u_1) = \alpha T(u_1) = \alpha T_U(u_1).
+    \end{aligned}\]
     So \( T_U \in \Lin(U) \) — an operator on \( U \subseteq V \).</p>
     <p><strong>\( T_U \) is self-adjoint.</strong> For \( u_1, u_2 \in U \),
-    \[ \langle T_U u_1, u_2 \rangle = \langle T u_1, u_2 \rangle = \langle u_1, T^* u_2 \rangle = \langle u_1, T u_2 \rangle = \langle u_1, T_U u_2 \rangle \quad \forall\, u_1, u_2 \in U, \]
+    \[\begin{aligned}
+    \langle T_U u_1, u_2 \rangle &= \langle T u_1, u_2 \rangle = \langle u_1, T^* u_2 \rangle \\
+                                 &= \langle u_1, T u_2 \rangle = \langle u_1, T_U u_2 \rangle \quad \forall\, u_1, u_2 \in U,
+    \end{aligned}\]
     so \( T_U^* = T_U \).</p>
   </div>
 

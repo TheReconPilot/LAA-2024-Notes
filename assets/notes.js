@@ -31,4 +31,32 @@ document.addEventListener("DOMContentLoaded", function () {
       "\\Range": "\\mathcal{R}"
     }
   });
+  initCollapsibles();
 });
+
+function initCollapsibles() {
+  var configs = [
+    { sel: '.box.pf',  defaultOpen: true  },
+    { sel: '.box.sol', defaultOpen: false },
+    { sel: '.box.add', defaultOpen: false },
+  ];
+  configs.forEach(function(cfg) {
+    document.querySelectorAll(cfg.sel).forEach(function(box) {
+      var head = box.querySelector(':scope > .box-head');
+      if (!head) return;
+      var details = document.createElement('details');
+      if (cfg.defaultOpen) details.open = true;
+      var summary = document.createElement('summary');
+      summary.innerHTML = head.innerHTML;
+      summary.className = 'box-head';
+      var body = document.createElement('div');
+      body.className = 'box-body';
+      Array.from(box.children)
+        .filter(function(el) { return el !== head; })
+        .forEach(function(el) { body.appendChild(el); });
+      details.appendChild(summary);
+      details.appendChild(body);
+      head.replaceWith(details);
+    });
+  });
+}

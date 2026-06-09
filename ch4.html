@@ -90,8 +90,16 @@
     <p><strong>Positive-definiteness.</strong> \( \langle x, x\rangle = x \cdot x = x_1^2 + \dots + x_n^2 \ge 0 \ \forall\, x \in \R^n \), and \( \langle x, x\rangle = 0 \iff x_i = 0 \) for \( i = 1, \dots, n \), i.e. \( x = 0 \).</p>
     <p><strong>Symmetry.</strong> \( \langle y, x\rangle = y \cdot x = y_1 x_1 + \dots + y_n x_n = x_1 y_1 + \dots + x_n y_n = x \cdot y = \langle x, y\rangle \).</p>
     <p><strong>Linearity.</strong> Consider \( T(x) = \langle y, x\rangle \) for fixed \( y \in \R^n \).
-    \[ T(x + w) = \langle y, x + w\rangle = y \cdot (x + w) = (y_1 x_1 + \dots + y_n x_n) + (y_1 w_1 + \dots + y_n w_n) = \langle y, x\rangle + \langle y, w\rangle = T(x) + T(w), \]
-    \[ T(\alpha x) = \langle y, \alpha x\rangle = y \cdot (\alpha x) = \alpha(y_1 x_1 + \dots + y_n x_n) = \alpha\langle y, x\rangle = \alpha T(x) \quad \forall\, \alpha \in \R,\ x \in \R^n. \]
+    \[\begin{aligned}
+    T(x + w) &= \langle y, x + w\rangle = y \cdot (x + w) \\
+             &= (y_1 x_1 + \dots + y_n x_n) + (y_1 w_1 + \dots + y_n w_n) \\
+             &= \langle y, x\rangle + \langle y, w\rangle = T(x) + T(w),
+    \end{aligned}\]
+    \[\begin{aligned}
+    T(\alpha x) &= \langle y, \alpha x\rangle = y \cdot (\alpha x) \\
+                &= \alpha(y_1 x_1 + \dots + y_n x_n) \\
+                &= \alpha\langle y, x\rangle = \alpha T(x) \quad \forall\, \alpha \in \R,\ x \in \R^n.
+    \end{aligned}\]
     So \( T \) is linear \( \forall\, y \in \R^n \). Combining everything, \( \langle x, y\rangle = x \cdot y \) has the properties of an inner product on \( \R^n \).</p>
   </div>
 
@@ -106,8 +114,16 @@
     <p><strong>Positive-definiteness.</strong> \( \langle h, h\rangle = \int_{-1}^{1} \big(h(t)\big)^2\, dt \ge 0 \), and \( \langle h, h\rangle = 0 \iff h(t) = 0 \).</p>
     <p><strong>Symmetry.</strong> \( \langle h, q\rangle = \int_{-1}^{1} h(t)\, q(t)\, dt = \int_{-1}^{1} q(t)\, h(t)\, dt = \langle q, h\rangle \).</p>
     <p><strong>Linearity.</strong> Consider \( T(h) = \langle q, h\rangle \).
-    \[ T(h + r) = \langle q, h + r\rangle = \int_{-1}^{1} q(t)\big[h(t) + r(t)\big]\, dt = \int_{-1}^{1} q(t)h(t)\, dt + \int_{-1}^{1} q(t)r(t)\, dt = \langle q, h\rangle + \langle q, r\rangle = T(h) + T(r), \]
-    \[ T(\alpha h) = \langle q, \alpha h\rangle = \int_{-1}^{1} q(t)\,\alpha h(t)\, dt = \alpha \int_{-1}^{1} q(t) h(t)\, dt = \alpha\langle q, h\rangle = \alpha T(h) \quad \forall\, \alpha \in \R,\ h \in V. \]
+    \[\begin{aligned}
+    T(h + r) &= \langle q, h + r\rangle = \int_{-1}^{1} q(t)\big[h(t) + r(t)\big]\, dt \\
+             &= \int_{-1}^{1} q(t)h(t)\, dt + \int_{-1}^{1} q(t)r(t)\, dt \\
+             &= \langle q, h\rangle + \langle q, r\rangle = T(h) + T(r),
+    \end{aligned}\]
+    \[\begin{aligned}
+    T(\alpha h) &= \langle q, \alpha h\rangle = \int_{-1}^{1} q(t)\,\alpha h(t)\, dt \\
+                &= \alpha \int_{-1}^{1} q(t) h(t)\, dt \\
+                &= \alpha\langle q, h\rangle = \alpha T(h) \quad \forall\, \alpha \in \R,\ h \in V.
+    \end{aligned}\]
     So \( h \mapsto \langle q, h\rangle \) is linear \( \forall\, q \in V \). Combining all the above, \( \langle h, q\rangle = \int_{-1}^{1} h(t) q(t)\, dt \) is an inner product on \( V \).</p>
   </div>
 
@@ -122,8 +138,17 @@
     <p><strong>Positive-definiteness.</strong> \( \langle x, x\rangle = w_1 x_1^2 + \dots + w_n x_n^2 \ge 0 \) as \( w_1, \dots, w_n > 0 \); and \( \langle x, x\rangle = 0 \iff x_i = 0 \) for \( i = 1, \dots, n \) (as all \( w_i > 0 \)), i.e. \( x = 0 \).</p>
     <p><strong>Symmetry.</strong> \( \langle y, x\rangle = w_1 y_1 x_1 + \dots + w_n y_n x_n = w_1 x_1 y_1 + \dots + w_n x_n y_n = \langle x, y\rangle \).</p>
     <p><strong>Linearity.</strong> With \( T(x) = \langle y, x\rangle \),
-    \[ T(x + z) = \langle y, x + z\rangle = (w_1 y_1 x_1 + \dots + w_n y_n x_n) + (w_1 y_1 z_1 + \dots + w_n y_n z_n) = \langle y, x\rangle + \langle y, z\rangle = T(x) + T(z), \]
-    \[ T(\alpha x) = \langle y, \alpha x\rangle = w_1 y_1(\alpha x_1) + \dots + w_n y_n(\alpha x_n) = \alpha(w_1 y_1 x_1 + \dots + w_n y_n x_n) = \alpha\langle y, x\rangle = \alpha T(x) \quad \forall\, \alpha \in \R,\ x \in V. \]
+    \[\begin{aligned}
+    T(x + z) &= \langle y, x + z\rangle \\
+             &= (w_1 y_1 x_1 + \dots + w_n y_n x_n) + (w_1 y_1 z_1 + \dots + w_n y_n z_n) \\
+             &= \langle y, x\rangle + \langle y, z\rangle = T(x) + T(z),
+    \end{aligned}\]
+    \[\begin{aligned}
+    T(\alpha x) &= \langle y, \alpha x\rangle \\
+                &= w_1 y_1(\alpha x_1) + \dots + w_n y_n(\alpha x_n) \\
+                &= \alpha(w_1 y_1 x_1 + \dots + w_n y_n x_n) \\
+                &= \alpha\langle y, x\rangle = \alpha T(x) \quad \forall\, \alpha \in \R,\ x \in V.
+    \end{aligned}\]
     So \( x \mapsto \langle y, x\rangle \) is linear \( \forall\, y \in V \). Combining the above, \( \langle x, y\rangle = \sum_{i=1}^{n} w_i x_i y_i \) is an inner product on \( V \).</p>
   </div>
 
@@ -155,10 +180,22 @@
     <p>Here \( \langle x, y\rangle = \bar x_1 y_1 + \dots + \bar x_n y_n \).</p>
     <p><strong>Positive-definiteness.</strong> \( \langle x, x\rangle = \bar x_1 x_1 + \dots + \bar x_n x_n = |x_1|^2 + \dots + |x_n|^2 \ge 0 \ \forall\, x \in \C^n \), and \( \langle x, x\rangle = 0 \iff x_i = 0 \ \forall\, i = 1, \dots, n \), i.e. \( x = 0 \).</p>
     <p><strong>Conjugate symmetry.</strong>
-    \[ \langle x, y\rangle = \bar x_1 y_1 + \dots + \bar x_n y_n = \overline{x_1 \bar y_1} + \dots + \overline{x_n \bar y_n} = \overline{\bar y_1 x_1} + \dots + \overline{\bar y_n x_n} = \overline{\langle y, x\rangle}. \]</p>
+    \[\begin{aligned}
+    \langle x, y\rangle &= \bar x_1 y_1 + \dots + \bar x_n y_n \\
+                        &= \overline{x_1 \bar y_1} + \dots + \overline{x_n \bar y_n} \\
+                        &= \overline{\bar y_1 x_1} + \dots + \overline{\bar y_n x_n} = \overline{\langle y, x\rangle}.
+    \end{aligned}\]</p>
     <p><strong>Linearity.</strong> With \( T(x) = \langle y, x\rangle \),
-    \[ T(x + w) = \langle y, x + w\rangle = \bar y_1(x_1 + w_1) + \dots + \bar y_n(x_n + w_n) = \langle y, x\rangle + \langle y, w\rangle = T(x) + T(w), \]
-    \[ T(\alpha x) = \langle y, \alpha x\rangle = \bar y_1(\alpha x_1) + \dots + \bar y_n(\alpha x_n) = \alpha\langle y, x\rangle = \alpha T(x). \]
+    \[\begin{aligned}
+    T(x + w) &= \langle y, x + w\rangle \\
+             &= \bar y_1(x_1 + w_1) + \dots + \bar y_n(x_n + w_n) \\
+             &= \langle y, x\rangle + \langle y, w\rangle = T(x) + T(w),
+    \end{aligned}\]
+    \[\begin{aligned}
+    T(\alpha x) &= \langle y, \alpha x\rangle \\
+                &= \bar y_1(\alpha x_1) + \dots + \bar y_n(\alpha x_n) \\
+                &= \alpha\langle y, x\rangle = \alpha T(x).
+    \end{aligned}\]
     Thus \( x \mapsto \langle y, x\rangle \) is linear, and \( x \cdot y = \sum_{i=1}^{n} \bar x_i y_i \) has the properties of an inner product on \( \C^n \).</p>
   </div>
 
@@ -239,9 +276,16 @@
     <p><strong>Positive-definiteness.</strong> \( \|x\| \ge 0 \ \forall\, x \in \R^n \), and \( \|x\| = 0 \iff x_i = 0 \ \forall\, i = 1, \dots, n \), i.e. \( x = 0 \).</p>
     <p><strong>Homogeneity.</strong> \( \|ax\| = \sqrt{(ax_1)^2 + \dots + (ax_n)^2} = \sqrt{a^2(x_1^2 + \dots + x_n^2)} = |a|\sqrt{x_1^2 + \dots + x_n^2} = |a|\,\|x\| \ \forall\, a \in \F \).</p>
     <p><strong>Triangle inequality.</strong>
-    \[ \|x + y\|^2 = (x_1 + y_1)^2 + \dots + (x_n + y_n)^2 = (x_1^2 + \dots + x_n^2) + (y_1^2 + \dots + y_n^2) + 2(x_1 y_1 + \dots + x_n y_n) = \|x\|^2 + \|y\|^2 + 2\langle x, y\rangle. \]
+    \[\begin{aligned}
+    \|x + y\|^2 &= (x_1 + y_1)^2 + \dots + (x_n + y_n)^2 \\
+                &= (x_1^2 + \dots + x_n^2) + (y_1^2 + \dots + y_n^2) + 2(x_1 y_1 + \dots + x_n y_n) \\
+                &= \|x\|^2 + \|y\|^2 + 2\langle x, y\rangle.
+    \end{aligned}\]
     By Cauchy–Schwarz, \( |\langle x, y\rangle| \le \|x\|\,\|y\| \), so
-    \[ \|x + y\|^2 \le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \implies \|x + y\| \le \|x\| + \|y\| \quad \forall\, x, y \in \R^n. \]
+    \[\begin{aligned}
+    \|x + y\|^2 &\le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \\
+                &\implies \|x + y\| \le \|x\| + \|y\| \quad \forall\, x, y \in \R^n.
+    \end{aligned}\]
     So it is a valid norm on \( \R^n \). <span class="aside">(Tricky without Cauchy–Schwarz.)</span></p>
   </div>
 
@@ -251,9 +295,17 @@
     <p><strong>Positive-definiteness.</strong> \( \|z\| \ge 0 \ \forall\, z \in \C^n \) as \( |z_i|^2 \ge 0 \ \forall\, i = 1, \dots, n \); and \( \|z\| = 0 \iff |z_i| = 0 \), i.e. \( z = 0 \).</p>
     <p><strong>Homogeneity.</strong> \( \|\alpha z\| = \sqrt{(\alpha z) \cdot (\alpha z)} = \sqrt{|\alpha|^2 |z_1|^2 + \dots + |\alpha|^2 |z_n|^2} = |\alpha|\,\|z\| \ \forall\, \alpha \in \C \).</p>
     <p><strong>Triangle inequality.</strong>
-    \[ \|x + y\|^2 = \langle x + y, x + y\rangle = \langle x, x\rangle + \langle y, y\rangle + \langle x, y\rangle + \langle y, x\rangle = \|x\|^2 + \|y\|^2 + \langle x, y\rangle + \overline{\langle x, y\rangle} = \|x\|^2 + \|y\|^2 + 2\operatorname{Re}\langle x, y\rangle. \]
+    \[\begin{aligned}
+    \|x + y\|^2 &= \langle x + y, x + y\rangle \\
+                &= \langle x, x\rangle + \langle y, y\rangle + \langle x, y\rangle + \langle y, x\rangle \\
+                &= \|x\|^2 + \|y\|^2 + \langle x, y\rangle + \overline{\langle x, y\rangle} \\
+                &= \|x\|^2 + \|y\|^2 + 2\operatorname{Re}\langle x, y\rangle.
+    \end{aligned}\]
     Using \( |\operatorname{Re}(z)| \le |z| \) and Cauchy–Schwarz \( |\langle u, v\rangle| \le \|u\|\,\|v\| \),
-    \[ \|x + y\|^2 \le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \implies \|x + y\| \le \|x\| + \|y\| \quad \forall\, x, y \in \C^n. \]
+    \[\begin{aligned}
+    \|x + y\|^2 &\le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \\
+                &\implies \|x + y\| \le \|x\| + \|y\| \quad \forall\, x, y \in \C^n.
+    \end{aligned}\]
     So it is a valid norm on \( \C^n \).</p>
   </div>
 
@@ -272,9 +324,16 @@
     <p><strong>Positive-definiteness.</strong> \( \|x\| = \sqrt{\langle x, x\rangle} \ge 0 \) as \( \langle x, x\rangle \ge 0 \); also \( \|x\| = \sqrt{\langle x, x\rangle} = 0 \iff x = 0 \) (again by the properties of the inner product).</p>
     <p><strong>Homogeneity.</strong> \( \|ax\| = \sqrt{\langle ax, ax\rangle} = \sqrt{\bar a\langle x, ax\rangle} = \sqrt{\bar a\, a\langle x, x\rangle} = \sqrt{|a|^2\langle x, x\rangle} = |a|\,\|x\| \).</p>
     <p><strong>Triangle inequality.</strong>
-    \[ \|x + y\|^2 = \langle x + y, x + y\rangle = \|x\|^2 + \|y\|^2 + \langle x, y\rangle + \overline{\langle x, y\rangle} = \|x\|^2 + \|y\|^2 + 2\operatorname{Re}\langle x, y\rangle. \]
+    \[\begin{aligned}
+    \|x + y\|^2 &= \langle x + y, x + y\rangle \\
+                &= \|x\|^2 + \|y\|^2 + \langle x, y\rangle + \overline{\langle x, y\rangle} \\
+                &= \|x\|^2 + \|y\|^2 + 2\operatorname{Re}\langle x, y\rangle.
+    \end{aligned}\]
     Using \( |\operatorname{Re}(z)| \le |z| \) and Cauchy–Schwarz \( |\langle u, v\rangle| \le \|u\|\,\|v\| \),
-    \[ \|x + y\|^2 \le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \implies \|x + y\| \le \|x\| + \|y\|. \]
+    \[\begin{aligned}
+    \|x + y\|^2 &\le \|x\|^2 + \|y\|^2 + 2\|x\|\,\|y\| = (\|x\| + \|y\|)^2 \\
+                &\implies \|x + y\| \le \|x\| + \|y\|.
+    \end{aligned}\]
     Hence the norm induced by an inner product is a valid norm.</p>
   </div>
 
@@ -363,7 +422,11 @@
     \[ \langle x, y\rangle - \bar c\langle y, y\rangle = 0 \implies \bar c = \frac{\langle x, y\rangle}{\|y\|^2} \implies c = \frac{\langle y, x\rangle}{\|y\|^2}. \]</p>
     <p class="aside">Note: in LADR this would be \( c = \dfrac{\langle x, y\rangle}{\|y\|^2} \), due to how the inner product is defined there.</p>
     <p>This is the <strong>orthogonal decomposition</strong> (LADR 6.13): \( x = cy + w \) with \( w = x - cy = x - \dfrac{\langle y, x\rangle}{\|y\|^2}\, y \), \( \langle w, y\rangle = 0 \), \( y \neq 0 \). Since \( w \perp y \), by the Pythagorean theorem,
-    \[ \|x\|^2 = \left\| \frac{\langle y, x\rangle}{\|y\|^2}\, y \right\|^2 + \|w\|^2 = \frac{|\langle x, y\rangle|^2}{\|y\|^4}\,\|y\|^2 + \|w\|^2 = \frac{|\langle x, y\rangle|^2}{\|y\|^2} + \|w\|^2, \]
+    \[\begin{aligned}
+    \|x\|^2 &= \left\| \frac{\langle y, x\rangle}{\|y\|^2}\, y \right\|^2 + \|w\|^2 \\
+            &= \frac{|\langle x, y\rangle|^2}{\|y\|^4}\,\|y\|^2 + \|w\|^2 \\
+            &= \frac{|\langle x, y\rangle|^2}{\|y\|^2} + \|w\|^2,
+    \end{aligned}\]
     using \( \langle y, x\rangle = \overline{\langle x, y\rangle} \) so \( |\langle y, x\rangle| = |\langle x, y\rangle| \). Therefore
     \[ \|x\|^2 \ge \frac{|\langle x, y\rangle|^2}{\|y\|^2} \quad (\text{as } \|w\|^2 \ge 0) \implies |\langle x, y\rangle| \le \|x\|\,\|y\|. \]</p>
   </div>
@@ -426,8 +489,13 @@
 
   <div class="box sol">
     <p class="box-head">Solution</p>
-    <p>\[ \|x + y\|^2 + \|x - y\|^2 = \langle x + y, x + y\rangle + \langle x - y, x - y\rangle \]
-    \[ = \langle x, x\rangle + \langle y, y\rangle + \langle x, y\rangle + \langle y, x\rangle + \langle x, x\rangle + \langle y, y\rangle - \langle x, y\rangle - \langle y, x\rangle = 2\big(\|x\|^2 + \|y\|^2\big). \]</p>
+    <p>\[\begin{aligned}
+    \|x + y\|^2 + \|x - y\|^2
+      &= \langle x + y, x + y\rangle + \langle x - y, x - y\rangle \\
+      &= \langle x, x\rangle + \langle y, y\rangle + \langle x, y\rangle + \langle y, x\rangle \\
+      &\quad + \langle x, x\rangle + \langle y, y\rangle - \langle x, y\rangle - \langle y, x\rangle \\
+      &= 2\big(\|x\|^2 + \|y\|^2\big).
+    \end{aligned}\]</p>
   </div>
 
   <div class="box rem">
@@ -614,7 +682,11 @@
     <p class="box-head">Proof</p>
     <p>Let \( e_1, \dots, e_n \) be an ONB for \( V \) (\( \dim V = n \)). For \( x \in V \), write \( x = a_1 e_1 + \dots + a_n e_n \). For \( k \in \{1, \dots, n\} \), \( \langle e_k, x\rangle = a_1\langle e_k, e_1\rangle + \dots + a_n\langle e_k, e_n\rangle = a_k \), so \( x = \langle e_1, x\rangle e_1 + \dots + \langle e_n, x\rangle e_n \).</p>
     <p>We need some \( v \in V \) with \( \ell(x) = \langle v, x\rangle \ \forall\, x \in V \). Using linearity of \( \ell \) and \( \alpha\langle y, x\rangle = \langle \bar\alpha y, x\rangle \),
-    \[ \ell(x) = \ell\big(\langle e_1, x\rangle e_1 + \dots + \langle e_n, x\rangle e_n\big) = \langle e_1, x\rangle\,\ell(e_1) + \dots + \langle e_n, x\rangle\,\ell(e_n) = \big\langle \overline{\ell(e_1)}\, e_1, x\big\rangle + \dots + \big\langle \overline{\ell(e_n)}\, e_n, x\big\rangle. \]
+    \[\begin{aligned}
+    \ell(x) &= \ell\big(\langle e_1, x\rangle e_1 + \dots + \langle e_n, x\rangle e_n\big) \\
+            &= \langle e_1, x\rangle\,\ell(e_1) + \dots + \langle e_n, x\rangle\,\ell(e_n) \\
+            &= \big\langle \overline{\ell(e_1)}\, e_1, x\big\rangle + \dots + \big\langle \overline{\ell(e_n)}\, e_n, x\big\rangle.
+    \end{aligned}\]
     So \( \ell(x) = \big\langle \overline{\ell(e_1)}\, e_1 + \dots + \overline{\ell(e_n)}\, e_n,\ x\big\rangle \). Set \( v = \overline{\ell(e_1)}\, e_1 + \dots + \overline{\ell(e_n)}\, e_n \); then \( \ell(x) = \langle v, x\rangle \ \forall\, x \in V \).</p>
     <p><strong>Uniqueness.</strong> Suppose \( \exists\, v_1, v_2 \in V \) with \( \ell(x) = \langle v_1, x\rangle = \langle v_2, x\rangle \). Then \( \langle v_1 - v_2, x\rangle = 0 \ \forall\, x \in V \). Taking \( x = v_1 - v_2 \) gives \( \langle v_1 - v_2, v_1 - v_2\rangle = 0 \Rightarrow v_1 - v_2 = 0 \Rightarrow v_1 = v_2 \). Thus \( v \) is unique.</p>
   </div>

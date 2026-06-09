@@ -112,9 +112,16 @@
       <li>\( \|cA\|_F = \big(\sum_i\sum_j |c\,a_{ij}|^2\big)^{1/2} = \big(|c|^2 \sum_i\sum_j |a_{ij}|^2\big)^{1/2} \), so \( \|cA\|_F = |c|\,\|A\|_F \ \forall\, c \in \C \).</li>
     </ul>
     <p>For the triangle inequality,
-    \[ \|A+B\|^2 = \sum_{i=1}^{m}\sum_{j=1}^{n} |a_{ij} + b_{ij}|^2 = \sum_{i}\sum_{j}\big(|a_{ij}|^2 + |b_{ij}|^2 + 2|a_{ij}||b_{ij}|\big) = \|A\|_F^2 + \|B\|_F^2 + 2\sum_{i}\sum_{j}|a_{ij}||b_{ij}|. \]
+    \[\begin{aligned}
+    \|A+B\|^2 &= \sum_{i=1}^{m}\sum_{j=1}^{n} |a_{ij} + b_{ij}|^2 \\
+              &= \sum_{i}\sum_{j}\big(|a_{ij}|^2 + |b_{ij}|^2 + 2|a_{ij}||b_{ij}|\big) \\
+              &= \|A\|_F^2 + \|B\|_F^2 + 2\sum_{i}\sum_{j}|a_{ij}||b_{ij}|.
+    \end{aligned}\]
     Thinking of \( (a_{ij}) \) as a vector of length \( mn \) and applying the Cauchy–Schwarz inequality,
-    \[ \le \|A\|_F^2 + \|B\|_F^2 + 2\Big(\sum_i\sum_j |a_{ij}|^2\Big)^{1/2}\Big(\sum_i\sum_j |b_{ij}|^2\Big)^{1/2} = \|A\|_F^2 + \|B\|_F^2 + 2\|A\|_F\|B\|_F = (\|A\|_F + \|B\|_F)^2, \]
+    \[\begin{aligned}
+    &\le \|A\|_F^2 + \|B\|_F^2 + 2\Big(\sum_i\sum_j |a_{ij}|^2\Big)^{1/2}\Big(\sum_i\sum_j |b_{ij}|^2\Big)^{1/2} \\
+    &= \|A\|_F^2 + \|B\|_F^2 + 2\|A\|_F\|B\|_F = (\|A\|_F + \|B\|_F)^2,
+    \end{aligned}\]
     so \( \|A+B\|_F \le \|A\|_F + \|B\|_F \).</p>
     <p>For submultiplicativity \( \|AB\|_F \le \|A\|_F\|B\|_F \): for \( x \in \C^n \), \( (Ax)_i = \sum_{j=1}^{n} a_{ij} x_j \), so by Cauchy–Schwarz \( |(Ax)_i| \le \big(\sum_j |a_{ij}|^2\big)^{1/2}\big(\sum_j |x_j|^2\big)^{1/2} = \|A_i\|\,\|x\| \) (where \(A_i\) is the \(i\)-th row of \(A\)). Then
     \[ \|Ax\| = \Big(\sum_{i=1}^{m}(Ax)_i^2\Big)^{1/2} \le \Big(\sum_{i=1}^{m}\|A_i\|^2\|x\|^2\Big)^{1/2} \le \|x\|\Big(\sum_{i=1}^{m}\|A_i\|^2\Big)^{1/2} = \|A\|_F\,\|x\| \quad \forall\, x \in \C^n. \]
@@ -164,7 +171,12 @@
   <div class="box sol">
     <p class="box-head">Solution — (i) \( \|A\|_2 \le \|A\|_F \)</p>
     <p>For any \( x \in V \), \( x \neq 0 \), \( \tfrac{x}{\|x\|} \) has unit norm. With \( (Ax)_i = \sum_{j=1}^{n} a_{ij}x_j \),
-    \[ \|Ax\|_2^2 = \sum_{i=1}^{m}\Big|\sum_{j=1}^{n}a_{ij}x_j\Big|^2 \le \sum_{i=1}^{m}\Big(\sum_{j=1}^{n}|a_{ij}x_j|\Big)^2 \le \sum_{i=1}^{m}\Big(\sum_{j=1}^{n}|a_{ij}|^2\Big)\Big(\sum_{j=1}^{n}|x_j|^2\Big) \le \|x\|_2^2\Big(\sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}|^2\Big), \]
+    \[\begin{aligned}
+    \|Ax\|_2^2 &= \sum_{i=1}^{m}\Big|\sum_{j=1}^{n}a_{ij}x_j\Big|^2 \\
+               &\le \sum_{i=1}^{m}\Big(\sum_{j=1}^{n}|a_{ij}x_j|\Big)^2 \\
+               &\le \sum_{i=1}^{m}\Big(\sum_{j=1}^{n}|a_{ij}|^2\Big)\Big(\sum_{j=1}^{n}|x_j|^2\Big) \\
+               &\le \|x\|_2^2\Big(\sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}|^2\Big),
+    \end{aligned}\]
     by the triangle and Cauchy–Schwarz inequalities. So \( \|Ax\|_2^2 \le \|x\|_2^2\,\|A\|_F^2 \), i.e. \( \dfrac{\|Ax\|_2^2}{\|x\|_2^2} \le \|A\|_F^2 \ \forall\, x \neq 0 \). Putting \( v = \tfrac{x}{\|x\|} \), \( \|Av\|_2 \le \|A\|_F \ \forall\, v \neq 0,\ \|v\|_2 = 1 \), so \( \max_{\|v\|=1}\|Av\|_2 \le \|A\|_F \), giving \( \|A\|_2 \le \|A\|_F \).</p>
   </div>
 
@@ -190,14 +202,22 @@
   <div class="box sol">
     <p class="box-head">Solution — (i) \( \|A\|_1 \) is an induced norm</p>
     <p>For \( x \in \C^n \), \( \|x\|_1 = \sum_{i=1}^{n}|x_i| \). Then
-    \[ \|Ax\|_1 = \sum_{i=1}^{m}\Big|\sum_{j=1}^{n}a_{ij}x_j\Big| \le \sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}||x_j| = \sum_{j=1}^{n}|x_j|\Big(\sum_{i=1}^{m}|a_{ij}|\Big) \le \Big(\sum_{j=1}^{n}|x_j|\Big)\max_j\sum_{i=1}^{m}|a_{ij}| \le \|x\|_1 \max_j\sum_{i=1}^{m}|a_{ij}|. \]
+    \[\begin{aligned}
+    \|Ax\|_1 &= \sum_{i=1}^{m}\Big|\sum_{j=1}^{n}a_{ij}x_j\Big| \\
+             &\le \sum_{i=1}^{m}\sum_{j=1}^{n}|a_{ij}||x_j| = \sum_{j=1}^{n}|x_j|\Big(\sum_{i=1}^{m}|a_{ij}|\Big) \\
+             &\le \Big(\sum_{j=1}^{n}|x_j|\Big)\max_j\sum_{i=1}^{m}|a_{ij}| \le \|x\|_1 \max_j\sum_{i=1}^{m}|a_{ij}|.
+    \end{aligned}\]
     Equality is attained: if \( v_k \) is the column of \(A\) with the largest absolute sum and \( x = e_k \), then \( \|x\|_1 = 1 \) and \( \|Ax\|_1 = \|v_k\|_1 = \max_j\sum_i|a_{ij}| \). So \( \|A\|_1 = \max_{\|x\|_1 = 1}\|Ax\|_1 = \max_{1\le j\le n}\sum_{i=1}^{m}|a_{ij}| \).</p>
   </div>
 
   <div class="box sol">
     <p class="box-head">Solution — (ii) \( \|A\|_\infty \) is an induced norm</p>
     <p>For \( x \in \C^n \), \( \|x\|_\infty = \max_{1\le i\le n}|x_i| \). Then
-    \[ \|Ax\|_\infty = \max_{1\le i\le m}\Big|\sum_{j=1}^{n}a_{ij}x_j\Big| \le \max_{1\le i\le m}\sum_{j=1}^{n}|a_{ij}||x_j| \le \max_{1\le i\le m}\sum_{j=1}^{n}|a_{ij}|\,\big(\max_j|x_j|\big), \]
+    \[\begin{aligned}
+    \|Ax\|_\infty &= \max_{1\le i\le m}\Big|\sum_{j=1}^{n}a_{ij}x_j\Big| \\
+                  &\le \max_{1\le i\le m}\sum_{j=1}^{n}|a_{ij}||x_j| \\
+                  &\le \max_{1\le i\le m}\sum_{j=1}^{n}|a_{ij}|\,\big(\max_j|x_j|\big),
+    \end{aligned}\]
     so \( \|Ax\|_\infty \le \|x\|_\infty \max_{1\le i\le m}\sum_{j=1}^{n}|a_{ij}| \). Equality is attained: if \( v_k \) is the row of \(A\) with the largest absolute sum, and \(x\) is such that \( x_j = \begin{cases} 1 & a_{kj} \ge 0 \\ -1 & a_{kj} < 0 \end{cases} \), then \( \|x\|_\infty = 1 \) and \( |v_k \cdot x| = \sum_{j=1}^{n}|a_{kj}x_j| = \max_i\sum_{j=1}^{n}|a_{ij}| \). So \( \|A\|_\infty = \max_{\|x\|=1}\|Ax\|_\infty = \max_{1\le i\le m}\sum_{j=1}^{n}|a_{ij}| \).</p>
   </div>
 
@@ -255,7 +275,12 @@
     <p>With \( x \in \C^n \), \( x \neq 0 \): \( \|x\| \le \|(I-A)x\| + \|Ax\| \), so \( \|x\| - \|Ax\| \le \|(I-A)x\| \), giving \( \dfrac{\|(I-A)x\|}{\|x\|} \ge 1 - \dfrac{\|Ax\|}{\|x\|} \). Since \( \|\cdot\| \) is submultiplicative, \( \|Ax\| \le \|A\|\|x\| \), so \( \dfrac{\|(I-A)x\|}{\|x\|} \ge 1 - \|A\| \). Hence \( \min_{x\neq 0}\dfrac{\|(I-A)x\|}{\|x\|} \ge 1 - \|A\| \), so
     \[ \|(I-A)^{-1}\| \le \frac{1}{1 - \|A\|}, \]
     using the fact that \( \min_{\|x\|=1}\|Ax\| = \dfrac{1}{\|A^{-1}\|} \) for non-singular \(A\) (Meyer, Ex 5.2.7), since
-    \[ \frac{1}{\min_{\|x\|=1}\|Ax\|} = \max_{\|x\|=1}\frac{1}{\|Ax\|} = \max_{y\neq 0}\frac{1}{\big\|A\frac{A^{-1}y}{\|A^{-1}y\|}\big\|} = \max_{y\neq 0}\frac{\|A^{-1}y\|}{\|AA^{-1}y\|} = \max_{y\neq 0}\frac{\|A^{-1}y\|}{\|y\|} = \|A^{-1}\|. \]</p>
+    \[\begin{aligned}
+    \frac{1}{\min_{\|x\|=1}\|Ax\|}
+      &= \max_{\|x\|=1}\frac{1}{\|Ax\|} \\
+      &= \max_{y\neq 0}\frac{1}{\big\|A\frac{A^{-1}y}{\|A^{-1}y\|}\big\|} \\
+      &= \max_{y\neq 0}\frac{\|A^{-1}y\|}{\|AA^{-1}y\|} = \max_{y\neq 0}\frac{\|A^{-1}y\|}{\|y\|} = \|A^{-1}\|.
+    \end{aligned}\]</p>
   </div>
 
   <div class="box sol">
@@ -263,7 +288,12 @@
     <p>Consider \( S_n = I + A + A^2 + \dots + A^n \). We show \( \lim_{n\to\infty}S_n = (I-A)^{-1} \), i.e. \( \|S_n - (I-A)^{-1}\| \to 0 \). Since
     \[ (I-A)S_n = (I-A)(I + A + \dots + A^n) = (I + A + \dots + A^n) - (A + A^2 + \dots + A^{n+1}) = I - A^{n+1}, \]
     we get \( S_n = (I-A)^{-1}(I - A^{n+1}) \), so \( S_n - (I-A)^{-1} = (I-A)^{-1}(I - A^{n+1}) - (I-A)^{-1} \) and
-    \[ \|S_n - (I-A)^{-1}\| = \|(I-A)^{-1}(I - A^{n+1} - I)\| = \|(I-A)^{-1}A^{n+1}\| \le \|(I-A)^{-1}\|\,\|A^{n+1}\| \le \frac{1}{1-\|A\|}\|A\|^{n+1}, \]
+    \[\begin{aligned}
+    \|S_n - (I-A)^{-1}\|
+      &= \|(I-A)^{-1}(I - A^{n+1} - I)\| \\
+      &= \|(I-A)^{-1}A^{n+1}\| \\
+      &\le \|(I-A)^{-1}\|\,\|A^{n+1}\| \le \frac{1}{1-\|A\|}\|A\|^{n+1},
+    \end{aligned}\]
     using \( \|A^{n+1}\| \le \|A\|^{n+1} \). Since \( \|A\| < 1 \), \( \lim_{n\to\infty}\|A\|^{n+1} = 0 \), so \( \lim_{n\to\infty}\|S_n - (I-A)^{-1}\| = 0 \). Hence the series converges to \( (I-A)^{-1} \).</p>
   </div>
 

@@ -56,7 +56,12 @@
     \[ B = V \Lambda V\herm = \sum_{j=1}^{r} \lambda_j v_j v_j\herm. \]</p>
 
     <p>Put \( \sigma_i = \sqrt{\lambda_i} \) and \( u_i = \dfrac{1}{\sigma_i} A v_i \), \( i = 1, \dots, r \). The \( v_1, \dots, v_r \) are orthonormal by construction. For the \( u_i \):
-    \[ \langle u_i, u_j \rangle = \Big\langle \tfrac{1}{\sqrt{\lambda_i}} A v_i,\ \tfrac{1}{\sqrt{\lambda_j}} A v_j \Big\rangle = \tfrac{1}{\sqrt{\lambda_i}\sqrt{\lambda_j}} \langle v_i, A\herm A v_j \rangle = \tfrac{1}{\sqrt{\lambda_i \lambda_j}} \langle v_i, \lambda_j v_j \rangle = \tfrac{\lambda_j}{\sqrt{\lambda_i \lambda_j}} \langle v_i, v_j \rangle, \]
+    \[\begin{aligned}
+    \langle u_i, u_j \rangle
+      &= \Big\langle \tfrac{1}{\sqrt{\lambda_i}} A v_i,\ \tfrac{1}{\sqrt{\lambda_j}} A v_j \Big\rangle \\
+      &= \tfrac{1}{\sqrt{\lambda_i}\sqrt{\lambda_j}} \langle v_i, A\herm A v_j \rangle \\
+      &= \tfrac{1}{\sqrt{\lambda_i \lambda_j}} \langle v_i, \lambda_j v_j \rangle = \tfrac{\lambda_j}{\sqrt{\lambda_i \lambda_j}} \langle v_i, v_j \rangle,
+    \end{aligned}\]
     so \( \langle u_i, u_j \rangle = \dfrac{\sqrt{\lambda_j}}{\sqrt{\lambda_i}}\, \delta_{ij} = \dfrac{\sigma_j}{\sigma_i}\, \delta_{ij} \). Hence \( u_1, \dots, u_r \) are orthonormal.</p>
 
     <p><strong>Claim:</strong> \( A = \displaystyle\sum_{j=1}^{r} \sigma_j u_j v_j\herm \). (A matrix is specified by its action on all vectors.) For \( x \in \C^n \), the claim gives
@@ -112,8 +117,14 @@
     \[ Ax = \sum_{i=1}^{r} \sigma_i u_i v_i\herm x = \sum_{i=1}^{r} \sigma_i \langle v_i, x \rangle u_i. \]</p>
     <!-- RESOLVED (correctness pass): scan (image007–008) writes the bound as σ_1 (the square is dropped, not merely faint); the correct bound is σ_1^2. Body uses σ_1^2; a .box.corr after this solution flags it. -->
     <p>So
-    \[ \|Ax\|^2 = \langle Ax, Ax \rangle = \Big\langle \sum_{i=1}^{r} \sigma_i \langle v_i,x\rangle u_i,\ \sum_{j=1}^{r} \sigma_j \langle v_j,x\rangle u_j \Big\rangle = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j \langle v_i,x\rangle \langle v_j,x\rangle \underbrace{\langle u_i,u_j\rangle}_{\delta_{ij}} \]
-    \[ = \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \sum_{i=1}^{r} \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \underbrace{\sum_{i=1}^{n} \langle v_i,x\rangle^2}_{=\,\|x\|^2 =\, 1} = \sigma_1^2, \]
+    \[\begin{aligned}
+    \|Ax\|^2 &= \langle Ax, Ax \rangle \\
+             &= \Big\langle \sum_{i=1}^{r} \sigma_i \langle v_i,x\rangle u_i,\ \sum_{j=1}^{r} \sigma_j \langle v_j,x\rangle u_j \Big\rangle \\
+             &= \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j \langle v_i,x\rangle \langle v_j,x\rangle \underbrace{\langle u_i,u_j\rangle}_{\delta_{ij}} \\
+             &= \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \\
+             &\le \sigma_1^2 \sum_{i=1}^{r} \langle v_i,x\rangle^2 \\
+             &\le \sigma_1^2 \underbrace{\sum_{i=1}^{n} \langle v_i,x\rangle^2}_{=\,\|x\|^2 =\, 1} = \sigma_1^2,
+    \end{aligned}\]
     using \( \sum_{i=1}^{r} \langle v_i,x\rangle^2 \le \sum_{i=1}^{n} \langle v_i,x\rangle^2 = \|x\|^2 = 1 \) (the \( v_1, \dots, v_n \) are a full ONB of \( \R^n \)). Thus \( \|Ax\|^2 \le \sigma_1^2 \ \forall\, x \in \R^n,\ \|x\|=1 \), with equality at \( x = \pm v_1 \) (then \( \langle v_1,x\rangle^2 = 1 \) and \( \langle v_i,x\rangle = 0,\ i \ge 2 \)). So
     \[ \max_{\|x\|=1} \|Ax\| = \sigma_1(A) \implies \sigma_1(A) = \|A\|_2. \]</p>
   </div>
@@ -285,7 +296,11 @@
     <p>With \( A = \sigma_1 u_1 v_1\T + \dots + \sigma_r u_r v_r\T \) and \( A^{+} = \sigma_1^{-1} v_1 u_1\T + \dots + \sigma_r^{-1} v_r u_r\T \):</p>
 
     <p><strong>(i) \( AA^{+} \) is symmetric.</strong>
-    \[ AA^{+} = \Big(\sum_{i=1}^{r}\sigma_i u_i v_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j^{-1} v_j u_j\T\Big) = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j^{-1} u_i \underbrace{v_i\T v_j}_{\delta_{ij}} u_j\T = \sum_{i=1}^{r} \sigma_i \sigma_i^{-1} u_i u_i\T, \]
+    \[\begin{aligned}
+    AA^{+} &= \Big(\sum_{i=1}^{r}\sigma_i u_i v_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j^{-1} v_j u_j\T\Big) \\
+           &= \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j^{-1} u_i \underbrace{v_i\T v_j}_{\delta_{ij}} u_j\T \\
+           &= \sum_{i=1}^{r} \sigma_i \sigma_i^{-1} u_i u_i\T,
+    \end{aligned}\]
     so \( AA^{+} = \sum_{i=1}^{r} u_i u_i\T \) and \( (AA^{+})\T = \sum_{i=1}^{r} u_i u_i\T = AA^{+} \). Hence \( AA^{+} \) is symmetric.</p>
 
     <p><strong>(ii) \( A^{+}A \) is symmetric.</strong>
@@ -296,13 +311,24 @@
     \[ AA^{+} = U\Sigma V\T V\Sigma^{+}U\T = U\Sigma\Sigma^{+}U\T = U\begin{bmatrix}1 & & & \\ & \ddots & & \\ & & 1 & \\ & & & 0\end{bmatrix}U\T, \qquad A^{+}A = V\Sigma^{+}\Sigma V\T = V\begin{bmatrix}1 & & & \\ & \ddots & & \\ & & 1 & \\ & & & 0\end{bmatrix}V\T. \]</p>
 
     <p><strong>(iii) \( AA^{+}A = A \).</strong>
-    \[ AA^{+}A = \Big(\sum_{i=1}^{r} u_i u_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j u_j v_j\T\Big) = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_j u_i \underbrace{u_i\T u_j}_{\delta_{ij}} v_j\T = \sum_{i=1}^{r}\sigma_i u_i v_i\T = A. \]</p>
+    \[\begin{aligned}
+    AA^{+}A &= \Big(\sum_{i=1}^{r} u_i u_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j u_j v_j\T\Big) \\
+            &= \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_j u_i \underbrace{u_i\T u_j}_{\delta_{ij}} v_j\T \\
+            &= \sum_{i=1}^{r}\sigma_i u_i v_i\T = A.
+    \end{aligned}\]</p>
 
     <p><strong>(iv) \( A^{+}AA^{+} = A^{+} \).</strong>
-    \[ A^{+}AA^{+} = \Big(\sum_{i=1}^{r} v_i v_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j^{-1} v_j u_j\T\Big) = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_j^{-1} v_i \underbrace{v_i\T v_j}_{\delta_{ij}} u_j\T = \sum_{i=1}^{r}\sigma_i^{-1} v_i u_i\T = A^{+}. \]</p>
+    \[\begin{aligned}
+    A^{+}AA^{+} &= \Big(\sum_{i=1}^{r} v_i v_i\T\Big)\Big(\sum_{j=1}^{r}\sigma_j^{-1} v_j u_j\T\Big) \\
+                &= \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_j^{-1} v_i \underbrace{v_i\T v_j}_{\delta_{ij}} u_j\T \\
+                &= \sum_{i=1}^{r}\sigma_i^{-1} v_i u_i\T = A^{+}.
+    \end{aligned}\]</p>
 
     <p><em>Alternately, in matrix notation:</em>
-    \[ AA^{+}A = (U\Sigma\Sigma^{+}U\T)(U\Sigma V\T) = U\Sigma\Sigma^{+}\Sigma V\T = U\Sigma V\T = A, \qquad A^{+}AA^{+} = (V\Sigma^{+}\Sigma V\T)(V\Sigma^{+}U\T) = V\Sigma^{+}\Sigma\Sigma^{+}U\T = V\Sigma^{+}U\T = A^{+}. \]
+    \[\begin{aligned}
+    AA^{+}A &= (U\Sigma\Sigma^{+}U\T)(U\Sigma V\T) = U\Sigma\Sigma^{+}\Sigma V\T = U\Sigma V\T = A, \\
+    A^{+}AA^{+} &= (V\Sigma^{+}\Sigma V\T)(V\Sigma^{+}U\T) = V\Sigma^{+}\Sigma\Sigma^{+}U\T = V\Sigma^{+}U\T = A^{+}.
+    \end{aligned}\]
     Hence \( A^{+} \) is a Moore–Penrose pseudoinverse.</p>
   </div>
 
@@ -317,14 +343,27 @@
     <p class="box-head">Solution — (2) \( x - x_0 \perp x_0 \)</p>
     <p>If \(x\) is any solution, \( A\T A x_0 = A\T b \) and \( A\T A x = A\T b \), so \( A\T A x_0 = A\T A x \), giving \( A\T A (x - x_0) = 0 \), i.e. \( x - x_0 \in \Null(A) \).</p>
     <p>Now we show \( A^{+} = (A\T A)^{+} A\T \). With \( A = U\Sigma V\T \), \( A^{+} = V\Sigma^{+}U\T \):
-    \[ (A\T A)^{+} A\T = (V\Sigma U\T U\Sigma V\T)^{+}(V\Sigma U\T) = (V\Sigma^2 V\T)^{+}(V\Sigma U\T) = V(\Sigma^{+})^2 V\T V\Sigma U\T = V\Sigma^{+}\Sigma\Sigma^{+}U\T = V\Sigma^{+}U\T = A^{+}, \]
+    \[\begin{aligned}
+    (A\T A)^{+} A\T &= (V\Sigma U\T U\Sigma V\T)^{+}(V\Sigma U\T) \\
+                    &= (V\Sigma^2 V\T)^{+}(V\Sigma U\T) \\
+                    &= V(\Sigma^{+})^2 V\T V\Sigma U\T \\
+                    &= V\Sigma^{+}\Sigma\Sigma^{+}U\T = V\Sigma^{+}U\T = A^{+},
+    \end{aligned}\]
     using that for diagonal \( A, B, C \), \( ABC = ACB \), so \( \Sigma^{+}\Sigma^{+}\Sigma = \Sigma^{+}\Sigma\Sigma^{+} \).</p>
     <p>Then
     \[ x_0 = A^{+}b = (A\T A)^{+} A\T b = (A\T A)^{+} A\T A x. \]
     Let \( B = A\T A = V\Sigma^2 V\T \), \( B^{+} = V(\Sigma^{+})^2 V\T \). Since \( \Sigma, \Sigma^{+} \) are diagonal (so their products commute),
-    \[ BB^{+} = V\Sigma^2 V\T V(\Sigma^{+})^2 V\T = V\Sigma^2(\Sigma^{+})^2 V\T = V(\Sigma^{+})^2\Sigma^2 V\T = B^{+}B, \]
+    \[\begin{aligned}
+    BB^{+} &= V\Sigma^2 V\T V(\Sigma^{+})^2 V\T \\
+           &= V\Sigma^2(\Sigma^{+})^2 V\T = V(\Sigma^{+})^2\Sigma^2 V\T = B^{+}B,
+    \end{aligned}\]
     hence \( x_0 = (A\T A)^{+} A\T A x = (A\T A)(A\T A)^{+} x \). Therefore
-    \[ \langle x - x_0, x_0 \rangle = \langle x - x_0, (A\T A)(A\T A)^{+}x \rangle = \langle (A\T A)\T(x - x_0), (A\T A)^{+}x \rangle = \big\langle \underbrace{(A\T A)(x - x_0)}_{=\,0\ \text{as } x - x_0 \in \Null(A\T A)}, (A\T A)^{+}x \big\rangle = 0. \]
+    \[\begin{aligned}
+    \langle x - x_0, x_0 \rangle
+      &= \langle x - x_0, (A\T A)(A\T A)^{+}x \rangle \\
+      &= \langle (A\T A)\T(x - x_0), (A\T A)^{+}x \rangle \\
+      &= \big\langle \underbrace{(A\T A)(x - x_0)}_{=\,0\ \text{as } x - x_0 \in \Null(A\T A)}, (A\T A)^{+}x \big\rangle = 0.
+    \end{aligned}\]
     So \( \langle x - x_0, x_0 \rangle = 0 \implies x - x_0 \perp x_0 \). Thus if \(x\) is any solution of the normal equation, \( x - x_0 \perp x_0 \).</p>
   </div>
 

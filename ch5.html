@@ -110,7 +110,11 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <p>Since \( V = U \oplus U^{\perp} \), write \( x = u_x + w_x \), \( y = u_y + w_y \) with \( u_x, u_y \in U \), \( w_x, w_y \in U^{\perp} \). Then
-    \[ \langle Px, y\rangle = \langle u_x, u_y + w_y\rangle = \langle u_x, u_y\rangle + \underbrace{\langle u_x, w_y\rangle}_{0} = \langle u_x, u_y\rangle + \underbrace{\langle w_x, u_y\rangle}_{0} = \langle u_x + w_x, u_y\rangle = \langle x, Py\rangle. \]</p>
+    \[\begin{aligned}
+    \langle Px, y\rangle &= \langle u_x, u_y + w_y\rangle \\
+                        &= \langle u_x, u_y\rangle + \underbrace{\langle u_x, w_y\rangle}_{0} = \langle u_x, u_y\rangle + \underbrace{\langle w_x, u_y\rangle}_{0} \\
+                        &= \langle u_x + w_x, u_y\rangle = \langle x, Py\rangle.
+    \end{aligned}\]</p>
   </div>
 
   <details class="scan">
@@ -154,9 +158,17 @@
     <p class="box-head">Solution</p>
     <p>With \( (Ax)_i = \sum_{j=1}^{n} A_{ij} x_j \) for \( i = 1, \dots, m \):</p>
     <p><strong>(1) Real case.</strong>
-    \[ \langle Ax, y\rangle_{\R^m} = \sum_{i=1}^{m} (Ax)_i\, y_i = \sum_{i=1}^{m}\sum_{j=1}^{n} A_{ij} x_j y_i = \sum_{j=1}^{n} x_j \sum_{i=1}^{m} (A\T)_{ji}\, y_i = \sum_{j=1}^{n} x_j\, (A\T y)_j = \langle x, A\T y\rangle_{\R^n}. \]</p>
+    \[\begin{aligned}
+    \langle Ax, y\rangle_{\R^m} &= \sum_{i=1}^{m} (Ax)_i\, y_i = \sum_{i=1}^{m}\sum_{j=1}^{n} A_{ij} x_j y_i \\
+                                &= \sum_{j=1}^{n} x_j \sum_{i=1}^{m} (A\T)_{ji}\, y_i \\
+                                &= \sum_{j=1}^{n} x_j\, (A\T y)_j = \langle x, A\T y\rangle_{\R^n}.
+    \end{aligned}\]</p>
     <p><strong>(2) Complex case.</strong>
-    \[ \langle Ax, y\rangle_{\C^m} = \sum_{i=1}^{m} \overline{(Ax)_i}\, y_i = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_j}\,\overline{A_{ij}}\, y_i = \sum_{j=1}^{n} \overline{x_j} \sum_{i=1}^{m} (A\herm)_{ji}\, y_i = \sum_{j=1}^{n} \overline{x_j}\,(A\herm y)_j = \langle x, A\herm y\rangle_{\C^n}. \]</p>
+    \[\begin{aligned}
+    \langle Ax, y\rangle_{\C^m} &= \sum_{i=1}^{m} \overline{(Ax)_i}\, y_i = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_j}\,\overline{A_{ij}}\, y_i \\
+                                &= \sum_{j=1}^{n} \overline{x_j} \sum_{i=1}^{m} (A\herm)_{ji}\, y_i \\
+                                &= \sum_{j=1}^{n} \overline{x_j}\,(A\herm y)_j = \langle x, A\herm y\rangle_{\C^n}.
+    \end{aligned}\]</p>
   </div>
 
   <p>It follows from the Riesz Representation Theorem that every operator has an adjoint.</p>
@@ -247,7 +259,10 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <p>Let \( T \) with \( [T] = A \), so \( [T^*] = A\T \) (since \( A \in \R^{m\times n} \); used without proof, LADR 7.9), and \( \Null(A) = \Null(T) \), \( \Range(A) = \Range(T) \), etc. Given \( Ax = b \) has a solution, \( b \in \Range(A) \). Now
-    \[ \Range(A) = \Null(A\T)^{\perp} = \Null(AA\T)^{\perp} = \Range\big((AA\T)\T\big) = \Range\big((A\T)\T A\T\big) = \Range(AA\T), \]
+    \[\begin{aligned}
+    \Range(A) &= \Null(A\T)^{\perp} = \Null(AA\T)^{\perp} \\
+              &= \Range\big((AA\T)\T\big) = \Range\big((A\T)\T A\T\big) = \Range(AA\T),
+    \end{aligned}\]
     using \( \Null(TT^*) = \Null(T^*) \) and \( (AA\T)\T = AA\T \). Since \( b \in \Range(A) = \Range(AA\T) \), there exists \( z \in \R^m \) with \( AA\T z = b \), i.e. \( A(A\T z) = b \). Thus \( x = A\T z \) is a solution.</p>
   </div>
 
@@ -259,7 +274,10 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <p><strong>Existence.</strong> \( A\T b \in \Range(A\T) \) for all \( b \). And
-    \[ \Range(A\T) = \Null(A)^{\perp} = \Null(A\T A)^{\perp} = \Range\big((A\T A)\T\big) = \Range(A\T A), \]
+    \[\begin{aligned}
+    \Range(A\T) &= \Null(A)^{\perp} = \Null(A\T A)^{\perp} \\
+                &= \Range\big((A\T A)\T\big) = \Range(A\T A),
+    \end{aligned}\]
     using \( \Null(T^*T) = \Null(T) \) and \( (A\T A)\T = A\T A \). The system \( A\T A x = A\T b \) needs \( A\T b \in \Range(A\T A) = \Range(A\T) \), which always holds. So a solution always exists.</p>
     <p><strong>Uniqueness \( \iff \Null(A) = \{0\} \).</strong> A unique solution requires the map \( T \) (\( [T] = A \)) to be injective: \( T(x_1) = T(x_2) \Rightarrow x_1 = x_2 \). We showed earlier that \( T \) is injective \( \iff \Null(T) = \{0\} \) (LADR 3.15). So the normal equations have a unique solution iff \( \Null(A) = \{0\} \).</p>
   </div>
@@ -398,7 +416,12 @@
     <p><strong>(1) \( \Rightarrow \) (2).</strong> \( T^*T = \mathrm{Id} \Rightarrow T \) injective and \( TT^* = \mathrm{Id} \Rightarrow T \) surjective (Ex 64); in finite dimensions \( T \) is an isomorphism. Applying \( T^{-1} \) to \( T^*T = \mathrm{Id} \) gives \( T^* = T^{-1} \).</p>
     <p><strong>(2) \( \Rightarrow \) (3).</strong> \( \|Tx\|^2 = \langle Tx, Tx\rangle = \langle x, T^*Tx\rangle = \langle x, \mathrm{Id}(x)\rangle = \langle x, x\rangle \) (using \( T^* = T^{-1} \)), so \( \|Tx\| = \|x\| \).</p>
     <p><strong>(3) \( \Rightarrow \) (4).</strong> By the polarization identity (below), the inner product is determined by the norm; since \( T \) preserves norms,
-    \[ \langle Tx, Ty\rangle = \tfrac14\big(\|T(x+y)\|^2 - \|T(x-y)\|^2 - i\|T(x+iy)\|^2 + i\|T(x-iy)\|^2\big) = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 - i\|x+iy\|^2 + i\|x-iy\|^2\big) = \langle x, y\rangle. \]</p>
+    \[\begin{aligned}
+    \langle Tx, Ty\rangle
+      &= \tfrac14\big(\|T(x+y)\|^2 - \|T(x-y)\|^2 - i\|T(x+iy)\|^2 + i\|T(x-iy)\|^2\big) \\
+      &= \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 - i\|x+iy\|^2 + i\|x-iy\|^2\big) \\
+      &= \langle x, y\rangle.
+    \end{aligned}\]</p>
     <p><strong>(4) \( \Rightarrow \) (5).</strong> Let \( e_1, \dots, e_n \) be an ONB and \( q_i = Te_i \). Then \( \langle q_i, q_j\rangle = \langle Te_i, Te_j\rangle = \langle e_i, e_j\rangle = \delta_{ij} \), and \( \|q_i\|^2 = \langle e_i, e_i\rangle = 1 \). So \( Te_1, \dots, Te_n \) is an ONB.</p>
     <p><strong>(5) \( \Rightarrow \) (1).</strong> Let \( e_1, \dots, e_n \) be an ONB, so \( Te_1, \dots, Te_n \) is too. For \( u = \sum a_i e_i \), \( v = \sum b_i e_i \), both \( \langle u, v\rangle \) and \( \langle Tu, Tv\rangle \) equal \( \bar a_1 b_1 + \dots + \bar a_n b_n \). Hence \( \langle u, (T^*T - I)v\rangle = 0 \ \forall\, u, v \Rightarrow T^*T = I \), and (Ex 64) \( TT^* = I \), so \( T \) is unitary.</p>
   </div>
