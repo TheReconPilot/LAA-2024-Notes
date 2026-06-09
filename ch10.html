@@ -113,8 +113,8 @@
     <!-- RESOLVED (correctness pass): scan (image007–008) writes the bound as σ_1 (the square is dropped, not merely faint); the correct bound is σ_1^2. Body uses σ_1^2; a .box.corr after this solution flags it. -->
     <p>So
     \[ \|Ax\|^2 = \langle Ax, Ax \rangle = \Big\langle \sum_{i=1}^{r} \sigma_i \langle v_i,x\rangle u_i,\ \sum_{j=1}^{r} \sigma_j \langle v_j,x\rangle u_j \Big\rangle = \sum_{i=1}^{r}\sum_{j=1}^{r} \sigma_i \sigma_j \langle v_i,x\rangle \langle v_j,x\rangle \underbrace{\langle u_i,u_j\rangle}_{\delta_{ij}} \]
-    \[ = \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \underbrace{\sum_{i=1}^{r} \langle v_i,x\rangle^2}_{=\,1\ \text{as } \|x\|=1} = \sigma_1^2, \]
-    using \( \|x\|^2 = \sum_{i=1}^{r} \langle v_i,x\rangle^2 \). Thus \( \|Ax\|^2 \le \sigma_1^2 \ \forall\, x \in \R^n,\ \|x\|=1 \), with equality attained when \( x = \pm v_1 \) (then \( x \perp v_2, \dots, v_r \)). So
+    \[ = \sum_{i=1}^{r} \sigma_i^2 \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \sum_{i=1}^{r} \langle v_i,x\rangle^2 \ \le\ \sigma_1^2 \underbrace{\sum_{i=1}^{n} \langle v_i,x\rangle^2}_{=\,\|x\|^2 =\, 1} = \sigma_1^2, \]
+    using \( \sum_{i=1}^{r} \langle v_i,x\rangle^2 \le \sum_{i=1}^{n} \langle v_i,x\rangle^2 = \|x\|^2 = 1 \) (the \( v_1, \dots, v_n \) are a full ONB of \( \R^n \)). Thus \( \|Ax\|^2 \le \sigma_1^2 \ \forall\, x \in \R^n,\ \|x\|=1 \), with equality at \( x = \pm v_1 \) (then \( \langle v_1,x\rangle^2 = 1 \) and \( \langle v_i,x\rangle = 0,\ i \ge 2 \)). So
     \[ \max_{\|x\|=1} \|Ax\| = \sigma_1(A) \implies \sigma_1(A) = \|A\|_2. \]</p>
   </div>
 
@@ -178,11 +178,14 @@
   <div class="box sol">
     <p class="box-head">Solution</p>
     <!-- RESOLVED (correctness pass): scan (image012) cites "Ex 97" for the min–max characterization; that result is Ex 98 (Ex 97 is the range/null-space result). Corrected to Ex 98, flagged with .corr. -->
-    <p>By the reverse triangle inequality, \( \|A - (-E)\| \ge \big|\,\|A\| - \|-E\|\,\big| \), so \( \|A + E\| \ge \big|\,\|A\| - \|E\|\,\big| \), and likewise \( \|(A+E)x\| \ge \big|\,\|Ax\| - \|Ex\|\,\big| \). From <span class="corr" title="the min–max characterization is Ex 98; Ex 97 is the range/null-space result">Ex 98</span> <span class="corr-note">(scan: Ex 97)</span>,
-    \[ \sigma_k(A) = \max_{\dim U = k} \ \min\big\{ \|Ax\| : x \in U,\ \|x\| = 1 \big\}, \]
-    and \( \|Ex\| \le \|E\| < \sigma_r(A) \ \forall\, \|x\| = 1 \). So \( \|(A+E)x\| \ge \big|\,\|Ax\| - \sigma_r(A)\,\big| \). Putting this in the min–max characterization,
-    \[ \sigma_k(A+E) \ge \sigma_k(A) - \sigma_r(A). \]
-    Since \( \sigma_1(A) \ge \dots \ge \sigma_r(A) > 0 \), we get \( \sigma_i(A+E) > 0 \) for \( i = 1, \dots, r \). Hence \( \rank(A+E) \ge \rank(A) \).</p>
+    <p>For any \( x \) with \( \|x\| = 1 \), the triangle inequality gives \( \|(A+E)x\| \ge \|Ax\| - \|Ex\| \ge \|Ax\| - \|E\|_2 \) (since \( \|Ex\| \le \|E\|_2 \)). Taking the \( \min \) over a \(k\)-dimensional subspace and then the \( \max \) over such subspaces, the min–max characterization (<span class="corr" title="the min–max characterization is Ex 98; Ex 97 is the range/null-space result">Ex 98</span> <span class="corr-note">(scan: Ex 97)</span>) yields the Weyl bound
+    \[ \sigma_k(A+E) \ \ge\ \sigma_k(A) - \|E\|_2 \qquad (1 \le k \le r). \]
+    For each \( k = 1, \dots, r \), \( \sigma_k(A) \ge \sigma_r(A) > \|E\|_2 \) (given), so \( \sigma_k(A+E) \ge \sigma_k(A) - \|E\|_2 > 0 \). Thus \( A+E \) has at least \(r\) strictly positive singular values, i.e. \( \rank(A+E) \ge r \).</p>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— Ex 99 bound</span></p>
+    <p>The original bounded \( \|Ex\| \) by \( \sigma_r(A) \) (the <em>limit</em> in the hypothesis) rather than by the actual perturbation size \( \|E\|_2 \), arriving at \( \sigma_k(A+E) \ge \sigma_k(A) - \sigma_r(A) \). For \( k = r \) that only gives \( \sigma_r(A+E) \ge 0 \), which does not force the rank to stay \( \ge r \). Using \( \|E\|_2 \) gives \( \sigma_k(A+E) \ge \sigma_k(A) - \|E\|_2 > 0 \) for all \( k \le r \) (as \( \sigma_k(A) \ge \sigma_r(A) > \|E\|_2 \)) — the strict positivity the conclusion needs.</p>
   </div>
 
   <p>We can use the SVD to define two important matrix norms:</p>
@@ -195,7 +198,7 @@
     <p class="box-head">Ex 100</p>
     <p>Let the SVD of \(A\) be \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\T \) for \( A \in \R^{m\times n} \). Define \( \|A\|_2 = \sigma_1 \) and \( \|A\|_* = \sigma_1 + \dots + \sigma_r \). Verify that these are matrix norms on \( \R^{m\times n} \). Moreover, prove that they are dual to each other, in the sense that
     \[ \|A\|_* = \max_{\|X\|_2 \le 1} \tr(X\T A), \qquad \|A\|_2 = \max_{\|X\|_* \le 1} \tr(X\T A), \]
-    where the variable \( X \in \R^{m\times n} \). <span class="aside">[Incomplete Answer]</span></p>
+    where the variable \( X \in \R^{m\times n} \). <span class="aside">[The original left the two duals and nuclear-norm submultiplicativity incomplete, and its triangle-inequality argument was flawed; both are corrected/completed in review below.]</span></p>
   </div>
 
   <div class="box sol">
@@ -212,9 +215,27 @@
     <ul class="dots">
       <li>\( \|A\|_* \ge 0 \ \forall\, A \in \R^{m\times n} \); \( \|A\|_* = 0 \iff \sigma_1 + \dots + \sigma_r = 0 \iff \sigma_1 = \dots = \sigma_r = 0 \iff A = 0 \).</li>
       <li>Let \( c \in \R \), \( A = \sum_{i=1}^{r} \sigma_i u_i v_i\T \). Then \( \|cA\|_* = \big\|\sum_{i=1}^{r} c\,\sigma_i u_i v_i\T\big\|_* = |c|\sigma_1 + \dots + |c|\sigma_r = |c|(\sigma_1 + \dots + \sigma_r) \), so <span class="corr" title="|c| since σᵢ(cA) = |c|σᵢ(A) ≥ 0">\( \|cA\|_* = |c|\,\|A\|_* \)</span> <span class="corr-note">(scan: c, no bars)</span>.</li>
-      <li>Let \( A, B \in \R^{m\times n} \), \( x \in \R^n \). Using \( \|(A+B)x\| \le \|Ax\| + \|Bx\| \) and the min–max characterization on each term, \( \sigma_k(A+B) \le \sigma_k(A) + \sigma_k(B) \) for \( k = 1, \dots, r \), hence \( \sum_{k=1}^{r}\sigma_k(A+B) \le \sum_{k=1}^{r}\sigma_k(A) + \sum_{k=1}^{r}\sigma_k(B) \), i.e. \( \|A+B\|_* \le \|A\|_* + \|B\|_* \).</li>
-      <li>Let \( A, B \in \R^{n\times n} \), \( x \in \R^n \). To show \( \|AB\|_* \le \|A\|_*\|B\|_* \): <span class="aside">"Not sure how to do this part and the duals."</span></li>
+      <li><strong>Triangle inequality</strong> \( \|A+B\|_* \le \|A\|_* + \|B\|_* \): follows directly from the dual characterization \( \|A\|_* = \max_{\|X\|_2\le1}\tr(X\T A) \) proved in the box below. <span class="aside">(The per-singular-value bound \( \sigma_k(A+B)\le\sigma_k(A)+\sigma_k(B) \) used originally is <em>false</em> — see the Correction.)</span></li>
+      <li><strong>Submultiplicativity</strong> \( \|AB\|_* \le \|A\|_*\|B\|_* \): proved in the box below (via \( \sigma_k(AB)\le\|A\|_2\,\sigma_k(B) \) and \( \|A\|_2\le\|A\|_* \)).</li>
     </ul>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— Ex 100 nuclear-norm triangle inequality</span></p>
+    <p>The original proof of \( \|A+B\|_*\le\|A\|_*+\|B\|_* \) summed a per-singular-value bound \( \sigma_k(A+B)\le\sigma_k(A)+\sigma_k(B) \). That bound is <strong>false</strong>: with \( A=\diag(1,0) \), \( B=\diag(0,1) \), \( \sigma_2(A+B)=1 \) but \( \sigma_2(A)+\sigma_2(B)=0 \). The nuclear-norm triangle inequality is nevertheless true; it follows from the dual characterization (below).</p>
+  </div>
+
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 100 duals &amp; remaining parts, added in review</span></p>
+    <p>Write \( A=\sum_{i=1}^r\sigma_i u_i v_i\T \) (SVD); the trace pairing is \( \tr(X\T A)=\sum_{i,j}X_{ij}A_{ij} \).</p>
+    <p><strong>Dual of the nuclear norm:</strong> \( \|A\|_* = \displaystyle\max_{\|X\|_2\le1}\tr(X\T A) \).
+      <em>(\(\le\))</em> \( \tr(X\T A)=\sum_i\sigma_i\,(u_i\T X v_i) \), and \( |u_i\T X v_i|\le\|u_i\|\,\|Xv_i\|\le\|X\|_2\le1 \), so \( \tr(X\T A)\le\sum_i\sigma_i=\|A\|_* \).
+      <em>(\(\ge\))</em> Take \( X_0=\sum_i u_i v_i\T \); its singular values are all \(1\), so \( \|X_0\|_2=1 \), and \( \tr(X_0\T A)=\sum_{i,j}\sigma_j(u_i\T u_j)(v_j\T v_i)=\sum_i\sigma_i=\|A\|_* \). Hence the maximum is \( \|A\|_* \).</p>
+    <p><strong>Triangle inequality.</strong> \( \|A+B\|_*=\displaystyle\max_{\|X\|_2\le1}\tr\big(X\T(A+B)\big)\le\max_{\|X\|_2\le1}\tr(X\T A)+\max_{\|X\|_2\le1}\tr(X\T B)=\|A\|_*+\|B\|_* \).</p>
+    <p><strong>Dual of the spectral norm:</strong> \( \|A\|_2 = \displaystyle\max_{\|X\|_*\le1}\tr(X\T A) \).
+      <em>(\(\le\))</em> With \( X=\sum_k\tau_k a_k b_k\T \) (SVD of \(X\), \( \sum_k\tau_k=\|X\|_* \)), \( \tr(X\T A)=\sum_k\tau_k\,(a_k\T A b_k)\le\sum_k\tau_k\|A\|_2=\|X\|_*\|A\|_2\le\|A\|_2 \).
+      <em>(\(\ge\))</em> Take \( X=u_1 v_1\T \), so \( \|X\|_*=1 \) and \( \tr(X\T A)=u_1\T A v_1=\sigma_1=\|A\|_2 \).</p>
+    <p><strong>Submultiplicativity of \( \|\cdot\|_* \).</strong> By the min–max form (Ex 98), \( \sigma_k(AB)=\max_{\dim U=k}\min_{x\in U,\,\|x\|=1}\|ABx\|\le\|A\|_2\,\sigma_k(B) \) (as \( \|ABx\|\le\|A\|_2\|Bx\| \)). Summing over \(k\), \( \|AB\|_*=\sum_k\sigma_k(AB)\le\|A\|_2\sum_k\sigma_k(B)=\|A\|_2\,\|B\|_*\le\|A\|_*\,\|B\|_* \), using \( \|A\|_2=\sigma_1(A)\le\sum_i\sigma_i(A)=\|A\|_* \).</p>
   </div>
 
   <details class="scan">

@@ -177,7 +177,7 @@
 
   <div class="box ex">
     <p class="box-head">Ex 59 <span class="name">— Properties of the adjoint (LADR 7.5)</span></p>
-    <p>Let \( T, S \in \Lin(V, W) \) and \( a \in \F \). Show that</p>
+    <p>Let \( T, S \in \Lin(V) \) and \( a \in \F \). Show that</p>
     <ol class="claims">
       <li>\( (T + S)^* = T^* + S^* \) and \( (aT)^* = \bar a\, T^* \);</li>
       <li>\( (T^*)^* = T \);</li>
@@ -398,7 +398,7 @@
     <p><strong>(1) \( \Rightarrow \) (2).</strong> \( T^*T = \mathrm{Id} \Rightarrow T \) injective and \( TT^* = \mathrm{Id} \Rightarrow T \) surjective (Ex 64); in finite dimensions \( T \) is an isomorphism. Applying \( T^{-1} \) to \( T^*T = \mathrm{Id} \) gives \( T^* = T^{-1} \).</p>
     <p><strong>(2) \( \Rightarrow \) (3).</strong> \( \|Tx\|^2 = \langle Tx, Tx\rangle = \langle x, T^*Tx\rangle = \langle x, \mathrm{Id}(x)\rangle = \langle x, x\rangle \) (using \( T^* = T^{-1} \)), so \( \|Tx\| = \|x\| \).</p>
     <p><strong>(3) \( \Rightarrow \) (4).</strong> By the polarization identity (below), the inner product is determined by the norm; since \( T \) preserves norms,
-    \[ \langle Tx, Ty\rangle = \tfrac14\big(\|T(x+y)\|^2 - \|T(x-y)\|^2 + i\|T(x+iy)\|^2 - i\|T(x-iy)\|^2\big) = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 + i\|x+iy\|^2 - i\|x-iy\|^2\big) = \langle x, y\rangle. \]</p>
+    \[ \langle Tx, Ty\rangle = \tfrac14\big(\|T(x+y)\|^2 - \|T(x-y)\|^2 - i\|T(x+iy)\|^2 + i\|T(x-iy)\|^2\big) = \tfrac14\big(\|x+y\|^2 - \|x-y\|^2 - i\|x+iy\|^2 + i\|x-iy\|^2\big) = \langle x, y\rangle. \]</p>
     <p><strong>(4) \( \Rightarrow \) (5).</strong> Let \( e_1, \dots, e_n \) be an ONB and \( q_i = Te_i \). Then \( \langle q_i, q_j\rangle = \langle Te_i, Te_j\rangle = \langle e_i, e_j\rangle = \delta_{ij} \), and \( \|q_i\|^2 = \langle e_i, e_i\rangle = 1 \). So \( Te_1, \dots, Te_n \) is an ONB.</p>
     <p><strong>(5) \( \Rightarrow \) (1).</strong> Let \( e_1, \dots, e_n \) be an ONB, so \( Te_1, \dots, Te_n \) is too. For \( u = \sum a_i e_i \), \( v = \sum b_i e_i \), both \( \langle u, v\rangle \) and \( \langle Tu, Tv\rangle \) equal \( \bar a_1 b_1 + \dots + \bar a_n b_n \). Hence \( \langle u, (T^*T - I)v\rangle = 0 \ \forall\, u, v \Rightarrow T^*T = I \), and (Ex 64) \( TT^* = I \), so \( T \) is unitary.</p>
   </div>
@@ -412,7 +412,7 @@
 
   <div class="box corr">
     <p class="box-head">Correction</p>
-    <p>The handwritten derivation writes \( \langle iy, iy\rangle = -\|y\|^2 \) (it is \( +\|y\|^2 \)) and flips the sign of \( \operatorname{Im}\langle x,y\rangle \), landing on the standard textbook identity \( \tfrac14(\dots + i\|x+iy\|^2 - i\|x-iy\|^2) \). That form assumes the inner product is conjugate-linear in the <em>second</em> slot. This course's convention is conjugate-linear in the <strong>first</strong> slot (Ch 4, Theorem 4: \( \langle u,w\rangle = \bar\alpha_1\beta_1 + \dots \)), under which the standard form computes \( \langle y, x\rangle \) instead. The imaginary signs are flipped above to match: e.g. with \( x = 1,\ y = i \), \( \langle x,y\rangle = \bar 1\cdot i = i \), which the corrected formula gives (the original yields \( -i \)).</p>
+    <p>The handwritten derivation writes \( \langle iy, iy\rangle = -\|y\|^2 \) (it is \( +\|y\|^2 \)) and flips the sign of \( \operatorname{Im}\langle x,y\rangle \), landing on the standard textbook identity \( \tfrac14(\dots + i\|x+iy\|^2 - i\|x-iy\|^2) \). That form assumes the inner product is conjugate-linear in the <em>second</em> slot. This course's convention is conjugate-linear in the <strong>first</strong> slot (Ch 4, Theorem 4: \( \langle u,w\rangle = \bar\alpha_1\beta_1 + \dots \)), under which the standard form computes \( \langle y, x\rangle \) instead. The imaginary signs are flipped above to match: e.g. with \( x = 1,\ y = i \), \( \langle x,y\rangle = \bar 1\cdot i = i \), which the corrected formula gives (the original yields \( -i \)). <strong>The same corrected signs are now used in the (3) ⟹ (4) step of Ex 65 above</strong>, which pass 1 had inadvertently left in the textbook (second-slot) form.</p>
   </div>
 
   <div class="box rem">

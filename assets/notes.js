@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "\\R": "\\mathbb{R}",
       "\\C": "\\mathbb{C}",
       "\\Z": "\\mathbb{Z}",
+      "\\Q": "\\mathbb{Q}",
       "\\tr": "\\operatorname{tr}",
       "\\sign": "\\operatorname{sign}",
       "\\Lin": "\\mathcal{L}",

@@ -58,6 +58,10 @@
     <p class="box-head">Solution</p>
     <p>\( \alpha\,0_V = \alpha(0_V + 0_V) = \alpha\,0_V + \alpha\,0_V \), so \( \alpha\,0_V = 0_V \). Similarly \( 0_\F\,v = (0_\F + 0_\F)v = 0_\F v + 0_\F v \Rightarrow 0_\F v = 0_V \). If \( \alpha v = 0_V \) with \( \alpha \neq 0 \), then \( v = 1\cdot v = (\alpha^{-1}\alpha)v = \alpha^{-1}(\alpha v) = \alpha^{-1}0_V = 0_V \).</p>
   </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 2(3), added in review</span></p>
+    <p>The instructor's Exercise 2(3) asks to show \( (-1)_\F\, v = -v \); the solution above instead proves the cancellation law, so we supply this part. Since \( (-1)v + v = (-1)v + 1\cdot v = \big((-1) + 1\big)v = 0_\F\, v = 0_V \) (using part 2), \( (-1)v \) is an additive inverse of \(v\); by uniqueness of inverses (Ex 1), \( (-1)v = -v \).</p>
+  </div>
 
   <div class="box ex">
     <p class="box-head">Examples of vector spaces</p>
@@ -249,6 +253,47 @@
     <p>A vector space \( V \) is <strong>finite-dimensional</strong> if there exist \( v_1, \dots, v_n \in V \) with \( V = \operatorname{span}(v_1, \dots, v_n) \). A vector space that is not finite-dimensional is <strong>infinite-dimensional</strong>.</p>
   </div>
 
+  <div class="box ex">
+    <p class="box-head">Example 5 <span class="name">— Finite-dimensional spaces</span></p>
+    <p>\( \F^n \), the matrix space \( \F^{m\times n} \), and the polynomials of degree at most \(k\) are all finite-dimensional.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 12</p>
+    <p>Prove that every subspace of a finite-dimensional vector space is finite-dimensional.</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>Let \(V\) be finite-dimensional and \( U \subseteq V \) a subspace. If \( U = \{0\} \) it is finite-dimensional. Otherwise pick \( u_1 \in U\setminus\{0\} \); inductively, while \( \operatorname{span}(u_1, \dots, u_j) \neq U \), choose \( u_{j+1} \in U \setminus \operatorname{span}(u_1, \dots, u_j) \). Adjoining a vector outside the current span keeps the list linearly independent. A linearly independent list in \(V\) can be no longer than a spanning list of \(V\) (Proposition 3 below), and \(V\) has a finite spanning list, so the process must stop after \( r \le \dim V \) steps with \( \operatorname{span}(u_1, \dots, u_r) = U \). Hence \(U\) is finite-dimensional.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 13</p>
+    <p>Verify that \( \R \) is a vector space over \( \R \) and over \( \Q \). Is \( \R \) finite-dimensional over \( \R \)? Over \( \Q \)?</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>With ordinary addition and multiplication, \( \R \) satisfies the eight axioms with scalars drawn from \( \R \), and equally with scalars restricted to \( \Q \) — so it is a vector space over each. Over \( \R \) it is finite-dimensional: \( \{1\} \) spans (every \( x = x\cdot 1 \)), so \( \dim_\R \R = 1 \). Over \( \Q \) it is <em>infinite</em>-dimensional: if \( \{b_1, \dots, b_n\} \) were a basis, every real would be a rational combination \( \sum_i q_i b_i \), giving a surjection \( \Q^n \to \R \); but \( \Q^n \) is countable and \( \R \) is uncountable — a contradiction.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 14</p>
+    <p>Show that (1) the polynomials with complex coefficients and (2) the continuous functions \( f : \R \to \R \) are infinite-dimensional.</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>In both spaces the monomials \( 1, x, x^2, \dots \) are linearly independent: \( a_0 + a_1 x + \dots + a_k x^k = 0 \) as a function forces every \( a_i = 0 \). So for each \(k\) there is a linearly independent list of length \( k+1 \). A finite-dimensional space of dimension \(d\) admits no linearly independent list longer than \(d\) (Proposition 3 below), so neither space is finite-dimensional.</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 15</p>
+    <p>Let \(V\) be a vector space. Show the following are equivalent: (1) \(V\) is infinite-dimensional; (2) for every \( k \ge 1 \) there exist \(k\) linearly independent vectors; (3) for every \( k \ge 1 \) and \( v_1, \dots, v_k \in V \) there exists \( v \in V \setminus \operatorname{span}(v_1, \dots, v_k) \).</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p><strong>(1) \( \Rightarrow \) (3).</strong> If some \( v_1, \dots, v_k \) had \( \operatorname{span}(v_1, \dots, v_k) = V \), then \(V\) would be finite-dimensional; so for every list there is a \(v\) outside its span. <strong>(3) \( \Rightarrow \) (2).</strong> Build the list inductively: given linearly independent \( v_1, \dots, v_j \), (3) supplies \( v_{j+1} \notin \operatorname{span}(v_1, \dots, v_j) \), and a vector outside the span preserves independence; so lists of every length exist. <strong>(2) \( \Rightarrow \) (1).</strong> If \(V\) were finite-dimensional with \( \dim V = d \), no linearly independent list could exceed length \(d\) (Proposition 3 below), contradicting (2) at \( k = d+1 \).</p>
+  </div>
+
   <div class="box def">
     <p class="box-head">Definition 7 <span class="name">— Linear independence</span></p>
     <p>\( v_1, \dots, v_m \in V \) are linearly independent (LI) if \( a_1 v_1 + \dots + a_m v_m = 0 \Rightarrow a_1 = \dots = a_m = 0 \); otherwise they are linearly dependent (LD).</p>
@@ -259,8 +304,14 @@
     <ol class="claims">
       <li>Show \( v_1 = (1, 1) \), \( v_2 = (-1, 1) \) are LI in \( \R^2 \). From \( a_1 v_1 + a_2 v_2 = 0 \): \( a_1 - a_2 = 0 \), \( a_1 + a_2 = 0 \Rightarrow 2a_1 = 0 \Rightarrow a_1 = a_2 = 0 \).</li>
       <li>The standard basis \( e_1, \dots, e_n \in \F^n \) (\( (e_i)_j = \delta_{ij} \)) is LI: \( \sum_i a_i e_i = 0 \) gives \( a_1 = \dots = a_n = 0 \) componentwise.</li>
-      <li>The functions \( e_k(t) = \exp(i\,2\pi k t) \), \( t \in [0, 1] \), are LI in the space of complex-valued functions. <span class="aside">[Not fully worked in the original.]</span></li>
+      <li>The functions \( e_k(t) = \exp(i\,2\pi k t) \), \( t \in [0, 1] \), are LI in the space of complex-valued functions. <span class="aside">(worked below)</span></li>
     </ol>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 16(3), added in review</span></p>
+    <p>The \( e_k \) are pairwise orthogonal on \( [0,1] \): for integers \( k, l \),
+      \[ \int_0^1 e_k(t)\,\overline{e_l(t)}\,dt = \int_0^1 \exp\!\big(i\,2\pi (k - l) t\big)\,dt = \begin{cases} 1, & k = l,\\ 0, & k \neq l,\end{cases} \]
+      since a full-period complex exponential integrates to \(0\). So if \( \sum_j a_j e_{k_j} = 0 \) as a function (distinct integers \( k_j \)), multiplying by \( \overline{e_{k_i}} \) and integrating gives \( a_i = 0 \) for each \(i\). Hence the \( e_k \) are linearly independent.</p>
   </div>
 
   <div class="box ex">
@@ -289,8 +340,6 @@
       <img loading="lazy" src="Ch2_%20Vector%20Spaces_files/image028.png" alt="Original handwritten page 28">
     </div>
   </details>
-
-  <p class="aside">Finite-dimensional examples (Example 5): \( \F^n \), \( \F^{m\times n} \), and polynomials of degree at most \(k\) are finite-dimensional. Ex 12 shows a subspace of a finite-dimensional space is finite-dimensional; Ex 13 shows the space of continuous functions is infinite-dimensional; Ex 14–15 treat polynomials with real coefficients and equivalent characterizations of being infinite-dimensional (a space is infinite-dimensional iff one can construct arbitrarily long lists of LI vectors).</p>
 
   <!-- ================================================================== -->
   <!-- BASIS & DIMENSION                                                  -->
@@ -389,17 +438,23 @@
   <!-- ================================================================== -->
   <h2 class="sec">Dimension Results</h2>
 
-  <div class="box ex">
-    <p class="box-head">Ex 20–21</p>
-    <p>(20) In an \(n\)-dimensional \(V\), any \(n\) LI vectors form a basis. (21) Any \(n\) vectors that span \(V\) form a basis.</p>
-  </div>
-  <div class="box sol">
-    <p class="box-head">Solution</p>
-    <p>(20) If \(n\) LI vectors did not span, some \( v \in V \setminus \operatorname{span} \) would extend them to \( n+1 \) LI vectors, exceeding the spanning length \(n\) — contradiction. (21) If \(n\) spanning vectors were LD, the linear dependence lemma lets us remove one, leaving \( n-1 \) vectors spanning \(V\), contradicting that any basis has length \(n\).</p>
+  <!-- RESOLVED (correctness pass 2): exercise-numbering drift fixed. Instructor's Ex 20 is one exercise (two parts); the notes had split it into "20"/"21", shifting Ex 21→22, 22→23, 23→24 and dropping instructor Ex 24 (dim V = dim U + dim W). Renumbered to match LAA-2024.pdf and restored Ex 24 (below, after Prop 5). -->
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— exercise numbering</span></p>
+    <p>The instructor's Exercise 20 is a single exercise with two parts; these notes had split it into "Ex 20" and "Ex 21", which shifted the following exercises. Numbering is corrected here to match the instructor: <strong>Ex 20</strong> (two parts), <strong>Ex 21</strong> \( \dim U \le \dim V \), <strong>Ex 22</strong> \( \dim H \), <strong>Ex 23</strong> \( \dim U_1 + \dim U_2 > \dim V \Rightarrow \dim(U_1\cap U_2)\ge 1 \), <strong>Ex 24</strong> \( \dim V = \dim U + \dim W \), <strong>Ex 25</strong> complementary subspaces.</p>
   </div>
 
   <div class="box ex">
-    <p class="box-head">Ex 22</p>
+    <p class="box-head">Ex 20</p>
+    <p>Let \( \dim V = n \). Show that (1) any \(n\) linearly independent vectors form a basis of \(V\); (2) any \(n\) vectors that span \(V\) form a basis.</p>
+  </div>
+  <div class="box sol">
+    <p class="box-head">Solution</p>
+    <p>(1) If \(n\) LI vectors did not span, some \( v \in V \setminus \operatorname{span} \) would extend them to \( n+1 \) LI vectors, exceeding the spanning length \(n\) — contradiction. (2) If \(n\) spanning vectors were LD, the linear dependence lemma lets us remove one, leaving \( n-1 \) vectors spanning \(V\), contradicting that any basis has length \(n\).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 21</p>
     <p>If \(V\) is finite-dimensional and \( U \subseteq V \) a subspace, then \( \dim U \le \dim V \).</p>
   </div>
   <div class="box sol">
@@ -408,16 +463,16 @@
   </div>
 
   <div class="box ex">
-    <p class="box-head">Ex 23</p>
+    <p class="box-head">Ex 22</p>
     <p>For \( H = \{ x \in \R^n : \sum_i a_i x_i = 0 \} \), find \( \dim H \).</p>
   </div>
   <div class="box sol">
     <p class="box-head">Solution</p>
-    <p>If all \( a_i = 0 \), the constraint is vacuous and \( H = \R^n \), so \( \dim H = n \). Otherwise pick \(j\) with \( a_j \neq 0 \); then \( x_j = -\tfrac{1}{a_j}\sum_{i\neq j}a_i x_i \) is determined by the other \( n - 1 \) coordinates, so \( \{e_1, \dots, e_{j-1}, e_{j+1}, \dots, e_n\} \)-type vectors give \( n - 1 \) LI vectors in \(H\), and \( \dim H = n - 1 \).</p>
+    <p>If all \( a_i = 0 \), the constraint is vacuous and \( H = \R^n \), so \( \dim H = n \). Otherwise pick \(j\) with \( a_j \neq 0 \); then \( x_j = -\tfrac{1}{a_j}\sum_{i\neq j}a_i x_i \) is determined by the other \( n - 1 \) coordinates. Concretely, the vectors \( f_i = e_i - \tfrac{a_i}{a_j}e_j \) for \( i \neq j \) are \( n - 1 \) linearly independent elements of \(H\) that span it, so \( \dim H = n - 1 \).</p>
   </div>
 
   <div class="box ex">
-    <p class="box-head">Ex 24</p>
+    <p class="box-head">Ex 23</p>
     <p>Let \( U_1, U_2 \) be subspaces of \(V\) with \( \dim U_1 + \dim U_2 > \dim V \). Prove \( \dim(U_1 \cap U_2) \ge 1 \).</p>
   </div>
   <div class="box sol">
@@ -431,7 +486,16 @@
   </div>
   <div class="box pf">
     <p class="box-head">Proof</p>
-    <p>Take a basis \( u_1, \dots, u_m \) of \(U\) and extend it to a basis \( u_1, \dots, u_m, w_1, \dots, w_{n-m} \) of \(V\) (possible since \(V\) is finite-dimensional). Set \( W = \operatorname{span}(w_1, \dots, w_{n-m}) \). Then \( V = U + W \) (the combined list spans), and \( U \cap W = \{0\} \): if \( v \in U \cap W \), writing it in both bases and subtracting uses LI of the full basis to force all coefficients \(0\). So \( V = U \oplus W \). Moreover \( \dim V = m + (n - m) = \dim U + \dim W \) (Ex 24').</p>
+    <p>Take a basis \( u_1, \dots, u_m \) of \(U\) and extend it to a basis \( u_1, \dots, u_m, w_1, \dots, w_{n-m} \) of \(V\) (possible since \(V\) is finite-dimensional). Set \( W = \operatorname{span}(w_1, \dots, w_{n-m}) \). Then \( V = U + W \) (the combined list spans), and \( U \cap W = \{0\} \): if \( v \in U \cap W \), writing it in both bases and subtracting uses LI of the full basis to force all coefficients \(0\). So \( V = U \oplus W \). Moreover \( \dim V = m + (n - m) = \dim U + \dim W \) (Ex 24 below).</p>
+  </div>
+
+  <div class="box ex">
+    <p class="box-head">Ex 24</p>
+    <p>In Proposition 5, prove that \( \dim V = \dim U + \dim W \).</p>
+  </div>
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— added in review</span></p>
+    <p>From the proof of Proposition 5, a basis \( u_1, \dots, u_m \) of \(U\) extends to a basis \( u_1, \dots, u_m, w_1, \dots, w_{n-m} \) of \(V\), and the \( w_j \) are a basis of \( W = \operatorname{span}(w_1, \dots, w_{n-m}) \). Hence \( \dim U + \dim W = m + (n-m) = n = \dim V \).</p>
   </div>
 
   <div class="box ex">

@@ -164,8 +164,14 @@
     <p><strong>Vector space.</strong> The axioms (commutativity, associativity, distributivity, \( 1T = T \), zero map \( 0 \), additive inverse \( (-T)(v) = -T(v) \)) all hold pointwise from the structure of \( W \). So \( \Lin(V, W) \) is a vector space over \( \F \).</p>
     <p><strong>Dimension.</strong> Fix bases \( \{v_1, \dots, v_m\} \) of \( V \) and \( \{w_1, \dots, w_n\} \) of \( W \), so \( \dim V = m \), \( \dim W = n \). Define \( T_{ij} \in \Lin(V, W) \) by \( T_{ij}(v_k) = \begin{cases} w_j & k = i \\ 0 & k \neq i \end{cases} \) (so \( T_{ij}(\textstyle\sum_k a_k v_k) = a_i w_j \)).</p>
     <p><em>Linearly independent:</em> if \( \sum_{i=1}^{m}\sum_{j=1}^{n} \alpha_{ij} T_{ij} = 0 \), apply to \( v_k \): \( \sum_{j=1}^{n} \alpha_{kj} w_j = 0 \), and as \( w_1, \dots, w_n \) are independent, \( \alpha_{kj} = 0 \) for all \( j \); this holds for each \( k \), so all \( \alpha_{ij} = 0 \).</p>
-    <p><em>Spanning:</em> for \( T \in \Lin(V, W) \) and \( v = \sum a_i v_i \neq 0 \), write \( T(v) = w = \sum_j b_j w_j \). Since \( T_{ij}(v) = a_i w_j \), choosing \( k_i \) with \( a_{k_i} \neq 0 \) gives \( w_j = T_{k_j j}(v)/a_{k_j} \), so \( T(v) = \sum_j \tfrac{b_j}{a_{k_j}} T_{k_j j}(v) \); thus the \( T_{ij} \) span \( \Lin(V, W) \).</p>
+    <p><em>Spanning:</em> given \( T \in \Lin(V, W) \), let \( c_{ij} \in \F \) be the coordinates of \( T(v_i) \) in the \( w \)-basis, i.e. \( T(v_i) = \sum_{j} c_{ij} w_j \). Then \( \sum_{i,j} c_{ij} T_{ij} \) and \( T \) agree on every basis vector: \( \big(\sum_{i,j} c_{ij} T_{ij}\big)(v_k) = \sum_j c_{kj} w_j = T(v_k) \). Two linear maps that agree on a basis are equal, so \( T = \sum_{i,j} c_{ij} T_{ij} \); thus the \( T_{ij} \) span \( \Lin(V, W) \).</p>
     <p>Hence \( \{T_{ij}\} \) is a basis of size \( mn \), so \( \dim \Lin(V, W) = mn = \dim V \cdot \dim W \).</p>
+  </div>
+
+  <!-- RESOLVED (correctness pass 2): the original "spanning" step wrote a single T(v) as a v-dependent combination of the T_ij, which does not show T is a fixed linear combination of them. Replaced with the standard argument (T = sum c_ij T_ij where c_ij are the coordinates of T(v_i)). -->
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— Ex 28 spanning step</span></p>
+    <p>The original spanning argument expressed a single output \( T(v) \) as a combination of the \( T_{ij}(v) \) with coefficients depending on \(v\); that does not exhibit \(T\) itself as a fixed linear combination of the \( T_{ij} \). The corrected step above instead reads off the constants \( c_{ij} \) from \( T(v_i) = \sum_j c_{ij} w_j \), giving the operator identity \( T = \sum_{i,j} c_{ij} T_{ij} \).</p>
   </div>
 
   <details class="scan">
@@ -436,6 +442,11 @@
     <p><strong>(36.1)</strong> \( v_1 = (1,0), v_2 = (0,1) \); \( w_1 = (1,0), w_2 = (0,1) \). \( T(1,0) = (1,2) \Rightarrow (a_{11}, a_{21}) = (1,2) \); \( T(0,1) = (2,4) \Rightarrow (a_{12}, a_{22}) = (2,4) \). So \( A = \begin{bmatrix} 1 & 2 \\ 2 & 4 \end{bmatrix} \).</p>
     <p><strong>(36.2)</strong> \( v_1 = (1,2), v_2 = (-2,1) \); \( w_1 = (1,0), w_2 = (0,1) \). \( T(1,2) = (5,10) \Rightarrow (b_{11}, b_{21}) = (5,10) \); \( T(-2,1) = (0,0) \Rightarrow (b_{12}, b_{22}) = (0,0) \). So \( B = \begin{bmatrix} 5 & 0 \\ 10 & 0 \end{bmatrix} \).</p>
     <p><strong>(36.3)</strong> \( v_1 = (1,2), v_2 = (-2,1) \); \( w_1 = (1,2), w_2 = (-2,1) \). From \( T(1,2) = (5,10) = c_{11}(1,2) + c_{21}(-2,1) \): \( c_{11} - 2c_{21} = 5 \), \( 2c_{11} + c_{21} = 10 \Rightarrow c_{21} = 0,\ c_{11} = 5 \). From \( T(-2,1) = (0,0) = c_{12}(1,2) + c_{22}(-2,1) \): \( c_{12} = c_{22} = 0 \). So \( C = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix} \).</p>
+  </div>
+
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 36 relation, added in review</span></p>
+    <p>The instructor's closing question asks how the three representations relate. \(A\) and \(C\) represent the same operator \(T\) — \(A\) in the standard basis (both sides), \(C\) in the basis \( \{(1,2),(-2,1)\} \) (both sides) — so they are <strong>similar</strong>: with \( P = \begin{bmatrix} 1 & -2 \\ 2 & 1 \end{bmatrix} \) (columns the new basis vectors), \( C = P^{-1} A P = \begin{bmatrix} 5 & 0 \\ 0 & 0 \end{bmatrix} \). \(C\) is diagonal because \( (1,2) \) and \( (-2,1) \) are eigenvectors of \(T\) with eigenvalues \(5\) and \(0\) — i.e. (36.3) diagonalizes \(T\). The mixed-basis matrix \(B\) (new basis on the domain, standard on the codomain) is the intermediate \( B = AP \).</p>
   </div>
 
   <details class="scan">

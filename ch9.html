@@ -201,7 +201,7 @@
     <p>Let \( W = \operatorname{span}(q_k, \dots, q_n) \), so \( \dim W = n - k + 1 \). Since \( \dim W + \dim U > \dim V \), \( W \cap U \) is non-empty with \( \dim(W \cap U) \ge 1 \). Take \( x_0 \in W \cap U \), \( \|x_0\| = 1 \). Writing \( x_0 = a_1 q_1 + \dots + a_n q_n \) (with \( \sum_{i=1}^{n}|a_i|^2 = 1 \) as the \( q_i \) are an ONB),
     \[ Tx_0 = a_1\lambda_1 q_1 + \dots + a_n\lambda_n q_n, \qquad \langle x_0, Tx_0\rangle = \sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_j a_j\overline{a_i}\underbrace{\langle q_i, q_j\rangle}_{\delta_{ij}} = \sum_{i=1}^{n}\lambda_i|a_i|^2. \]
     The largest eigenvalue appearing in \( W \cap U \) is \( \lambda_k \), so \( \langle x_0, Tx_0\rangle \le \lambda_k\sum_{i=1}^{n}|a_i|^2 = \lambda_k \). Hence for all \(U\) with \( \dim U = k \) there is \( x_0 \in U \), \( \|x_0\| = 1 \), with \( \langle x_0, Tx_0\rangle \le \lambda_k \), so \( \min_{x\in U,\|x\|=1}\langle x, Tx\rangle \le \lambda_k \), i.e. \( \varphi(U) \le \lambda_k \).</p>
-    <p>Equality is attained when \( U \cap W = \operatorname{span}(q_k) \) and \( x_0 = q_k \): then \( \langle q_k, Tq_k\rangle = \langle q_k, \lambda_k q_k\rangle = \lambda_k \). Therefore
+    <p>This bound is achieved: for \( U^* = \operatorname{span}(q_1, \dots, q_k) \) (\( \dim U^* = k \)), every unit \( x = a_1 q_1 + \dots + a_k q_k \in U^* \) has \( \langle x, Tx\rangle = \sum_{i=1}^{k}\lambda_i|a_i|^2 \ge \lambda_k\sum_{i=1}^{k}|a_i|^2 = \lambda_k \) (since \( \lambda_i \ge \lambda_k \) for \( i \le k \)), with equality at \( x = q_k \). So \( \varphi(U^*) = \lambda_k \); combined with \( \varphi(U) \le \lambda_k \) for every \(k\)-dimensional \(U\),
     \[ \lambda_k = \max_{\dim U = k}\ \min\big\{\langle x, Tx\rangle : x \in U,\ \|x\| = 1\big\}. \]</p>
   </div>
 

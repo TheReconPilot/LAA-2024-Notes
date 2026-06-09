@@ -21,7 +21,7 @@
   <h1 class="chap-title">Chapter 8 — Diagonalization</h1>
   <p class="chap-sub">Linear Algebra and its Applications · IISc 2024 · typeset reproduction</p>
 
-  <!-- RESOLVED (correctness pass): definition numbers verified continuous — Ch7 ends at Def 38, Ch8 runs Def 39–44 (no gaps/dupes), Ch9 starts at Def 45 — so the reconstructed 42–44 are correct. The one reconstructed cross-reference (Ex 72 → Ex 73 of Ch6) is corrected & flagged below. Some export pages remain low-resolution but content was checked against the toggles. -->
+  <!-- RESOLVED (correctness pass 2): definition COUNT is continuous (Ch7 Def 38 -> Ch8 Def 39-44 -> Ch9 Def 45), but the content-to-number mapping differs from the instructor, who redundantly defines algebraic multiplicity twice (Def 42 AND 43). These notes fold it into Def 42, so geometric mult = Def 43 here (Def 44 in instructor) and matrix poly = Def 44 here (unnumbered in instructor). Noted in-page near Def 43. ALSO: pass 1's "Ex 72 -> Ex 73 of Ch6" cross-ref change is REVERTED below — Ex 72 was correct against LAA-2024.pdf. -->
   <p class="aside">For this chapter, \( \F = \C \). \( P_{\F} \) denotes the space of polynomials with complex coefficients.</p>
 
   <!-- ================================================================== -->
@@ -41,7 +41,7 @@
 
   <div class="box sol">
     <p class="box-head">Solution</p>
-    <p>Suppose \( Tv = \lambda v \) for some \( v \in V \), \( \lambda \in \F \). Applying \(T\) repeatedly, \( T^2 v = \lambda T(v) = \lambda^2 v \), and \( T^n(v) = \lambda^n v = 0 \) (nilpotent), so either \( \lambda = 0 \) or \( v = 0 \). Thus there is no basis \( v_1, \dots, v_n \) with \( T v_i = \lambda_i v_i \), so \(T\) cannot be diagonalized.</p>
+    <p>Suppose \( Tv = \lambda v \) for some \( v \in V \), \( \lambda \in \F \). Applying \(T\) repeatedly, \( T^2 v = \lambda T(v) = \lambda^2 v \), and \( T^n(v) = \lambda^n v = 0 \) (nilpotent), so either \( \lambda = 0 \) or \( v = 0 \) — every eigenvalue of \(T\) is \(0\). A diagonalizable \(T\) would then be similar to \( \diag(0,\dots,0) = O \), forcing \( T = 0 \) and contradicting \( T \neq 0 \). So \(T\) cannot be diagonalized.</p>
     <p>For \( A = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \), \( A^2 = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} = O_{2\times 2} \), so \(A\) is nilpotent and, by the above, cannot be diagonalized. (Nilpotent operators/matrices cannot be diagonalized.)</p>
   </div>
 
@@ -157,6 +157,11 @@
   <div class="box def">
     <p class="box-head">Definition 43 <span class="name">— Geometric multiplicity</span></p>
     <p>Let \( \lambda \in \C \) be an eigenvalue of \(T\). The geometric multiplicity is \( g(\lambda) = \nullity(T - \lambda I) = \dim\Null(A - \lambda I) \).</p>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— definition numbering</span></p>
+    <p>The instructor's notes define algebraic multiplicity <em>twice</em> (Def 42 and a near-identical Def 43); these notes keep it once (Def 42), so <strong>geometric multiplicity is Def 43 here</strong> (it is Def 44 in the instructor's PDF), and the matrix polynomial below is <strong>Def 44 here</strong> (left unnumbered by the instructor). The global count is unaffected — Chapter 9 still begins at Def 45.</p>
   </div>
 
   <div class="box ex">
@@ -291,7 +296,7 @@
 
   <div class="box rem">
     <p class="box-head">Remark</p>
-    <p>The Schur decomposition relies on the existence of eigenvectors of a complex matrix (start from an eigenvector of \( A\herm \)). Upper triangular matrices also correspond to a flag of invariant subspaces (LADR 5.39): for \( T \in \Lin(V) \) there are \( \{0\} \subseteq V_1 \subseteq \dots \subseteq V_n = V \) with \( \dim V_i = i \) and \(T\) invariant on each \( V_i \) — this invariant structure is what yields the upper triangular representation. (Ex 90 asks to establish the Schur decomposition for any \( A \in \C^{n\times n} \), which is exactly Theorem 13.)</p>
+    <p>The Schur decomposition relies on the existence of eigenvectors of a complex matrix (start from an eigenvector of \( A\herm \)). Upper triangular matrices also correspond to a flag of invariant subspaces (LADR 5.39): for \( T \in \Lin(V) \) there are \( \{0\} \subseteq V_1 \subseteq \dots \subseteq V_n = V \) with \( \dim V_i = i \) and \(T\) invariant on each \( V_i \) — this invariant structure is what yields the upper triangular representation. (Ex 90 asks to establish the Schur decomposition for \( A \in \C^{2\times 2} \) — the base case of the induction above.)</p>
   </div>
 
   <details class="scan">
@@ -352,8 +357,8 @@
 
   <div class="box sol">
     <p class="box-head">Cayley–Hamilton for all matrices</p>
-    <!-- RESOLVED (correctness pass): scan (image036) cites "Ex 72 (Ch 6)" — twice — for the p(A_n) → p(A) continuity; that result is Ch 6 Ex 73 (Ch 6 Ex 72 is invertibility-under-perturbation). Corrected to Ex 73, flagged with .corr. -->
-    <p>Using Lemma 2, Ex 91, and <span class="corr" title="the p(Aₙ)→p(A) continuity result is Ch 6 Ex 73; Ch 6 Ex 72 is the invertibility-under-perturbation result">Ex 73 of Ch. 6</span> <span class="corr-note">(scan: Ex 72)</span> (if \( \|A_n - A\| \to 0 \) then \( \|p(A_n) - p(A)\| \to 0 \) for any polynomial \(p\)): the characteristic polynomial \( f_A(t) \) is continuous in both \(A\) and \(t\). For any \( A \in \C^{n\times n} \) take diagonalizable \( A_k \to A \). Since \( f_{A_k}(A_k) = 0 \) (Ex 91) and everything is continuous,
+    <!-- RESOLVED (correctness pass 2): reverted a pass-1 over-correction. The scan cited "Ex 72 (Ch 6)" for the p(A_n)->p(A) continuity, which IS correct against LAA-2024.pdf (instructor Ch6 Ex 72 = polynomial continuity). Pass 1 had mis-mapped Ch6's numbering (the notes' inserted openness exercise had shifted it) and wrongly changed this to Ex 73. Restored to Ex 72; no amber flag needed since the scan was right. -->
+    <p>Using Lemma 2, Ex 91, and Ex 72 of Ch. 6 (if \( \|A_n - A\| \to 0 \) then \( \|p(A_n) - p(A)\| \to 0 \) for any polynomial \(p\)): the characteristic polynomial \( f_A(t) \) is continuous in both \(A\) and \(t\). For any \( A \in \C^{n\times n} \) take diagonalizable \( A_k \to A \). Since \( f_{A_k}(A_k) = 0 \) (Ex 91) and everything is continuous,
     \[ f_A(A) = \lim_{k\to\infty} f_{A_k}(A_k) = 0. \]
     Hence the Cayley–Hamilton theorem holds for any \( A \in \C^{n\times n} \).</p>
   </div>

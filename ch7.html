@@ -213,6 +213,11 @@
     \[ \sigma_I = \sigma\sigma^{-1} = \underbrace{\tau_1 \circ \dots \circ \tau_k \circ s_l \circ \dots \circ s_1}_{k + l \text{ transpositions}}. \]
     Since \( \sigma_I \) has even parity, \( k + l \) must be even \( \implies \) both \( k \) and \( l \) are odd, or both are even.</p>  </div>
 
+  <div class="box add">
+    <p class="box-head">Completing the parity argument <span class="name">— Ex 78, added in review</span></p>
+    <p>The step "\( \sigma_I \) has even parity" still needs proof: a priori \( \sigma_I \) might <em>also</em> be writable as an odd number of transpositions. Use the <strong>inversion count</strong> \( \operatorname{inv}(\pi) = \#\{(i,j) : i \lt j,\ \pi(i) \gt \pi(j)\} \). Composing \( \pi \) with a transposition changes \( \operatorname{inv} \) by an odd number, so it flips the parity of \( \operatorname{inv}(\pi) \). Hence if \( \pi = t_1\circ\cdots\circ t_m \) is any product of \(m\) transpositions, \( (-1)^{\operatorname{inv}(\pi)} = (-1)^m \). For \( \pi = \sigma_I \), \( \operatorname{inv}(\sigma_I)=0 \), so \( (-1)^m = +1 \) forces \(m\) even — i.e. \( \sigma_I \) is genuinely even, completing the step above. (Equivalently and more directly, \( (-1)^k = (-1)^{\operatorname{inv}(\sigma)} = (-1)^l \), so \(k,l\) share parity.)</p>
+  </div>
+
   <div class="box def">
     <p class="box-head">Definition 37 <span class="name">— Sign</span></p>
     <p>The sign of a permutation \( \sigma \in \Pi_n \) is
@@ -225,7 +230,7 @@
     <ol class="claims">
       <li>\( \sign(\sigma s) = \sign(\sigma)\,\sign(s) \quad \forall\, \sigma, s \in \Pi_n \).</li>
       <li>\( \Pi_n = \{ \sigma s : s \in \Pi_n \} = \{ s\sigma : s \in \Pi_n \} \quad \forall\, \sigma \in \Pi_n \).</li>
-      <li>\( \Pi_n = \{ \sigma^{-1} : \sigma \in \Pi_n \} \). <span class="aside">[This answer may not be complete]</span></li>
+      <li>\( \Pi_n = \{ \sigma^{-1} : \sigma \in \Pi_n \} \).</li>
     </ol>
   </div>
 
@@ -301,7 +306,23 @@
       <li>\( A \text{ has two identical columns (or rows)} \implies \det(A) = 0 \).</li>
       <li>\( A \text{ is unitary} \implies |\det(A)| = 1 \).</li>
     </ol>
-    <p class="aside">(Stated as exercises; proofs were not included in the original notes.)</p>
+    <p class="aside">(The original notes stated these as exercises without proof; worked solutions are added in review below.)</p>
+  </div>
+
+  <div class="box add">
+    <p class="box-head">Solution <span class="name">— Ex 80, added in review</span></p>
+    <p>Throughout, \( \det(A) = \sum_{\sigma\in\Pi_n}\sign(\sigma)\prod_{j=1}^n a_{\sigma(j),\,j} \).</p>
+    <p><strong>(1) Row form.</strong> In \( \prod_j a_{\sigma(j),j} \) set \( i=\sigma(j) \), i.e. \( j=\sigma^{-1}(i) \): \( \prod_j a_{\sigma(j),j} = \prod_i a_{i,\,\sigma^{-1}(i)} \). As \(\sigma\) ranges over \(\Pi_n\) so does \(\rho=\sigma^{-1}\) (Ex 79.3), with \( \sign(\sigma)=\sign(\sigma^{-1}) \); hence \( \det(A)=\sum_\rho\sign(\rho)\prod_i a_{i,\rho(i)} \).</p>
+    <p><strong>(2) \( \det(I_n)=1 \).</strong> For \( I_n \), \( a_{\sigma(j),j}=\delta_{\sigma(j),j} \), so \( \prod_j a_{\sigma(j),j}\neq0 \) only for \( \sigma=\mathrm{id} \); that term is \( \sign(\mathrm{id})\cdot1=1 \).</p>
+    <p><strong>(3) \( \det(cA)=c^n\det(A) \).</strong> Each product takes one entry from each of the \(n\) columns, so \( \prod_j(cA)_{\sigma(j),j}=c^n\prod_j a_{\sigma(j),j} \).</p>
+    <p><strong>(4) \( \det(A\T)=\det(A) \).</strong> \( (A\T)_{\sigma(j),j}=a_{j,\sigma(j)} \), so \( \det(A\T)=\sum_\sigma\sign(\sigma)\prod_j a_{j,\sigma(j)}=\det(A) \) by the row form (1).</p>
+    <p><strong>(8) Two equal columns \( \Rightarrow \det=0 \).</strong> Swapping columns \(p,q\) sends each \(\sigma\) to \(\sigma\circ\tau_{pq}\), flipping \( \sign \); so the swap negates \( \det \). If columns \(p,q\) are equal the swap leaves \(A\) unchanged, giving \( \det(A)=-\det(A) \Rightarrow \det(A)=0 \). (Rows: apply (4).)</p>
+    <p><strong>(5) \( \det(AB)=\det(A)\det(B) \).</strong> With \( (AB)_{i,\sigma(i)}=\sum_k a_{ik}b_{k,\sigma(i)} \), expand the row-form product over \(i\):
+    \[ \det(AB)=\sum_{f:[n]\to[n]}\Big(\prod_i a_{i,f(i)}\Big)\sum_\sigma\sign(\sigma)\prod_i b_{f(i),\sigma(i)}. \]
+    If \(f\) is not a bijection, two rows \(b_{f(i),\cdot}\) coincide and the inner sum is \(0\) by (8); if \(f=\pi\in\Pi_n\), the inner sum is \( \sign(\pi)\det(B) \). So \( \det(AB)=\sum_\pi\sign(\pi)\big(\prod_i a_{i,\pi(i)}\big)\det(B)=\det(A)\det(B) \).</p>
+    <p><strong>(7) \( A\sim B\Rightarrow\det(A)=\det(B) \).</strong> \( A=PBP^{-1} \), so by (5),(2), \( \det(A)=\det(P)\det(B)\det(P^{-1})=\det(B)\det(PP^{-1})=\det(B) \).</p>
+    <p><strong>(6) \( \det(A)=0\iff A \) is not invertible.</strong> If \(A\) is invertible, \( \det(A)\det(A^{-1})=\det(I)=1 \) by (5),(2), so \( \det(A)\neq0 \). If \(A\) is singular, its columns are dependent, so one column is a combination of the others; \( \det \) is linear in that column and vanishes whenever two columns coincide (8), so each resulting term is \(0\) and \( \det(A)=0 \).</p>
+    <p><strong>(9) \(A\) unitary \( \Rightarrow|\det(A)|=1 \).</strong> \( A\herm A=I \), and \( \det(A\herm)=\overline{\det(A)} \) (as \( A\herm=\overline{A\T} \) and (4)). By (5),(2), \( 1=\det(I)=\det(A\herm A)=\overline{\det(A)}\det(A)=|\det(A)|^2 \), so \( |\det(A)|=1 \).</p>
   </div>
 
   <details class="scan">

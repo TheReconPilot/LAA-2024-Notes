@@ -21,6 +21,7 @@
   --c-ex:      #e07cc0;   /* pink        — examples / exercises (labels)   */
   --c-rem:     #5fa8e6;   /* blue        — remarks / derivations           */
   --c-warn:    #e0b341;   /* amber       — corrections / TODO flags        */
+  --c-add:     #b08ce0;   /* violet      — solutions completed in review   */
 
   --font-body: "Cambria", "Charter", "Bitstream Charter", "Georgia", serif;
   --font-ui:   system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -164,6 +165,13 @@ ol.claims > li { margin: 0.5rem 0; }
 
 .box.corr { border-color: var(--c-warn); background: color-mix(in srgb, var(--c-warn) 7%, var(--bg)); }
 .box.corr .box-head { color: var(--c-warn); }
+
+/* added-in-review: a worked solution supplied during the deep correctness pass
+   (pass 2) for an exercise the notes left missing or incomplete. Distinct violet
+   accent + an explicit "added in review" header so it is never mistaken for the
+   author's own worked solution (.box.sol). */
+.box.add { border-color: var(--c-add); background: color-mix(in srgb, var(--c-add) 8%, var(--bg)); }
+.box.add .box-head { color: var(--c-add); }
 
 /* ---- separators ---------------------------------------------------------- */
 hr {

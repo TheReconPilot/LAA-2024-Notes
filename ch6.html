@@ -170,10 +170,16 @@
 
   <div class="box sol">
     <p class="box-head">Solution — (ii) \( \|A\|_F \le \sqrt{r}\,\|A\|_2 \)</p>
-    <p>\( A \in \C^{m\times n} \) has rank \(r\). Write \( A = [\,v_1\ v_2\ \cdots\ v_r\ 0\ \cdots\ 0\,]_{m\times n} \), where \( v_1, \dots, v_r \) are the non-zero columns. For \( j = 1, \dots, n \), let \( x^{(j)} \in \C^n \) with \( x^{(j)}_i = \begin{cases} 1 & i = j \\ 0 & i \neq j \end{cases} \) — the \(j\)-th standard basis vector. Then \( A x^{(j)} = v_j \) (the \(j\)-th column) for \( j = 1, \dots, r \), and \( A x^{(j)} = 0 \) for \( j = r+1, \dots, n \). So \( \|A x^{(j)}\|_2^2 = \|v_j\|_2^2 \) for \( j = 1, \dots, r \), with \( \|x^{(j)}\|_2 = 1 \). Now
-    \[ \|A\|_F^2 = \sum_{j=1}^{r}\|v_j\|_2^2 = \sum_{j=1}^{r}\|A x^{(j)}\|_2^2 \le \sum_{j=1}^{r}\max_j \|A x^{(j)}\|_2^2 \le r\,\|A x^{(k)}\|^2, \]
-    where \( k = \arg\max_{j=1,\dots,r}\|A x^{(j)}\|_2 \). By definition \( \|A\|_2 \ge \|Ax\| \) for all \( \|x\| = 1 \), so \( \|A\|_F^2 \le r\,\|A\|_2^2 \), i.e. \( \|A\|_F \le \sqrt{r}\,\|A\|_2 \).</p>
-    <p>Combining both, \( \|A\|_2 \le \|A\|_F \le \sqrt{r}\,\|A\|_2 \).</p>
+    <p>This bound is cleanest through the singular value decomposition (Chapter 10). Let \( A = \sum_{i=1}^{r} \sigma_i\, u_i v_i\herm \) be the SVD, where \( \sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_r > 0 \) are the \( r = \operatorname{rank}(A) \) non-zero singular values. Then
+    \[ \|A\|_F^2 = \operatorname{trace}(A\herm A) = \sum_{i=1}^{r}\sigma_i^2 \qquad\text{and}\qquad \|A\|_2 = \sigma_1 = \max_i \sigma_i. \]
+    Since each \( \sigma_i^2 \le \sigma_1^2 \),
+    \[ \|A\|_F^2 = \sum_{i=1}^{r}\sigma_i^2 \le r\,\sigma_1^2 = r\,\|A\|_2^2 \implies \|A\|_F \le \sqrt{r}\,\|A\|_2. \]
+    Combining both, \( \|A\|_2 \le \|A\|_F \le \sqrt{r}\,\|A\|_2 \).</p>
+  </div>
+
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— Ex 69(ii)</span></p>
+    <p>The original argument wrote a rank-\(r\) matrix as having exactly \(r\) non-zero columns, \( A = [\,v_1\,\cdots\,v_r\,0\,\cdots\,0\,] \), and summed \( \|A\|_F^2 = \sum_{j=1}^r\|v_j\|^2 \). That is not valid — a rank-\(r\) matrix can have many more than \(r\) non-zero columns (e.g. the all-ones \(3\times3\) matrix has rank \(1\) but three non-zero columns), so that sum undercounts \( \|A\|_F^2 \). The \( \sqrt r \) really comes from the \(r\) non-zero singular values, so the corrected proof uses the SVD.</p>
   </div>
 
   <div class="box ex">
@@ -263,9 +269,15 @@
 
   <p>→&nbsp; The set of invertible matrices in \( \C^{n\times n} \) forms an open set.</p>
 
+  <!-- RESOLVED (correctness pass 2): exercise/theorem numbering reconciled with LAA-2024.pdf. Instructor Ch6 = Ex 67-72 (Ex 72 = polynomial continuity, below) + Theorem 10; Ch7 begins at Ex 73. The notes had inserted this openness result as an extra "Ex 72" (pushing the polynomial result to "73") and labelled the theorem "20". Fixed: openness shown as an unnumbered Additional Exercise; polynomial result renumbered 73 -> 72; theorem 20 -> 10. Also fixes a pass-1 mis-citation in Ch8 (should be Ex 72, not 73). -->
+  <div class="box corr">
+    <p class="box-head">Correction <span class="name">— exercise &amp; theorem numbering</span></p>
+    <p>The instructor's Chapter 6 has exercises 67–72 — with <strong>Ex 72</strong> the polynomial-continuity result below — and the equivalence result is <strong>Theorem 10</strong>; Chapter 7 then begins at Ex 73. The handwritten notes had inserted the "openness of the invertible matrices" result as an extra "Ex 72" (shifting the polynomial result to "73") and numbered the theorem "20". To keep the global numbering aligned with the instructor, that openness result is shown below as an unnumbered <em>Additional Exercise</em>, the polynomial-continuity result is renumbered to <strong>Ex 72</strong>, and the theorem to <strong>Theorem 10</strong>.</p>
+  </div>
+
   <div class="box ex">
-    <p class="box-head">Ex 72</p>
-    <p>Let \( A \in \C^{n\times n} \) be invertible and \( \|\cdot\| \) a norm on \( \C^{n\times n} \). Show (without using determinants) that \( \exists\, \delta > 0 \) such that \(B\) is invertible if \( \|B - A\| < \delta \).</p>
+    <p class="box-head">Additional Exercise <span class="name">— openness of the invertible matrices</span></p>
+    <p>Let \( A \in \C^{n\times n} \) be invertible and \( \|\cdot\| \) a norm on \( \C^{n\times n} \). Show (without using determinants) that \( \exists\, \delta > 0 \) such that \(B\) is invertible if \( \|B - A\| < \delta \). <span class="aside">(Not in the instructor's numbered list; kept from the handwritten notes.)</span></p>
   </div>
 
   <div class="box sol">
@@ -278,7 +290,7 @@
   </div>
 
   <div class="box ex">
-    <p class="box-head">Ex 73</p>
+    <p class="box-head">Ex 72</p>
     <p>Let \(p\) be a polynomial with complex coefficients and \( \|\cdot\| \) a norm on \( \C^{n\times n} \). Let \( A \in \C^{n\times n} \) and \( (A_n) \) a sequence of matrices in \( \C^{n\times n} \) with \( \|A_n - A\| \to 0 \). Prove that \( \lim_{n\to\infty}\|p(A_n) - p(A)\| = 0 \).</p>
   </div>
 
@@ -297,7 +309,7 @@
   <h2 class="sec">Equivalence of Norms</h2>
 
   <div class="box thm">
-    <p class="box-head">Theorem 20 <span class="name">— Equivalence of norms</span></p>
+    <p class="box-head">Theorem 10 <span class="name">— Equivalence of norms</span></p>
     <p>Let \( \|\cdot\|_\alpha \) and \( \|\cdot\|_\beta \) be two arbitrary matrix norms on \( \Lin(V, W) \), where \(V\) and \(W\) are finite-dimensional. Then \( \exists\, a, b > 0 \) such that \( \forall\, T \in \Lin(V, W) \):
     \[ a\,\|T\|_\alpha \le \|T\|_\beta \le b\,\|T\|_\alpha. \]
     In particular, a sequence \( \{T_n\} \subset \Lin(V, W) \) converges to \( T \in \Lin(V, W) \) w.r.t. \( \|\cdot\|_\alpha \) if and only if \( \{T_n\} \) converges to \(T\) w.r.t. \( \|\cdot\|_\beta \).</p>
@@ -309,7 +321,7 @@
   </div>
 
   <details class="scan">
-    <summary>View original handwritten scans — Sequences, invertibility &amp; equivalence, Ex 71–73 + Thm 20 (pages 20–28)</summary>
+    <summary>View original handwritten scans — Sequences, invertibility &amp; equivalence, Ex 71–72 (+ an additional exercise) + Thm 10 (pages 20–28)</summary>
     <div class="scan-imgs">
       <img loading="lazy" src="Ch6_%20Operator%20and%20Matrix%20Norms_files/image020.png" alt="Original handwritten page 20">
       <img loading="lazy" src="Ch6_%20Operator%20and%20Matrix%20Norms_files/image021.png" alt="Original handwritten page 21">
